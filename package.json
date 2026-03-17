@@ -1,0 +1,45 @@
+{
+  "name": "shubh-ui-monorepo",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Production-grade React UI component library with CLI generator",
+  "scripts": {
+    "build": "npm run build --workspaces",
+    "build:ui": "npm run build -w designsystem",
+    "build:cli": "npm run build -w packages/cli",
+    "dev": "npm run dev --workspaces",
+    "dev:ui": "npm run dev -w designsystem",
+    "dev:cli": "npm run dev -w packages/cli",
+    "lint": "npm run lint --workspaces",
+    "test": "npm run test -w designsystem",
+    "test:ui": "npm run test -w designsystem",
+    "type-check": "npm run type-check -w designsystem",
+    "ci": "npm run type-check && npm run test && npm run build",
+    "ci:strict": "npm run lint && npm run ci",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "changeset publish",
+    "install:all": "npm install && npm install -w designsystem && npm install -w packages/cli"
+  },
+  "workspaces": [
+    "designsystem",
+    "packages/cli"
+  ],
+  "keywords": [
+    "react",
+    "ui-library",
+    "component-library",
+    "design-system",
+    "tailwindcss",
+    "typescript"
+  ],
+  "author": "Shubham",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/shubh-ui"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.29.6"
+  }
+}
