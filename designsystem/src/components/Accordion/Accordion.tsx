@@ -58,9 +58,9 @@ const Accordion: React.FC<AccordionProps> = ({
     <div
       className={cn(
         'w-full',
-        variant === 'bordered' && 'border border-[#d7d7d7] rounded-lg overflow-hidden divide-y divide-[#d7d7d7]',
-        variant === 'default' && 'divide-y divide-[#d7d7d7]',
-        variant === 'flush' && 'divide-y divide-[#d7d7d7]',
+        variant === 'bordered' && 'border border-border rounded-lg overflow-hidden divide-y divide-border',
+        variant === 'default' && 'divide-y divide-border',
+        variant === 'flush' && 'divide-y divide-border',
         className
       )}
     >
@@ -68,7 +68,7 @@ const Accordion: React.FC<AccordionProps> = ({
         <div
           key={item.id}
           className={cn(
-            variant === 'filled' && 'mb-2 rounded-lg overflow-hidden border border-[#d7d7d7]'
+            variant === 'filled' && 'mb-2 rounded-lg overflow-hidden border border-border'
           )}
         >
           <button
@@ -78,11 +78,11 @@ const Accordion: React.FC<AccordionProps> = ({
             aria-expanded={isOpen(item.id)}
             className={cn(
               'w-full flex items-center justify-between gap-3 py-3.5 px-0 text-left transition-colors duration-150',
-              variant === 'filled' && 'px-4 bg-gray-50 hover:bg-gray-100',
+              variant === 'filled' && 'px-4 bg-muted hover:bg-muted/80',
               variant === 'bordered' && 'px-4',
               variant === 'flush' && 'px-0',
-              item.disabled ? 'opacity-40 cursor-not-allowed' : 'cursor-pointer hover:text-[#000080]',
-              isOpen(item.id) && 'text-[#000080]'
+              item.disabled ? 'opacity-40 cursor-not-allowed' : 'cursor-pointer hover:text-primary',
+              isOpen(item.id) && 'text-primary'
             )}
           >
             <span className="flex items-center gap-2 font-medium text-sm">
@@ -92,8 +92,8 @@ const Accordion: React.FC<AccordionProps> = ({
             </span>
             <ChevronDownIcon
               className={cn(
-                'h-4 w-4 shrink-0 text-[#808080] transition-transform duration-200',
-                isOpen(item.id) && 'rotate-180 text-[#000080]'
+                'h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-200',
+                isOpen(item.id) && 'rotate-180 text-primary'
               )}
             />
           </button>
@@ -103,7 +103,7 @@ const Accordion: React.FC<AccordionProps> = ({
               isOpen(item.id) ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
             )}
           >
-            <div className={cn('pb-4 text-sm text-[#808080]', variant === 'filled' && 'px-4', variant === 'bordered' && 'px-4')}>
+            <div className={cn('pb-4 text-sm text-muted-foreground', variant === 'filled' && 'px-4', variant === 'bordered' && 'px-4')}>
               {item.content}
             </div>
           </div>

@@ -7,16 +7,16 @@ export const badgeVariants = cva(
   {
     variants: {
       variant: {
-        default:     'bg-[#dae8ff] text-[#000080]',
-        primary:     'bg-[#000080] text-white',
-        navy:        'bg-[#000040] text-white',
-        secondary:   'bg-gray-100 text-gray-700',
+        default:     'bg-accent text-accent-foreground',
+        primary:     'bg-primary text-primary-foreground',
+        navy:        'bg-navy text-white',
+        secondary:   'bg-muted text-muted-foreground',
         success:     'bg-green-100 text-green-700',
         warning:     'bg-amber-100 text-amber-700',
         destructive: 'bg-red-100 text-red-700',
         info:        'bg-sky-100 text-sky-700',
-        outline:     'border border-[#d7d7d7] bg-transparent text-[#1e1e1e]',
-        ghost:       'bg-transparent text-[#808080]',
+        outline:     'border border-border bg-transparent text-foreground',
+        ghost:       'bg-transparent text-muted-foreground',
       },
       size: {
         sm: 'px-1.5 py-0.5 text-xs',

@@ -39,21 +39,21 @@ const Radio = forwardRef<HTMLInputElement, RadioProps>(
             className={cn(
               'flex items-center justify-center rounded-full border-2 transition-all duration-150',
               s.outer,
-              checked ? 'border-[#000080]' : 'border-[#d7d7d7] hover:border-[#000080]',
+              checked ? 'border-primary' : 'border-input hover:border-primary',
               disabled && 'opacity-50 cursor-not-allowed',
               error && !checked && 'border-red-400'
             )}
             aria-hidden="true"
           >
             {checked && (
-              <div className={cn('rounded-full bg-[#000080]', s.inner)} />
+              <div className={cn('rounded-full bg-primary', s.inner)} />
             )}
           </div>
         </div>
         {(label || description) && (
           <label htmlFor={radioId} className={cn('cursor-pointer', disabled && 'cursor-not-allowed opacity-50')}>
-            {label && <span className={cn('font-medium text-[#1e1e1e] block', s.label)}>{label}</span>}
-            {description && <span className="text-xs text-[#808080] block mt-0.5">{description}</span>}
+            {label && <span className={cn('font-medium text-foreground block', s.label)}>{label}</span>}
+            {description && <span className="text-xs text-muted-foreground block mt-0.5">{description}</span>}
           </label>
         )}
       </div>

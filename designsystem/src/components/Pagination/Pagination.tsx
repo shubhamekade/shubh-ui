@@ -58,17 +58,17 @@ const Pagination: React.FC<PaginationProps> = ({
   const totalPages = Math.ceil(total / pageSize);
   const pages = generatePages(page, totalPages, siblingCount);
   const btnClass = cn(
-    'inline-flex items-center justify-center rounded-md border border-[#d7d7d7] font-medium transition-all duration-100',
-    'hover:bg-[#dae8ff] hover:border-[#000080] hover:text-[#000080]',
-    'disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-transparent disabled:hover:border-[#d7d7d7] disabled:hover:text-inherit',
-    'focus:outline-none focus-visible:ring-2 focus-visible:ring-[#000080] focus-visible:ring-offset-1',
+    'inline-flex items-center justify-center rounded-md border border-border font-medium transition-all duration-100',
+    'hover:bg-accent hover:border-primary hover:text-accent-foreground',
+    'disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-transparent disabled:hover:border-border disabled:hover:text-inherit',
+    'focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1',
     sizeMap[size]
   );
 
   return (
     <div className={cn('flex items-center flex-wrap gap-3', className)}>
       {showTotal && (
-        <span className="text-sm text-[#808080] tabular-nums">
+        <span className="text-sm text-muted-foreground tabular-nums">
           {(page - 1) * pageSize + 1}–{Math.min(page * pageSize, total)} of {total.toLocaleString()}
         </span>
       )}
@@ -96,7 +96,7 @@ const Pagination: React.FC<PaginationProps> = ({
 
         {pages.map((p, i) =>
           p === '...' ? (
-            <span key={`ellipsis-${i}`} className={cn('inline-flex items-center justify-center text-[#808080]', sizeMap[size])}>
+            <span key={`ellipsis-${i}`} className={cn('inline-flex items-center justify-center text-muted-foreground', sizeMap[size])}>
               …
             </span>
           ) : (
@@ -107,7 +107,7 @@ const Pagination: React.FC<PaginationProps> = ({
               aria-current={page === p ? 'page' : undefined}
               className={cn(
                 btnClass,
-                page === p && 'bg-[#000080] text-white border-[#000080] hover:bg-[#0000a0] hover:text-white hover:border-[#0000a0]'
+                page === p && 'bg-primary text-primary-foreground border-primary hover:bg-primary/90 hover:text-primary-foreground hover:border-primary/90'
               )}
             >
               {p}
@@ -141,7 +141,7 @@ const Pagination: React.FC<PaginationProps> = ({
         <select
           value={pageSize}
           onChange={e => onPageSizeChange(Number(e.target.value))}
-          className="h-8 pl-2 pr-6 text-sm border border-[#d7d7d7] rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-[#000080] bg-white text-[#1e1e1e]"
+          className="h-8 pl-2 pr-6 text-sm border border-border rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-ring bg-background text-foreground"
           aria-label="Rows per page"
         >
           {pageSizeOptions.map(s => (

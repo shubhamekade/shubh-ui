@@ -16,9 +16,9 @@ export interface StatsCardProps extends HTMLAttributes<HTMLDivElement> {
 
 const variantStyles = {
   default:
-    "bg-white border-slate-200 text-slate-900",
+    "bg-card border-border text-card-foreground",
   primary:
-    "bg-blue-50 border-blue-200 text-blue-900",
+    "bg-accent border-primary/20 text-accent-foreground",
   success:
     "bg-green-50 border-green-200 text-green-900",
   warning:
@@ -28,8 +28,8 @@ const variantStyles = {
 };
 
 const iconBgVariants = {
-  default: "bg-slate-100",
-  primary: "bg-blue-100",
+  default: "bg-muted",
+  primary: "bg-accent",
   success: "bg-green-100",
   warning: "bg-amber-100",
   danger: "bg-red-100",
@@ -68,11 +68,11 @@ const StatsCard = forwardRef<HTMLDivElement, StatsCardProps>(
       <div className="flex items-start justify-between gap-4">
         {/* Left: Icon + Text */}
         <div className="flex-1">
-          <p className="text-sm font-medium text-slate-600">{title}</p>
+          <p className="text-sm font-medium text-muted-foreground">{title}</p>
           <div className="mt-2 flex items-baseline gap-2">
             <p className="text-2xl font-bold">{value}</p>
             {subtitle && (
-              <p className="text-xs text-slate-500">{subtitle}</p>
+              <p className="text-xs text-muted-foreground">{subtitle}</p>
             )}
           </div>
           {trend && trendPercent && (
@@ -83,7 +83,7 @@ const StatsCard = forwardRef<HTMLDivElement, StatsCardProps>(
                 <TrendingDown className="h-4 w-4" />
               )}
               <span>{trendPercent}%</span>
-              {trendLabel && <span className="text-slate-500">{trendLabel}</span>}
+              {trendLabel && <span className="text-muted-foreground">{trendLabel}</span>}
             </div>
           )}
         </div>

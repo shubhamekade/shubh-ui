@@ -21,10 +21,10 @@ export const avatarVariants = cva(
       },
       variant: {
         image: '',
-        initials: 'bg-[#dae8ff] text-[#000080]',
-        icon:    'bg-gray-100 text-gray-500',
-        navy:    'bg-[#000040] text-white',
-        primary: 'bg-[#000080] text-white',
+        initials: 'bg-accent text-accent-foreground',
+        icon:    'bg-muted text-muted-foreground',
+        navy:    'bg-navy text-white',
+        primary: 'bg-primary text-primary-foreground',
       },
     },
     defaultVariants: {
@@ -46,7 +46,7 @@ export interface AvatarProps
 
 const statusColors: Record<string, string> = {
   online:  'bg-green-500',
-  offline: 'bg-gray-400',
+  offline: 'bg-muted-foreground',
   busy:    'bg-red-500',
   away:    'bg-amber-400',
 };

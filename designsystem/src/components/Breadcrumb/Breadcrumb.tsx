@@ -21,7 +21,7 @@ const sizeMap = { sm: 'text-xs', md: 'text-sm', lg: 'text-base' };
 
 const Breadcrumb: React.FC<BreadcrumbProps> = ({
   items,
-  separator = <ChevronRight className="h-3.5 w-3.5 text-[#808080]" aria-hidden="true" />,
+  separator = <ChevronRight className="h-3.5 w-3.5 text-muted-foreground" aria-hidden="true" />,
   showHome = false,
   maxItems,
   className,
@@ -46,7 +46,7 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({
               {isLast ? (
                 <span
                   aria-current="page"
-                  className="font-medium text-[#1e1e1e] flex items-center gap-1"
+                  className="font-medium text-foreground flex items-center gap-1"
                 >
                   {item.icon}
                   {item.label}
@@ -54,13 +54,13 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({
               ) : item.href ? (
                 <a
                   href={item.href}
-                  className="text-[#808080] hover:text-[#000080] transition-colors flex items-center gap-1"
+                  className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-1"
                 >
                   {item.icon}
                   {item.label}
                 </a>
               ) : (
-                <span className="text-[#808080] flex items-center gap-1">
+                <span className="text-muted-foreground flex items-center gap-1">
                   {item.icon}
                   {item.label}
                 </span>

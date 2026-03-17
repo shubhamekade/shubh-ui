@@ -8,12 +8,12 @@ export const alertVariants = cva(
   {
     variants: {
       variant: {
-        info:        'bg-[#dae8ff] border-[#b3d4ff] text-[#000080]',
+        info:        'bg-accent border-primary/20 text-accent-foreground',
         success:     'bg-green-50 border-green-200 text-green-800',
         warning:     'bg-amber-50 border-amber-200 text-amber-800',
         destructive: 'bg-red-50 border-red-200 text-red-800',
-        navy:        'bg-[#000040] border-[#000060] text-white',
-        neutral:     'bg-gray-50 border-[#d7d7d7] text-[#1e1e1e]',
+        navy:        'bg-navy border-navy-medium text-white',
+        neutral:     'bg-muted border-border text-foreground',
       },
     },
     defaultVariants: { variant: 'info' },

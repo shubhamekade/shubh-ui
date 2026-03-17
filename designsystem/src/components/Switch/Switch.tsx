@@ -41,14 +41,14 @@ const Switch = forwardRef<HTMLInputElement, SwitchProps>(
         className={cn(
           'relative inline-flex items-center rounded-full transition-colors duration-200 ease-in-out cursor-pointer',
           s.track,
-          checked ? 'bg-[#000080]' : 'bg-gray-300',
+          checked ? 'bg-primary' : 'bg-muted',
           disabled && 'opacity-50 cursor-not-allowed'
         )}
         aria-hidden="true"
       >
         <span
           className={cn(
-            'inline-block rounded-full bg-white shadow-sm transition-transform duration-200 ease-in-out',
+            'inline-block rounded-full bg-background shadow-sm transition-transform duration-200 ease-in-out',
             s.thumb,
             checked ? s.translate : 'translate-x-0.5'
           )}
@@ -57,10 +57,10 @@ const Switch = forwardRef<HTMLInputElement, SwitchProps>(
     );
 
     const labelEl = label && (
-      <span className={cn('font-medium text-[#1e1e1e]', s.label)}>
+      <span className={cn('font-medium text-foreground', s.label)}>
         {label}
         {description && (
-          <span className="block text-xs text-[#808080] font-normal mt-0.5">
+          <span className="block text-xs text-muted-foreground font-normal mt-0.5">
             {description}
           </span>
         )}

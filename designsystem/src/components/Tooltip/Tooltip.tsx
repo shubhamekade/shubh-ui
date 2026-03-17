@@ -21,10 +21,10 @@ const placementStyles = {
 };
 
 const arrowStyles = {
-  top:    'top-full left-1/2 -translate-x-1/2 border-t-[#1e1e1e] border-x-transparent border-b-transparent border-4',
-  bottom: 'bottom-full left-1/2 -translate-x-1/2 border-b-[#1e1e1e] border-x-transparent border-t-transparent border-4',
-  left:   'left-full top-1/2 -translate-y-1/2 border-l-[#1e1e1e] border-y-transparent border-r-transparent border-4',
-  right:  'right-full top-1/2 -translate-y-1/2 border-r-[#1e1e1e] border-y-transparent border-l-transparent border-4',
+  top:    'top-full left-1/2 -translate-x-1/2 border-t-foreground border-x-transparent border-b-transparent border-4',
+  bottom: 'bottom-full left-1/2 -translate-x-1/2 border-b-foreground border-x-transparent border-t-transparent border-4',
+  left:   'left-full top-1/2 -translate-y-1/2 border-l-foreground border-y-transparent border-r-transparent border-4',
+  right:  'right-full top-1/2 -translate-y-1/2 border-r-foreground border-y-transparent border-l-transparent border-4',
 };
 
 const Tooltip: React.FC<TooltipProps> = ({
@@ -62,7 +62,7 @@ const Tooltip: React.FC<TooltipProps> = ({
         <div
           role="tooltip"
           className={cn(
-            'absolute z-50 px-2.5 py-1.5 text-xs font-medium text-white bg-[#1e1e1e] rounded-md shadow-lg whitespace-nowrap animate-fade-in pointer-events-none',
+            'absolute z-50 px-2.5 py-1.5 text-xs font-medium text-background bg-foreground rounded-md shadow-lg whitespace-nowrap animate-fade-in pointer-events-none',
             placementStyles[placement],
             className
           )}

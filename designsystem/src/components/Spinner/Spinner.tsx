@@ -14,9 +14,9 @@ export const spinnerVariants = cva(
         xl:  'h-12 w-12 border-4',
       },
       color: {
-        primary:  'text-[#000080]',
+        primary:  'text-primary',
         white:    'text-white',
-        muted:    'text-[#808080]',
+        muted:    'text-muted-foreground',
         success:  'text-green-500',
         warning:  'text-amber-400',
         danger:   'text-red-500',

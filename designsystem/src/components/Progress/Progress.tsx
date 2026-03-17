@@ -3,7 +3,7 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/utils/cn';
 
 export const progressTrackVariants = cva(
-  'w-full overflow-hidden rounded-full bg-gray-100',
+  'w-full overflow-hidden rounded-full bg-muted',
   {
     variants: {
       size: {
@@ -31,11 +31,11 @@ export interface ProgressProps
 }
 
 const colorMap = {
-  primary:     'bg-[#000080]',
-  success:     'bg-green-500',
-  warning:     'bg-amber-400',
-  destructive: 'bg-red-500',
-  navy:        'bg-[#000040]',
+  primary:     'bg-primary',
+  success:     'bg-success',
+  warning:     'bg-warning',
+  destructive: 'bg-destructive',
+  navy:        'bg-navy',
 };
 
 const Progress: React.FC<ProgressProps> = ({

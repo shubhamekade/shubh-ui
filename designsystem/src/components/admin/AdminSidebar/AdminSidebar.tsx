@@ -74,8 +74,8 @@ const AdminSidebar = forwardRef<HTMLElement, AdminSidebarProps>(
               className={cn(
                 "w-full flex items-center gap-3 px-3 py-2 rounded-lg transition-colors text-left",
                 activeItem === item.id
-                  ? "bg-blue-600 text-white"
-                  : "text-slate-300 hover:bg-slate-800"
+                  ? "bg-primary text-primary-foreground"
+                  : "text-muted-foreground hover:bg-muted/10"
               )}
             >
               {item.icon && (
@@ -92,8 +92,8 @@ const AdminSidebar = forwardRef<HTMLElement, AdminSidebarProps>(
                     className={cn(
                       "w-full flex items-center gap-3 px-3 py-1.5 rounded text-xs transition-colors text-left",
                       activeItem === child.id
-                        ? "bg-blue-500 text-white"
-                        : "text-slate-400 hover:bg-slate-800"
+                        ? "bg-primary/80 text-primary-foreground"
+                        : "text-muted-foreground hover:bg-muted/10"
                     )}
                   >
                     {child.label}
@@ -106,7 +106,7 @@ const AdminSidebar = forwardRef<HTMLElement, AdminSidebarProps>(
       </nav>
 
       {/* Footer */}
-      {children && <div className="border-t border-slate-800 p-4">{children}</div>}
+      {children && <div className="border-t border-border p-4">{children}</div>}
     </aside>
   )
 );

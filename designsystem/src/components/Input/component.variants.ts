@@ -2,16 +2,16 @@ import { cva } from "class-variance-authority";
 
 export const inputVariants = cva(
   [
-    "flex w-full rounded-md border bg-white text-slate-900 transition-colors",
-    "placeholder:text-slate-400",
-    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-950",
+    "flex w-full rounded-md border bg-background text-foreground transition-colors",
+    "placeholder:text-muted-foreground",
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
     "disabled:cursor-not-allowed disabled:opacity-50",
-    "read-only:cursor-default read-only:bg-slate-50",
+    "read-only:cursor-default read-only:bg-muted",
   ],
   {
     variants: {
       variant: {
-        default: "border-slate-200 hover:border-slate-300",
+        default: "border-input hover:border-border",
         error: "border-red-500 bg-red-50/40 focus-visible:ring-red-500",
         success: "border-green-500 bg-green-50/40 focus-visible:ring-green-500",
       },

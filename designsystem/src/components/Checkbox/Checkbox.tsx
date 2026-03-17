@@ -57,8 +57,8 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
               'flex items-center justify-center rounded transition-all duration-150 border-2 cursor-pointer',
               s.box,
               checked || indeterminate
-                ? 'bg-[#000080] border-[#000080]'
-                : 'bg-white border-[#d7d7d7] hover:border-[#000080]',
+                ? 'bg-primary border-primary'
+                : 'bg-background border-input hover:border-primary',
               disabled && 'opacity-50 cursor-not-allowed',
               error && !checked && 'border-red-400'
             )}
@@ -74,12 +74,12 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
         {(label || description) && (
           <label htmlFor={checkboxId} className={cn('cursor-pointer', disabled && 'cursor-not-allowed')}>
             {label && (
-              <span className={cn('font-medium text-[#1e1e1e] block', s.label)}>
+              <span className={cn('font-medium text-foreground block', s.label)}>
                 {label}
               </span>
             )}
             {description && (
-              <span className="text-xs text-[#808080] block mt-0.5">{description}</span>
+              <span className="text-xs text-muted-foreground block mt-0.5">{description}</span>
             )}
           </label>
         )}
