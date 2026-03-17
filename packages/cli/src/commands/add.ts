@@ -18,6 +18,7 @@ const VALID_COMPONENTS = [
   "avatar",
   "tabs",
   "dropdown",
+  "label",
   "table",
   "sidebar",
   "navbar",

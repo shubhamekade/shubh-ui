@@ -17,6 +17,7 @@ export * from "./components/Checkbox";
 export * from "./components/Divider";
 export * from "./components/Drawer";
 export * from "./components/Dropdown";
+export * from "./components/Label";
 export * from "./components/Progress";
 export * from "./components/Radio";
 export * from "./components/ServerDataTable";

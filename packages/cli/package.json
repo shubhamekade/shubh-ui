@@ -1,5 +1,5 @@
 {
-  "name": "@shubh/cli",
+  "name": "shubh-cli",
   "version": "0.1.0",
   "description": "CLI tool for scaffolding components from @shubh/ui design system",
   "bin": {
@@ -20,7 +20,7 @@
     "shadcn",
     "design-system"
   ],
-  "author": "Shubham",
+  "author": "Shubham Patil",
   "license": "MIT",
   "dependencies": {
     "commander": "^11.1.0",

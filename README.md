@@ -75,7 +75,7 @@ npx shubh-ui add button input card modal
 Supported `add` components:
 
 - `accordion`, `alert`, `avatar`, `badge`, `breadcrumb`, `button`, `calendar`, `card`, `checkbox`, `divider`
-- `drawer`, `dropdown`, `input`, `modal`, `navbar`, `pagination`, `progress`, `radio`, `select`, `sidebar`
+- `drawer`, `dropdown`, `input`, `label`, `modal`, `navbar`, `pagination`, `progress`, `radio`, `select`, `sidebar`
 - `serverdatatable`, `skeleton`, `spinner`, `switch`, `table`, `tabs`, `tag`, `textarea`, `tooltip`
 
 ## Export Notes

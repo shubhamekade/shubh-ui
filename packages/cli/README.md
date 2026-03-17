@@ -46,6 +46,7 @@ Supported components:
 - `avatar` - User avatar
 - `tabs` - Tab navigation
 - `dropdown` - Dropdown menu
+- `label` - Form label with states
 - `table` - Data table
 - `sidebar` - Side navigation
 - `navbar` - Top navigation

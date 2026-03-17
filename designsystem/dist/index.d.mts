@@ -341,6 +341,14 @@ interface DropdownProps {
 }
 declare const Dropdown: React__default.FC<DropdownProps>;
 
+declare const labelVariants: (props?: ({
+    variant?: "default" | "error" | "muted" | null | undefined;
+    required?: boolean | null | undefined;
+} & class_variance_authority_types.ClassProp) | undefined) => string;
+interface LabelProps extends React__default.LabelHTMLAttributes<HTMLLabelElement>, VariantProps<typeof labelVariants> {
+}
+declare const Label: React__default.ForwardRefExoticComponent<LabelProps & React__default.RefAttributes<HTMLLabelElement>>;
+
 declare const progressTrackVariants: (props?: ({
     size?: "xs" | "sm" | "md" | "lg" | "xl" | null | undefined;
 } & class_variance_authority_types.ClassProp) | undefined) => string;
@@ -412,7 +420,7 @@ declare const SkeletonCard: React__default.FC<{
 
 declare const spinnerVariants: (props?: ({
     size?: "xs" | "sm" | "md" | "lg" | "xl" | null | undefined;
-    color?: "primary" | "danger" | "success" | "warning" | "white" | "muted" | null | undefined;
+    color?: "primary" | "danger" | "success" | "warning" | "muted" | "white" | null | undefined;
 } & class_variance_authority_types.ClassProp) | undefined) => string;
 interface SpinnerProps extends Omit<React__default.HTMLAttributes<HTMLDivElement>, 'color'>, VariantProps<typeof spinnerVariants> {
     label?: string;
@@ -524,4 +532,4 @@ declare function useToggle(initialValue?: boolean): [
 
 declare function cn(...inputs: ClassValue[]): string;
 
-export { Accordion, type AccordionProps, Button as AdminButton, Card as AdminCard, CardContent as AdminCardContent, CardDescription as AdminCardDescription, CardFooter as AdminCardFooter, CardHeader as AdminCardHeader, CardTitle as AdminCardTitle, Input as AdminInput, Pagination as AdminPagination, Select as AdminSelect, AdminSidebar, type AdminSidebarProps, Table as AdminTable, Alert, type AlertProps, Avatar, type AvatarProps, Badge, type BadgeProps, Breadcrumb, type BreadcrumbItem, type BreadcrumbProps, Button, type ButtonProps, Calendar, type CalendarProps, type CalendarSize, type CalendarTheme, type CalendarView, Card, CardContent, CardDescription, CardFooter, CardHeader, type CardProps, CardTitle, Checkbox, type CheckboxProps, type ColumnDef, Divider, type DividerProps, Drawer, type DrawerProps, Dropdown, type DropdownProps, type FetchParams, type FetchResult, Input, type InputProps, Modal, type ModalProps, type NavItem, Navbar, type NavbarProps, Pagination, type PaginationProps, Progress, type ProgressProps, Radio, type RadioProps, Select, type SelectProps, ServerDataTable, type ServerDataTableProps, type ServerDataTableTheme, Sidebar, type SidebarProps, Skeleton, SkeletonCard, type SkeletonProps, type SortDirection, Spinner, type SpinnerProps, StatsCard, type StatsCardProps, Switch, type SwitchProps, Table, type TableProps, Tabs, type TabsProps, Tag, type TagProps, Textarea, type TextareaProps, Tooltip, type TooltipProps, Topbar, type TopbarProps, alertVariants, badgeVariants, buttonVariants, calendarCellVariants, calendarVariants, cardVariants, cn, inputVariants, useClickOutside, useDebounce, useToggle };
+export { Accordion, type AccordionProps, Button as AdminButton, Card as AdminCard, CardContent as AdminCardContent, CardDescription as AdminCardDescription, CardFooter as AdminCardFooter, CardHeader as AdminCardHeader, CardTitle as AdminCardTitle, Input as AdminInput, Pagination as AdminPagination, Select as AdminSelect, AdminSidebar, type AdminSidebarProps, Table as AdminTable, Alert, type AlertProps, Avatar, type AvatarProps, Badge, type BadgeProps, Breadcrumb, type BreadcrumbItem, type BreadcrumbProps, Button, type ButtonProps, Calendar, type CalendarProps, type CalendarSize, type CalendarTheme, type CalendarView, Card, CardContent, CardDescription, CardFooter, CardHeader, type CardProps, CardTitle, Checkbox, type CheckboxProps, type ColumnDef, Divider, type DividerProps, Drawer, type DrawerProps, Dropdown, type DropdownProps, type FetchParams, type FetchResult, Input, type InputProps, Label, type LabelProps, Modal, type ModalProps, type NavItem, Navbar, type NavbarProps, Pagination, type PaginationProps, Progress, type ProgressProps, Radio, type RadioProps, Select, type SelectProps, ServerDataTable, type ServerDataTableProps, type ServerDataTableTheme, Sidebar, type SidebarProps, Skeleton, SkeletonCard, type SkeletonProps, type SortDirection, Spinner, type SpinnerProps, StatsCard, type StatsCardProps, Switch, type SwitchProps, Table, type TableProps, Tabs, type TabsProps, Tag, type TagProps, Textarea, type TextareaProps, Tooltip, type TooltipProps, Topbar, type TopbarProps, alertVariants, badgeVariants, buttonVariants, calendarCellVariants, calendarVariants, cardVariants, cn, inputVariants, useClickOutside, useDebounce, useToggle };
