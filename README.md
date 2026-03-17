@@ -4,8 +4,8 @@ Production-focused React component library and CLI scaffolder.
 
 ## Packages
 
-- `@shubh/ui` (`designsystem/`) — reusable React components, hooks, layout primitives, and admin components.
-- `@shubh/cli` (`packages/cli/`) — `init`/`add` workflow to copy component templates into consuming apps.
+- `shubh-ui` (`designsystem/`) — reusable React components, hooks, layout primitives, and admin components.
+- `shubh-cli` (`packages/cli/`) — `init`/`add` workflow to copy component templates into consuming apps.
 
 ## Highlights
 
@@ -49,11 +49,11 @@ npm run release
 ## UI Library Quick Usage
 
 ```bash
-npm install @shubh/ui react react-dom
+npm install shubh-ui react react-dom
 ```
 
 ```tsx
-import { Button, Card, Input } from "@shubh/ui";
+import { Button, Card, Input } from "shubh-ui";
 
 export function Example() {
   return (
@@ -80,7 +80,7 @@ Supported `add` components:
 
 ## Export Notes
 
-- Core table/select/pagination exports come from `@shubh/ui` as `Table`, `Select`, `Pagination`.
+- Core table/select/pagination exports come from `shubh-ui` as `Table`, `Select`, `Pagination`.
 - Admin convenience aliases are prefixed to avoid collisions: `AdminTable`, `AdminSelect`, `AdminPagination`, `AdminButton`, `AdminCard`.
 
 ## Token-Based Theming

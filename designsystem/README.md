@@ -1,11 +1,11 @@
-# @shubh/ui
+# shubh-ui
 
 Reusable React UI component library built with TypeScript, Tailwind CSS, and tsup.
 
 ## Install
 
 ```bash
-npm install @shubh/ui
+npm install shubh-ui
 ```
 
 Peer dependencies (required by consumer app):
@@ -22,15 +22,18 @@ Consumers must configure Tailwind in their React/Next.js app.
 ## Usage
 
 ```tsx
-import { Button, Input, Card, Navbar, Sidebar } from "@shubh/ui";
+import { Button, Input, Label, Card, Navbar, Sidebar } from "shubh-ui";
 
 export function Example() {
   return (
     <Card>
+      <Label htmlFor="email" required>
+        Email
+      </Label>
       <Button variant="primary" size="lg" loading={false}>
         Save
       </Button>
-      <Input label="Email" placeholder="you@example.com" />
+      <Input id="email" placeholder="you@example.com" />
     </Card>
   );
 }
@@ -39,7 +42,7 @@ export function Example() {
 ## Admin Dashboard Usage
 
 ```tsx
-import { Topbar, AdminSidebar, StatsCard, Table, Pagination } from "@shubh/ui";
+import { Topbar, AdminSidebar, StatsCard, Table, Pagination } from "shubh-ui";
 import { BarChart3, Users, TrendingUp } from "lucide-react";
 
 export function AdminDashboard() {
@@ -94,12 +97,32 @@ export function AdminDashboard() {
 ### Core Components
 - Button
 - Input
+- Label
 - Card
 - Modal
 - Badge
 - Tabs
 - Select
 - Textarea
+
+### Extended Components
+- Accordion
+- Alert
+- Avatar
+- Breadcrumb
+- Calendar
+- Checkbox
+- Divider
+- Drawer
+- Dropdown
+- Progress
+- Radio
+- ServerDataTable
+- Skeleton
+- Spinner
+- Switch
+- Tag
+- Tooltip
 
 ### Data & Display
 - Table
@@ -120,6 +143,21 @@ export function AdminDashboard() {
 - `useToggle()` — Boolean state toggle
 - `useDebounce()` — Debounce values
 - `useClickOutside()` — Detect clicks outside element
+
+## Token-Based Theming
+
+This library uses semantic design tokens via CSS custom properties and Tailwind color aliases.
+
+- Light theme: `:root` / `[data-theme="light"]`
+- Navy dark theme: `[data-theme="navy"]` or `.dark`
+
+Runtime switch example:
+
+```tsx
+document.documentElement.setAttribute("data-theme", "light");
+document.documentElement.setAttribute("data-theme", "navy");
+document.documentElement.classList.toggle("dark", true);
+```
 
 ## Scripts
 

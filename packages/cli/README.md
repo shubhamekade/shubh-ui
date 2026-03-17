@@ -1,13 +1,13 @@
-# @shubh/ui CLI
+# shubh-cli
 
-A powerful CLI tool for scaffolding, generating, and managing components from the @shubh/ui design system.
+A powerful CLI tool for scaffolding, generating, and managing components from the shubh-ui design system.
 
 ## Installation
 
 ```bash
-npm install -g @shubh/cli
+npm install -g shubh-cli
 # or
-npx @shubh/cli
+npx shubh-cli
 ```
 
 ## Quick Start

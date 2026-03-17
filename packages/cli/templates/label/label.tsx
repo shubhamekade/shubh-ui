@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 import { cn } from '@/utils/cn';
 
-export interface LabelProps extends React.LabelHTMLAttributes<HTMLLabelElement> {
+export interface LabelProps extends React.HTMLAttributes<HTMLLabelElement> {
   variant?: 'default' | 'muted' | 'error';
   required?: boolean;
 }
