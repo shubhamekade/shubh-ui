@@ -129,23 +129,23 @@ var buttonVariants = (0, import_class_variance_authority.cva)(
   [
     "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium",
     "transition-colors duration-150",
-    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-950 focus-visible:ring-offset-2",
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
     "disabled:pointer-events-none disabled:opacity-50",
-    "ring-offset-white"
+    "ring-offset-background"
   ],
   {
     variants: {
       variant: {
-        primary: "bg-slate-950 text-white shadow-sm hover:bg-slate-800",
-        secondary: "bg-slate-100 text-slate-900 hover:bg-slate-200",
-        outline: "border border-slate-200 bg-white text-slate-900 hover:bg-slate-50",
-        ghost: "bg-transparent text-slate-900 hover:bg-slate-100",
-        danger: "bg-red-600 text-white shadow-sm hover:bg-red-700",
-        destructive: "bg-red-600 text-white shadow-sm hover:bg-red-700",
-        navy: "bg-blue-900 text-white shadow-sm hover:bg-blue-800",
-        success: "bg-emerald-600 text-white shadow-sm hover:bg-emerald-700",
-        warning: "bg-amber-500 text-slate-950 shadow-sm hover:bg-amber-400",
-        link: "bg-transparent p-0 text-blue-700 underline-offset-4 hover:underline"
+        primary: "bg-primary text-primary-foreground shadow-sm hover:bg-primary/90",
+        secondary: "bg-muted text-foreground hover:bg-muted/80",
+        outline: "border border-border bg-background text-foreground hover:bg-muted",
+        ghost: "bg-transparent text-foreground hover:bg-muted",
+        danger: "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
+        destructive: "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
+        navy: "bg-navy text-white shadow-sm hover:bg-navy-medium",
+        success: "bg-success text-white shadow-sm hover:bg-success/90",
+        warning: "bg-warning text-foreground shadow-sm hover:bg-warning/90",
+        link: "bg-transparent p-0 text-primary underline-offset-4 hover:underline"
       },
       size: {
         xs: "h-8 px-2 text-xs",
@@ -226,16 +226,16 @@ var import_lucide_react2 = require("lucide-react");
 var import_class_variance_authority2 = require("class-variance-authority");
 var inputVariants = (0, import_class_variance_authority2.cva)(
   [
-    "flex w-full rounded-md border bg-white text-slate-900 transition-colors",
-    "placeholder:text-slate-400",
-    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-950",
+    "flex w-full rounded-md border bg-background text-foreground transition-colors",
+    "placeholder:text-muted-foreground",
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
     "disabled:cursor-not-allowed disabled:opacity-50",
-    "read-only:cursor-default read-only:bg-slate-50"
+    "read-only:cursor-default read-only:bg-muted"
   ],
   {
     variants: {
       variant: {
-        default: "border-slate-200 hover:border-slate-300",
+        default: "border-input hover:border-border",
         error: "border-red-500 bg-red-50/40 focus-visible:ring-red-500",
         success: "border-green-500 bg-green-50/40 focus-visible:ring-green-500"
       },
@@ -701,14 +701,14 @@ var Pagination = ({
   const totalPages = Math.ceil(total / pageSize);
   const pages = generatePages(page, totalPages, siblingCount);
   const btnClass = cn(
-    "inline-flex items-center justify-center rounded-md border border-[#d7d7d7] font-medium transition-all duration-100",
-    "hover:bg-[#dae8ff] hover:border-[#000080] hover:text-[#000080]",
-    "disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-transparent disabled:hover:border-[#d7d7d7] disabled:hover:text-inherit",
-    "focus:outline-none focus-visible:ring-2 focus-visible:ring-[#000080] focus-visible:ring-offset-1",
+    "inline-flex items-center justify-center rounded-md border border-border font-medium transition-all duration-100",
+    "hover:bg-accent hover:border-primary hover:text-accent-foreground",
+    "disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-transparent disabled:hover:border-border disabled:hover:text-inherit",
+    "focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1",
     sizeMap2[size]
   );
   return /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: cn("flex items-center flex-wrap gap-3", className), children: [
-    showTotal && /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("span", { className: "text-sm text-[#808080] tabular-nums", children: [
+    showTotal && /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("span", { className: "text-sm text-muted-foreground tabular-nums", children: [
       (page - 1) * pageSize + 1,
       "\u2013",
       Math.min(page * pageSize, total),
@@ -739,7 +739,7 @@ var Pagination = ({
         }
       ),
       pages.map(
-        (p, i) => p === "..." ? /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("span", { className: cn("inline-flex items-center justify-center text-[#808080]", sizeMap2[size]), children: "\u2026" }, `ellipsis-${i}`) : /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
+        (p, i) => p === "..." ? /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("span", { className: cn("inline-flex items-center justify-center text-muted-foreground", sizeMap2[size]), children: "\u2026" }, `ellipsis-${i}`) : /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
           "button",
           {
             type: "button",
@@ -747,7 +747,7 @@ var Pagination = ({
             "aria-current": page === p ? "page" : void 0,
             className: cn(
               btnClass,
-              page === p && "bg-[#000080] text-white border-[#000080] hover:bg-[#0000a0] hover:text-white hover:border-[#0000a0]"
+              page === p && "bg-primary text-primary-foreground border-primary hover:bg-primary/90 hover:text-primary-foreground hover:border-primary/90"
             ),
             children: p
           },
@@ -782,7 +782,7 @@ var Pagination = ({
       {
         value: pageSize,
         onChange: (e) => onPageSizeChange(Number(e.target.value)),
-        className: "h-8 pl-2 pr-6 text-sm border border-[#d7d7d7] rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-[#000080] bg-white text-[#1e1e1e]",
+        className: "h-8 pl-2 pr-6 text-sm border border-border rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-ring bg-background text-foreground",
         "aria-label": "Rows per page",
         children: pageSizeOptions.map((s) => /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("option", { value: s, children: [
           s,
@@ -1124,16 +1124,16 @@ var badgeVariants = (0, import_class_variance_authority4.cva)(
   {
     variants: {
       variant: {
-        default: "bg-[#dae8ff] text-[#000080]",
-        primary: "bg-[#000080] text-white",
-        navy: "bg-[#000040] text-white",
-        secondary: "bg-gray-100 text-gray-700",
+        default: "bg-accent text-accent-foreground",
+        primary: "bg-primary text-primary-foreground",
+        navy: "bg-navy text-white",
+        secondary: "bg-muted text-muted-foreground",
         success: "bg-green-100 text-green-700",
         warning: "bg-amber-100 text-amber-700",
         destructive: "bg-red-100 text-red-700",
         info: "bg-sky-100 text-sky-700",
-        outline: "border border-[#d7d7d7] bg-transparent text-[#1e1e1e]",
-        ghost: "bg-transparent text-[#808080]"
+        outline: "border border-border bg-transparent text-foreground",
+        ghost: "bg-transparent text-muted-foreground"
       },
       size: {
         sm: "px-1.5 py-0.5 text-xs",
@@ -1381,16 +1381,16 @@ var Accordion = ({
     {
       className: cn(
         "w-full",
-        variant === "bordered" && "border border-[#d7d7d7] rounded-lg overflow-hidden divide-y divide-[#d7d7d7]",
-        variant === "default" && "divide-y divide-[#d7d7d7]",
-        variant === "flush" && "divide-y divide-[#d7d7d7]",
+        variant === "bordered" && "border border-border rounded-lg overflow-hidden divide-y divide-border",
+        variant === "default" && "divide-y divide-border",
+        variant === "flush" && "divide-y divide-border",
         className
       ),
       children: items.map((item) => /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)(
         "div",
         {
           className: cn(
-            variant === "filled" && "mb-2 rounded-lg overflow-hidden border border-[#d7d7d7]"
+            variant === "filled" && "mb-2 rounded-lg overflow-hidden border border-border"
           ),
           children: [
             /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)(
@@ -1402,11 +1402,11 @@ var Accordion = ({
                 "aria-expanded": isOpen(item.id),
                 className: cn(
                   "w-full flex items-center justify-between gap-3 py-3.5 px-0 text-left transition-colors duration-150",
-                  variant === "filled" && "px-4 bg-gray-50 hover:bg-gray-100",
+                  variant === "filled" && "px-4 bg-muted hover:bg-muted/80",
                   variant === "bordered" && "px-4",
                   variant === "flush" && "px-0",
-                  item.disabled ? "opacity-40 cursor-not-allowed" : "cursor-pointer hover:text-[#000080]",
-                  isOpen(item.id) && "text-[#000080]"
+                  item.disabled ? "opacity-40 cursor-not-allowed" : "cursor-pointer hover:text-primary",
+                  isOpen(item.id) && "text-primary"
                 ),
                 children: [
                   /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("span", { className: "flex items-center gap-2 font-medium text-sm", children: [
@@ -1418,8 +1418,8 @@ var Accordion = ({
                     ChevronDownIcon,
                     {
                       className: cn(
-                        "h-4 w-4 shrink-0 text-[#808080] transition-transform duration-200",
-                        isOpen(item.id) && "rotate-180 text-[#000080]"
+                        "h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-200",
+                        isOpen(item.id) && "rotate-180 text-primary"
                       )
                     }
                   )
@@ -1433,7 +1433,7 @@ var Accordion = ({
                   "overflow-hidden transition-all duration-200 ease-in-out",
                   isOpen(item.id) ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
                 ),
-                children: /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("div", { className: cn("pb-4 text-sm text-[#808080]", variant === "filled" && "px-4", variant === "bordered" && "px-4"), children: item.content })
+                children: /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("div", { className: cn("pb-4 text-sm text-muted-foreground", variant === "filled" && "px-4", variant === "bordered" && "px-4"), children: item.content })
               }
             )
           ]
@@ -1455,12 +1455,12 @@ var alertVariants = (0, import_class_variance_authority5.cva)(
   {
     variants: {
       variant: {
-        info: "bg-[#dae8ff] border-[#b3d4ff] text-[#000080]",
+        info: "bg-accent border-primary/20 text-accent-foreground",
         success: "bg-green-50 border-green-200 text-green-800",
         warning: "bg-amber-50 border-amber-200 text-amber-800",
         destructive: "bg-red-50 border-red-200 text-red-800",
-        navy: "bg-[#000040] border-[#000060] text-white",
-        neutral: "bg-gray-50 border-[#d7d7d7] text-[#1e1e1e]"
+        navy: "bg-navy border-navy-medium text-white",
+        neutral: "bg-muted border-border text-foreground"
       }
     },
     defaultVariants: { variant: "info" }
@@ -1546,10 +1546,10 @@ var avatarVariants = (0, import_class_variance_authority6.cva)(
       },
       variant: {
         image: "",
-        initials: "bg-[#dae8ff] text-[#000080]",
-        icon: "bg-gray-100 text-gray-500",
-        navy: "bg-[#000040] text-white",
-        primary: "bg-[#000080] text-white"
+        initials: "bg-accent text-accent-foreground",
+        icon: "bg-muted text-muted-foreground",
+        navy: "bg-navy text-white",
+        primary: "bg-primary text-primary-foreground"
       }
     },
     defaultVariants: {
@@ -1561,7 +1561,7 @@ var avatarVariants = (0, import_class_variance_authority6.cva)(
 );
 var statusColors = {
   online: "bg-green-500",
-  offline: "bg-gray-400",
+  offline: "bg-muted-foreground",
   busy: "bg-red-500",
   away: "bg-amber-400"
 };
@@ -1622,7 +1622,7 @@ var import_jsx_runtime14 = require("react/jsx-runtime");
 var sizeMap5 = { sm: "text-xs", md: "text-sm", lg: "text-base" };
 var Breadcrumb = ({
   items,
-  separator = /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(import_lucide_react8.ChevronRight, { className: "h-3.5 w-3.5 text-[#808080]", "aria-hidden": "true" }),
+  separator = /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(import_lucide_react8.ChevronRight, { className: "h-3.5 w-3.5 text-muted-foreground", "aria-hidden": "true" }),
   showHome = false,
   maxItems,
   className,
@@ -1638,7 +1638,7 @@ var Breadcrumb = ({
         "span",
         {
           "aria-current": "page",
-          className: "font-medium text-[#1e1e1e] flex items-center gap-1",
+          className: "font-medium text-foreground flex items-center gap-1",
           children: [
             item.icon,
             item.label
@@ -1648,13 +1648,13 @@ var Breadcrumb = ({
         "a",
         {
           href: item.href,
-          className: "text-[#808080] hover:text-[#000080] transition-colors flex items-center gap-1",
+          className: "text-muted-foreground hover:text-primary transition-colors flex items-center gap-1",
           children: [
             item.icon,
             item.label
           ]
         }
-      ) : /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)("span", { className: "text-[#808080] flex items-center gap-1", children: [
+      ) : /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)("span", { className: "text-muted-foreground flex items-center gap-1", children: [
         item.icon,
         item.label
       ] })
@@ -2142,7 +2142,7 @@ var Checkbox = (0, import_react11.forwardRef)(
             className: cn(
               "flex items-center justify-center rounded transition-all duration-150 border-2 cursor-pointer",
               s.box,
-              checked || indeterminate ? "bg-[#000080] border-[#000080]" : "bg-white border-[#d7d7d7] hover:border-[#000080]",
+              checked || indeterminate ? "bg-primary border-primary" : "bg-background border-input hover:border-primary",
               disabled && "opacity-50 cursor-not-allowed",
               error && !checked && "border-red-400"
             ),
@@ -2152,8 +2152,8 @@ var Checkbox = (0, import_react11.forwardRef)(
         )
       ] }),
       (label || description) && /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("label", { htmlFor: checkboxId, className: cn("cursor-pointer", disabled && "cursor-not-allowed"), children: [
-        label && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { className: cn("font-medium text-[#1e1e1e] block", s.label), children: label }),
-        description && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { className: "text-xs text-[#808080] block mt-0.5", children: description })
+        label && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { className: cn("font-medium text-foreground block", s.label), children: label }),
+        description && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { className: "text-xs text-muted-foreground block mt-0.5", children: description })
       ] }),
       error && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("p", { className: "text-xs text-red-500 mt-1", role: "alert", children: error })
     ] });
@@ -2442,7 +2442,7 @@ var Dropdown_default = Dropdown;
 var import_class_variance_authority8 = require("class-variance-authority");
 var import_jsx_runtime20 = require("react/jsx-runtime");
 var progressTrackVariants = (0, import_class_variance_authority8.cva)(
-  "w-full overflow-hidden rounded-full bg-gray-100",
+  "w-full overflow-hidden rounded-full bg-muted",
   {
     variants: {
       size: {
@@ -2457,11 +2457,11 @@ var progressTrackVariants = (0, import_class_variance_authority8.cva)(
   }
 );
 var colorMap = {
-  primary: "bg-[#000080]",
-  success: "bg-green-500",
-  warning: "bg-amber-400",
-  destructive: "bg-red-500",
-  navy: "bg-[#000040]"
+  primary: "bg-primary",
+  success: "bg-success",
+  warning: "bg-warning",
+  destructive: "bg-destructive",
+  navy: "bg-navy"
 };
 var Progress = (_a) => {
   var _b = _a, {
@@ -2555,18 +2555,18 @@ var Radio = (0, import_react14.forwardRef)(
             className: cn(
               "flex items-center justify-center rounded-full border-2 transition-all duration-150",
               s.outer,
-              checked ? "border-[#000080]" : "border-[#d7d7d7] hover:border-[#000080]",
+              checked ? "border-primary" : "border-input hover:border-primary",
               disabled && "opacity-50 cursor-not-allowed",
               error && !checked && "border-red-400"
             ),
             "aria-hidden": "true",
-            children: checked && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("div", { className: cn("rounded-full bg-[#000080]", s.inner) })
+            children: checked && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("div", { className: cn("rounded-full bg-primary", s.inner) })
           }
         )
       ] }),
       (label || description) && /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("label", { htmlFor: radioId, className: cn("cursor-pointer", disabled && "cursor-not-allowed opacity-50"), children: [
-        label && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("span", { className: cn("font-medium text-[#1e1e1e] block", s.label), children: label }),
-        description && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("span", { className: "text-xs text-[#808080] block mt-0.5", children: description })
+        label && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("span", { className: cn("font-medium text-foreground block", s.label), children: label }),
+        description && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("span", { className: "text-xs text-muted-foreground block mt-0.5", children: description })
       ] })
     ] });
   }
@@ -3055,9 +3055,9 @@ var spinnerVariants = (0, import_class_variance_authority9.cva)(
         xl: "h-12 w-12 border-4"
       },
       color: {
-        primary: "text-[#000080]",
+        primary: "text-primary",
         white: "text-white",
-        muted: "text-[#808080]",
+        muted: "text-muted-foreground",
         success: "text-green-500",
         warning: "text-amber-400",
         danger: "text-red-500"
@@ -3133,7 +3133,7 @@ var Switch = (0, import_react16.forwardRef)(
         className: cn(
           "relative inline-flex items-center rounded-full transition-colors duration-200 ease-in-out cursor-pointer",
           s.track,
-          checked ? "bg-[#000080]" : "bg-gray-300",
+          checked ? "bg-primary" : "bg-muted",
           disabled && "opacity-50 cursor-not-allowed"
         ),
         "aria-hidden": "true",
@@ -3141,7 +3141,7 @@ var Switch = (0, import_react16.forwardRef)(
           "span",
           {
             className: cn(
-              "inline-block rounded-full bg-white shadow-sm transition-transform duration-200 ease-in-out",
+              "inline-block rounded-full bg-background shadow-sm transition-transform duration-200 ease-in-out",
               s.thumb,
               checked ? s.translate : "translate-x-0.5"
             )
@@ -3149,9 +3149,9 @@ var Switch = (0, import_react16.forwardRef)(
         )
       }
     );
-    const labelEl = label && /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("span", { className: cn("font-medium text-[#1e1e1e]", s.label), children: [
+    const labelEl = label && /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("span", { className: cn("font-medium text-foreground", s.label), children: [
       label,
-      description && /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("span", { className: "block text-xs text-[#808080] font-normal mt-0.5", children: description })
+      description && /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("span", { className: "block text-xs text-muted-foreground font-normal mt-0.5", children: description })
     ] });
     return /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)(
       "label",
@@ -3264,10 +3264,10 @@ var placementStyles2 = {
   right: "left-full top-1/2 -translate-y-1/2 ml-2"
 };
 var arrowStyles = {
-  top: "top-full left-1/2 -translate-x-1/2 border-t-[#1e1e1e] border-x-transparent border-b-transparent border-4",
-  bottom: "bottom-full left-1/2 -translate-x-1/2 border-b-[#1e1e1e] border-x-transparent border-t-transparent border-4",
-  left: "left-full top-1/2 -translate-y-1/2 border-l-[#1e1e1e] border-y-transparent border-r-transparent border-4",
-  right: "right-full top-1/2 -translate-y-1/2 border-r-[#1e1e1e] border-y-transparent border-l-transparent border-4"
+  top: "top-full left-1/2 -translate-x-1/2 border-t-foreground border-x-transparent border-b-transparent border-4",
+  bottom: "bottom-full left-1/2 -translate-x-1/2 border-b-foreground border-x-transparent border-t-transparent border-4",
+  left: "left-full top-1/2 -translate-y-1/2 border-l-foreground border-y-transparent border-r-transparent border-4",
+  right: "right-full top-1/2 -translate-y-1/2 border-r-foreground border-y-transparent border-l-transparent border-4"
 };
 var Tooltip = ({
   content,
@@ -3303,7 +3303,7 @@ var Tooltip = ({
           {
             role: "tooltip",
             className: cn(
-              "absolute z-50 px-2.5 py-1.5 text-xs font-medium text-white bg-[#1e1e1e] rounded-md shadow-lg whitespace-nowrap animate-fade-in pointer-events-none",
+              "absolute z-50 px-2.5 py-1.5 text-xs font-medium text-background bg-foreground rounded-md shadow-lg whitespace-nowrap animate-fade-in pointer-events-none",
               placementStyles2[placement],
               className
             ),
@@ -3487,7 +3487,7 @@ var AdminSidebar = (0, import_react19.forwardRef)(
                 onClick: () => onNavigate == null ? void 0 : onNavigate(item.id),
                 className: cn(
                   "w-full flex items-center gap-3 px-3 py-2 rounded-lg transition-colors text-left",
-                  activeItem === item.id ? "bg-blue-600 text-white" : "text-slate-300 hover:bg-slate-800"
+                  activeItem === item.id ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:bg-muted/10"
                 ),
                 children: [
                   item.icon && /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("span", { className: "flex-shrink-0", children: item.icon }),
@@ -3501,14 +3501,14 @@ var AdminSidebar = (0, import_react19.forwardRef)(
                 onClick: () => onNavigate == null ? void 0 : onNavigate(child.id),
                 className: cn(
                   "w-full flex items-center gap-3 px-3 py-1.5 rounded text-xs transition-colors text-left",
-                  activeItem === child.id ? "bg-blue-500 text-white" : "text-slate-400 hover:bg-slate-800"
+                  activeItem === child.id ? "bg-primary/80 text-primary-foreground" : "text-muted-foreground hover:bg-muted/10"
                 ),
                 children: child.label
               },
               child.id
             )) })
           ] }, item.id)) }),
-          children && /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("div", { className: "border-t border-slate-800 p-4", children })
+          children && /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("div", { className: "border-t border-border p-4", children })
         ]
       })
     );
@@ -3522,15 +3522,15 @@ var import_react20 = require("react");
 var import_lucide_react15 = require("lucide-react");
 var import_jsx_runtime30 = require("react/jsx-runtime");
 var variantStyles = {
-  default: "bg-white border-slate-200 text-slate-900",
-  primary: "bg-blue-50 border-blue-200 text-blue-900",
+  default: "bg-card border-border text-card-foreground",
+  primary: "bg-accent border-primary/20 text-accent-foreground",
   success: "bg-green-50 border-green-200 text-green-900",
   warning: "bg-amber-50 border-amber-200 text-amber-900",
   danger: "bg-red-50 border-red-200 text-red-900"
 };
 var iconBgVariants = {
-  default: "bg-slate-100",
-  primary: "bg-blue-100",
+  default: "bg-muted",
+  primary: "bg-accent",
   success: "bg-green-100",
   warning: "bg-amber-100",
   danger: "bg-red-100"
@@ -3574,10 +3574,10 @@ var StatsCard = (0, import_react20.forwardRef)(
       }, props), {
         children: /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("div", { className: "flex items-start justify-between gap-4", children: [
           /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("div", { className: "flex-1", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("p", { className: "text-sm font-medium text-slate-600", children: title }),
+            /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("p", { className: "text-sm font-medium text-muted-foreground", children: title }),
             /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("div", { className: "mt-2 flex items-baseline gap-2", children: [
               /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("p", { className: "text-2xl font-bold", children: value }),
-              subtitle && /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("p", { className: "text-xs text-slate-500", children: subtitle })
+              subtitle && /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("p", { className: "text-xs text-muted-foreground", children: subtitle })
             ] }),
             trend && trendPercent && /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("div", { className: cn("mt-2 flex items-center gap-1 text-sm font-medium", trendColorVariants[trend]), children: [
               trend === "up" ? /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(import_lucide_react15.TrendingUp, { className: "h-4 w-4" }) : /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(import_lucide_react15.TrendingDown, { className: "h-4 w-4" }),
@@ -3585,7 +3585,7 @@ var StatsCard = (0, import_react20.forwardRef)(
                 trendPercent,
                 "%"
               ] }),
-              trendLabel && /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("span", { className: "text-slate-500", children: trendLabel })
+              trendLabel && /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("span", { className: "text-muted-foreground", children: trendLabel })
             ] })
           ] }),
           icon && /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(
