@@ -32,12 +32,31 @@ export default function PaginationSection() {
           { name: 'total', type: 'number', required: true, description: 'Total number of items' },
           { name: 'page', type: 'number', required: true, description: 'Current page (1-indexed)' },
           { name: 'pageSize', type: 'number', default: '10', description: 'Items per page' },
-          { name: 'onPageChange', type: '(page: number) => void', required: true, description: 'Called with new page number' },
+          {
+            name: 'onPageChange',
+            type: '(page: number) => void',
+            required: true,
+            description: 'Called with new page number',
+          },
           { name: 'showTotal', type: 'boolean', description: 'Show "X–Y of Z" item count' },
           { name: 'showPageSize', type: 'boolean', description: 'Show items-per-page dropdown' },
-          { name: 'showFirstLast', type: 'boolean', description: 'Show first/last page jump buttons' },
-          { name: 'siblingCount', type: 'number', default: '1', description: 'Pages shown on each side of current' },
-          { name: 'size', type: "'sm' | 'md' | 'lg'", default: "'md'", description: 'Button dimensions' },
+          {
+            name: 'showFirstLast',
+            type: 'boolean',
+            description: 'Show first/last page jump buttons',
+          },
+          {
+            name: 'siblingCount',
+            type: 'number',
+            default: '1',
+            description: 'Pages shown on each side of current',
+          },
+          {
+            name: 'size',
+            type: "'sm' | 'md' | 'lg'",
+            default: "'md'",
+            description: 'Button dimensions',
+          },
         ]}
       >
         <div className="w-full space-y-4">
@@ -60,7 +79,7 @@ export default function PaginationSection() {
               pageSize={10}
               onPageChange={setPlayPage}
               showTotal
-              size={ctrl.size as any || 'md'}
+              size={(ctrl.size as any) || 'md'}
             />
           </div>
         </div>
@@ -78,13 +97,7 @@ export default function PaginationSection() {
   showTotal
 />`}
       >
-        <Pagination
-          total={247}
-          page={page1}
-          pageSize={10}
-          onPageChange={setPage1}
-          showTotal
-        />
+        <Pagination total={247} page={page1} pageSize={10} onPageChange={setPage1} showTotal />
       </ShowcaseSection>
 
       <ShowcaseSection
@@ -132,7 +145,7 @@ export default function PaginationSection() {
         previewBg="white"
       >
         <div className="space-y-4 w-full">
-          <Pagination total={500} page={2}  onPageChange={() => {}} showTotal />
+          <Pagination total={500} page={2} onPageChange={() => {}} showTotal />
           <Pagination total={500} page={page3} onPageChange={setPage3} showTotal />
           <Pagination total={500} page={49} onPageChange={() => {}} showTotal />
         </div>

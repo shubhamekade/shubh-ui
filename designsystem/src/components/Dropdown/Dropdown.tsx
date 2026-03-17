@@ -49,7 +49,9 @@ const Dropdown: React.FC<DropdownProps> = ({
 
   useEffect(() => {
     if (!open) return;
-    const firstItem = menuRef.current?.querySelector<HTMLButtonElement>('button[role="menuitem"]:not(:disabled)');
+    const firstItem = menuRef.current?.querySelector<HTMLButtonElement>(
+      'button[role="menuitem"]:not(:disabled)'
+    );
     firstItem?.focus();
   }, [open]);
 
@@ -67,7 +69,9 @@ const Dropdown: React.FC<DropdownProps> = ({
 
   const handleMenuKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
     const menuItems = Array.from(
-      menuRef.current?.querySelectorAll<HTMLButtonElement>('button[role="menuitem"]:not(:disabled)') ?? []
+      menuRef.current?.querySelectorAll<HTMLButtonElement>(
+        'button[role="menuitem"]:not(:disabled)'
+      ) ?? []
     );
 
     if (menuItems.length === 0) return;
@@ -101,7 +105,7 @@ const Dropdown: React.FC<DropdownProps> = ({
         aria-haspopup="menu"
         aria-expanded={open}
         aria-controls={menuId}
-        onClick={() => setOpen(v => !v)}
+        onClick={() => setOpen((v) => !v)}
         onKeyDown={handleTriggerKeyDown}
         className="cursor-pointer"
       >
@@ -141,11 +145,15 @@ const Dropdown: React.FC<DropdownProps> = ({
                 role="menuitem"
                 type="button"
                 disabled={d.disabled}
-                onClick={() => { d.onClick?.(); setOpen(false); }}
+                onClick={() => {
+                  d.onClick?.();
+                  setOpen(false);
+                }}
                 className={cn(
                   'w-full flex items-center gap-2 px-3 py-2 text-sm transition-colors duration-100 text-left',
                   d.danger
-                    ? 'text-red-600 hover:bg-red-50' : 'text-foreground hover:bg-accent hover:text-accent-foreground',
+                    ? 'text-red-600 hover:bg-red-50'
+                    : 'text-foreground hover:bg-accent hover:text-accent-foreground',
                   d.disabled && 'opacity-40 cursor-not-allowed'
                 )}
               >
@@ -159,7 +167,9 @@ const Dropdown: React.FC<DropdownProps> = ({
                 {d.shortcut && (
                   <kbd className="text-xs text-muted-foreground font-mono">{d.shortcut}</kbd>
                 )}
-                {d.children && <ChevronRight className="h-3.5 w-3.5 text-muted-foreground shrink-0" />}
+                {d.children && (
+                  <ChevronRight className="h-3.5 w-3.5 text-muted-foreground shrink-0" />
+                )}
               </button>
             );
           })}

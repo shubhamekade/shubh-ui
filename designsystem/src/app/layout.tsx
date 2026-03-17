@@ -3,7 +3,8 @@ import '@/styles/tailwind.css';
 
 export const metadata: Metadata = {
   title: 'DesignSystem — UI Component Library',
-  description: 'Production-ready UI component library showcase built with Next.js, TypeScript, and Tailwind CSS.',
+  description:
+    'Production-ready UI component library showcase built with Next.js, TypeScript, and Tailwind CSS.',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -12,10 +13,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-</head>
-      <body className="min-h-screen bg-white font-sans antialiased">
-        {children}
-      </body>
+      </head>
+      <body className="min-h-screen bg-white font-sans antialiased">{children}</body>
     </html>
   );
 }

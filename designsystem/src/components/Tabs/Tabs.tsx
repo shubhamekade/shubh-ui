@@ -25,31 +25,31 @@ export interface TabsProps {
 }
 
 const tabListVariants = {
-  line:     'border-b border-border gap-0',
-  pill:     'bg-gray-100 p-1 rounded-lg gap-1',
+  line: 'border-b border-border gap-0',
+  pill: 'bg-gray-100 p-1 rounded-lg gap-1',
   enclosed: 'border border-border rounded-t-lg overflow-hidden gap-0',
-  soft:     'gap-1',
+  soft: 'gap-1',
 };
 
 const tabItemVariants = {
   line: {
-    base:     'px-4 py-2.5 border-b-2 border-transparent -mb-px font-medium text-muted-foreground hover:text-foreground hover:border-border transition-all duration-150',
-    active:   'border-primary text-primary',
+    base: 'px-4 py-2.5 border-b-2 border-transparent -mb-px font-medium text-muted-foreground hover:text-foreground hover:border-border transition-all duration-150',
+    active: 'border-primary text-primary',
     disabled: 'opacity-40 cursor-not-allowed',
   },
   pill: {
-    base:     'px-3 py-1.5 rounded-md font-medium text-muted-foreground hover:text-foreground hover:bg-background transition-all duration-150',
-    active:   'bg-background text-primary shadow-sm',
+    base: 'px-3 py-1.5 rounded-md font-medium text-muted-foreground hover:text-foreground hover:bg-background transition-all duration-150',
+    active: 'bg-background text-primary shadow-sm',
     disabled: 'opacity-40 cursor-not-allowed',
   },
   enclosed: {
-    base:     'px-4 py-2.5 font-medium text-muted-foreground border-r border-border last:border-r-0 hover:bg-gray-50 transition-all duration-150',
-    active:   'bg-background text-primary shadow-sm',
+    base: 'px-4 py-2.5 font-medium text-muted-foreground border-r border-border last:border-r-0 hover:bg-gray-50 transition-all duration-150',
+    active: 'bg-background text-primary shadow-sm',
     disabled: 'opacity-40 cursor-not-allowed',
   },
   soft: {
-    base:     'px-3 py-2 rounded-md font-medium text-muted-foreground hover:text-foreground hover:bg-gray-100 transition-all duration-150',
-    active:   'bg-accent text-accent-foreground',
+    base: 'px-3 py-2 rounded-md font-medium text-muted-foreground hover:text-foreground hover:bg-gray-100 transition-all duration-150',
+    active: 'bg-accent text-accent-foreground',
     disabled: 'opacity-40 cursor-not-allowed',
   },
 };
@@ -77,12 +77,12 @@ const Tabs: React.FC<TabsProps> = ({
     onChange?.(id);
   };
 
-  const activeItem = items.find(i => i.id === current);
+  const activeItem = items.find((i) => i.id === current);
 
   const enabledIndices = items
     .map((item, index) => ({ item, index }))
-    .filter(entry => !entry.item.disabled)
-    .map(entry => entry.index);
+    .filter((entry) => !entry.item.disabled)
+    .map((entry) => entry.index);
 
   const handleTabKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>, index: number) => {
     if (enabledIndices.length === 0) return;

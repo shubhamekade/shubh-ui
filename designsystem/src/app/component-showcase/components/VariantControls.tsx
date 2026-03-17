@@ -87,8 +87,7 @@ export default function VariantControls({
 }: VariantControlsProps) {
   const { sizes, variants, showDisabled = true, extras = [] } = config;
 
-  const set = (patch: Partial<VariantControlsState>) =>
-    onChange({ ...state, ...patch });
+  const set = (patch: Partial<VariantControlsState>) => onChange({ ...state, ...patch });
 
   const setExtra = (key: string, value: string) =>
     onChange({ ...state, extras: { ...state.extras, [key]: value } });
@@ -100,13 +99,11 @@ export default function VariantControls({
         className
       )}
     >
-      <p className="text-xs font-semibold text-[#1e1e1e] uppercase tracking-wide">
-        Live controls
-      </p>
+      <p className="text-xs font-semibold text-[#1e1e1e] uppercase tracking-wide">Live controls</p>
 
       {sizes && sizes.length > 0 && (
         <ControlGroup label="Size">
-          {sizes.map(opt => (
+          {sizes.map((opt) => (
             <Chip
               key={opt.value}
               active={state.size === opt.value}
@@ -120,7 +117,7 @@ export default function VariantControls({
 
       {variants && variants.length > 0 && (
         <ControlGroup label="Variant">
-          {variants.map(opt => (
+          {variants.map((opt) => (
             <Chip
               key={opt.value}
               active={state.variant === opt.value}
@@ -132,9 +129,9 @@ export default function VariantControls({
         </ControlGroup>
       )}
 
-      {extras.map(extra => (
+      {extras.map((extra) => (
         <ControlGroup key={extra.key} label={extra.label}>
-          {extra.options.map(opt => (
+          {extra.options.map((opt) => (
             <Chip
               key={opt.value}
               active={state.extras[extra.key] === opt.value}
@@ -174,10 +171,9 @@ export default function VariantControls({
 
 /* ─── Hook ───────────────────────────────────────────────────────────────── */
 
-export function useVariantControls(defaults: Partial<VariantControlsState> = {}): [
-  VariantControlsState,
-  (next: VariantControlsState) => void,
-] {
+export function useVariantControls(
+  defaults: Partial<VariantControlsState> = {}
+): [VariantControlsState, (next: VariantControlsState) => void] {
   const [state, setState] = React.useState<VariantControlsState>({
     size: defaults.size ?? 'md',
     variant: defaults.variant ?? '',

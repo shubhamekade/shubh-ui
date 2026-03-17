@@ -29,7 +29,12 @@ export default function TextareaSection() {
           { name: 'error', type: 'string', description: 'Error message — red state' },
           { name: 'showCount', type: 'boolean', description: 'Show current character count' },
           { name: 'maxLength', type: 'number', description: 'Maximum character limit' },
-          { name: 'resize', type: "'none' | 'both' | 'horizontal' | 'vertical'", default: "'vertical'", description: 'CSS resize behavior' },
+          {
+            name: 'resize',
+            type: "'none' | 'both' | 'horizontal' | 'vertical'",
+            default: "'vertical'",
+            description: 'CSS resize behavior',
+          },
         ]}
       >
         <div className="w-full space-y-4">
@@ -53,7 +58,11 @@ export default function TextareaSection() {
                 placeholder="Enter description…"
                 rows={3}
                 disabled={ctrl?.disabled}
-                error={ctrl?.variant === 'error' ? 'Description must be at least 20 characters.' : undefined}
+                error={
+                  ctrl?.variant === 'error'
+                    ? 'Description must be at least 20 characters.'
+                    : undefined
+                }
                 success={ctrl?.variant === 'success' ? 'Description looks great!' : undefined}
               />
             </div>
@@ -67,7 +76,12 @@ export default function TextareaSection() {
         code={`<Textarea label="Description" hint="Describe your component in detail." placeholder="Enter description…" />`}
       >
         <div className="w-full max-w-sm">
-          <Textarea label="Description" hint="Describe your component in detail." placeholder="Enter description…" rows={3} />
+          <Textarea
+            label="Description"
+            hint="Describe your component in detail."
+            placeholder="Enter description…"
+            rows={3}
+          />
         </div>
       </ShowcaseSection>
       <ShowcaseSection
@@ -90,7 +104,7 @@ export default function TextareaSection() {
             placeholder="What changed in this release?"
             rows={4}
             value={val}
-            onChange={e => setVal(e?.target?.value)}
+            onChange={(e) => setVal(e?.target?.value)}
           />
         </div>
       </ShowcaseSection>
@@ -112,12 +126,7 @@ export default function TextareaSection() {
             defaultValue="A fully accessible, composable button component with 9 variants and 6 size options."
             rows={2}
           />
-          <Textarea
-            label="Notes (disabled)"
-            placeholder="No editing allowed"
-            disabled
-            rows={2}
-          />
+          <Textarea label="Notes (disabled)" placeholder="No editing allowed" disabled rows={2} />
         </div>
       </ShowcaseSection>
     </div>

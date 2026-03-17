@@ -19,11 +19,7 @@ const Skeleton: React.FC<SkeletonProps> = ({
   style,
   ...props
 }) => {
-  const base = cn(
-    'rounded-md bg-gray-200',
-    animated && 'animate-pulse',
-    className
-  );
+  const base = cn('rounded-md bg-gray-200', animated && 'animate-pulse', className);
 
   if (variant === 'text' && lines > 1) {
     return (
@@ -41,13 +37,9 @@ const Skeleton: React.FC<SkeletonProps> = ({
 
   return (
     <div
-      className={cn(
-        base,
-        variant === 'circle' && 'rounded-full',
-        variant === 'text' && 'h-4',
-      )}
+      className={cn(base, variant === 'circle' && 'rounded-full', variant === 'text' && 'h-4')}
       style={{
-        width:  width  ? (typeof width  === 'number' ? `${width}px`  : width)  : undefined,
+        width: width ? (typeof width === 'number' ? `${width}px` : width) : undefined,
         height: height ? (typeof height === 'number' ? `${height}px` : height) : undefined,
         ...style,
       }}

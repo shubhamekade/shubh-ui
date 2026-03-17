@@ -1,6 +1,6 @@
-import { forwardRef, type HTMLAttributes } from "react";
+import { forwardRef, type HTMLAttributes } from 'react';
 
-import { cn } from "../../utils/cn";
+import { cn } from '../../utils/cn';
 
 export interface SidebarProps extends HTMLAttributes<HTMLElement> {
   collapsed?: boolean;
@@ -12,8 +12,8 @@ const Sidebar = forwardRef<HTMLElement, SidebarProps>(
       ref={ref}
       role="complementary"
       className={cn(
-        "h-full border-r border-slate-200 bg-white px-3 py-4",
-        collapsed ? "w-16" : "w-64",
+        'h-full border-r border-slate-200 bg-white px-3 py-4',
+        collapsed ? 'w-16' : 'w-64',
         className
       )}
       {...props}
@@ -25,6 +25,6 @@ const Sidebar = forwardRef<HTMLElement, SidebarProps>(
   )
 );
 
-Sidebar.displayName = "Sidebar";
+Sidebar.displayName = 'Sidebar';
 
 export default Sidebar;

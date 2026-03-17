@@ -31,9 +31,10 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({
     ? [{ label: 'Home', href: '/', icon: <Home className="h-3.5 w-3.5" /> }, ...items]
     : items;
 
-  const displayed = maxItems && allItems.length > maxItems
-    ? [allItems[0], { label: '…', href: undefined }, ...allItems.slice(-2)]
-    : allItems;
+  const displayed =
+    maxItems && allItems.length > maxItems
+      ? [allItems[0], { label: '…', href: undefined }, ...allItems.slice(-2)]
+      : allItems;
 
   return (
     <nav aria-label="Breadcrumb" className={cn('flex items-center', className)}>

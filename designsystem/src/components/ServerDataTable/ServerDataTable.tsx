@@ -1,7 +1,13 @@
 'use client';
 
 import React, { useState, useEffect, useCallback, useRef } from 'react';
-import { ChevronUpIcon, ChevronDownIcon, MagnifyingGlassIcon, ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
+import {
+  ChevronUpIcon,
+  ChevronDownIcon,
+  MagnifyingGlassIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+} from '@heroicons/react/24/outline';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -28,7 +34,13 @@ export interface ServerDataTableProps<T extends Record<string, unknown>> {
   columns: ColumnDef<T>[];
   keyExtractor: (row: T) => string;
   pageSize?: number;
-  renderExpandedRow?: (row: T, note: string, onNoteChange: (v: string) => void, onApprove: () => void, onReject: () => void) => React.ReactNode;
+  renderExpandedRow?: (
+    row: T,
+    note: string,
+    onNoteChange: (v: string) => void,
+    onApprove: () => void,
+    onReject: () => void
+  ) => React.ReactNode;
   onApprove?: (row: T, note: string) => void;
   onReject?: (row: T, note: string) => void;
   appliedDateField?: keyof T;
@@ -143,7 +155,9 @@ function getThemeTokens(theme: ServerDataTableTheme) {
 
 function SkeletonRow({ cols, tk }: { cols: number; tk: ReturnType<typeof getThemeTokens> }) {
   return (
-    <div className={`${tk.skeletonBg} rounded-xl border ${tk.skeletonBorder} shadow-sm px-4 py-3 mb-2 flex items-center gap-4 animate-pulse`}>
+    <div
+      className={`${tk.skeletonBg} rounded-xl border ${tk.skeletonBorder} shadow-sm px-4 py-3 mb-2 flex items-center gap-4 animate-pulse`}
+    >
       {Array.from({ length: cols }).map((_, i) => (
         <div key={i} className={`flex-1 h-4 ${tk.skeletonPulse} rounded`} />
       ))}
@@ -197,14 +211,23 @@ export default function ServerDataTable<T extends Record<string, unknown>>({
       setDebouncedSearch(search);
       setPage(1);
     }, 400);
-    return () => { if (debounceRef.current) clearTimeout(debounceRef.current); };
+    return () => {
+      if (debounceRef.current) clearTimeout(debounceRef.current);
+    };
   }, [search]);
 
   // Fetch data whenever params change
   const load = useCallback(async () => {
     setLoading(true);
     try {
-      const result = await fetchData({ page, pageSize, search: debouncedSearch, sortField, sortDirection, status });
+      const result = await fetchData({
+        page,
+        pageSize,
+        search: debouncedSearch,
+        sortField,
+        sortDirection,
+        status,
+      });
       setData(result.data);
       setTotal(result.total);
     } catch {
@@ -215,15 +238,19 @@ export default function ServerDataTable<T extends Record<string, unknown>>({
     }
   }, [fetchData, page, pageSize, debouncedSearch, sortField, sortDirection, status]);
 
-  useEffect(() => { load(); }, [load]);
+  useEffect(() => {
+    load();
+  }, [load]);
 
   const totalPages = Math.max(1, Math.ceil(total / pageSize));
 
   const handleSort = (key: string) => {
     if (sortField === key) {
       if (sortDirection === 'asc') setSortDirection('desc');
-      else if (sortDirection === 'desc') { setSortField(null); setSortDirection(null); }
-      else setSortDirection('asc');
+      else if (sortDirection === 'desc') {
+        setSortField(null);
+        setSortDirection(null);
+      } else setSortDirection('asc');
     } else {
       setSortField(key);
       setSortDirection('asc');
@@ -238,11 +265,11 @@ export default function ServerDataTable<T extends Record<string, unknown>>({
   };
 
   const toggleExpand = (key: string) => {
-    setExpandedRow(prev => (prev === key ? null : key));
+    setExpandedRow((prev) => (prev === key ? null : key));
   };
 
   const getNote = (key: string) => notes[key] ?? '';
-  const setNote = (key: string, val: string) => setNotes(prev => ({ ...prev, [key]: val }));
+  const setNote = (key: string, val: string) => setNotes((prev) => ({ ...prev, [key]: val }));
 
   const colCount = columns.length;
   const colStyle = { flex: 1, minWidth: 0 };
@@ -273,11 +300,13 @@ export default function ServerDataTable<T extends Record<string, unknown>>({
 
       {/* ── Search ── */}
       <div className="mb-4 relative max-w-xs">
-        <MagnifyingGlassIcon className={`absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 ${tk.searchIcon} pointer-events-none`} />
+        <MagnifyingGlassIcon
+          className={`absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 ${tk.searchIcon} pointer-events-none`}
+        />
         <input
           type="text"
           value={search}
-          onChange={e => setSearch(e.target.value)}
+          onChange={(e) => setSearch(e.target.value)}
           placeholder="Search..."
           className={`w-full pl-9 pr-3 py-2 text-sm border ${tk.searchBorder} ${tk.searchBg} rounded-lg focus:outline-none focus:ring-2 ${tk.searchFocus}`}
         />
@@ -288,7 +317,7 @@ export default function ServerDataTable<T extends Record<string, unknown>>({
         className="flex items-center gap-2 px-4 py-2.5 rounded-lg mb-2"
         style={{ background: tk.headerBg }}
       >
-        {columns.map(col => (
+        {columns.map((col) => (
           <div
             key={col.key}
             style={colStyle}
@@ -315,11 +344,13 @@ export default function ServerDataTable<T extends Record<string, unknown>>({
             <SkeletonRow key={i} cols={colCount} tk={tk} />
           ))
         ) : data.length === 0 ? (
-          <div className={`${tk.emptyBg} rounded-xl border ${tk.emptyBorder} shadow-sm px-4 py-10 text-center text-sm ${tk.emptyText}`}>
+          <div
+            className={`${tk.emptyBg} rounded-xl border ${tk.emptyBorder} shadow-sm px-4 py-10 text-center text-sm ${tk.emptyText}`}
+          >
             No records found.
           </div>
         ) : (
-          data.map(row => {
+          data.map((row) => {
             const key = keyExtractor(row);
             const isExpanded = expandedRow === key;
             const appliedDate = appliedDateField ? String(row[appliedDateField] ?? '') : '';
@@ -332,8 +363,12 @@ export default function ServerDataTable<T extends Record<string, unknown>>({
                     isExpanded ? `${tk.rowExpandedBorder} rounded-b-none mb-0` : tk.rowBorder
                   }`}
                 >
-                  {columns.map(col => (
-                    <div key={col.key} style={colStyle} className={`text-sm ${tk.rowText} truncate`}>
+                  {columns.map((col) => (
+                    <div
+                      key={col.key}
+                      style={colStyle}
+                      className={`text-sm ${tk.rowText} truncate`}
+                    >
                       {col.cell ? col.cell(row) : String(row[col.key] ?? '')}
                     </div>
                   ))}
@@ -353,14 +388,20 @@ export default function ServerDataTable<T extends Record<string, unknown>>({
 
                 {/* Expanded panel */}
                 {isExpanded && (
-                  <div className={`${tk.expandedBg} border border-t-0 ${tk.expandedBorder} rounded-b-xl px-4 py-4`}>
+                  <div
+                    className={`${tk.expandedBg} border border-t-0 ${tk.expandedBorder} rounded-b-xl px-4 py-4`}
+                  >
                     {renderExpandedRow ? (
                       renderExpandedRow(
                         row,
                         getNote(key),
                         (v) => setNote(key, v),
-                        () => { onApprove?.(row, getNote(key)); },
-                        () => { onReject?.(row, getNote(key)); }
+                        () => {
+                          onApprove?.(row, getNote(key));
+                        },
+                        () => {
+                          onReject?.(row, getNote(key));
+                        }
                       )
                     ) : (
                       <DefaultExpandedContent
@@ -384,11 +425,12 @@ export default function ServerDataTable<T extends Record<string, unknown>>({
       {!loading && total > 0 && (
         <div className="flex items-center justify-between mt-4 px-1">
           <span className={`text-xs ${tk.paginationText}`}>
-            Showing {Math.min((page - 1) * pageSize + 1, total)}–{Math.min(page * pageSize, total)} of {total}
+            Showing {Math.min((page - 1) * pageSize + 1, total)}–{Math.min(page * pageSize, total)}{' '}
+            of {total}
           </span>
           <div className="flex items-center gap-1">
             <button
-              onClick={() => setPage(p => Math.max(1, p - 1))}
+              onClick={() => setPage((p) => Math.max(1, p - 1))}
               disabled={page === 1}
               className={`flex items-center gap-1 px-3 py-1.5 text-xs font-medium rounded-lg border ${tk.paginationBtn} disabled:opacity-40 disabled:cursor-not-allowed transition-colors`}
             >
@@ -398,9 +440,13 @@ export default function ServerDataTable<T extends Record<string, unknown>>({
 
             {/* Page numbers */}
             {Array.from({ length: totalPages }, (_, i) => i + 1)
-              .filter(p => p === 1 || p === totalPages || Math.abs(p - page) <= 1)
+              .filter((p) => p === 1 || p === totalPages || Math.abs(p - page) <= 1)
               .reduce<(number | '...')[]>((acc, p, idx, arr) => {
-                if (idx > 0 && typeof arr[idx - 1] === 'number' && (p as number) - (arr[idx - 1] as number) > 1) {
+                if (
+                  idx > 0 &&
+                  typeof arr[idx - 1] === 'number' &&
+                  (p as number) - (arr[idx - 1] as number) > 1
+                ) {
                   acc.push('...');
                 }
                 acc.push(p);
@@ -408,7 +454,9 @@ export default function ServerDataTable<T extends Record<string, unknown>>({
               }, [])
               .map((p, idx) =>
                 p === '...' ? (
-                  <span key={`ellipsis-${idx}`} className={`px-2 text-xs ${tk.paginationEllipsis}`}>…</span>
+                  <span key={`ellipsis-${idx}`} className={`px-2 text-xs ${tk.paginationEllipsis}`}>
+                    …
+                  </span>
                 ) : (
                   <button
                     key={p}
@@ -423,7 +471,7 @@ export default function ServerDataTable<T extends Record<string, unknown>>({
               )}
 
             <button
-              onClick={() => setPage(p => Math.min(totalPages, p + 1))}
+              onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
               disabled={page === totalPages}
               className={`flex items-center gap-1 px-3 py-1.5 text-xs font-medium rounded-lg border ${tk.paginationBtn} disabled:opacity-40 disabled:cursor-not-allowed transition-colors`}
             >
@@ -448,7 +496,14 @@ interface DefaultExpandedContentProps {
   tk: ReturnType<typeof getThemeTokens>;
 }
 
-function DefaultExpandedContent({ note, onNoteChange, appliedDate, onApprove, onReject, tk }: DefaultExpandedContentProps) {
+function DefaultExpandedContent({
+  note,
+  onNoteChange,
+  appliedDate,
+  onApprove,
+  onReject,
+  tk,
+}: DefaultExpandedContentProps) {
   return (
     <div className="space-y-3">
       {/* Note row */}
@@ -457,7 +512,7 @@ function DefaultExpandedContent({ note, onNoteChange, appliedDate, onApprove, on
         <input
           type="text"
           value={note}
-          onChange={e => onNoteChange(e.target.value)}
+          onChange={(e) => onNoteChange(e.target.value)}
           placeholder="Reason"
           className={`flex-1 max-w-sm px-3 py-1.5 text-sm border ${tk.noteInputBorder} ${tk.noteInputBg} rounded-lg focus:outline-none focus:ring-2 ${tk.noteInputFocus}`}
         />
@@ -479,8 +534,8 @@ function DefaultExpandedContent({ note, onNoteChange, appliedDate, onApprove, on
             onClick={onApprove}
             className="px-5 py-2 text-sm font-semibold text-white rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-green-600"
             style={{ backgroundColor: '#1a6b2a' }}
-            onMouseEnter={e => (e.currentTarget.style.backgroundColor = '#155722')}
-            onMouseLeave={e => (e.currentTarget.style.backgroundColor = '#1a6b2a')}
+            onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#155722')}
+            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#1a6b2a')}
           >
             Approve
           </button>

@@ -3,8 +3,10 @@
 import React, { forwardRef, useId } from 'react';
 import { cn } from '@/utils/cn';
 
-export interface SwitchProps
-  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size' | 'type'> {
+export interface SwitchProps extends Omit<
+  React.InputHTMLAttributes<HTMLInputElement>,
+  'size' | 'type'
+> {
   label?: string;
   description?: string;
   size?: 'sm' | 'md' | 'lg';

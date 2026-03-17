@@ -21,7 +21,6 @@ export default function CalendarSection() {
   const [yearViewDate, setYearViewDate] = useState<Date | null>(new Date(2024, 9, 14));
 
   const labelClass = isNavy ? 'text-gray-300' : 'text-gray-600';
-  const controlBg = isNavy ? 'bg-[#000040] border-[#000060] text-gray-200' : 'bg-white border-gray-200 text-gray-700';
   const activePill = 'bg-[#000080] text-white';
   const inactivePill = isNavy
     ? 'bg-[#000040] text-gray-300 hover:bg-[#000060]'
@@ -46,7 +45,9 @@ export default function CalendarSection() {
         <div className="flex flex-wrap gap-8 items-start justify-center w-full py-4">
           {/* Day View */}
           <div className="flex flex-col items-center gap-2">
-            <p className={`text-xs font-semibold uppercase tracking-wide ${labelClass}`}>Day View</p>
+            <p className={`text-xs font-semibold uppercase tracking-wide ${labelClass}`}>
+              Day View
+            </p>
             <Calendar
               value={dayViewDate}
               onChange={setDayViewDate}
@@ -59,7 +60,9 @@ export default function CalendarSection() {
 
           {/* Month View */}
           <div className="flex flex-col items-center gap-2">
-            <p className={`text-xs font-semibold uppercase tracking-wide ${labelClass}`}>Month View</p>
+            <p className={`text-xs font-semibold uppercase tracking-wide ${labelClass}`}>
+              Month View
+            </p>
             <Calendar
               value={monthViewDate}
               onChange={setMonthViewDate}
@@ -72,7 +75,9 @@ export default function CalendarSection() {
 
           {/* Year View */}
           <div className="flex flex-col items-center gap-2">
-            <p className={`text-xs font-semibold uppercase tracking-wide ${labelClass}`}>Year View</p>
+            <p className={`text-xs font-semibold uppercase tracking-wide ${labelClass}`}>
+              Year View
+            </p>
             <Calendar
               value={yearViewDate}
               onChange={setYearViewDate}
@@ -92,11 +97,34 @@ export default function CalendarSection() {
         previewBg="white"
         props={[
           { name: 'value', type: 'Date | null', description: 'Controlled selected date' },
-          { name: 'defaultValue', type: 'Date | null', description: 'Default selected date (uncontrolled)' },
-          { name: 'onChange', type: '(date: Date) => void', description: 'Called when a date is selected' },
-          { name: 'size', type: "'sm' | 'md' | 'lg'", default: "'md'", description: 'Size variant' },
-          { name: 'theme', type: "'navy' | 'light'", default: "'light'", description: 'Color theme' },
-          { name: 'initialView', type: "'day' | 'month' | 'year'", default: "'day'", description: 'Starting view' },
+          {
+            name: 'defaultValue',
+            type: 'Date | null',
+            description: 'Default selected date (uncontrolled)',
+          },
+          {
+            name: 'onChange',
+            type: '(date: Date) => void',
+            description: 'Called when a date is selected',
+          },
+          {
+            name: 'size',
+            type: "'sm' | 'md' | 'lg'",
+            default: "'md'",
+            description: 'Size variant',
+          },
+          {
+            name: 'theme',
+            type: "'navy' | 'light'",
+            default: "'light'",
+            description: 'Color theme',
+          },
+          {
+            name: 'initialView',
+            type: "'day' | 'month' | 'year'",
+            default: "'day'",
+            description: 'Starting view',
+          },
           { name: 'minDate', type: 'Date', description: 'Minimum selectable date' },
           { name: 'maxDate', type: 'Date', description: 'Maximum selectable date' },
         ]}
@@ -106,7 +134,7 @@ export default function CalendarSection() {
           <div className="flex items-center gap-3 flex-wrap">
             <span className={`text-xs font-medium ${labelClass}`}>Size:</span>
             <div className="flex gap-1">
-              {sizes.map(s => (
+              {sizes.map((s) => (
                 <button
                   key={s}
                   type="button"
@@ -145,7 +173,7 @@ export default function CalendarSection() {
         description="Three sizes — sm, md, lg — controlled via the size prop."
       >
         <div className="flex flex-wrap gap-8 items-start justify-center w-full py-4">
-          {sizes.map(s => (
+          {sizes.map((s) => (
             <div key={s} className="flex flex-col items-center gap-2">
               <p className={`text-xs font-semibold uppercase tracking-wide ${labelClass}`}>{s}</p>
               <Calendar

@@ -22,8 +22,8 @@ export const avatarVariants = cva(
       variant: {
         image: '',
         initials: 'bg-accent text-accent-foreground',
-        icon:    'bg-muted text-muted-foreground',
-        navy:    'bg-navy text-white',
+        icon: 'bg-muted text-muted-foreground',
+        navy: 'bg-navy text-white',
         primary: 'bg-primary text-primary-foreground',
       },
     },
@@ -36,8 +36,7 @@ export const avatarVariants = cva(
 );
 
 export interface AvatarProps
-  extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof avatarVariants> {
+  extends React.HTMLAttributes<HTMLDivElement>, VariantProps<typeof avatarVariants> {
   src?: string;
   alt?: string;
   initials?: string;
@@ -45,17 +44,17 @@ export interface AvatarProps
 }
 
 const statusColors: Record<string, string> = {
-  online:  'bg-green-500',
+  online: 'bg-green-500',
   offline: 'bg-muted-foreground',
-  busy:    'bg-red-500',
-  away:    'bg-amber-400',
+  busy: 'bg-red-500',
+  away: 'bg-amber-400',
 };
 
 const Avatar: React.FC<AvatarProps> = ({
   className,
   size,
   shape,
-  variant,
+  variant: _variant,
   src,
   alt = 'Avatar',
   initials,

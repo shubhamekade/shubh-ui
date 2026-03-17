@@ -24,9 +24,24 @@ export default function SpinnerSection() {
         title="Interactive Playground"
         description="Use the live controls to switch size and color in real time."
         props={[
-          { name: 'size', type: "'xs' | 'sm' | 'md' | 'lg' | 'xl'", default: "'md'", description: 'Dimensions of the spinner' },
-          { name: 'color', type: "'primary' | 'white' | 'muted' | 'success' | 'warning' | 'danger'", default: "'primary'", description: 'Spinner color' },
-          { name: 'label', type: 'string', default: "'Loading…'", description: 'Screen reader accessible label' },
+          {
+            name: 'size',
+            type: "'xs' | 'sm' | 'md' | 'lg' | 'xl'",
+            default: "'md'",
+            description: 'Dimensions of the spinner',
+          },
+          {
+            name: 'color',
+            type: "'primary' | 'white' | 'muted' | 'success' | 'warning' | 'danger'",
+            default: "'primary'",
+            description: 'Spinner color',
+          },
+          {
+            name: 'label',
+            type: 'string',
+            default: "'Loading…'",
+            description: 'Screen reader accessible label',
+          },
         ]}
       >
         <div className="w-full space-y-4">
@@ -56,10 +71,7 @@ export default function SpinnerSection() {
             className="flex items-center justify-center p-8 rounded-lg border border-[#d7d7d7]"
             style={{ background: ctrl.variant === 'white' ? '#000080' : '#f9fafb' }}
           >
-            <Spinner
-              size={ctrl.size as any || 'md'}
-              color={ctrl.variant as any || 'primary'}
-            />
+            <Spinner size={(ctrl.size as any) || 'md'} color={(ctrl.variant as any) || 'primary'} />
           </div>
         </div>
       </ShowcaseSection>
@@ -85,10 +97,10 @@ export default function SpinnerSection() {
         description="Six color options for different background contexts."
       >
         <Spinner color="primary" size="md" />
-        <Spinner color="muted"   size="md" />
+        <Spinner color="muted" size="md" />
         <Spinner color="success" size="md" />
         <Spinner color="warning" size="md" />
-        <Spinner color="danger"  size="md" />
+        <Spinner color="danger" size="md" />
         <div className="bg-[#000080] p-2 rounded-md">
           <Spinner color="white" size="md" />
         </div>

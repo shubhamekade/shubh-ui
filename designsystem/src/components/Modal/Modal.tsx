@@ -19,10 +19,10 @@ export interface ModalProps {
 }
 
 const sizeMap = {
-  sm:   'max-w-sm',
-  md:   'max-w-md',
-  lg:   'max-w-lg',
-  xl:   'max-w-2xl',
+  sm: 'max-w-sm',
+  md: 'max-w-md',
+  lg: 'max-w-lg',
+  xl: 'max-w-2xl',
   full: 'max-w-full mx-4',
 };
 
@@ -60,7 +60,9 @@ const Modal: React.FC<ModalProps> = ({
       document.body.style.overflow = '';
       previouslyFocusedRef.current?.focus();
     }
-    return () => { document.body.style.overflow = ''; };
+    return () => {
+      document.body.style.overflow = '';
+    };
   }, [open]);
 
   useEffect(() => {
@@ -154,17 +156,11 @@ const Modal: React.FC<ModalProps> = ({
         )}
 
         {/* Body */}
-        {children && (
-          <div className="p-5">
-            {children}
-          </div>
-        )}
+        {children && <div className="p-5">{children}</div>}
 
         {/* Footer */}
         {footer && (
-          <div className="flex items-center justify-end gap-2 px-5 pb-5 pt-2">
-            {footer}
-          </div>
+          <div className="flex items-center justify-end gap-2 px-5 pb-5 pt-2">{footer}</div>
         )}
       </div>
     </div>

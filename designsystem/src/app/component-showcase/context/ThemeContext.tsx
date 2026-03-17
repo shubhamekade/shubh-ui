@@ -44,7 +44,7 @@ export function ShowcaseThemeProvider({ children }: { children: React.ReactNode 
   }, [theme, mounted]);
 
   const toggleTheme = () => {
-    setTheme(prev => {
+    setTheme((prev) => {
       const next: ShowcaseTheme = prev === 'navy' ? 'light' : 'navy';
       localStorage.setItem(STORAGE_KEY, next);
       return next;
@@ -54,9 +54,5 @@ export function ShowcaseThemeProvider({ children }: { children: React.ReactNode 
   // Avoid flash before mount
   if (!mounted) return null;
 
-  return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      {children}
-    </ThemeContext.Provider>
-  );
+  return <ThemeContext.Provider value={{ theme, toggleTheme }}>{children}</ThemeContext.Provider>;
 }

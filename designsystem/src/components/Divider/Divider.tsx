@@ -34,17 +34,19 @@ const Divider: React.FC<DividerProps> = ({
 
   if (label) {
     return (
-      <div
-        role="separator"
-        className={cn('flex items-center gap-3 w-full', className)}
-        {...props}
-      >
+      <div role="separator" className={cn('flex items-center gap-3 w-full', className)} {...props}>
         {labelAlign !== 'left' && (
-          <div className={cn('flex-1 border-[#d7d7d7]', variantMap[variant], thicknessMap[thickness])} />
+          <div
+            className={cn('flex-1 border-[#d7d7d7]', variantMap[variant], thicknessMap[thickness])}
+          />
         )}
-        <span className="text-xs text-[#808080] font-medium whitespace-nowrap shrink-0">{label}</span>
+        <span className="text-xs text-[#808080] font-medium whitespace-nowrap shrink-0">
+          {label}
+        </span>
         {labelAlign !== 'right' && (
-          <div className={cn('flex-1 border-[#d7d7d7]', variantMap[variant], thicknessMap[thickness])} />
+          <div
+            className={cn('flex-1 border-[#d7d7d7]', variantMap[variant], thicknessMap[thickness])}
+          />
         )}
       </div>
     );

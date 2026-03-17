@@ -27,11 +27,31 @@ export default function DividerSection() {
         description="Use the live controls to switch variant, thickness, and orientation in real time."
         previewBg="white"
         props={[
-          { name: 'orientation', type: "'horizontal' | 'vertical'", default: "'horizontal'", description: 'Direction of the divider' },
+          {
+            name: 'orientation',
+            type: "'horizontal' | 'vertical'",
+            default: "'horizontal'",
+            description: 'Direction of the divider',
+          },
           { name: 'label', type: 'ReactNode', description: 'Text label centered on the divider' },
-          { name: 'labelAlign', type: "'left' | 'center' | 'right'", default: "'center'", description: 'Label alignment' },
-          { name: 'variant', type: "'solid' | 'dashed' | 'dotted'", default: "'solid'", description: 'Line style' },
-          { name: 'thickness', type: "'thin' | 'medium' | 'thick'", default: "'thin'", description: 'Line weight' },
+          {
+            name: 'labelAlign',
+            type: "'left' | 'center' | 'right'",
+            default: "'center'",
+            description: 'Label alignment',
+          },
+          {
+            name: 'variant',
+            type: "'solid' | 'dashed' | 'dotted'",
+            default: "'solid'",
+            description: 'Line style',
+          },
+          {
+            name: 'thickness',
+            type: "'thin' | 'medium' | 'thick'",
+            default: "'thin'",
+            description: 'Line weight',
+          },
         ]}
       >
         <div className="w-full space-y-4">
@@ -61,8 +81,8 @@ export default function DividerSection() {
           <div className="p-6 bg-gray-50 rounded-lg border border-[#d7d7d7]">
             <div className="w-full max-w-sm">
               <Divider
-                variant={ctrl.variant as any || 'solid'}
-                thickness={ctrl.extras.thickness as any || 'thin'}
+                variant={(ctrl.variant as any) || 'solid'}
+                thickness={(ctrl.extras.thickness as any) || 'thin'}
                 label="Section divider"
               />
             </div>

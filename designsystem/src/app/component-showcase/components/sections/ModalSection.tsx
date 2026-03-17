@@ -7,14 +7,17 @@ import Input from '@/components/Input';
 import ShowcaseSection from '../ShowcaseSection';
 import SectionHeader from '../SectionHeader';
 import VariantControls, { useVariantControls } from '../VariantControls';
-import { TrashIcon as Trash2, ExclamationTriangleIcon as AlertTriangle } from '@heroicons/react/24/outline';
+import {
+  TrashIcon as Trash2,
+  ExclamationTriangleIcon as AlertTriangle,
+} from '@heroicons/react/24/outline';
 
 export default function ModalSection() {
-  const [basicOpen,   setBasicOpen]   = useState(false);
-  const [formOpen,    setFormOpen]    = useState(false);
+  const [basicOpen, setBasicOpen] = useState(false);
+  const [formOpen, setFormOpen] = useState(false);
   const [confirmOpen, setConfirmOpen] = useState(false);
-  const [lgOpen,      setLgOpen]      = useState(false);
-  const [playOpen,    setPlayOpen]    = useState(false);
+  const [lgOpen, setLgOpen] = useState(false);
+  const [playOpen, setPlayOpen] = useState(false);
   const [ctrl, setCtrl] = useVariantControls({ extras: { size: 'md' } });
 
   return (
@@ -33,13 +36,37 @@ export default function ModalSection() {
         previewBg="white"
         props={[
           { name: 'open', type: 'boolean', required: true, description: 'Controls visibility' },
-          { name: 'onClose', type: '() => void', required: true, description: 'Called when modal should close' },
+          {
+            name: 'onClose',
+            type: '() => void',
+            required: true,
+            description: 'Called when modal should close',
+          },
           { name: 'title', type: 'string', description: 'Modal heading' },
           { name: 'description', type: 'string', description: 'Subtitle below heading' },
-          { name: 'footer', type: 'ReactNode', description: 'Footer content — typically action buttons' },
-          { name: 'size', type: "'sm' | 'md' | 'lg' | 'xl' | 'full'", default: "'md'", description: 'Max-width of the panel' },
-          { name: 'closeOnOverlay', type: 'boolean', default: 'true', description: 'Close when clicking backdrop' },
-          { name: 'closeOnEsc', type: 'boolean', default: 'true', description: 'Close on Escape key' },
+          {
+            name: 'footer',
+            type: 'ReactNode',
+            description: 'Footer content — typically action buttons',
+          },
+          {
+            name: 'size',
+            type: "'sm' | 'md' | 'lg' | 'xl' | 'full'",
+            default: "'md'",
+            description: 'Max-width of the panel',
+          },
+          {
+            name: 'closeOnOverlay',
+            type: 'boolean',
+            default: 'true',
+            description: 'Close when clicking backdrop',
+          },
+          {
+            name: 'closeOnEsc',
+            type: 'boolean',
+            default: 'true',
+            description: 'Close on Escape key',
+          },
         ]}
       >
         <div className="w-full space-y-4">
@@ -63,25 +90,26 @@ export default function ModalSection() {
             onChange={setCtrl}
           />
           <div className="flex items-center justify-center p-6 bg-gray-50 rounded-lg border border-[#d7d7d7]">
-            <Button onClick={() => setPlayOpen(true)}>
-              Open modal (size: {ctrl.extras.size})
-            </Button>
+            <Button onClick={() => setPlayOpen(true)}>Open modal (size: {ctrl.extras.size})</Button>
           </div>
           <Modal
             open={playOpen}
             onClose={() => setPlayOpen(false)}
             title="Modal preview"
             description={`Size: ${ctrl.extras.size} — resize the modal using the controls above.`}
-            size={ctrl.extras.size as any || 'md'}
+            size={(ctrl.extras.size as any) || 'md'}
             footer={
               <>
-                <Button variant="outline" onClick={() => setPlayOpen(false)}>Cancel</Button>
+                <Button variant="outline" onClick={() => setPlayOpen(false)}>
+                  Cancel
+                </Button>
                 <Button onClick={() => setPlayOpen(false)}>Confirm</Button>
               </>
             }
           >
             <p className="text-sm text-[#808080] leading-relaxed">
-              This modal is rendered with <strong>size="{ctrl.extras.size}"</strong>. Change the size control above and reopen to see the difference in max-width.
+              This modal is rendered with <strong>size=&quot;{ctrl.extras.size}&quot;</strong>.
+              Change the size control above and reopen to see the difference in max-width.
             </p>
           </Modal>
         </div>
@@ -118,7 +146,9 @@ export default function ModalSection() {
           description="This will make the component available to all team members."
           footer={
             <>
-              <Button variant="outline" onClick={() => setBasicOpen(false)}>Cancel</Button>
+              <Button variant="outline" onClick={() => setBasicOpen(false)}>
+                Cancel
+              </Button>
               <Button onClick={() => setBasicOpen(false)}>Publish now</Button>
             </>
           }
@@ -135,7 +165,9 @@ export default function ModalSection() {
         description="Modal containing a form — common for create/edit workflows."
         previewBg="white"
       >
-        <Button variant="secondary" onClick={() => setFormOpen(true)}>New component</Button>
+        <Button variant="secondary" onClick={() => setFormOpen(true)}>
+          New component
+        </Button>
         <Modal
           open={formOpen}
           onClose={() => setFormOpen(false)}
@@ -144,7 +176,9 @@ export default function ModalSection() {
           size="md"
           footer={
             <>
-              <Button variant="outline" onClick={() => setFormOpen(false)}>Cancel</Button>
+              <Button variant="outline" onClick={() => setFormOpen(false)}>
+                Cancel
+              </Button>
               <Button onClick={() => setFormOpen(false)}>Create component</Button>
             </>
           }
@@ -162,7 +196,11 @@ export default function ModalSection() {
         description="Red-tinted destructive confirmation pattern."
         previewBg="white"
       >
-        <Button variant="destructive" leftIcon={<Trash2 className="h-4 w-4" />} onClick={() => setConfirmOpen(true)}>
+        <Button
+          variant="destructive"
+          leftIcon={<Trash2 className="h-4 w-4" />}
+          onClick={() => setConfirmOpen(true)}
+        >
           Delete component
         </Button>
         <Modal
@@ -171,8 +209,12 @@ export default function ModalSection() {
           size="sm"
           footer={
             <>
-              <Button variant="outline" onClick={() => setConfirmOpen(false)}>Cancel</Button>
-              <Button variant="destructive" onClick={() => setConfirmOpen(false)}>Delete permanently</Button>
+              <Button variant="outline" onClick={() => setConfirmOpen(false)}>
+                Cancel
+              </Button>
+              <Button variant="destructive" onClick={() => setConfirmOpen(false)}>
+                Delete permanently
+              </Button>
             </>
           }
         >
@@ -183,7 +225,8 @@ export default function ModalSection() {
             <div>
               <p className="font-semibold text-[#1e1e1e] mb-1">Delete Button component?</p>
               <p className="text-sm text-[#808080] leading-relaxed">
-                This action cannot be undone. All 14 consumers of this component will need to be updated manually.
+                This action cannot be undone. All 14 consumers of this component will need to be
+                updated manually.
               </p>
             </div>
           </div>
@@ -195,14 +238,20 @@ export default function ModalSection() {
         description="XL size for content-heavy dialogs like code viewers or data tables."
         previewBg="white"
       >
-        <Button variant="outline" onClick={() => setLgOpen(true)}>Open large modal</Button>
+        <Button variant="outline" onClick={() => setLgOpen(true)}>
+          Open large modal
+        </Button>
         <Modal
           open={lgOpen}
           onClose={() => setLgOpen(false)}
           title="Component prop reference"
           description="Complete TypeScript interface for the Button component."
           size="xl"
-          footer={<Button variant="outline" onClick={() => setLgOpen(false)}>Close</Button>}
+          footer={
+            <Button variant="outline" onClick={() => setLgOpen(false)}>
+              Close
+            </Button>
+          }
         >
           <div className="code-block text-xs">
             <pre>{`export interface ButtonProps

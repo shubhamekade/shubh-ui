@@ -59,11 +59,14 @@ function Table<T = Record<string, unknown>>({
                   'text-xs font-semibold text-[#808080] tracking-wide uppercase whitespace-nowrap',
                   col.align === 'center' && 'text-center',
                   col.align === 'right' && 'text-right',
-                  col.sortable && 'cursor-pointer select-none hover:text-[#1e1e1e] hover:bg-gray-100 transition-colors',
+                  col.sortable &&
+                    'cursor-pointer select-none hover:text-[#1e1e1e] hover:bg-gray-100 transition-colors',
                   bordered && 'border-r border-[#d7d7d7] last:border-r-0'
                 )}
                 onClick={() => col.sortable && onSort?.(col.key)}
-                aria-sort={sortKey === col.key ? (sortDir === 'asc' ? 'ascending' : 'descending') : undefined}
+                aria-sort={
+                  sortKey === col.key ? (sortDir === 'asc' ? 'ascending' : 'descending') : undefined
+                }
               >
                 <span className="inline-flex items-center gap-1">
                   {col.header}
@@ -90,10 +93,7 @@ function Table<T = Record<string, unknown>>({
             ))
           ) : data.length === 0 ? (
             <tr>
-              <td
-                colSpan={columns.length}
-                className="py-12 text-center text-[#808080]"
-              >
+              <td colSpan={columns.length} className="py-12 text-center text-[#808080]">
                 {emptyMessage}
               </td>
             </tr>

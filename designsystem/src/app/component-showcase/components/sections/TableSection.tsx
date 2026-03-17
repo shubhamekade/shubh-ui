@@ -6,7 +6,11 @@ import Badge from '@/components/Badge';
 import Button from '@/components/Button';
 import ShowcaseSection from '../ShowcaseSection';
 import SectionHeader from '../SectionHeader';
-import { PencilIcon as Edit, TrashIcon as Trash2, ArrowTopRightOnSquareIcon as ExternalLink } from '@heroicons/react/24/outline';
+import {
+  PencilIcon as Edit,
+  TrashIcon as Trash2,
+  ArrowTopRightOnSquareIcon as ExternalLink,
+} from '@heroicons/react/24/outline';
 import Tooltip from '@/components/Tooltip';
 
 type ComponentRow = {
@@ -20,22 +24,110 @@ type ComponentRow = {
 };
 
 const mockData: ComponentRow[] = [
-  { name: 'Button',     category: 'Form',         status: 'stable',     variants: 9,  version: '1.4.2', lastUpdated: '12 Mar 2026', accessible: true },
-  { name: 'Input',      category: 'Form',         status: 'stable',     variants: 4,  version: '1.3.0', lastUpdated: '10 Mar 2026', accessible: true },
-  { name: 'Modal',      category: 'Overlay',      status: 'stable',     variants: 5,  version: '1.2.1', lastUpdated: '08 Mar 2026', accessible: true },
-  { name: 'Select',     category: 'Form',         status: 'stable',     variants: 3,  version: '1.1.0', lastUpdated: '05 Mar 2026', accessible: true },
-  { name: 'Tabs',       category: 'Navigation',   status: 'stable',     variants: 4,  version: '1.0.4', lastUpdated: '02 Mar 2026', accessible: true },
-  { name: 'Tooltip',    category: 'Overlay',status: 'stable',     variants: 2,  version: '1.0.2', lastUpdated: '28 Feb 2026', accessible: true },
-  { name: 'Accordion',  category: 'Utilities',    status: 'stable',     variants: 4,  version: '1.0.1', lastUpdated: '25 Feb 2026', accessible: true },
-  { name: 'Badge',      category: 'Data Display', status: 'stable',     variants: 10, version: '1.0.0', lastUpdated: '20 Feb 2026', accessible: true },
-  { name: 'DatePicker', category: 'Form',         status: 'beta',       variants: 2,  version: '0.9.1', lastUpdated: '15 Feb 2026', accessible: false },
-  { name: 'CommandMenu',category: 'Utilities',    status: 'beta',       variants: 1,  version: '0.8.0', lastUpdated: '10 Feb 2026', accessible: false },
-  { name: 'DataGrid',   category: 'Data Display', status: 'deprecated', variants: 1,  version: '0.5.0', lastUpdated: '01 Jan 2026', accessible: false },
+  {
+    name: 'Button',
+    category: 'Form',
+    status: 'stable',
+    variants: 9,
+    version: '1.4.2',
+    lastUpdated: '12 Mar 2026',
+    accessible: true,
+  },
+  {
+    name: 'Input',
+    category: 'Form',
+    status: 'stable',
+    variants: 4,
+    version: '1.3.0',
+    lastUpdated: '10 Mar 2026',
+    accessible: true,
+  },
+  {
+    name: 'Modal',
+    category: 'Overlay',
+    status: 'stable',
+    variants: 5,
+    version: '1.2.1',
+    lastUpdated: '08 Mar 2026',
+    accessible: true,
+  },
+  {
+    name: 'Select',
+    category: 'Form',
+    status: 'stable',
+    variants: 3,
+    version: '1.1.0',
+    lastUpdated: '05 Mar 2026',
+    accessible: true,
+  },
+  {
+    name: 'Tabs',
+    category: 'Navigation',
+    status: 'stable',
+    variants: 4,
+    version: '1.0.4',
+    lastUpdated: '02 Mar 2026',
+    accessible: true,
+  },
+  {
+    name: 'Tooltip',
+    category: 'Overlay',
+    status: 'stable',
+    variants: 2,
+    version: '1.0.2',
+    lastUpdated: '28 Feb 2026',
+    accessible: true,
+  },
+  {
+    name: 'Accordion',
+    category: 'Utilities',
+    status: 'stable',
+    variants: 4,
+    version: '1.0.1',
+    lastUpdated: '25 Feb 2026',
+    accessible: true,
+  },
+  {
+    name: 'Badge',
+    category: 'Data Display',
+    status: 'stable',
+    variants: 10,
+    version: '1.0.0',
+    lastUpdated: '20 Feb 2026',
+    accessible: true,
+  },
+  {
+    name: 'DatePicker',
+    category: 'Form',
+    status: 'beta',
+    variants: 2,
+    version: '0.9.1',
+    lastUpdated: '15 Feb 2026',
+    accessible: false,
+  },
+  {
+    name: 'CommandMenu',
+    category: 'Utilities',
+    status: 'beta',
+    variants: 1,
+    version: '0.8.0',
+    lastUpdated: '10 Feb 2026',
+    accessible: false,
+  },
+  {
+    name: 'DataGrid',
+    category: 'Data Display',
+    status: 'deprecated',
+    variants: 1,
+    version: '0.5.0',
+    lastUpdated: '01 Jan 2026',
+    accessible: false,
+  },
 ];
 
 const statusVariant: Record<string, 'success' | 'warning' | 'destructive'> = {
-  stable:     'success',
-  beta:       'warning',
+  stable: 'success',
+  beta: 'warning',
   deprecated: 'destructive',
 };
 
@@ -44,8 +136,11 @@ export default function TableSection() {
   const [sortDir, setSortDir] = useState<'asc' | 'desc'>('asc');
 
   const handleSort = (key: string) => {
-    if (sortKey === key) setSortDir(d => d === 'asc' ? 'desc' : 'asc');
-    else { setSortKey(key); setSortDir('asc'); }
+    if (sortKey === key) setSortDir((d) => (d === 'asc' ? 'desc' : 'asc'));
+    else {
+      setSortKey(key);
+      setSortDir('asc');
+    }
   };
 
   const sorted = [...mockData].sort((a, b) => {
@@ -69,9 +164,7 @@ export default function TableSection() {
       key: 'category',
       header: 'Category',
       sortable: true,
-      cell: (row: ComponentRow) => (
-        <span className="text-sm text-[#808080]">{row.category}</span>
-      ),
+      cell: (row: ComponentRow) => <span className="text-sm text-[#808080]">{row.category}</span>,
     },
     {
       key: 'status',
@@ -121,7 +214,7 @@ export default function TableSection() {
     {
       key: 'actions',
       header: '',
-      cell: (row: ComponentRow) => (
+      cell: (_row: ComponentRow) => (
         <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
           <Tooltip content="View docs" placement="top">
             <Button size="icon-sm" variant="ghost" aria-label="View docs">
@@ -134,7 +227,12 @@ export default function TableSection() {
             </Button>
           </Tooltip>
           <Tooltip content="Delete component — cannot be undone" placement="top">
-            <Button size="icon-sm" variant="ghost" aria-label="Delete" className="text-red-500 hover:bg-red-50">
+            <Button
+              size="icon-sm"
+              variant="ghost"
+              aria-label="Delete"
+              className="text-red-500 hover:bg-red-50"
+            >
               <Trash2 className="h-3.5 w-3.5" />
             </Button>
           </Tooltip>
@@ -168,14 +266,33 @@ export default function TableSection() {
   hoverable
 />`}
         props={[
-          { name: 'columns', type: 'TableColumn<T>[]', required: true, description: 'Column definitions with key, header, optional cell renderer' },
+          {
+            name: 'columns',
+            type: 'TableColumn<T>[]',
+            required: true,
+            description: 'Column definitions with key, header, optional cell renderer',
+          },
           { name: 'data', type: 'T[]', required: true, description: 'Array of row data objects' },
-          { name: 'keyExtractor', type: '(row: T, index: number) => string', required: true, description: 'Unique key per row' },
+          {
+            name: 'keyExtractor',
+            type: '(row: T, index: number) => string',
+            required: true,
+            description: 'Unique key per row',
+          },
           { name: 'sortKey', type: 'string', description: 'Currently sorted column key' },
           { name: 'sortDir', type: "'asc' | 'desc'", description: 'Sort direction' },
-          { name: 'onSort', type: '(key: string) => void', description: 'Called when sortable header is clicked' },
+          {
+            name: 'onSort',
+            type: '(key: string) => void',
+            description: 'Called when sortable header is clicked',
+          },
           { name: 'striped', type: 'boolean', description: 'Alternating row background' },
-          { name: 'hoverable', type: 'boolean', default: 'true', description: 'Row hover highlight' },
+          {
+            name: 'hoverable',
+            type: 'boolean',
+            default: 'true',
+            description: 'Row hover highlight',
+          },
           { name: 'loading', type: 'boolean', description: 'Show skeleton rows instead of data' },
           { name: 'emptyMessage', type: 'string', description: 'Message when data array is empty' },
         ]}
@@ -184,7 +301,7 @@ export default function TableSection() {
           <Table
             columns={columns}
             data={sorted}
-            keyExtractor={row => row.name}
+            keyExtractor={(row) => row.name}
             sortKey={sortKey}
             sortDir={sortDir}
             onSort={handleSort}
@@ -201,12 +318,7 @@ export default function TableSection() {
         compact
       >
         <div className="w-full">
-          <Table
-            columns={columns.slice(0, 5)}
-            data={[]}
-            keyExtractor={row => row.name}
-            loading
-          />
+          <Table columns={columns.slice(0, 5)} data={[]} keyExtractor={(row) => row.name} loading />
         </div>
       </ShowcaseSection>
 
@@ -220,7 +332,7 @@ export default function TableSection() {
           <Table
             columns={columns.slice(0, 5)}
             data={[]}
-            keyExtractor={row => row.name}
+            keyExtractor={(row) => row.name}
             emptyMessage="No components match your current filters."
           />
         </div>

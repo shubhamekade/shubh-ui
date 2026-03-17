@@ -10,15 +10,33 @@ import VariantControls, { useVariantControls } from '../VariantControls';
 export default function AlertSection() {
   const [dismissed, setDismissed] = useState<string[]>([]);
   const [ctrl, setCtrl] = useVariantControls({ variant: 'info' });
-  const dismiss = (id: string) => setDismissed(prev => [...prev, id]);
+  const dismiss = (id: string) => setDismissed((prev) => [...prev, id]);
 
   const alertMessages: Record<string, { title: string; body: string }> = {
-    info:        { title: 'Update available',      body: 'Version 2.1.0 is now available with 4 new components and 12 bug fixes.' },
-    success:     { title: 'Component published',   body: 'Button v1.4.2 has been published to npm. 847 packages updated automatically.' },
-    warning:     { title: 'Breaking change',       body: 'The size prop API has changed in v2.0. Review the migration guide before upgrading.' },
-    destructive: { title: 'Build failed',          body: '3 TypeScript errors detected in Button.tsx. Fix required before publishing.' },
-    navy:        { title: 'Design system v2.0',    body: '40+ components, improved TypeScript support, and a brand new token system.' },
-    neutral:     { title: 'Maintenance window',    body: 'Scheduled maintenance on 18 March 2026, 02:00–04:00 UTC.' },
+    info: {
+      title: 'Update available',
+      body: 'Version 2.1.0 is now available with 4 new components and 12 bug fixes.',
+    },
+    success: {
+      title: 'Component published',
+      body: 'Button v1.4.2 has been published to npm. 847 packages updated automatically.',
+    },
+    warning: {
+      title: 'Breaking change',
+      body: 'The size prop API has changed in v2.0. Review the migration guide before upgrading.',
+    },
+    destructive: {
+      title: 'Build failed',
+      body: '3 TypeScript errors detected in Button.tsx. Fix required before publishing.',
+    },
+    navy: {
+      title: 'Design system v2.0',
+      body: '40+ components, improved TypeScript support, and a brand new token system.',
+    },
+    neutral: {
+      title: 'Maintenance window',
+      body: 'Scheduled maintenance on 18 March 2026, 02:00–04:00 UTC.',
+    },
   };
 
   const current = alertMessages[ctrl.variant] ?? alertMessages['info'];
@@ -38,7 +56,12 @@ export default function AlertSection() {
         description="Use the live controls to switch variant in real time."
         previewBg="white"
         props={[
-          { name: 'variant', type: "'info' | 'success' | 'warning' | 'destructive' | 'navy' | 'neutral'", default: "'info'", description: 'Semantic color variant' },
+          {
+            name: 'variant',
+            type: "'info' | 'success' | 'warning' | 'destructive' | 'navy' | 'neutral'",
+            default: "'info'",
+            description: 'Semantic color variant',
+          },
           { name: 'title', type: 'string', description: 'Bold heading above the message' },
           { name: 'dismissible', type: 'boolean', description: 'Show × dismiss button' },
           { name: 'onDismiss', type: '() => void', description: 'Called when × is clicked' },
@@ -63,7 +86,7 @@ export default function AlertSection() {
             onChange={setCtrl}
           />
           <div className="p-6 bg-gray-50 rounded-lg border border-[#d7d7d7]">
-            <Alert variant={ctrl.variant as any || 'info'} title={current.title}>
+            <Alert variant={(ctrl.variant as any) || 'info'} title={current.title}>
               {current.body}
             </Alert>
           </div>
@@ -87,7 +110,8 @@ export default function AlertSection() {
             Button v1.4.2 has been published to npm. 847 packages updated automatically.
           </Alert>
           <Alert variant="warning" title="Breaking change in v2.0">
-            The <code className="font-mono text-xs bg-amber-100 px-1 rounded">size</code> prop API has changed. Review the migration guide before upgrading.
+            The <code className="font-mono text-xs bg-amber-100 px-1 rounded">size</code> prop API
+            has changed. Review the migration guide before upgrading.
           </Alert>
           <Alert variant="destructive" title="Build failed">
             3 TypeScript errors detected in Button.tsx. Fix required before publishing.
@@ -125,11 +149,7 @@ export default function AlertSection() {
             </Alert>
           )}
           {dismissed.length > 0 && (
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setDismissed([])}
-            >
+            <Button variant="ghost" size="sm" onClick={() => setDismissed([])}>
               Restore dismissed alerts
             </Button>
           )}
@@ -151,15 +171,21 @@ export default function AlertSection() {
               </Button>
             }
           >
-            The <code className="font-mono text-xs bg-amber-100 px-1 rounded">onPress</code> prop will be removed in v3.0. Use <code className="font-mono text-xs bg-amber-100 px-1 rounded">onClick</code> instead.
+            The <code className="font-mono text-xs bg-amber-100 px-1 rounded">onPress</code> prop
+            will be removed in v3.0. Use{' '}
+            <code className="font-mono text-xs bg-amber-100 px-1 rounded">onClick</code> instead.
           </Alert>
           <Alert
             variant="navy"
             title="Design system v2.0 is here"
             action={
               <div className="flex gap-2">
-                <Button size="sm" variant="secondary">Read changelog</Button>
-                <Button size="sm" variant="ghost" className="text-white hover:bg-white/10">Dismiss</Button>
+                <Button size="sm" variant="secondary">
+                  Read changelog
+                </Button>
+                <Button size="sm" variant="ghost" className="text-white hover:bg-white/10">
+                  Dismiss
+                </Button>
               </div>
             }
           >

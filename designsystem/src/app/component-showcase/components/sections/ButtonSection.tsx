@@ -38,11 +38,36 @@ export default function ButtonSection() {
         description="Use the live controls below to switch size, variant, and disabled state in real time."
         previewBg="white"
         props={[
-          { name: 'variant', type: "'primary' | 'secondary' | 'ghost' | 'outline' | 'destructive' | 'navy' | 'success' | 'warning' | 'link'", default: "'primary'", description: 'Visual style variant' },
-          { name: 'size', type: "'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'icon' | 'icon-sm' | 'icon-lg'", default: "'md'", description: 'Size of the button' },
-          { name: 'loading', type: 'boolean', default: 'false', description: 'Shows spinner and disables interaction' },
-          { name: 'disabled', type: 'boolean', default: 'false', description: 'Disables the button' },
-          { name: 'fullWidth', type: 'boolean', default: 'false', description: 'Stretches button to fill container' },
+          {
+            name: 'variant',
+            type: "'primary' | 'secondary' | 'ghost' | 'outline' | 'destructive' | 'navy' | 'success' | 'warning' | 'link'",
+            default: "'primary'",
+            description: 'Visual style variant',
+          },
+          {
+            name: 'size',
+            type: "'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'icon' | 'icon-sm' | 'icon-lg'",
+            default: "'md'",
+            description: 'Size of the button',
+          },
+          {
+            name: 'loading',
+            type: 'boolean',
+            default: 'false',
+            description: 'Shows spinner and disables interaction',
+          },
+          {
+            name: 'disabled',
+            type: 'boolean',
+            default: 'false',
+            description: 'Disables the button',
+          },
+          {
+            name: 'fullWidth',
+            type: 'boolean',
+            default: 'false',
+            description: 'Stretches button to fill container',
+          },
           { name: 'leftIcon', type: 'ReactNode', description: 'Icon rendered before label' },
           { name: 'rightIcon', type: 'ReactNode', description: 'Icon rendered after label' },
         ]}
@@ -74,16 +99,16 @@ export default function ButtonSection() {
           />
           <div className="flex items-center justify-center gap-4 p-6 bg-gray-50 rounded-lg border border-[#d7d7d7]">
             <Button
-              variant={ctrl.variant as any || 'primary'}
-              size={ctrl.size as any || 'md'}
+              variant={(ctrl.variant as any) || 'primary'}
+              size={(ctrl.size as any) || 'md'}
               disabled={ctrl.disabled}
               leftIcon={<Plus className="h-4 w-4" />}
             >
               Click me
             </Button>
             <Button
-              variant={ctrl.variant as any || 'primary'}
-              size={ctrl.size as any || 'md'}
+              variant={(ctrl.variant as any) || 'primary'}
+              size={(ctrl.size as any) || 'md'}
               disabled={ctrl.disabled}
             >
               Label only
@@ -142,10 +167,18 @@ export default function ButtonSection() {
 <Button leftIcon={<Mail className="h-4 w-4" />} variant="ghost">Send email</Button>`}
       >
         <Button leftIcon={<Plus className="h-4 w-4" />}>New component</Button>
-        <Button rightIcon={<ArrowRight className="h-4 w-4" />} variant="secondary">Continue</Button>
-        <Button leftIcon={<Download className="h-4 w-4" />} variant="outline">Download</Button>
-        <Button leftIcon={<Trash2 className="h-4 w-4" />} variant="destructive">Delete</Button>
-        <Button leftIcon={<Mail className="h-4 w-4" />} variant="ghost">Send email</Button>
+        <Button rightIcon={<ArrowRight className="h-4 w-4" />} variant="secondary">
+          Continue
+        </Button>
+        <Button leftIcon={<Download className="h-4 w-4" />} variant="outline">
+          Download
+        </Button>
+        <Button leftIcon={<Trash2 className="h-4 w-4" />} variant="destructive">
+          Delete
+        </Button>
+        <Button leftIcon={<Mail className="h-4 w-4" />} variant="ghost">
+          Send email
+        </Button>
       </ShowcaseSection>
 
       <ShowcaseSection
@@ -156,10 +189,18 @@ export default function ButtonSection() {
 <Button size="icon" aria-label="Download"><Download className="h-4 w-4" /></Button>
 <Button size="icon-lg" variant="destructive" aria-label="Delete"><Trash2 className="h-5 w-5" /></Button>`}
       >
-        <Button size="icon-sm" variant="ghost" aria-label="Settings"><Settings className="h-4 w-4" /></Button>
-        <Button size="icon" variant="outline" aria-label="Add item"><Plus className="h-4 w-4" /></Button>
-        <Button size="icon" aria-label="Download"><Download className="h-4 w-4" /></Button>
-        <Button size="icon-lg" variant="destructive" aria-label="Delete"><Trash2 className="h-5 w-5" /></Button>
+        <Button size="icon-sm" variant="ghost" aria-label="Settings">
+          <Settings className="h-4 w-4" />
+        </Button>
+        <Button size="icon" variant="outline" aria-label="Add item">
+          <Plus className="h-4 w-4" />
+        </Button>
+        <Button size="icon" aria-label="Download">
+          <Download className="h-4 w-4" />
+        </Button>
+        <Button size="icon-lg" variant="destructive" aria-label="Delete">
+          <Trash2 className="h-5 w-5" />
+        </Button>
       </ShowcaseSection>
 
       <ShowcaseSection
@@ -172,7 +213,9 @@ export default function ButtonSection() {
       >
         <Button loading>Saving changes…</Button>
         <Button disabled>Disabled</Button>
-        <Button variant="secondary" disabled>Unavailable</Button>
+        <Button variant="secondary" disabled>
+          Unavailable
+        </Button>
         <div className="w-full max-w-xs">
           <Button fullWidth>Full width button</Button>
         </div>

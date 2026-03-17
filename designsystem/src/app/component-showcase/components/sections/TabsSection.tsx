@@ -5,20 +5,74 @@ import Tabs from '@/components/Tabs';
 import ShowcaseSection from '../ShowcaseSection';
 import SectionHeader from '../SectionHeader';
 import VariantControls, { useVariantControls } from '../VariantControls';
-import { CodeBracketIcon as Code2, EyeIcon as Eye, DocumentTextIcon as FileText } from '@heroicons/react/24/outline';
+import {
+  CodeBracketIcon as Code2,
+  EyeIcon as Eye,
+  DocumentTextIcon as FileText,
+} from '@heroicons/react/24/outline';
 
 const demoItems = [
-  { id: 'overview', label: 'Overview', content: <p className="text-sm text-[#808080] leading-relaxed">Overview content — general information about this component, its purpose, and usage guidelines.</p> },
-  { id: 'props',    label: 'Props',    content: <p className="text-sm text-[#808080] leading-relaxed">Props reference table — all accepted TypeScript props, their types, defaults, and descriptions.</p> },
-  { id: 'examples', label: 'Examples', badge: 3, content: <p className="text-sm text-[#808080] leading-relaxed">Code examples — copy-paste snippets for common use cases and patterns.</p> },
-  { id: 'changelog',label: 'Changelog', content: <p className="text-sm text-[#808080] leading-relaxed">Version history — breaking changes, new features, and bug fixes per release.</p> },
+  {
+    id: 'overview',
+    label: 'Overview',
+    content: (
+      <p className="text-sm text-[#808080] leading-relaxed">
+        Overview content — general information about this component, its purpose, and usage
+        guidelines.
+      </p>
+    ),
+  },
+  {
+    id: 'props',
+    label: 'Props',
+    content: (
+      <p className="text-sm text-[#808080] leading-relaxed">
+        Props reference table — all accepted TypeScript props, their types, defaults, and
+        descriptions.
+      </p>
+    ),
+  },
+  {
+    id: 'examples',
+    label: 'Examples',
+    badge: 3,
+    content: (
+      <p className="text-sm text-[#808080] leading-relaxed">
+        Code examples — copy-paste snippets for common use cases and patterns.
+      </p>
+    ),
+  },
+  {
+    id: 'changelog',
+    label: 'Changelog',
+    content: (
+      <p className="text-sm text-[#808080] leading-relaxed">
+        Version history — breaking changes, new features, and bug fixes per release.
+      </p>
+    ),
+  },
   { id: 'disabled', label: 'Disabled tab', disabled: true, content: null },
 ];
 
 const iconItems = [
-  { id: 'preview', label: 'Preview', icon: <Eye className="h-3.5 w-3.5" />,    content: <p className="text-sm text-[#808080]">Live component preview.</p> },
-  { id: 'code',    label: 'Code',    icon: <Code2 className="h-3.5 w-3.5" />,  content: <p className="text-sm text-[#808080]">Source code snippet.</p> },
-  { id: 'props',   label: 'Props',   icon: <FileText className="h-3.5 w-3.5" />, content: <p className="text-sm text-[#808080]">Props reference.</p> },
+  {
+    id: 'preview',
+    label: 'Preview',
+    icon: <Eye className="h-3.5 w-3.5" />,
+    content: <p className="text-sm text-[#808080]">Live component preview.</p>,
+  },
+  {
+    id: 'code',
+    label: 'Code',
+    icon: <Code2 className="h-3.5 w-3.5" />,
+    content: <p className="text-sm text-[#808080]">Source code snippet.</p>,
+  },
+  {
+    id: 'props',
+    label: 'Props',
+    icon: <FileText className="h-3.5 w-3.5" />,
+    content: <p className="text-sm text-[#808080]">Props reference.</p>,
+  },
 ];
 
 export default function TabsSection() {
@@ -39,9 +93,23 @@ export default function TabsSection() {
         description="Use the live controls to switch tab variant in real time."
         previewBg="white"
         props={[
-          { name: 'items', type: 'TabItem[]', required: true, description: 'Array of tab items with id, label, content' },
-          { name: 'variant', type: "'line' | 'pill' | 'enclosed' | 'soft'", default: "'line'", description: 'Visual tab style' },
-          { name: 'defaultTab', type: 'string', description: 'Initially active tab id (uncontrolled)' },
+          {
+            name: 'items',
+            type: 'TabItem[]',
+            required: true,
+            description: 'Array of tab items with id, label, content',
+          },
+          {
+            name: 'variant',
+            type: "'line' | 'pill' | 'enclosed' | 'soft'",
+            default: "'line'",
+            description: 'Visual tab style',
+          },
+          {
+            name: 'defaultTab',
+            type: 'string',
+            description: 'Initially active tab id (uncontrolled)',
+          },
           { name: 'activeTab', type: 'string', description: 'Controlled active tab id' },
           { name: 'onChange', type: '(id: string) => void', description: 'Callback on tab change' },
           { name: 'fullWidth', type: 'boolean', description: 'Tabs stretch to fill container' },
@@ -63,7 +131,11 @@ export default function TabsSection() {
           />
           <div className="p-6 bg-gray-50 rounded-lg border border-[#d7d7d7]">
             <div className="w-full max-w-lg">
-              <Tabs variant={ctrl.variant as any || 'line'} items={demoItems} key={ctrl.variant} />
+              <Tabs
+                variant={(ctrl.variant as any) || 'line'}
+                items={demoItems}
+                key={ctrl.variant}
+              />
             </div>
           </div>
         </div>

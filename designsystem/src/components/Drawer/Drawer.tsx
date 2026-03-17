@@ -20,16 +20,16 @@ export interface DrawerProps {
 }
 
 const placementStyles = {
-  right:  'right-0 top-0 h-full animate-slide-in-right',
-  left:   'left-0 top-0 h-full animate-slide-in-left',
-  top:    'top-0 left-0 w-full animate-slide-in-bottom',
+  right: 'right-0 top-0 h-full animate-slide-in-right',
+  left: 'left-0 top-0 h-full animate-slide-in-left',
+  top: 'top-0 left-0 w-full animate-slide-in-bottom',
   bottom: 'bottom-0 left-0 w-full',
 };
 
 const sizeStyles = {
-  right:  { sm: 'w-72', md: 'w-96', lg: 'w-[480px]', full: 'w-full' },
-  left:   { sm: 'w-72', md: 'w-96', lg: 'w-[480px]', full: 'w-full' },
-  top:    { sm: 'h-48', md: 'h-64', lg: 'h-80', full: 'h-full' },
+  right: { sm: 'w-72', md: 'w-96', lg: 'w-[480px]', full: 'w-full' },
+  left: { sm: 'w-72', md: 'w-96', lg: 'w-[480px]', full: 'w-full' },
+  top: { sm: 'h-48', md: 'h-64', lg: 'h-80', full: 'h-full' },
   bottom: { sm: 'h-48', md: 'h-64', lg: 'h-80', full: 'h-full' },
 };
 
@@ -49,14 +49,18 @@ const Drawer: React.FC<DrawerProps> = ({
 }) => {
   useEffect(() => {
     if (!closeOnEsc) return;
-    const handler = (e: KeyboardEvent) => { if (e.key === 'Escape' && open) onClose(); };
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && open) onClose();
+    };
     document.addEventListener('keydown', handler);
     return () => document.removeEventListener('keydown', handler);
   }, [open, onClose, closeOnEsc]);
 
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : '';
-    return () => { document.body.style.overflow = ''; };
+    return () => {
+      document.body.style.overflow = '';
+    };
   }, [open]);
 
   if (!open) return null;
@@ -94,9 +98,7 @@ const Drawer: React.FC<DrawerProps> = ({
             )}
           </div>
         )}
-        <div className="flex-1 overflow-y-auto p-5 scrollbar-thin">
-          {children}
-        </div>
+        <div className="flex-1 overflow-y-auto p-5 scrollbar-thin">{children}</div>
         {footer && (
           <div className="shrink-0 flex items-center justify-end gap-2 p-5 border-t border-[#d7d7d7]">
             {footer}

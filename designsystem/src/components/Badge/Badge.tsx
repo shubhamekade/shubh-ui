@@ -7,16 +7,16 @@ export const badgeVariants = cva(
   {
     variants: {
       variant: {
-        default:     'bg-accent text-accent-foreground',
-        primary:     'bg-primary text-primary-foreground',
-        navy:        'bg-navy text-white',
-        secondary:   'bg-muted text-muted-foreground',
-        success:     'bg-green-100 text-green-700',
-        warning:     'bg-amber-100 text-amber-700',
+        default: 'bg-accent text-accent-foreground',
+        primary: 'bg-primary text-primary-foreground',
+        navy: 'bg-navy text-white',
+        secondary: 'bg-muted text-muted-foreground',
+        success: 'bg-green-100 text-green-700',
+        warning: 'bg-amber-100 text-amber-700',
         destructive: 'bg-red-100 text-red-700',
-        info:        'bg-sky-100 text-sky-700',
-        outline:     'border border-border bg-transparent text-foreground',
-        ghost:       'bg-transparent text-muted-foreground',
+        info: 'bg-sky-100 text-sky-700',
+        outline: 'border border-border bg-transparent text-foreground',
+        ghost: 'bg-transparent text-muted-foreground',
       },
       size: {
         sm: 'px-1.5 py-0.5 text-xs',
@@ -35,8 +35,7 @@ export const badgeVariants = cva(
 );
 
 export interface BadgeProps
-  extends React.HTMLAttributes<HTMLSpanElement>,
-    VariantProps<typeof badgeVariants> {
+  extends React.HTMLAttributes<HTMLSpanElement>, VariantProps<typeof badgeVariants> {
   dot?: boolean;
   dotColor?: string;
   removable?: boolean;
@@ -55,10 +54,7 @@ const Badge: React.FC<BadgeProps> = ({
   ...props
 }) => {
   return (
-    <span
-      className={cn(badgeVariants({ variant, size, dot }), className)}
-      {...props}
-    >
+    <span className={cn(badgeVariants({ variant, size, dot }), className)} {...props}>
       {dot && (
         <span
           className={cn('inline-block w-1.5 h-1.5 rounded-full', dotColor || 'bg-current')}

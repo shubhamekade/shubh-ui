@@ -1,22 +1,17 @@
 import { cva } from 'class-variance-authority';
 
-export const calendarVariants = cva(
-  [
-    'inline-block select-none font-sans',
-  ],
-  {
-    variants: {
-      size: {
-        sm: 'text-xs w-56',
-        md: 'text-sm w-64',
-        lg: 'text-base w-72',
-      },
+export const calendarVariants = cva(['inline-block select-none font-sans'], {
+  variants: {
+    size: {
+      sm: 'text-xs w-56',
+      md: 'text-sm w-64',
+      lg: 'text-base w-72',
     },
-    defaultVariants: {
-      size: 'md',
-    },
-  }
-);
+  },
+  defaultVariants: {
+    size: 'md',
+  },
+});
 
 export const calendarCellVariants = cva(
   [

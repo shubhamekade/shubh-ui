@@ -413,7 +413,13 @@ var CardHeader = (0, import_react3.forwardRef)(
 var CardTitle = (0, import_react3.forwardRef)(
   (_a, ref) => {
     var _b = _a, { className } = _b, props = __objRest(_b, ["className"]);
-    return /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("p", __spreadValues({ ref, className: cn("text-lg font-semibold leading-none tracking-tight", className) }, props));
+    return /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(
+      "p",
+      __spreadValues({
+        ref,
+        className: cn("text-lg font-semibold leading-none tracking-tight", className)
+      }, props)
+    );
   }
 );
 var CardDescription = (0, import_react3.forwardRef)(
@@ -431,7 +437,13 @@ var CardContent = (0, import_react3.forwardRef)(
 var CardFooter = (0, import_react3.forwardRef)(
   (_a, ref) => {
     var _b = _a, { className } = _b, props = __objRest(_b, ["className"]);
-    return /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", __spreadValues({ ref, className: cn("flex items-center border-t border-slate-100 pt-4", className) }, props));
+    return /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(
+      "div",
+      __spreadValues({
+        ref,
+        className: cn("flex items-center border-t border-slate-100 pt-4", className)
+      }, props)
+    );
   }
 );
 Card.displayName = "Card";
@@ -617,14 +629,7 @@ function Table({
       },
       col.key
     )) }) }),
-    /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("tbody", { children: loading ? Array.from({ length: 5 }).map((_, i) => /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("tr", { className: "border-b border-[#d7d7d7]", children: columns.map((col) => /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("td", { className: cellPad, children: /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("div", { className: "h-4 bg-gray-200 rounded animate-pulse" }) }, col.key)) }, i)) : data.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("tr", { children: /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(
-      "td",
-      {
-        colSpan: columns.length,
-        className: "py-12 text-center text-[#808080]",
-        children: emptyMessage
-      }
-    ) }) : data.map((row, i) => /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(
+    /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("tbody", { children: loading ? Array.from({ length: 5 }).map((_, i) => /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("tr", { className: "border-b border-[#d7d7d7]", children: columns.map((col) => /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("td", { className: cellPad, children: /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("div", { className: "h-4 bg-gray-200 rounded animate-pulse" }) }, col.key)) }, i)) : data.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("tr", { children: /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("td", { colSpan: columns.length, className: "py-12 text-center text-[#808080]", children: emptyMessage }) }) : data.map((row, i) => /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(
       "tr",
       {
         onClick: () => onRowClick == null ? void 0 : onRowClick(row),
@@ -740,7 +745,17 @@ var Pagination = ({
         }
       ),
       pages.map(
-        (p, i) => p === "..." ? /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("span", { className: cn("inline-flex items-center justify-center text-muted-foreground", sizeMap2[size]), children: "\u2026" }, `ellipsis-${i}`) : /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
+        (p, i) => p === "..." ? /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
+          "span",
+          {
+            className: cn(
+              "inline-flex items-center justify-center text-muted-foreground",
+              sizeMap2[size]
+            ),
+            children: "\u2026"
+          },
+          `ellipsis-${i}`
+        ) : /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
           "button",
           {
             type: "button",
@@ -851,13 +866,22 @@ var Select = (0, import_react6.forwardRef)(
     const generatedId = (0, import_react6.useId)();
     const selectId = id || `select-${generatedId}`;
     useClickOutside(containerRef, () => setOpen(false));
-    const selectedValues = multiple ? value || [] : value ? [value] : [];
+    const selectedValues = (0, import_react6.useMemo)(
+      () => multiple ? value || [] : value ? [value] : [],
+      [multiple, value]
+    );
     const selectedLabels = selectedValues.map((v) => {
       var _a;
       return (_a = options.find((o) => o.value === v)) == null ? void 0 : _a.label;
     }).filter(Boolean);
-    const isSelected = (optValue) => selectedValues.includes(optValue);
-    const enabledIndices = options.map((option, index) => ({ option, index })).filter((entry) => !entry.option.disabled).map((entry) => entry.index);
+    const isSelected = (0, import_react6.useCallback)(
+      (optValue) => selectedValues.includes(optValue),
+      [selectedValues]
+    );
+    const enabledIndices = (0, import_react6.useMemo)(
+      () => options.map((option, index) => ({ option, index })).filter((entry) => !entry.option.disabled).map((entry) => entry.index),
+      [options]
+    );
     const handleSelect = (optValue) => {
       if (multiple) {
         const newValues = isSelected(optValue) ? selectedValues.filter((v) => v !== optValue) : [...selectedValues, optValue];
@@ -877,13 +901,15 @@ var Select = (0, import_react6.forwardRef)(
         setActiveIndex(-1);
         return;
       }
-      const selectedIndex = options.findIndex((option) => isSelected(option.value) && !option.disabled);
+      const selectedIndex = options.findIndex(
+        (option) => isSelected(option.value) && !option.disabled
+      );
       if (selectedIndex >= 0) {
         setActiveIndex(selectedIndex);
         return;
       }
       setActiveIndex((_a = enabledIndices[0]) != null ? _a : -1);
-    }, [open, options, value]);
+    }, [open, options, enabledIndices, isSelected]);
     const handleTriggerKeyDown = (event) => {
       if (disabled) return;
       if (event.key === "ArrowDown" || event.key === "Enter" || event.key === " ") {
@@ -929,17 +955,10 @@ var Select = (0, import_react6.forwardRef)(
       }
     };
     return /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { ref: containerRef, className: cn("w-full", className), children: [
-      label && /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)(
-        "label",
-        {
-          htmlFor: selectId,
-          className: "block text-sm font-medium text-foreground mb-1.5",
-          children: [
-            label,
-            required && /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("span", { className: "text-red-500 ml-1", children: "*" })
-          ]
-        }
-      ),
+      label && /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("label", { htmlFor: selectId, className: "block text-sm font-medium text-foreground mb-1.5", children: [
+        label,
+        required && /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("span", { className: "text-red-500 ml-1", children: "*" })
+      ] }),
       /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { className: "relative", ref, children: [
         /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)(
           "button",
@@ -962,7 +981,16 @@ var Select = (0, import_react6.forwardRef)(
               disabled && "opacity-50 cursor-not-allowed bg-gray-50"
             ),
             children: [
-              /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("span", { className: cn("flex-1 text-left truncate", !selectedLabels.length && "text-muted-foreground"), children: selectedLabels.length ? multiple ? `${selectedLabels.length} selected` : selectedLabels[0] : placeholder }),
+              /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
+                "span",
+                {
+                  className: cn(
+                    "flex-1 text-left truncate",
+                    !selectedLabels.length && "text-muted-foreground"
+                  ),
+                  children: selectedLabels.length ? multiple ? `${selectedLabels.length} selected` : selectedLabels[0] : placeholder
+                }
+              ),
               /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("span", { className: "flex items-center gap-1 shrink-0", children: [
                 clearable && selectedValues.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
                   "button",
@@ -977,7 +1005,10 @@ var Select = (0, import_react6.forwardRef)(
                 /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
                   import_lucide_react5.ChevronDown,
                   {
-                    className: cn("h-4 w-4 text-muted-foreground transition-transform duration-150", open && "rotate-180"),
+                    className: cn(
+                      "h-4 w-4 text-muted-foreground transition-transform duration-150",
+                      open && "rotate-180"
+                    ),
                     "aria-hidden": "true"
                   }
                 )
@@ -1171,33 +1202,26 @@ var Badge = (_a) => {
     "onRemove",
     "children"
   ]);
-  return /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)(
-    "span",
-    __spreadProps(__spreadValues({
-      className: cn(badgeVariants({ variant, size, dot }), className)
-    }, props), {
-      children: [
-        dot && /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(
-          "span",
-          {
-            className: cn("inline-block w-1.5 h-1.5 rounded-full", dotColor || "bg-current"),
-            "aria-hidden": "true"
-          }
-        ),
-        children,
-        removable && /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(
-          "button",
-          {
-            type: "button",
-            onClick: onRemove,
-            className: "ml-0.5 hover:opacity-70 transition-opacity",
-            "aria-label": "Remove badge",
-            children: "\xD7"
-          }
-        )
-      ]
-    })
-  );
+  return /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("span", __spreadProps(__spreadValues({ className: cn(badgeVariants({ variant, size, dot }), className) }, props), { children: [
+    dot && /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(
+      "span",
+      {
+        className: cn("inline-block w-1.5 h-1.5 rounded-full", dotColor || "bg-current"),
+        "aria-hidden": "true"
+      }
+    ),
+    children,
+    removable && /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(
+      "button",
+      {
+        type: "button",
+        onClick: onRemove,
+        className: "ml-0.5 hover:opacity-70 transition-opacity",
+        "aria-label": "Remove badge",
+        children: "\xD7"
+      }
+    )
+  ] }));
 };
 Badge.displayName = "Badge";
 var Badge_default = Badge;
@@ -1434,7 +1458,17 @@ var Accordion = ({
                   "overflow-hidden transition-all duration-200 ease-in-out",
                   isOpen(item.id) ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
                 ),
-                children: /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("div", { className: cn("pb-4 text-sm text-muted-foreground", variant === "filled" && "px-4", variant === "bordered" && "px-4"), children: item.content })
+                children: /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
+                  "div",
+                  {
+                    className: cn(
+                      "pb-4 text-sm text-muted-foreground",
+                      variant === "filled" && "px-4",
+                      variant === "bordered" && "px-4"
+                    ),
+                    children: item.content
+                  }
+                )
               }
             )
           ]
@@ -1451,22 +1485,19 @@ var Accordion_default = Accordion;
 var import_class_variance_authority5 = require("class-variance-authority");
 var import_lucide_react6 = require("lucide-react");
 var import_jsx_runtime12 = require("react/jsx-runtime");
-var alertVariants = (0, import_class_variance_authority5.cva)(
-  "relative flex gap-3 rounded-lg border p-4 text-sm",
-  {
-    variants: {
-      variant: {
-        info: "bg-accent border-primary/20 text-accent-foreground",
-        success: "bg-green-50 border-green-200 text-green-800",
-        warning: "bg-amber-50 border-amber-200 text-amber-800",
-        destructive: "bg-red-50 border-red-200 text-red-800",
-        navy: "bg-navy border-navy-medium text-white",
-        neutral: "bg-muted border-border text-foreground"
-      }
-    },
-    defaultVariants: { variant: "info" }
-  }
-);
+var alertVariants = (0, import_class_variance_authority5.cva)("relative flex gap-3 rounded-lg border p-4 text-sm", {
+  variants: {
+    variant: {
+      info: "bg-accent border-primary/20 text-accent-foreground",
+      success: "bg-green-50 border-green-200 text-green-800",
+      warning: "bg-amber-50 border-amber-200 text-amber-800",
+      destructive: "bg-red-50 border-red-200 text-red-800",
+      navy: "bg-navy border-navy-medium text-white",
+      neutral: "bg-muted border-border text-foreground"
+    }
+  },
+  defaultVariants: { variant: "info" }
+});
 var iconMap = {
   info: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(import_lucide_react6.Info, { className: "h-4 w-4 shrink-0 mt-0.5" }),
   success: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(import_lucide_react6.CheckCircle2, { className: "h-4 w-4 shrink-0 mt-0.5" }),
@@ -1495,32 +1526,24 @@ var Alert = (_a) => {
     "action",
     "children"
   ]);
-  return /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)(
-    "div",
-    __spreadProps(__spreadValues({
-      role: "alert",
-      className: cn(alertVariants({ variant }), className)
-    }, props), {
-      children: [
-        /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("span", { children: icon != null ? icon : iconMap[variant] }),
-        /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { className: "flex-1", children: [
-          title && /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("p", { className: "font-semibold mb-0.5", children: title }),
-          children && /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("p", { className: "leading-relaxed", children }),
-          action && /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("div", { className: "mt-2", children: action })
-        ] }),
-        dismissible && /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
-          "button",
-          {
-            type: "button",
-            onClick: onDismiss,
-            "aria-label": "Dismiss alert",
-            className: "shrink-0 p-0.5 rounded opacity-60 hover:opacity-100 transition-opacity",
-            children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(import_lucide_react6.X, { className: "h-3.5 w-3.5" })
-          }
-        )
-      ]
-    })
-  );
+  return /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", __spreadProps(__spreadValues({ role: "alert", className: cn(alertVariants({ variant }), className) }, props), { children: [
+    /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("span", { children: icon != null ? icon : iconMap[variant] }),
+    /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { className: "flex-1", children: [
+      title && /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("p", { className: "font-semibold mb-0.5", children: title }),
+      children && /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("p", { className: "leading-relaxed", children }),
+      action && /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("div", { className: "mt-2", children: action })
+    ] }),
+    dismissible && /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
+      "button",
+      {
+        type: "button",
+        onClick: onDismiss,
+        "aria-label": "Dismiss alert",
+        className: "shrink-0 p-0.5 rounded opacity-60 hover:opacity-100 transition-opacity",
+        children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(import_lucide_react6.X, { className: "h-3.5 w-3.5" })
+      }
+    )
+  ] }));
 };
 Alert.displayName = "Alert";
 var Alert_default = Alert;
@@ -1571,7 +1594,7 @@ var Avatar = (_a) => {
     className,
     size,
     shape,
-    variant,
+    variant: _variant,
     src,
     alt = "Avatar",
     initials,
@@ -1671,23 +1694,18 @@ var import_outline = require("@heroicons/react/24/outline");
 
 // src/components/Calendar/component.variants.ts
 var import_class_variance_authority7 = require("class-variance-authority");
-var calendarVariants = (0, import_class_variance_authority7.cva)(
-  [
-    "inline-block select-none font-sans"
-  ],
-  {
-    variants: {
-      size: {
-        sm: "text-xs w-56",
-        md: "text-sm w-64",
-        lg: "text-base w-72"
-      }
-    },
-    defaultVariants: {
-      size: "md"
+var calendarVariants = (0, import_class_variance_authority7.cva)(["inline-block select-none font-sans"], {
+  variants: {
+    size: {
+      sm: "text-xs w-56",
+      md: "text-sm w-64",
+      lg: "text-base w-72"
     }
+  },
+  defaultVariants: {
+    size: "md"
   }
-);
+});
 var calendarCellVariants = (0, import_class_variance_authority7.cva)(
   [
     "flex items-center justify-center rounded cursor-pointer transition-colors duration-100",
@@ -1733,8 +1751,34 @@ var calendarCellVariants = (0, import_class_variance_authority7.cva)(
 // src/components/Calendar/Calendar.tsx
 var import_jsx_runtime15 = require("react/jsx-runtime");
 var DAY_HEADERS = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
-var MONTH_NAMES = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-var MONTH_FULL = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+var MONTH_NAMES = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec"
+];
+var MONTH_FULL = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December"
+];
 var YEAR_RANGE_SIZE = 12;
 function isSameDay(a, b) {
   return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate();
@@ -1748,7 +1792,16 @@ function getDaysInMonth(year, month) {
 function getFirstDayOfMonth(year, month) {
   return new Date(year, month, 1).getDay();
 }
-function NavHeader({ label, onPrev, onNext, onLabelClick, isNavy, size, prevAriaLabel, nextAriaLabel }) {
+function NavHeader({
+  label,
+  onPrev,
+  onNext,
+  onLabelClick,
+  isNavy,
+  size,
+  prevAriaLabel,
+  nextAriaLabel
+}) {
   const textSize = size === "sm" ? "text-xs" : size === "lg" ? "text-base" : "text-sm";
   const btnSize = size === "sm" ? "h-6 w-6" : size === "lg" ? "h-8 w-8" : "h-7 w-7";
   const iconSize = size === "sm" ? "h-3 w-3" : size === "lg" ? "h-4 w-4" : "h-3.5 w-3.5";
@@ -1800,7 +1853,19 @@ function NavHeader({ label, onPrev, onNext, onLabelClick, isNavy, size, prevAria
     )
   ] });
 }
-function DayView({ viewDate, selected, today, size, isNavy, onSelectDay, onPrevMonth, onNextMonth, onHeaderClick, minDate, maxDate }) {
+function DayView({
+  viewDate,
+  selected,
+  today,
+  size,
+  isNavy,
+  onSelectDay,
+  onPrevMonth,
+  onNextMonth,
+  onHeaderClick,
+  minDate,
+  maxDate
+}) {
   const year = viewDate.getFullYear();
   const month = viewDate.getMonth();
   const firstDay = getFirstDayOfMonth(year, month);
@@ -1863,7 +1928,12 @@ function DayView({ viewDate, selected, today, size, isNavy, onSelectDay, onPrevM
         {
           type: "button",
           role: "gridcell",
-          "aria-label": date.toLocaleDateString("en-US", { weekday: "long", year: "numeric", month: "long", day: "numeric" }),
+          "aria-label": date.toLocaleDateString("en-US", {
+            weekday: "long",
+            year: "numeric",
+            month: "long",
+            day: "numeric"
+          }),
           "aria-selected": isSelected,
           "aria-disabled": disabled,
           tabIndex: isSelected ? 0 : -1,
@@ -1884,7 +1954,16 @@ function DayView({ viewDate, selected, today, size, isNavy, onSelectDay, onPrevM
     }) })
   ] });
 }
-function MonthView({ viewDate, selected, size, isNavy, onSelectMonth, onPrevYear, onNextYear, onHeaderClick }) {
+function MonthView({
+  viewDate,
+  selected,
+  size,
+  isNavy,
+  onSelectMonth,
+  onPrevYear,
+  onNextYear,
+  onHeaderClick
+}) {
   const year = viewDate.getFullYear();
   const cellSize = size === "sm" ? "h-8 text-xs" : size === "lg" ? "h-11 text-base" : "h-9 text-sm";
   return /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { role: "grid", "aria-label": `Month picker for ${year}`, children: [
@@ -1925,7 +2004,15 @@ function MonthView({ viewDate, selected, size, isNavy, onSelectMonth, onPrevYear
     }) })
   ] });
 }
-function YearView({ viewDate, selected, size, isNavy, onSelectYear, onPrevRange, onNextRange }) {
+function YearView({
+  viewDate,
+  selected,
+  size,
+  isNavy,
+  onSelectYear,
+  onPrevRange,
+  onNextRange
+}) {
   const rangeStart = getYearRangeStart(viewDate.getFullYear());
   const rangeEnd = rangeStart + YEAR_RANGE_SIZE - 1;
   const years = Array.from({ length: YEAR_RANGE_SIZE }, (_, i) => rangeStart + i);
@@ -1983,9 +2070,7 @@ function Calendar({
 }) {
   const today = /* @__PURE__ */ new Date();
   today.setHours(0, 0, 0, 0);
-  const [internalSelected, setInternalSelected] = (0, import_react10.useState)(
-    defaultValue != null ? defaultValue : null
-  );
+  const [internalSelected, setInternalSelected] = (0, import_react10.useState)(defaultValue != null ? defaultValue : null);
   const selected = value !== void 0 ? value : internalSelected;
   const [viewDate, setViewDate] = (0, import_react10.useState)(() => {
     const base = selected != null ? selected : today;
@@ -1998,10 +2083,13 @@ function Calendar({
       setViewDate(new Date(value.getFullYear(), value.getMonth(), 1));
     }
   }, [value]);
-  const handleSelectDay = (0, import_react10.useCallback)((date) => {
-    if (value === void 0) setInternalSelected(date);
-    onChange == null ? void 0 : onChange(date);
-  }, [value, onChange]);
+  const handleSelectDay = (0, import_react10.useCallback)(
+    (date) => {
+      if (value === void 0) setInternalSelected(date);
+      onChange == null ? void 0 : onChange(date);
+    },
+    [value, onChange]
+  );
   const handlePrevMonth = (0, import_react10.useCallback)(() => {
     setViewDate((d) => new Date(d.getFullYear(), d.getMonth() - 1, 1));
   }, []);
@@ -2152,10 +2240,17 @@ var Checkbox = (0, import_react11.forwardRef)(
           }
         )
       ] }),
-      (label || description) && /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("label", { htmlFor: checkboxId, className: cn("cursor-pointer", disabled && "cursor-not-allowed"), children: [
-        label && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { className: cn("font-medium text-foreground block", s.label), children: label }),
-        description && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { className: "text-xs text-muted-foreground block mt-0.5", children: description })
-      ] }),
+      (label || description) && /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)(
+        "label",
+        {
+          htmlFor: checkboxId,
+          className: cn("cursor-pointer", disabled && "cursor-not-allowed"),
+          children: [
+            label && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { className: cn("font-medium text-foreground block", s.label), children: label }),
+            description && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { className: "text-xs text-muted-foreground block mt-0.5", children: description })
+          ]
+        }
+      ),
       error && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("p", { className: "text-xs text-red-500 mt-1", role: "alert", children: error })
     ] });
   }
@@ -2194,19 +2289,21 @@ var Divider = (_a) => {
     );
   }
   if (label) {
-    return /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)(
-      "div",
-      __spreadProps(__spreadValues({
-        role: "separator",
-        className: cn("flex items-center gap-3 w-full", className)
-      }, props), {
-        children: [
-          labelAlign !== "left" && /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("div", { className: cn("flex-1 border-[#d7d7d7]", variantMap[variant], thicknessMap[thickness]) }),
-          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("span", { className: "text-xs text-[#808080] font-medium whitespace-nowrap shrink-0", children: label }),
-          labelAlign !== "right" && /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("div", { className: cn("flex-1 border-[#d7d7d7]", variantMap[variant], thicknessMap[thickness]) })
-        ]
-      })
-    );
+    return /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", __spreadProps(__spreadValues({ role: "separator", className: cn("flex items-center gap-3 w-full", className) }, props), { children: [
+      labelAlign !== "left" && /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(
+        "div",
+        {
+          className: cn("flex-1 border-[#d7d7d7]", variantMap[variant], thicknessMap[thickness])
+        }
+      ),
+      /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("span", { className: "text-xs text-[#808080] font-medium whitespace-nowrap shrink-0", children: label }),
+      labelAlign !== "right" && /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(
+        "div",
+        {
+          className: cn("flex-1 border-[#d7d7d7]", variantMap[variant], thicknessMap[thickness])
+        }
+      )
+    ] }));
   }
   return /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(
     "hr",
@@ -2333,7 +2430,9 @@ var Dropdown = ({
   (0, import_react13.useEffect)(() => {
     var _a;
     if (!open) return;
-    const firstItem = (_a = menuRef.current) == null ? void 0 : _a.querySelector('button[role="menuitem"]:not(:disabled)');
+    const firstItem = (_a = menuRef.current) == null ? void 0 : _a.querySelector(
+      'button[role="menuitem"]:not(:disabled)'
+    );
     firstItem == null ? void 0 : firstItem.focus();
   }, [open]);
   const handleTriggerKeyDown = (event) => {
@@ -2349,7 +2448,9 @@ var Dropdown = ({
   const handleMenuKeyDown = (event) => {
     var _a, _b, _c, _d;
     const menuItems = Array.from(
-      (_b = (_a = menuRef.current) == null ? void 0 : _a.querySelectorAll('button[role="menuitem"]:not(:disabled)')) != null ? _b : []
+      (_b = (_a = menuRef.current) == null ? void 0 : _a.querySelectorAll(
+        'button[role="menuitem"]:not(:disabled)'
+      )) != null ? _b : []
     );
     if (menuItems.length === 0) return;
     const currentIndex = menuItems.indexOf(document.activeElement);
@@ -2465,13 +2566,7 @@ var labelVariants = (0, import_class_variance_authority8.cva)(
 var Label = (0, import_react14.forwardRef)(
   (_a, ref) => {
     var _b = _a, { className, variant, required } = _b, props = __objRest(_b, ["className", "variant", "required"]);
-    return /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(
-      "label",
-      __spreadValues({
-        ref,
-        className: cn(labelVariants({ variant, required }), className)
-      }, props)
-    );
+    return /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("label", __spreadValues({ ref, className: cn(labelVariants({ variant, required }), className) }, props));
   }
 );
 Label.displayName = "Label";
@@ -2480,21 +2575,18 @@ var Label_default = Label;
 // src/components/Progress/Progress.tsx
 var import_class_variance_authority9 = require("class-variance-authority");
 var import_jsx_runtime21 = require("react/jsx-runtime");
-var progressTrackVariants = (0, import_class_variance_authority9.cva)(
-  "w-full overflow-hidden rounded-full bg-muted",
-  {
-    variants: {
-      size: {
-        xs: "h-1",
-        sm: "h-1.5",
-        md: "h-2.5",
-        lg: "h-4",
-        xl: "h-6"
-      }
-    },
-    defaultVariants: { size: "md" }
-  }
-);
+var progressTrackVariants = (0, import_class_variance_authority9.cva)("w-full overflow-hidden rounded-full bg-muted", {
+  variants: {
+    size: {
+      xs: "h-1",
+      sm: "h-1.5",
+      md: "h-2.5",
+      lg: "h-4",
+      xl: "h-6"
+    }
+  },
+  defaultVariants: { size: "md" }
+});
 var colorMap = {
   primary: "bg-primary",
   success: "bg-success",
@@ -2603,10 +2695,17 @@ var Radio = (0, import_react15.forwardRef)(
           }
         )
       ] }),
-      (label || description) && /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("label", { htmlFor: radioId, className: cn("cursor-pointer", disabled && "cursor-not-allowed opacity-50"), children: [
-        label && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("span", { className: cn("font-medium text-foreground block", s.label), children: label }),
-        description && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("span", { className: "text-xs text-muted-foreground block mt-0.5", children: description })
-      ] })
+      (label || description) && /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)(
+        "label",
+        {
+          htmlFor: radioId,
+          className: cn("cursor-pointer", disabled && "cursor-not-allowed opacity-50"),
+          children: [
+            label && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("span", { className: cn("font-medium text-foreground block", s.label), children: label }),
+            description && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("span", { className: "text-xs text-muted-foreground block mt-0.5", children: description })
+          ]
+        }
+      )
     ] });
   }
 );
@@ -2709,10 +2808,16 @@ function getThemeTokens(theme) {
   };
 }
 function SkeletonRow({ cols, tk }) {
-  return /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("div", { className: `${tk.skeletonBg} rounded-xl border ${tk.skeletonBorder} shadow-sm px-4 py-3 mb-2 flex items-center gap-4 animate-pulse`, children: [
-    Array.from({ length: cols }).map((_, i) => /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("div", { className: `flex-1 h-4 ${tk.skeletonPulse} rounded` }, i)),
-    /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("div", { className: `w-8 h-8 ${tk.skeletonPulse} rounded-full flex-shrink-0` })
-  ] });
+  return /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)(
+    "div",
+    {
+      className: `${tk.skeletonBg} rounded-xl border ${tk.skeletonBorder} shadow-sm px-4 py-3 mb-2 flex items-center gap-4 animate-pulse`,
+      children: [
+        Array.from({ length: cols }).map((_, i) => /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("div", { className: `flex-1 h-4 ${tk.skeletonPulse} rounded` }, i)),
+        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("div", { className: `w-8 h-8 ${tk.skeletonPulse} rounded-full flex-shrink-0` })
+      ]
+    }
+  );
 }
 function SortIcon({ direction, activeClass }) {
   if (direction === "asc") return /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(import_outline2.ChevronUpIcon, { className: `h-3.5 w-3.5 ${activeClass}` });
@@ -2757,7 +2862,14 @@ function ServerDataTable({
   const load = (0, import_react16.useCallback)(async () => {
     setLoading(true);
     try {
-      const result = await fetchData({ page, pageSize, search: debouncedSearch, sortField, sortDirection, status });
+      const result = await fetchData({
+        page,
+        pageSize,
+        search: debouncedSearch,
+        sortField,
+        sortDirection,
+        status
+      });
       setData(result.data);
       setTotal(result.total);
     } catch (e) {
@@ -2819,7 +2931,12 @@ function ServerDataTable({
       )
     ] }) }),
     /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("div", { className: "mb-4 relative max-w-xs", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(import_outline2.MagnifyingGlassIcon, { className: `absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 ${tk.searchIcon} pointer-events-none` }),
+      /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(
+        import_outline2.MagnifyingGlassIcon,
+        {
+          className: `absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 ${tk.searchIcon} pointer-events-none`
+        }
+      ),
       /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(
         "input",
         {
@@ -2860,7 +2977,13 @@ function ServerDataTable({
         ]
       }
     ),
-    /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("div", { children: loading ? Array.from({ length: pageSize > 5 ? 5 : pageSize }).map((_, i) => /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(SkeletonRow, { cols: colCount, tk }, i)) : data.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("div", { className: `${tk.emptyBg} rounded-xl border ${tk.emptyBorder} shadow-sm px-4 py-10 text-center text-sm ${tk.emptyText}`, children: "No records found." }) : data.map((row) => {
+    /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("div", { children: loading ? Array.from({ length: pageSize > 5 ? 5 : pageSize }).map((_, i) => /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(SkeletonRow, { cols: colCount, tk }, i)) : data.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(
+      "div",
+      {
+        className: `${tk.emptyBg} rounded-xl border ${tk.emptyBorder} shadow-sm px-4 py-10 text-center text-sm ${tk.emptyText}`,
+        children: "No records found."
+      }
+    ) : data.map((row) => {
       var _a;
       const key = keyExtractor(row);
       const isExpanded = expandedRow === key;
@@ -2873,7 +2996,15 @@ function ServerDataTable({
             children: [
               columns.map((col) => {
                 var _a2;
-                return /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("div", { style: colStyle, className: `text-sm ${tk.rowText} truncate`, children: col.cell ? col.cell(row) : String((_a2 = row[col.key]) != null ? _a2 : "") }, col.key);
+                return /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(
+                  "div",
+                  {
+                    style: colStyle,
+                    className: `text-sm ${tk.rowText} truncate`,
+                    children: col.cell ? col.cell(row) : String((_a2 = row[col.key]) != null ? _a2 : "")
+                  },
+                  col.key
+                );
               }),
               /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(
                 "button",
@@ -2887,27 +3018,33 @@ function ServerDataTable({
             ]
           }
         ),
-        isExpanded && /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("div", { className: `${tk.expandedBg} border border-t-0 ${tk.expandedBorder} rounded-b-xl px-4 py-4`, children: renderExpandedRow ? renderExpandedRow(
-          row,
-          getNote(key),
-          (v) => setNote(key, v),
-          () => {
-            onApprove == null ? void 0 : onApprove(row, getNote(key));
-          },
-          () => {
-            onReject == null ? void 0 : onReject(row, getNote(key));
-          }
-        ) : /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(
-          DefaultExpandedContent,
+        isExpanded && /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(
+          "div",
           {
-            note: getNote(key),
-            onNoteChange: (v) => setNote(key, v),
-            appliedDate,
-            onApprove: () => onApprove == null ? void 0 : onApprove(row, getNote(key)),
-            onReject: () => onReject == null ? void 0 : onReject(row, getNote(key)),
-            tk
+            className: `${tk.expandedBg} border border-t-0 ${tk.expandedBorder} rounded-b-xl px-4 py-4`,
+            children: renderExpandedRow ? renderExpandedRow(
+              row,
+              getNote(key),
+              (v) => setNote(key, v),
+              () => {
+                onApprove == null ? void 0 : onApprove(row, getNote(key));
+              },
+              () => {
+                onReject == null ? void 0 : onReject(row, getNote(key));
+              }
+            ) : /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(
+              DefaultExpandedContent,
+              {
+                note: getNote(key),
+                onNoteChange: (v) => setNote(key, v),
+                appliedDate,
+                onApprove: () => onApprove == null ? void 0 : onApprove(row, getNote(key)),
+                onReject: () => onReject == null ? void 0 : onReject(row, getNote(key)),
+                tk
+              }
+            )
           }
-        ) })
+        )
       ] }, key);
     }) }),
     !loading && total > 0 && /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("div", { className: "flex items-center justify-between mt-4 px-1", children: [
@@ -2916,7 +3053,8 @@ function ServerDataTable({
         Math.min((page - 1) * pageSize + 1, total),
         "\u2013",
         Math.min(page * pageSize, total),
-        " of ",
+        " ",
+        "of ",
         total
       ] }),
       /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("div", { className: "flex items-center gap-1", children: [
@@ -2965,7 +3103,14 @@ function ServerDataTable({
     ] })
   ] });
 }
-function DefaultExpandedContent({ note, onNoteChange, appliedDate, onApprove, onReject, tk }) {
+function DefaultExpandedContent({
+  note,
+  onNoteChange,
+  appliedDate,
+  onApprove,
+  onReject,
+  tk
+}) {
   return /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("div", { className: "space-y-3", children: [
     /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("div", { className: "flex items-center gap-3", children: [
       /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("span", { className: `text-sm font-medium ${tk.noteLabel} w-12 flex-shrink-0`, children: "Note" }),
@@ -3030,11 +3175,7 @@ var Skeleton = (_a) => {
     "animated",
     "style"
   ]);
-  const base = cn(
-    "rounded-md bg-gray-200",
-    animated && "animate-pulse",
-    className
-  );
+  const base = cn("rounded-md bg-gray-200", animated && "animate-pulse", className);
   if (variant === "text" && lines > 1) {
     return /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("div", __spreadProps(__spreadValues({ className: "flex flex-col gap-2" }, props), { children: Array.from({ length: lines }).map((_, i) => /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(
       "div",
@@ -3048,11 +3189,7 @@ var Skeleton = (_a) => {
   return /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(
     "div",
     __spreadValues({
-      className: cn(
-        base,
-        variant === "circle" && "rounded-full",
-        variant === "text" && "h-4"
-      ),
+      className: cn(base, variant === "circle" && "rounded-full", variant === "text" && "h-4"),
       style: __spreadValues({
         width: width ? typeof width === "number" ? `${width}px` : width : void 0,
         height: height ? typeof height === "number" ? `${height}px` : height : void 0
@@ -3247,7 +3384,7 @@ var Tag = (_a) => {
   var _b = _a, {
     className,
     size = "md",
-    variant = "default",
+    variant: _variant = "default",
     color = "default",
     removable,
     onRemove,
@@ -3393,10 +3530,7 @@ var Topbar = (0, import_react19.forwardRef)(
       "header",
       __spreadProps(__spreadValues({
         ref,
-        className: cn(
-          "w-full border-b border-slate-200 bg-white px-4 py-3 sm:px-6",
-          className
-        )
+        className: cn("w-full border-b border-slate-200 bg-white px-4 py-3 sm:px-6", className)
       }, props), {
         children: /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("div", { className: "flex items-center justify-between gap-4", children: [
           /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("div", { className: "flex items-center gap-3", children: [
@@ -3443,13 +3577,16 @@ var Topbar = (0, import_react19.forwardRef)(
                 className: "flex items-center gap-2 p-1.5 hover:bg-slate-100 rounded-lg transition-colors",
                 "aria-label": "Profile menu",
                 children: [
-                  profileImage ? /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(
-                    "img",
-                    {
-                      src: profileImage,
-                      alt: userName || "User",
-                      className: "h-6 w-6 rounded-full object-cover"
-                    }
+                  profileImage ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(
+                      "img",
+                      {
+                        src: profileImage,
+                        alt: userName || "User",
+                        className: "h-6 w-6 rounded-full object-cover"
+                      }
+                    )
                   ) : /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(import_lucide_react13.User, { className: "h-5 w-5 text-slate-600" }),
                   userName && /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("span", { className: "hidden sm:inline text-sm text-slate-700 font-medium", children: userName })
                 ]
@@ -3499,16 +3636,7 @@ var AdminSidebar = (0, import_react20.forwardRef)(
       }, props), {
         children: [
           /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("div", { className: "flex items-center justify-between p-4 border-b border-slate-800", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(
-              "h1",
-              {
-                className: cn(
-                  "font-bold transition-all",
-                  collapsed ? "text-xs" : "text-lg"
-                ),
-                children: collapsed ? "UI" : "@shubh/ui"
-              }
-            ),
+            /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("h1", { className: cn("font-bold transition-all", collapsed ? "text-xs" : "text-lg"), children: collapsed ? "UI" : "@shubh/ui" }),
             /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(
               "button",
               {
@@ -3618,25 +3746,25 @@ var StatsCard = (0, import_react21.forwardRef)(
               /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("p", { className: "text-2xl font-bold", children: value }),
               subtitle && /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("p", { className: "text-xs text-muted-foreground", children: subtitle })
             ] }),
-            trend && trendPercent && /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("div", { className: cn("mt-2 flex items-center gap-1 text-sm font-medium", trendColorVariants[trend]), children: [
-              trend === "up" ? /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(import_lucide_react15.TrendingUp, { className: "h-4 w-4" }) : /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(import_lucide_react15.TrendingDown, { className: "h-4 w-4" }),
-              /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("span", { children: [
-                trendPercent,
-                "%"
-              ] }),
-              trendLabel && /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("span", { className: "text-muted-foreground", children: trendLabel })
-            ] })
+            trend && trendPercent && /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)(
+              "div",
+              {
+                className: cn(
+                  "mt-2 flex items-center gap-1 text-sm font-medium",
+                  trendColorVariants[trend]
+                ),
+                children: [
+                  trend === "up" ? /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(import_lucide_react15.TrendingUp, { className: "h-4 w-4" }) : /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(import_lucide_react15.TrendingDown, { className: "h-4 w-4" }),
+                  /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("span", { children: [
+                    trendPercent,
+                    "%"
+                  ] }),
+                  trendLabel && /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("span", { className: "text-muted-foreground", children: trendLabel })
+                ]
+              }
+            )
           ] }),
-          icon && /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(
-            "div",
-            {
-              className: cn(
-                "rounded-lg p-3",
-                iconBgVariants[variant]
-              ),
-              children: icon
-            }
-          )
+          icon && /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("div", { className: cn("rounded-lg p-3", iconBgVariants[variant]), children: icon })
         ] })
       })
     );

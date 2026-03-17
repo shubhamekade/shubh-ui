@@ -1,6 +1,6 @@
 'use client';
 
-import React, { forwardRef, useEffect, useState, useRef, useId } from 'react';
+import React, { forwardRef, useEffect, useState, useRef, useId, useMemo, useCallback } from 'react';
 import { ChevronDown, Check, X } from 'lucide-react';
 import { cn } from '@/utils/cn';
 import { useClickOutside } from '@/hooks/useClickOutside';
@@ -64,25 +64,33 @@ const Select = forwardRef<HTMLDivElement, SelectProps>(
 
     useClickOutside(containerRef, () => setOpen(false));
 
-    const selectedValues = multiple
-      ? (value as string[] || [])
-      : value ? [value as string] : [];
+    const selectedValues = useMemo(
+      () => (multiple ? (value as string[]) || [] : value ? [value as string] : []),
+      [multiple, value]
+    );
 
     const selectedLabels = selectedValues
-      .map(v => options.find(o => o.value === v)?.label)
+      .map((v) => options.find((o) => o.value === v)?.label)
       .filter(Boolean);
 
-    const isSelected = (optValue: string) => selectedValues.includes(optValue);
+    const isSelected = useCallback(
+      (optValue: string) => selectedValues.includes(optValue),
+      [selectedValues]
+    );
 
-    const enabledIndices = options
-      .map((option, index) => ({ option, index }))
-      .filter(entry => !entry.option.disabled)
-      .map(entry => entry.index);
+    const enabledIndices = useMemo(
+      () =>
+        options
+          .map((option, index) => ({ option, index }))
+          .filter((entry) => !entry.option.disabled)
+          .map((entry) => entry.index),
+      [options]
+    );
 
     const handleSelect = (optValue: string) => {
       if (multiple) {
         const newValues = isSelected(optValue)
-          ? selectedValues.filter(v => v !== optValue)
+          ? selectedValues.filter((v) => v !== optValue)
           : [...selectedValues, optValue];
         onChange?.(newValues);
       } else {
@@ -102,14 +110,16 @@ const Select = forwardRef<HTMLDivElement, SelectProps>(
         return;
       }
 
-      const selectedIndex = options.findIndex(option => isSelected(option.value) && !option.disabled);
+      const selectedIndex = options.findIndex(
+        (option) => isSelected(option.value) && !option.disabled
+      );
       if (selectedIndex >= 0) {
         setActiveIndex(selectedIndex);
         return;
       }
 
       setActiveIndex(enabledIndices[0] ?? -1);
-    }, [open, options, value]);
+    }, [open, options, enabledIndices, isSelected]);
 
     const handleTriggerKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
       if (disabled) return;
@@ -171,10 +181,7 @@ const Select = forwardRef<HTMLDivElement, SelectProps>(
     return (
       <div ref={containerRef} className={cn('w-full', className)}>
         {label && (
-          <label
-            htmlFor={selectId}
-            className="block text-sm font-medium text-foreground mb-1.5"
-          >
+          <label htmlFor={selectId} className="block text-sm font-medium text-foreground mb-1.5">
             {label}
             {required && <span className="text-red-500 ml-1">*</span>}
           </label>
@@ -183,13 +190,15 @@ const Select = forwardRef<HTMLDivElement, SelectProps>(
           <button
             id={selectId}
             type="button"
-            onClick={() => !disabled && setOpen(v => !v)}
+            onClick={() => !disabled && setOpen((v) => !v)}
             onKeyDown={handleTriggerKeyDown}
             disabled={disabled}
             aria-haspopup="listbox"
             aria-expanded={open}
             aria-controls={`${selectId}-listbox`}
-            aria-activedescendant={open && activeIndex >= 0 ? `${selectId}-option-${activeIndex}` : undefined}
+            aria-activedescendant={
+              open && activeIndex >= 0 ? `${selectId}-option-${activeIndex}` : undefined
+            }
             aria-label={label || placeholder}
             className={cn(
               'w-full flex items-center justify-between gap-2 rounded-md border bg-background transition-all duration-150',
@@ -198,12 +207,17 @@ const Select = forwardRef<HTMLDivElement, SelectProps>(
               error
                 ? 'border-red-400'
                 : open
-                ? 'border-primary'
-                : 'border-border hover:border-muted-foreground',
+                  ? 'border-primary'
+                  : 'border-border hover:border-muted-foreground',
               disabled && 'opacity-50 cursor-not-allowed bg-gray-50'
             )}
           >
-            <span className={cn('flex-1 text-left truncate', !selectedLabels.length && 'text-muted-foreground')}>
+            <span
+              className={cn(
+                'flex-1 text-left truncate',
+                !selectedLabels.length && 'text-muted-foreground'
+              )}
+            >
               {selectedLabels.length
                 ? multiple
                   ? `${selectedLabels.length} selected`
@@ -222,7 +236,10 @@ const Select = forwardRef<HTMLDivElement, SelectProps>(
                 </button>
               )}
               <ChevronDown
-                className={cn('h-4 w-4 text-muted-foreground transition-transform duration-150', open && 'rotate-180')}
+                className={cn(
+                  'h-4 w-4 text-muted-foreground transition-transform duration-150',
+                  open && 'rotate-180'
+                )}
                 aria-hidden="true"
               />
             </span>
@@ -274,7 +291,11 @@ const Select = forwardRef<HTMLDivElement, SelectProps>(
             </ul>
           )}
         </div>
-        {error && <p className="mt-1 text-xs text-red-500" role="alert">{error}</p>}
+        {error && (
+          <p className="mt-1 text-xs text-red-500" role="alert">
+            {error}
+          </p>
+        )}
         {hint && !error && <p className="mt-1 text-xs text-muted-foreground">{hint}</p>}
       </div>
     );

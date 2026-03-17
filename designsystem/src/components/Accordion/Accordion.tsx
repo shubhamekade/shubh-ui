@@ -46,8 +46,8 @@ const Accordion: React.FC<AccordionProps> = ({
   const [openIds, setOpenIds] = useState<string[]>(defaultOpen);
 
   const toggle = (id: string) => {
-    setOpenIds(prev => {
-      if (prev.includes(id)) return prev.filter(i => i !== id);
+    setOpenIds((prev) => {
+      if (prev.includes(id)) return prev.filter((i) => i !== id);
       return multiple ? [...prev, id] : [id];
     });
   };
@@ -58,7 +58,8 @@ const Accordion: React.FC<AccordionProps> = ({
     <div
       className={cn(
         'w-full',
-        variant === 'bordered' && 'border border-border rounded-lg overflow-hidden divide-y divide-border',
+        variant === 'bordered' &&
+          'border border-border rounded-lg overflow-hidden divide-y divide-border',
         variant === 'default' && 'divide-y divide-border',
         variant === 'flush' && 'divide-y divide-border',
         className
@@ -103,7 +104,13 @@ const Accordion: React.FC<AccordionProps> = ({
               isOpen(item.id) ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
             )}
           >
-            <div className={cn('pb-4 text-sm text-muted-foreground', variant === 'filled' && 'px-4', variant === 'bordered' && 'px-4')}>
+            <div
+              className={cn(
+                'pb-4 text-sm text-muted-foreground',
+                variant === 'filled' && 'px-4',
+                variant === 'bordered' && 'px-4'
+              )}
+            >
               {item.content}
             </div>
           </div>

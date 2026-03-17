@@ -25,11 +25,25 @@ export default function BreadcrumbSection() {
         description="Use the live controls to switch size in real time."
         previewBg="white"
         props={[
-          { name: 'items', type: 'BreadcrumbItem[]', required: true, description: 'Array of breadcrumb items with label and optional href' },
+          {
+            name: 'items',
+            type: 'BreadcrumbItem[]',
+            required: true,
+            description: 'Array of breadcrumb items with label and optional href',
+          },
           { name: 'separator', type: 'ReactNode', description: 'Custom separator element' },
           { name: 'showHome', type: 'boolean', description: 'Prepend a Home icon item' },
-          { name: 'maxItems', type: 'number', description: 'Collapse middle items with ellipsis beyond this count' },
-          { name: 'size', type: "'sm' | 'md' | 'lg'", default: "'md'", description: 'Font size variant' },
+          {
+            name: 'maxItems',
+            type: 'number',
+            description: 'Collapse middle items with ellipsis beyond this count',
+          },
+          {
+            name: 'size',
+            type: "'sm' | 'md' | 'lg'",
+            default: "'md'",
+            description: 'Font size variant',
+          },
         ]}
       >
         <div className="w-full space-y-4">
@@ -48,7 +62,7 @@ export default function BreadcrumbSection() {
           <div className="flex items-center p-6 bg-gray-50 rounded-lg border border-[#d7d7d7]">
             <Breadcrumb
               showHome
-              size={ctrl.size as any || 'md'}
+              size={(ctrl.size as any) || 'md'}
               items={[
                 { label: 'Components', href: '/components' },
                 { label: 'Form', href: '/components/form' },
@@ -150,13 +164,9 @@ export default function BreadcrumbSection() {
         />
       </ShowcaseSection>
 
-      <ShowcaseSection
-        title="Sizes"
-        description="Three font size variants."
-        previewBg="white"
-      >
+      <ShowcaseSection title="Sizes" description="Three font size variants." previewBg="white">
         <div className="space-y-3">
-          {(['sm', 'md', 'lg'] as const).map(s => (
+          {(['sm', 'md', 'lg'] as const).map((s) => (
             <Breadcrumb
               key={s}
               size={s}

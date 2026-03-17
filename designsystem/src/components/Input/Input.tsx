@@ -1,19 +1,12 @@
-import {
-  forwardRef,
-  useId,
-  useState,
-  type InputHTMLAttributes,
-  type ReactNode,
-} from "react";
-import { Eye, EyeOff, X } from "lucide-react";
+import { forwardRef, useId, useState, type InputHTMLAttributes, type ReactNode } from 'react';
+import { Eye, EyeOff, X } from 'lucide-react';
 
-import { cn } from "../../utils/cn";
-import { inputVariants } from "./component.variants";
+import { cn } from '../../utils/cn';
+import { inputVariants } from './component.variants';
 
-export interface InputProps
-  extends Omit<InputHTMLAttributes<HTMLInputElement>, "size"> {
-  variant?: "default" | "error" | "success";
-  size?: "sm" | "md" | "lg";
+export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
+  variant?: 'default' | 'error' | 'success';
+  size?: 'sm' | 'md' | 'lg';
   leftElement?: ReactNode;
   rightElement?: ReactNode;
   clearable?: boolean;
@@ -31,7 +24,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
       className,
       variant,
       size,
-      type = "text",
+      type = 'text',
       leftElement,
       rightElement,
       clearable,
@@ -50,17 +43,22 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
     const [showPassword, setShowPassword] = useState(false);
     const generatedId = useId();
     const inputId = id || `input-${generatedId}`;
-    const effectiveVariant = error ? "error" : success ? "success" : variant;
-    const effectiveType = type === "password" && showPassword ? "text" : type;
+    const effectiveVariant = error ? 'error' : success ? 'success' : variant;
+    const effectiveType = type === 'password' && showPassword ? 'text' : type;
     const hasLeftElement = Boolean(leftElement);
-    const hasRightElement = Boolean(rightElement) || type === "password" || Boolean(clearable && value);
+    const hasRightElement =
+      Boolean(rightElement) || type === 'password' || Boolean(clearable && value);
 
     return (
       <div className="w-full">
         {label ? (
           <label htmlFor={inputId} className="mb-1.5 block text-sm font-medium text-slate-900">
             {label}
-            {required ? <span className="ml-1 text-red-500" aria-label="required">*</span> : null}
+            {required ? (
+              <span className="ml-1 text-red-500" aria-label="required">
+                *
+              </span>
+            ) : null}
           </label>
         ) : null}
         <div className="relative flex items-center">
@@ -76,13 +74,19 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
             value={value}
             className={cn(
               inputVariants({ variant: effectiveVariant, size }),
-              hasLeftElement && "pl-9",
-              hasRightElement && "pr-10",
+              hasLeftElement && 'pl-9',
+              hasRightElement && 'pr-10',
               className
             )}
             aria-invalid={Boolean(error)}
             aria-describedby={
-              error ? `${inputId}-error` : success ? `${inputId}-success` : hint ? `${inputId}-hint` : undefined
+              error
+                ? `${inputId}-error`
+                : success
+                  ? `${inputId}-success`
+                  : hint
+                    ? `${inputId}-hint`
+                    : undefined
             }
             {...props}
           />
@@ -98,12 +102,12 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
                   <X className="h-3.5 w-3.5" />
                 </button>
               ) : null}
-              {type === "password" ? (
+              {type === 'password' ? (
                 <button
                   type="button"
                   onClick={() => setShowPassword((current) => !current)}
                   className="text-slate-400 transition-colors hover:text-slate-600"
-                  aria-label={showPassword ? "Hide password" : "Show password"}
+                  aria-label={showPassword ? 'Hide password' : 'Show password'}
                 >
                   {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                 </button>
@@ -114,7 +118,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         </div>
         {error ? (
           <p id={`${inputId}-error`} className="mt-1 text-xs text-red-500" role="alert">
-            {typeof error === "string" ? error : "This field is invalid."}
+            {typeof error === 'string' ? error : 'This field is invalid.'}
           </p>
         ) : null}
         {success && !error ? (
@@ -132,6 +136,6 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
   }
 );
 
-Input.displayName = "Input";
+Input.displayName = 'Input';
 
 export default Input;

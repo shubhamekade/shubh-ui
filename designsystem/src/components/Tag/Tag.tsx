@@ -13,12 +13,12 @@ export interface TagProps extends React.HTMLAttributes<HTMLSpanElement> {
 
 const colorMap = {
   default: 'bg-gray-100 text-gray-700 border-gray-200',
-  blue:    'bg-[#dae8ff] text-[#000080] border-[#b3d4ff]',
-  green:   'bg-green-50 text-green-700 border-green-200',
-  red:     'bg-red-50 text-red-700 border-red-200',
-  amber:   'bg-amber-50 text-amber-700 border-amber-200',
-  purple:  'bg-purple-50 text-purple-700 border-purple-200',
-  pink:    'bg-pink-50 text-pink-700 border-pink-200',
+  blue: 'bg-[#dae8ff] text-[#000080] border-[#b3d4ff]',
+  green: 'bg-green-50 text-green-700 border-green-200',
+  red: 'bg-red-50 text-red-700 border-red-200',
+  amber: 'bg-amber-50 text-amber-700 border-amber-200',
+  purple: 'bg-purple-50 text-purple-700 border-purple-200',
+  pink: 'bg-pink-50 text-pink-700 border-pink-200',
 };
 
 const sizeMap = {
@@ -30,7 +30,7 @@ const sizeMap = {
 const Tag: React.FC<TagProps> = ({
   className,
   size = 'md',
-  variant = 'default',
+  variant: _variant = 'default',
   color = 'default',
   removable,
   onRemove,

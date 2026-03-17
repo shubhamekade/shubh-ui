@@ -25,7 +25,8 @@
       "@/*": [
         "./src/*"
       ]
-    }
+    },
+    "incremental": true
   },
   "include": [
     "**/*.ts",

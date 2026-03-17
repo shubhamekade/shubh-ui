@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useRef, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import {
   PencilSquareIcon as FormInput,
   ArrowsRightLeftIcon as Navigation,
@@ -63,13 +63,23 @@ export const CATEGORIES: ComponentCategory[] = [
     label: 'Form',
     icon: <FormInput className="h-4 w-4" />,
     components: [
-      { id: 'button',   label: 'Button',   status: 'stable', description: 'Trigger actions and events' },
-      { id: 'input',    label: 'Input',    status: 'stable', description: 'Single-line text entry' },
+      {
+        id: 'button',
+        label: 'Button',
+        status: 'stable',
+        description: 'Trigger actions and events',
+      },
+      { id: 'input', label: 'Input', status: 'stable', description: 'Single-line text entry' },
       { id: 'textarea', label: 'Textarea', status: 'stable', description: 'Multi-line text entry' },
-      { id: 'select',   label: 'Select',   status: 'stable', description: 'Dropdown option picker' },
-      { id: 'checkbox', label: 'Checkbox', status: 'stable', description: 'Boolean toggle with label' },
-      { id: 'radio',    label: 'Radio',    status: 'stable', description: 'Single selection from group' },
-      { id: 'switch',   label: 'Switch',   status: 'stable', description: 'Toggle boolean state' },
+      { id: 'select', label: 'Select', status: 'stable', description: 'Dropdown option picker' },
+      {
+        id: 'checkbox',
+        label: 'Checkbox',
+        status: 'stable',
+        description: 'Boolean toggle with label',
+      },
+      { id: 'radio', label: 'Radio', status: 'stable', description: 'Single selection from group' },
+      { id: 'switch', label: 'Switch', status: 'stable', description: 'Toggle boolean state' },
     ],
   },
   {
@@ -77,7 +87,12 @@ export const CATEGORIES: ComponentCategory[] = [
     label: 'Pickers',
     icon: <Package className="h-4 w-4" />,
     components: [
-      { id: 'calendar', label: 'Calendar', status: 'stable', description: 'Date picker with day/month/year views' },
+      {
+        id: 'calendar',
+        label: 'Calendar',
+        status: 'stable',
+        description: 'Date picker with day/month/year views',
+      },
     ],
   },
   {
@@ -85,10 +100,25 @@ export const CATEGORIES: ComponentCategory[] = [
     label: 'Navigation',
     icon: <Navigation className="h4 w-4" />,
     components: [
-      { id: 'tabs',       label: 'Tabs',       status: 'stable', description: 'Tabbed content navigation' },
-      { id: 'breadcrumb', label: 'Breadcrumb',  status: 'stable', description: 'Hierarchical page location' },
-      { id: 'pagination', label: 'Pagination',  status: 'stable', description: 'Page-based data navigation' },
-      { id: 'dropdown',   label: 'Dropdown',    status: 'stable', description: 'Contextual action menu' },
+      { id: 'tabs', label: 'Tabs', status: 'stable', description: 'Tabbed content navigation' },
+      {
+        id: 'breadcrumb',
+        label: 'Breadcrumb',
+        status: 'stable',
+        description: 'Hierarchical page location',
+      },
+      {
+        id: 'pagination',
+        label: 'Pagination',
+        status: 'stable',
+        description: 'Page-based data navigation',
+      },
+      {
+        id: 'dropdown',
+        label: 'Dropdown',
+        status: 'stable',
+        description: 'Contextual action menu',
+      },
     ],
   },
   {
@@ -96,8 +126,13 @@ export const CATEGORIES: ComponentCategory[] = [
     label: 'Overlay',
     icon: <Eye className="h-4 w-4" />,
     components: [
-      { id: 'modal',   label: 'Modal',   status: 'stable', description: 'Focused dialog overlay' },
-      { id: 'drawer',  label: 'Drawer',  status: 'stable', description: 'Side-panel slide-in overlay' },
+      { id: 'modal', label: 'Modal', status: 'stable', description: 'Focused dialog overlay' },
+      {
+        id: 'drawer',
+        label: 'Drawer',
+        status: 'stable',
+        description: 'Side-panel slide-in overlay',
+      },
       { id: 'tooltip', label: 'Tooltip', status: 'stable', description: 'Contextual hover label' },
     ],
   },
@@ -106,10 +141,20 @@ export const CATEGORIES: ComponentCategory[] = [
     label: 'Feedback',
     icon: <Bell className="h-4 w-4" />,
     components: [
-      { id: 'alert',    label: 'Alert',    status: 'stable', description: 'Inline status messages' },
-      { id: 'progress', label: 'Progress', status: 'stable', description: 'Completion indicator bar' },
-      { id: 'spinner',  label: 'Spinner',  status: 'stable', description: 'Loading state indicator' },
-      { id: 'skeleton', label: 'Skeleton', status: 'stable', description: 'Content placeholder shimmer' },
+      { id: 'alert', label: 'Alert', status: 'stable', description: 'Inline status messages' },
+      {
+        id: 'progress',
+        label: 'Progress',
+        status: 'stable',
+        description: 'Completion indicator bar',
+      },
+      { id: 'spinner', label: 'Spinner', status: 'stable', description: 'Loading state indicator' },
+      {
+        id: 'skeleton',
+        label: 'Skeleton',
+        status: 'stable',
+        description: 'Content placeholder shimmer',
+      },
     ],
   },
   {
@@ -117,11 +162,11 @@ export const CATEGORIES: ComponentCategory[] = [
     label: 'Data Display',
     icon: <BarChart2 className="h-4 w-4" />,
     components: [
-      { id: 'card',   label: 'Card',   status: 'stable', description: 'Content container surface' },
-      { id: 'table',  label: 'Table',  status: 'stable', description: 'Structured data grid' },
-      { id: 'badge',  label: 'Badge',  status: 'stable', description: 'Status and count labels' },
+      { id: 'card', label: 'Card', status: 'stable', description: 'Content container surface' },
+      { id: 'table', label: 'Table', status: 'stable', description: 'Structured data grid' },
+      { id: 'badge', label: 'Badge', status: 'stable', description: 'Status and count labels' },
       { id: 'avatar', label: 'Avatar', status: 'stable', description: 'User identity visual' },
-      { id: 'tag',    label: 'Tag',    status: 'stable', description: 'Categorical label chip' },
+      { id: 'tag', label: 'Tag', status: 'stable', description: 'Categorical label chip' },
     ],
   },
   {
@@ -129,8 +174,18 @@ export const CATEGORIES: ComponentCategory[] = [
     label: 'Utilities',
     icon: <Wrench className="h-4 w-4" />,
     components: [
-      { id: 'accordion', label: 'Accordion', status: 'stable', description: 'Collapsible content sections' },
-      { id: 'divider',   label: 'Divider',   status: 'stable', description: 'Visual content separator' },
+      {
+        id: 'accordion',
+        label: 'Accordion',
+        status: 'stable',
+        description: 'Collapsible content sections',
+      },
+      {
+        id: 'divider',
+        label: 'Divider',
+        status: 'stable',
+        description: 'Visual content separator',
+      },
     ],
   },
   {
@@ -138,37 +193,42 @@ export const CATEGORIES: ComponentCategory[] = [
     label: 'Advanced',
     icon: <Package className="h-4 w-4" />,
     components: [
-      { id: 'server-data-table', label: 'Server Data Table', status: 'stable', description: 'Expandable rows, server-side pagination & search' },
+      {
+        id: 'server-data-table',
+        label: 'Server Data Table',
+        status: 'stable',
+        description: 'Expandable rows, server-side pagination & search',
+      },
     ],
   },
 ];
 
 const SECTION_MAP: Record<string, React.ComponentType> = {
-  button:    ButtonSection,
-  input:     InputSection,
-  textarea:  TextareaSection,
-  select:    SelectSection,
-  checkbox:  CheckboxSection,
-  radio:     RadioSection,
-  switch:    SwitchSection,
-  tabs:      TabsSection,
+  button: ButtonSection,
+  input: InputSection,
+  textarea: TextareaSection,
+  select: SelectSection,
+  checkbox: CheckboxSection,
+  radio: RadioSection,
+  switch: SwitchSection,
+  tabs: TabsSection,
   breadcrumb: BreadcrumbSection,
   pagination: PaginationSection,
-  dropdown:  DropdownSection,
-  modal:     ModalSection,
-  drawer:    DrawerSection,
-  tooltip:   TooltipSection,
-  alert:     AlertSection,
-  progress:  ProgressSection,
-  spinner:   SpinnerSection,
-  skeleton:  SkeletonSection,
-  card:      CardSection,
-  table:     TableSection,
-  badge:     BadgeSection,
-  avatar:    AvatarSection,
-  tag:       TagSection,
+  dropdown: DropdownSection,
+  modal: ModalSection,
+  drawer: DrawerSection,
+  tooltip: TooltipSection,
+  alert: AlertSection,
+  progress: ProgressSection,
+  spinner: SpinnerSection,
+  skeleton: SkeletonSection,
+  card: CardSection,
+  table: TableSection,
+  badge: BadgeSection,
+  avatar: AvatarSection,
+  tag: TagSection,
   accordion: AccordionSection,
-  divider:   DividerSection,
+  divider: DividerSection,
   'server-data-table': DataTableSection,
   calendar: CalendarSection,
 };
@@ -183,24 +243,25 @@ export default function ComponentShowcaseClient() {
 
 function ComponentShowcaseInner() {
   const [activeComponent, setActiveComponent] = useState<string>('button');
-  const [searchQuery, setSearchQuery]         = useState('');
-  const [sidebarOpen, setSidebarOpen]         = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const { theme } = useShowcaseTheme();
   const isNavy = theme === 'navy';
   const debouncedSearch = useDebounce(searchQuery, 200);
 
-  const allComponents = CATEGORIES.flatMap(c => c.components);
+  const allComponents = CATEGORIES.flatMap((c) => c.components);
   const filteredCategories = debouncedSearch
-    ? CATEGORIES.map(cat => ({
+    ? CATEGORIES.map((cat) => ({
         ...cat,
-        components: cat.components.filter(c =>
-          c.label.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
-          c.description.toLowerCase().includes(debouncedSearch.toLowerCase())
+        components: cat.components.filter(
+          (c) =>
+            c.label.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
+            c.description.toLowerCase().includes(debouncedSearch.toLowerCase())
         ),
-      })).filter(cat => cat.components.length > 0)
+      })).filter((cat) => cat.components.length > 0)
     : CATEGORIES;
 
-  const activeEntry = allComponents.find(c => c.id === activeComponent);
+  const activeEntry = allComponents.find((c) => c.id === activeComponent);
   const ActiveSection = SECTION_MAP[activeComponent];
 
   const handleSelect = useCallback((id: string) => {
@@ -210,7 +271,7 @@ function ComponentShowcaseInner() {
   }, []);
 
   const totalComponents = allComponents.length;
-  const stableCount = allComponents.filter(c => c.status === 'stable').length;
+  const stableCount = allComponents.filter((c) => c.status === 'stable').length;
 
   return (
     <div
@@ -233,10 +294,7 @@ function ComponentShowcaseInner() {
       {/* Mobile Sidebar Overlay */}
       {sidebarOpen && (
         <div className="fixed inset-0 z-40 lg:hidden">
-          <div
-            className="absolute inset-0 bg-black/50"
-            onClick={() => setSidebarOpen(false)}
-          />
+          <div className="absolute inset-0 bg-black/50" onClick={() => setSidebarOpen(false)} />
           <ShowcaseSidebar
             categories={filteredCategories}
             activeComponent={activeComponent}
@@ -254,10 +312,7 @@ function ComponentShowcaseInner() {
 
       {/* Main content area */}
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
-        <ShowcaseTopbar
-          activeEntry={activeEntry}
-          onMenuClick={() => setSidebarOpen(true)}
-        />
+        <ShowcaseTopbar activeEntry={activeEntry} onMenuClick={() => setSidebarOpen(true)} />
 
         {/* Scrollable content */}
         <main

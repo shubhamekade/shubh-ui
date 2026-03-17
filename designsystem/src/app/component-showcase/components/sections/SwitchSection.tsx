@@ -18,7 +18,7 @@ export default function SwitchSection() {
   const [ctrl, setCtrl] = useVariantControls({ size: 'md' });
 
   const toggle = (key: keyof typeof settings) =>
-    setSettings(prev => ({ ...prev, [key]: !prev[key] }));
+    setSettings((prev) => ({ ...prev, [key]: !prev[key] }));
 
   return (
     <div>
@@ -36,9 +36,23 @@ export default function SwitchSection() {
         previewBg="white"
         props={[
           { name: 'label', type: 'string', description: 'Label text beside the switch' },
-          { name: 'description', type: 'string', description: 'Secondary description text below label' },
-          { name: 'size', type: "'sm' | 'md' | 'lg'", default: "'md'", description: 'Track and thumb size' },
-          { name: 'labelPlacement', type: "'left' | 'right'", default: "'right'", description: 'Label position relative to track' },
+          {
+            name: 'description',
+            type: 'string',
+            description: 'Secondary description text below label',
+          },
+          {
+            name: 'size',
+            type: "'sm' | 'md' | 'lg'",
+            default: "'md'",
+            description: 'Track and thumb size',
+          },
+          {
+            name: 'labelPlacement',
+            type: "'left' | 'right'",
+            default: "'right'",
+            description: 'Label position relative to track',
+          },
           { name: 'disabled', type: 'boolean', description: 'Prevents interaction' },
         ]}
       >
@@ -59,10 +73,10 @@ export default function SwitchSection() {
             <Switch
               label="Enable feature"
               description="Toggle this switch to see live updates."
-              size={ctrl.size as any || 'md'}
+              size={(ctrl.size as any) || 'md'}
               disabled={ctrl.disabled}
               checked={ctrl.disabled ? true : playChecked}
-              onChange={() => !ctrl.disabled && setPlayChecked(v => !v)}
+              onChange={() => !ctrl.disabled && setPlayChecked((v) => !v)}
             />
           </div>
         </div>
@@ -112,10 +126,18 @@ export default function SwitchSection() {
           </div>
           <div className="divide-y divide-[#d7d7d7]">
             {[
-              { key: 'notifications', label: 'Push notifications', desc: 'Receive alerts in real-time' },
-              { key: 'autoSave',      label: 'Auto-save drafts',    desc: 'Save work automatically every 30s' },
-              { key: 'analytics',     label: 'Usage analytics',     desc: 'Help improve the product' },
-              { key: 'beta',          label: 'Beta features',        desc: 'Access experimental features early' },
+              {
+                key: 'notifications',
+                label: 'Push notifications',
+                desc: 'Receive alerts in real-time',
+              },
+              {
+                key: 'autoSave',
+                label: 'Auto-save drafts',
+                desc: 'Save work automatically every 30s',
+              },
+              { key: 'analytics', label: 'Usage analytics', desc: 'Help improve the product' },
+              { key: 'beta', label: 'Beta features', desc: 'Access experimental features early' },
             ].map(({ key, label, desc }) => (
               <div key={key} className="flex items-center justify-between px-4 py-3">
                 <div>

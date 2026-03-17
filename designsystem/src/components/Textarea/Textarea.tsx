@@ -3,8 +3,7 @@
 import React, { forwardRef, useId } from 'react';
 import { cn } from '@/utils/cn';
 
-export interface TextareaProps
-  extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+export interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   label?: string;
   hint?: string;
   error?: string;
@@ -62,7 +61,9 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
             'transition-all duration-150',
             'focus:outline-none focus-visible:ring-2 focus-visible:ring-[#000080] focus-visible:ring-offset-0 focus-visible:border-[#000080]',
             'disabled:opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50',
-            error ? 'border-red-400 focus-visible:ring-red-400' : 'border-[#d7d7d7] hover:border-[#b0b0b0]',
+            error
+              ? 'border-red-400 focus-visible:ring-red-400'
+              : 'border-[#d7d7d7] hover:border-[#b0b0b0]',
             success && !error && 'border-green-400 focus-visible:ring-green-400',
             resizeMap[resize],
             className
@@ -72,13 +73,18 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
         />
         <div className="flex items-start justify-between mt-1">
           <div>
-            {error && <p className="text-xs text-red-500" role="alert">{error}</p>}
+            {error && (
+              <p className="text-xs text-red-500" role="alert">
+                {error}
+              </p>
+            )}
             {success && !error && <p className="text-xs text-green-600">{success}</p>}
             {hint && !error && !success && <p className="text-xs text-[#808080]">{hint}</p>}
           </div>
           {showCount && (
             <span className="text-xs text-[#808080] tabular-nums shrink-0 ml-2">
-              {charCount}{maxLength ? `/${maxLength}` : ''}
+              {charCount}
+              {maxLength ? `/${maxLength}` : ''}
             </span>
           )}
         </div>

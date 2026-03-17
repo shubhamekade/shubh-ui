@@ -1,9 +1,9 @@
-import React, { forwardRef } from "react";
-import { Loader2 } from "lucide-react";
+import React, { forwardRef } from 'react';
+import { Loader2 } from 'lucide-react';
 
-import { cn } from "../../utils/cn";
-import { type ButtonProps } from "./Button.types";
-import { buttonVariants } from "./component.variants";
+import { cn } from '../../utils/cn';
+import { type ButtonProps } from './Button.types';
+import { buttonVariants } from './component.variants';
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
@@ -35,15 +35,23 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         {loading ? (
           <Loader2 className="h-4 w-4 shrink-0 animate-spin" aria-hidden="true" />
         ) : (
-          leftIcon && <span className="shrink-0" aria-hidden="true">{leftIcon}</span>
+          leftIcon && (
+            <span className="shrink-0" aria-hidden="true">
+              {leftIcon}
+            </span>
+          )
         )}
         {children ? <span>{children}</span> : null}
-        {!loading && rightIcon ? <span className="shrink-0" aria-hidden="true">{rightIcon}</span> : null}
+        {!loading && rightIcon ? (
+          <span className="shrink-0" aria-hidden="true">
+            {rightIcon}
+          </span>
+        ) : null}
       </button>
     );
   }
 );
 
-Button.displayName = "Button";
+Button.displayName = 'Button';
 
 export default Button;

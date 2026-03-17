@@ -54,11 +54,11 @@ export default function ShowcaseSection({
   };
 
   const previewBgClass = {
-    dots:  'preview-bg bg-gray-50',
+    dots: 'preview-bg bg-gray-50',
     white: 'bg-white',
-    gray:  'bg-gray-100',
-    navy:  'bg-[#000040]',
-    none:  '',
+    gray: 'bg-gray-100',
+    navy: 'bg-[#000040]',
+    none: '',
   }[previewBg];
 
   return (
@@ -79,7 +79,9 @@ export default function ShowcaseSection({
             onClick={() => setTab('preview')}
             className={cn(
               'flex items-center gap-1.5 px-3 py-2.5 text-xs font-medium border-b-2 transition-colors duration-100',
-              tab === 'preview' ?'border-[#000080] text-[#000080]' :'border-transparent text-[#808080] hover:text-[#1e1e1e]'
+              tab === 'preview'
+                ? 'border-[#000080] text-[#000080]'
+                : 'border-transparent text-[#808080] hover:text-[#1e1e1e]'
             )}
           >
             <Eye className="h-3.5 w-3.5" />
@@ -91,7 +93,9 @@ export default function ShowcaseSection({
               onClick={() => setTab('code')}
               className={cn(
                 'flex items-center gap-1.5 px-3 py-2.5 text-xs font-medium border-b-2 transition-colors duration-100',
-                tab === 'code' ?'border-[#000080] text-[#000080]' :'border-transparent text-[#808080] hover:text-[#1e1e1e]'
+                tab === 'code'
+                  ? 'border-[#000080] text-[#000080]'
+                  : 'border-transparent text-[#808080] hover:text-[#1e1e1e]'
               )}
             >
               <Code2 className="h-3.5 w-3.5" />
@@ -105,7 +109,8 @@ export default function ShowcaseSection({
               className={cn(
                 'ml-auto flex items-center gap-1.5 h-7 px-2.5 rounded-md text-xs font-medium transition-all duration-150',
                 copied
-                  ? 'bg-green-50 text-green-700' :'text-[#808080] hover:text-[#1e1e1e] hover:bg-gray-200'
+                  ? 'bg-green-50 text-green-700'
+                  : 'text-[#808080] hover:text-[#1e1e1e] hover:bg-gray-200'
               )}
               aria-label="Copy code"
             >
@@ -143,12 +148,15 @@ export default function ShowcaseSection({
         <div className="mt-3 border border-[#d7d7d7] rounded-lg overflow-hidden">
           <button
             type="button"
-            onClick={() => setPropsOpen(v => !v)}
+            onClick={() => setPropsOpen((v) => !v)}
             className="w-full flex items-center justify-between px-4 py-2.5 bg-gray-50 text-sm font-medium text-[#1e1e1e] hover:bg-gray-100 transition-colors"
           >
             <span>Props reference</span>
             <ChevronDown
-              className={cn('h-4 w-4 text-[#808080] transition-transform duration-200', propsOpen && 'rotate-180')}
+              className={cn(
+                'h-4 w-4 text-[#808080] transition-transform duration-200',
+                propsOpen && 'rotate-180'
+              )}
             />
           </button>
           {propsOpen && (
@@ -156,21 +164,36 @@ export default function ShowcaseSection({
               <table className="w-full text-xs">
                 <thead>
                   <tr className="border-t border-[#d7d7d7] bg-gray-50/50">
-                    <th className="px-4 py-2 text-left font-semibold text-[#808080] uppercase tracking-wide whitespace-nowrap">Prop</th>
-                    <th className="px-4 py-2 text-left font-semibold text-[#808080] uppercase tracking-wide whitespace-nowrap">Type</th>
-                    <th className="px-4 py-2 text-left font-semibold text-[#808080] uppercase tracking-wide whitespace-nowrap">Default</th>
-                    <th className="px-4 py-2 text-left font-semibold text-[#808080] uppercase tracking-wide">Description</th>
+                    <th className="px-4 py-2 text-left font-semibold text-[#808080] uppercase tracking-wide whitespace-nowrap">
+                      Prop
+                    </th>
+                    <th className="px-4 py-2 text-left font-semibold text-[#808080] uppercase tracking-wide whitespace-nowrap">
+                      Type
+                    </th>
+                    <th className="px-4 py-2 text-left font-semibold text-[#808080] uppercase tracking-wide whitespace-nowrap">
+                      Default
+                    </th>
+                    <th className="px-4 py-2 text-left font-semibold text-[#808080] uppercase tracking-wide">
+                      Description
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
                   {props.map((p, i) => (
-                    <tr key={p.name} className={cn('border-t border-[#d7d7d7]', i % 2 === 1 && 'bg-gray-50/40')}>
+                    <tr
+                      key={p.name}
+                      className={cn('border-t border-[#d7d7d7]', i % 2 === 1 && 'bg-gray-50/40')}
+                    >
                       <td className="px-4 py-2 font-mono font-medium text-[#000080] whitespace-nowrap">
                         {p.name}
                         {p.required && <span className="text-red-500 ml-0.5">*</span>}
                       </td>
-                      <td className="px-4 py-2 font-mono text-[#808080] whitespace-nowrap">{p.type}</td>
-                      <td className="px-4 py-2 font-mono text-[#808080] whitespace-nowrap">{p.default || '—'}</td>
+                      <td className="px-4 py-2 font-mono text-[#808080] whitespace-nowrap">
+                        {p.type}
+                      </td>
+                      <td className="px-4 py-2 font-mono text-[#808080] whitespace-nowrap">
+                        {p.default || '—'}
+                      </td>
                       <td className="px-4 py-2 text-[#808080] leading-relaxed">{p.description}</td>
                     </tr>
                   ))}

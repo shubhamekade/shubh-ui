@@ -58,13 +58,13 @@ const NAV_CATEGORIES: NavCategory[] = [
     icon: <PencilSquareIcon className="h-4 w-4" />,
     color: 'text-blue-400',
     components: [
-      { id: 'button',   label: 'Button' },
-      { id: 'input',    label: 'Input' },
+      { id: 'button', label: 'Button' },
+      { id: 'input', label: 'Input' },
       { id: 'textarea', label: 'Textarea' },
-      { id: 'select',   label: 'Select' },
+      { id: 'select', label: 'Select' },
       { id: 'checkbox', label: 'Checkbox' },
-      { id: 'radio',    label: 'Radio' },
-      { id: 'switch',   label: 'Switch' },
+      { id: 'radio', label: 'Radio' },
+      { id: 'switch', label: 'Switch' },
     ],
   },
   {
@@ -73,10 +73,10 @@ const NAV_CATEGORIES: NavCategory[] = [
     icon: <ArrowsRightLeftIcon className="h-4 w-4" />,
     color: 'text-purple-400',
     components: [
-      { id: 'tabs',       label: 'Tabs' },
+      { id: 'tabs', label: 'Tabs' },
       { id: 'breadcrumb', label: 'Breadcrumb' },
       { id: 'pagination', label: 'Pagination' },
-      { id: 'dropdown',   label: 'Dropdown' },
+      { id: 'dropdown', label: 'Dropdown' },
     ],
   },
   {
@@ -85,8 +85,8 @@ const NAV_CATEGORIES: NavCategory[] = [
     icon: <EyeIcon className="h-4 w-4" />,
     color: 'text-indigo-400',
     components: [
-      { id: 'modal',   label: 'Modal' },
-      { id: 'drawer',  label: 'Drawer' },
+      { id: 'modal', label: 'Modal' },
+      { id: 'drawer', label: 'Drawer' },
       { id: 'tooltip', label: 'Tooltip' },
     ],
   },
@@ -96,9 +96,9 @@ const NAV_CATEGORIES: NavCategory[] = [
     icon: <BellIcon className="h-4 w-4" />,
     color: 'text-amber-400',
     components: [
-      { id: 'alert',    label: 'Alert' },
+      { id: 'alert', label: 'Alert' },
       { id: 'progress', label: 'Progress' },
-      { id: 'spinner',  label: 'Spinner' },
+      { id: 'spinner', label: 'Spinner' },
       { id: 'skeleton', label: 'Skeleton' },
     ],
   },
@@ -108,11 +108,11 @@ const NAV_CATEGORIES: NavCategory[] = [
     icon: <ChartBarIcon className="h-4 w-4" />,
     color: 'text-green-400',
     components: [
-      { id: 'card',   label: 'Card' },
-      { id: 'table',  label: 'Table' },
-      { id: 'badge',  label: 'Badge' },
+      { id: 'card', label: 'Card' },
+      { id: 'table', label: 'Table' },
+      { id: 'badge', label: 'Badge' },
       { id: 'avatar', label: 'Avatar' },
-      { id: 'tag',    label: 'Tag' },
+      { id: 'tag', label: 'Tag' },
     ],
   },
   {
@@ -122,40 +122,40 @@ const NAV_CATEGORIES: NavCategory[] = [
     color: 'text-rose-400',
     components: [
       { id: 'accordion', label: 'Accordion' },
-      { id: 'divider',   label: 'Divider' },
+      { id: 'divider', label: 'Divider' },
     ],
   },
 ];
 
-const ALL_COMPONENTS = NAV_CATEGORIES.flatMap(c => c.components);
+const ALL_COMPONENTS = NAV_CATEGORIES.flatMap((c) => c.components);
 const TOTAL = ALL_COMPONENTS.length;
 
 const SECTION_MAP: Record<string, React.ComponentType> = {
-  button:     ButtonSection,
-  input:      InputSection,
-  textarea:   TextareaSection,
-  select:     SelectSection,
-  checkbox:   CheckboxSection,
-  radio:      RadioSection,
-  switch:     SwitchSection,
-  tabs:       TabsSection,
+  button: ButtonSection,
+  input: InputSection,
+  textarea: TextareaSection,
+  select: SelectSection,
+  checkbox: CheckboxSection,
+  radio: RadioSection,
+  switch: SwitchSection,
+  tabs: TabsSection,
   breadcrumb: BreadcrumbSection,
   pagination: PaginationSection,
-  dropdown:   DropdownSection,
-  modal:      ModalSection,
-  drawer:     DrawerSection,
-  tooltip:    TooltipSection,
-  alert:      AlertSection,
-  progress:   ProgressSection,
-  spinner:    SpinnerSection,
-  skeleton:   SkeletonSection,
-  card:       CardSection,
-  table:      TableSection,
-  badge:      BadgeSection,
-  avatar:     AvatarSection,
-  tag:        TagSection,
-  accordion:  AccordionSection,
-  divider:    DividerSection,
+  dropdown: DropdownSection,
+  modal: ModalSection,
+  drawer: DrawerSection,
+  tooltip: TooltipSection,
+  alert: AlertSection,
+  progress: ProgressSection,
+  spinner: SpinnerSection,
+  skeleton: SkeletonSection,
+  card: CardSection,
+  table: TableSection,
+  badge: BadgeSection,
+  avatar: AvatarSection,
+  tag: TagSection,
+  accordion: AccordionSection,
+  divider: DividerSection,
 };
 
 export default function DesignSystemPage() {
@@ -204,12 +204,12 @@ export default function DesignSystemPage() {
   };
 
   const filteredCategories = searchQuery
-    ? NAV_CATEGORIES.map(cat => ({
+    ? NAV_CATEGORIES.map((cat) => ({
         ...cat,
-        components: cat.components.filter(c =>
+        components: cat.components.filter((c) =>
           c.label.toLowerCase().includes(searchQuery.toLowerCase())
         ),
-      })).filter(cat => cat.components.length > 0)
+      })).filter((cat) => cat.components.length > 0)
     : NAV_CATEGORIES;
 
   const SidebarContent = () => (
@@ -217,9 +217,13 @@ export default function DesignSystemPage() {
       {/* Logo */}
       <div className="px-4 pt-5 pb-4 border-b border-white/10 flex items-center justify-between">
         <div className="flex items-center gap-2.5">
-          <div className="h-7 w-7 rounded-md bg-white/10 text-white text-xs font-bold flex items-center justify-center shrink-0">DS</div>
+          <div className="h-7 w-7 rounded-md bg-white/10 text-white text-xs font-bold flex items-center justify-center shrink-0">
+            DS
+          </div>
           <div>
-            <span className="font-semibold text-sm text-white block leading-tight">DesignSystem</span>
+            <span className="font-semibold text-sm text-white block leading-tight">
+              DesignSystem
+            </span>
             <span className="text-xs text-white/40 leading-tight">v1.0.0 · {TOTAL} components</span>
           </div>
         </div>
@@ -243,7 +247,9 @@ export default function DesignSystemPage() {
         </div>
         <div className="w-px h-8 bg-white/10" />
         <div className="text-center">
-          <span className="block text-lg font-bold text-green-400 tabular-nums">{NAV_CATEGORIES.length}</span>
+          <span className="block text-lg font-bold text-green-400 tabular-nums">
+            {NAV_CATEGORIES.length}
+          </span>
           <span className="text-xs text-white/40">Categories</span>
         </div>
         <div className="w-px h-8 bg-white/10" />
@@ -261,7 +267,7 @@ export default function DesignSystemPage() {
             type="search"
             placeholder="Search components…"
             value={searchQuery}
-            onChange={e => setSearchQuery(e.target.value)}
+            onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full h-8 pl-8 pr-3 text-sm bg-white/10 border border-white/10 rounded-md text-white placeholder:text-white/30 focus:outline-none focus:border-white/30 focus:bg-white/15 transition-all"
             aria-label="Search components"
           />
@@ -285,14 +291,18 @@ export default function DesignSystemPage() {
             <p className="text-xs text-white/40">No components match &ldquo;{searchQuery}&rdquo;</p>
           </div>
         ) : (
-          filteredCategories.map(cat => (
+          filteredCategories.map((cat) => (
             <div key={cat.id} className="mb-4">
               <div className="flex items-center gap-2 px-4 mb-1">
                 <span className={cn('shrink-0', cat.color)}>{cat.icon}</span>
-                <span className="text-xs font-semibold text-white/40 uppercase tracking-wider">{cat.label}</span>
-                <span className="ml-auto text-xs text-white/25 tabular-nums">{cat.components.length}</span>
+                <span className="text-xs font-semibold text-white/40 uppercase tracking-wider">
+                  {cat.label}
+                </span>
+                <span className="ml-auto text-xs text-white/25 tabular-nums">
+                  {cat.components.length}
+                </span>
               </div>
-              {cat.components.map(comp => {
+              {cat.components.map((comp) => {
                 const isActive = activeSection === comp.id;
                 return (
                   <button
@@ -302,7 +312,8 @@ export default function DesignSystemPage() {
                     className={cn(
                       'w-full flex items-center gap-2.5 px-4 py-2 text-sm transition-all duration-150 text-left group',
                       isActive
-                        ? 'bg-white/15 text-white font-medium' :'text-white/60 hover:text-white hover:bg-white/8'
+                        ? 'bg-white/15 text-white font-medium'
+                        : 'text-white/60 hover:text-white hover:bg-white/8'
                     )}
                   >
                     <span
@@ -313,7 +324,10 @@ export default function DesignSystemPage() {
                     />
                     <span className="flex-1 truncate">{comp.label}</span>
                     {isActive && (
-                      <CheckCircleIcon className="h-3 w-3 shrink-0 text-white/50" aria-hidden="true" />
+                      <CheckCircleIcon
+                        className="h-3 w-3 shrink-0 text-white/50"
+                        aria-hidden="true"
+                      />
                     )}
                   </button>
                 );
@@ -329,13 +343,15 @@ export default function DesignSystemPage() {
         <div className="mb-3">
           <div className="flex items-center gap-2 mb-2">
             <RectangleGroupIcon className="h-3.5 w-3.5 text-white/40" />
-            <span className="text-xs font-semibold text-white/40 uppercase tracking-wider">Layout Patterns</span>
+            <span className="text-xs font-semibold text-white/40 uppercase tracking-wider">
+              Layout Patterns
+            </span>
           </div>
           {[
             { href: '/component-showcase/admin-dashboard', label: 'Admin Dashboard' },
             { href: '/component-showcase/profile-page', label: 'Profile Page' },
             { href: '/component-showcase/list-view', label: 'List View' },
-          ].map(link => (
+          ].map((link) => (
             <a
               key={link.href}
               href={link.href}
@@ -350,7 +366,8 @@ export default function DesignSystemPage() {
           ))}
         </div>
         <p className="text-xs text-white/25 leading-relaxed">
-          Built with Next.js + Tailwind CSS.<br />
+          Built with Next.js + Tailwind CSS.
+          <br />
           MIT License © 2026 DesignSystem.
         </p>
       </div>
@@ -367,10 +384,7 @@ export default function DesignSystemPage() {
       {/* Mobile Sidebar Overlay */}
       {sidebarOpen && (
         <div className="fixed inset-0 z-40 lg:hidden">
-          <div
-            className="absolute inset-0 bg-black/50"
-            onClick={() => setSidebarOpen(false)}
-          />
+          <div className="absolute inset-0 bg-black/50" onClick={() => setSidebarOpen(false)} />
           <div className="absolute left-0 top-0 h-full z-50 flex">
             <SidebarContent />
           </div>
@@ -408,26 +422,26 @@ export default function DesignSystemPage() {
         </header>
 
         {/* Scrollable content */}
-        <main
-          ref={mainRef}
-          className="flex-1 overflow-y-auto scrollbar-thin"
-          id="main-content"
-        >
+        <main ref={mainRef} className="flex-1 overflow-y-auto scrollbar-thin" id="main-content">
           {/* Hero banner */}
           <div className="bg-gradient-to-br from-[#000040] via-[#000060] to-[#000080] text-white px-6 sm:px-10 py-12">
             <div className="max-w-3xl">
               <div className="flex items-center gap-2 mb-3">
-                <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-white/10 text-white/70 border border-white/10">v1.0.0</span>
-                <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-green-500/20 text-green-300 border border-green-500/20">Stable</span>
+                <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-white/10 text-white/70 border border-white/10">
+                  v1.0.0
+                </span>
+                <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-green-500/20 text-green-300 border border-green-500/20">
+                  Stable
+                </span>
               </div>
-              <h1 className="text-3xl sm:text-4xl font-bold mb-3 leading-tight">
-                Design System
-              </h1>
+              <h1 className="text-3xl sm:text-4xl font-bold mb-3 leading-tight">Design System</h1>
               <p className="text-white/60 text-base leading-relaxed max-w-2xl">
-                A complete library of {TOTAL} production-ready UI components built with TypeScript, Tailwind CSS, and class-variance-authority. Every component is fully accessible, keyboard navigable, and ships with multiple variants.
+                A complete library of {TOTAL} production-ready UI components built with TypeScript,
+                Tailwind CSS, and class-variance-authority. Every component is fully accessible,
+                keyboard navigable, and ships with multiple variants.
               </p>
               <div className="flex flex-wrap gap-3 mt-6">
-                {NAV_CATEGORIES.map(cat => (
+                {NAV_CATEGORIES.map((cat) => (
                   <button
                     key={cat.id}
                     type="button"
@@ -451,10 +465,14 @@ export default function DesignSystemPage() {
                 <div className="flex items-center gap-4 py-8">
                   <div className={cn('flex items-center gap-2 shrink-0', cat.color)}>
                     {cat.icon}
-                    <span className="text-xs font-bold uppercase tracking-widest text-[#808080]">{cat.label}</span>
+                    <span className="text-xs font-bold uppercase tracking-widest text-[#808080]">
+                      {cat.label}
+                    </span>
                   </div>
                   <div className="flex-1 h-px bg-[#d7d7d7]" />
-                  <span className="text-xs text-[#808080] shrink-0">{cat.components.length} components</span>
+                  <span className="text-xs text-[#808080] shrink-0">
+                    {cat.components.length} components
+                  </span>
                 </div>
 
                 {/* Components in this category */}
@@ -463,10 +481,13 @@ export default function DesignSystemPage() {
                   return (
                     <div
                       key={comp.id}
-                      ref={el => { sectionRefs.current[comp.id] = el; }}
+                      ref={(el) => {
+                        sectionRefs.current[comp.id] = el;
+                      }}
                       className={cn(
                         'scroll-mt-20',
-                        compIdx < cat.components.length - 1 && 'mb-16 pb-16 border-b border-[#d7d7d7]'
+                        compIdx < cat.components.length - 1 &&
+                          'mb-16 pb-16 border-b border-[#d7d7d7]'
                       )}
                     >
                       {SectionComponent ? (
@@ -480,23 +501,25 @@ export default function DesignSystemPage() {
                   );
                 })}
 
-                {catIdx < NAV_CATEGORIES.length - 1 && (
-                  <div className="h-8" />
-                )}
+                {catIdx < NAV_CATEGORIES.length - 1 && <div className="h-8" />}
               </div>
             ))}
 
             {/* Footer */}
             <div className="border-t border-[#d7d7d7] mt-16 pt-10 pb-16 text-center">
               <div className="flex items-center justify-center gap-2 mb-3">
-                <div className="h-6 w-6 rounded-md bg-[#000080] text-white text-[10px] font-bold flex items-center justify-center">DS</div>
+                <div className="h-6 w-6 rounded-md bg-[#000080] text-white text-[10px] font-bold flex items-center justify-center">
+                  DS
+                </div>
                 <span className="font-semibold text-[#1e1e1e]">DesignSystem</span>
                 <span className="text-[#808080] text-sm">v1.0.0</span>
               </div>
               <p className="text-sm text-[#808080] max-w-md mx-auto leading-relaxed">
                 {TOTAL} components · TypeScript · Tailwind CSS · WCAG 2.1 AA · MIT License
               </p>
-              <p className="text-xs text-[#b0b0b0] mt-2">© 2026 DesignSystem. Built with Next.js.</p>
+              <p className="text-xs text-[#b0b0b0] mt-2">
+                © 2026 DesignSystem. Built with Next.js.
+              </p>
             </div>
           </div>
         </main>

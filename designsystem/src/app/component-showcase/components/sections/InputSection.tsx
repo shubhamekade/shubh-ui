@@ -36,13 +36,43 @@ export default function InputSection() {
         props={[
           { name: 'label', type: 'string', description: 'Label text rendered above the input' },
           { name: 'hint', type: 'string', description: 'Helper text rendered below the input' },
-          { name: 'error', type: 'string', description: 'Error message — triggers error variant automatically' },
-          { name: 'success', type: 'string', description: 'Success message — triggers success variant' },
-          { name: 'size', type: "'sm' | 'md' | 'lg'", default: "'md'", description: 'Height and font size' },
-          { name: 'leftElement', type: 'ReactNode', description: 'Icon or element on the left side' },
-          { name: 'rightElement', type: 'ReactNode', description: 'Icon or element on the right side' },
-          { name: 'clearable', type: 'boolean', description: 'Show clear button when input has value' },
-          { name: 'type', type: 'string', default: "'text'", description: "Includes 'password' with show/hide toggle" },
+          {
+            name: 'error',
+            type: 'string',
+            description: 'Error message — triggers error variant automatically',
+          },
+          {
+            name: 'success',
+            type: 'string',
+            description: 'Success message — triggers success variant',
+          },
+          {
+            name: 'size',
+            type: "'sm' | 'md' | 'lg'",
+            default: "'md'",
+            description: 'Height and font size',
+          },
+          {
+            name: 'leftElement',
+            type: 'ReactNode',
+            description: 'Icon or element on the left side',
+          },
+          {
+            name: 'rightElement',
+            type: 'ReactNode',
+            description: 'Icon or element on the right side',
+          },
+          {
+            name: 'clearable',
+            type: 'boolean',
+            description: 'Show clear button when input has value',
+          },
+          {
+            name: 'type',
+            type: 'string',
+            default: "'text'",
+            description: "Includes 'password' with show/hide toggle",
+          },
         ]}
       >
         <div className="w-full space-y-4">
@@ -93,8 +123,18 @@ export default function InputSection() {
         <div className="w-full max-w-sm space-y-3">
           <Input placeholder="Default input" />
           <Input variant="filled" placeholder="Filled variant" />
-          <Input variant="error" error="This field is required" placeholder="Error state" defaultValue="invalid-email" />
-          <Input variant="success" success="Looks good!" placeholder="Success state" defaultValue="valid@example.com" />
+          <Input
+            variant="error"
+            error="This field is required"
+            placeholder="Error state"
+            defaultValue="invalid-email"
+          />
+          <Input
+            variant="success"
+            success="Looks good!"
+            placeholder="Success state"
+            defaultValue="valid@example.com"
+          />
         </div>
       </ShowcaseSection>
       <ShowcaseSection
@@ -142,8 +182,16 @@ export default function InputSection() {
       >
         <div className="w-full max-w-sm space-y-3">
           <Input leftElement={<Search className="h-4 w-4" />} placeholder="Search components…" />
-          <Input leftElement={<Mail className="h-4 w-4" />} placeholder="Email address" type="email" />
-          <Input leftElement={<DollarSign className="h-4 w-4" />} placeholder="0.00" type="number" />
+          <Input
+            leftElement={<Mail className="h-4 w-4" />}
+            placeholder="Email address"
+            type="email"
+          />
+          <Input
+            leftElement={<DollarSign className="h-4 w-4" />}
+            placeholder="0.00"
+            type="number"
+          />
           <Input leftElement={<AtSign className="h-4 w-4" />} placeholder="username" />
         </div>
       </ShowcaseSection>
@@ -153,8 +201,16 @@ export default function InputSection() {
         previewBg="white"
       >
         <div className="w-full max-w-sm space-y-3">
-          <Input size="sm" placeholder="Small input" leftElement={<User className="h-3.5 w-3.5" />} />
-          <Input size="md" placeholder="Medium input (default)" leftElement={<User className="h-4 w-4" />} />
+          <Input
+            size="sm"
+            placeholder="Small input"
+            leftElement={<User className="h-3.5 w-3.5" />}
+          />
+          <Input
+            size="md"
+            placeholder="Medium input (default)"
+            leftElement={<User className="h-4 w-4" />}
+          />
           <Input size="lg" placeholder="Large input" leftElement={<User className="h-4 w-4" />} />
         </div>
       </ShowcaseSection>
@@ -168,7 +224,7 @@ export default function InputSection() {
             leftElement={<Search className="h-4 w-4" />}
             placeholder="Clearable input — type something"
             value={searchVal}
-            onChange={e => setSearchVal(e?.target?.value)}
+            onChange={(e) => setSearchVal(e?.target?.value)}
             clearable
             onClear={() => setSearchVal('')}
           />
@@ -177,7 +233,7 @@ export default function InputSection() {
             type="password"
             placeholder="Enter your password"
             value={passVal}
-            onChange={e => setPassVal(e?.target?.value)}
+            onChange={(e) => setPassVal(e?.target?.value)}
             leftElement={<Lock className="h-4 w-4" />}
           />
         </div>

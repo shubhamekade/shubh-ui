@@ -28,11 +28,30 @@ export default function AvatarSection() {
         description="Use the live controls to switch size, shape, status, and disabled state in real time."
         props={[
           { name: 'src', type: 'string', description: 'Image URL — renders an img element' },
-          { name: 'alt', type: 'string', default: "'Avatar'", description: 'Accessible alt text for image' },
+          {
+            name: 'alt',
+            type: 'string',
+            default: "'Avatar'",
+            description: 'Accessible alt text for image',
+          },
           { name: 'initials', type: 'string', description: 'Fallback initials when no src' },
-          { name: 'size', type: "'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'", default: "'md'", description: 'Dimensions of the avatar' },
-          { name: 'shape', type: "'circle' | 'square'", default: "'circle'", description: 'Border radius shape' },
-          { name: 'status', type: "'online' | 'offline' | 'busy' | 'away'", description: 'Status dot indicator' },
+          {
+            name: 'size',
+            type: "'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'",
+            default: "'md'",
+            description: 'Dimensions of the avatar',
+          },
+          {
+            name: 'shape',
+            type: "'circle' | 'square'",
+            default: "'circle'",
+            description: 'Border radius shape',
+          },
+          {
+            name: 'status',
+            type: "'online' | 'offline' | 'busy' | 'away'",
+            description: 'Status dot indicator',
+          },
         ]}
       >
         <div className="w-full space-y-4">
@@ -80,22 +99,22 @@ export default function AvatarSection() {
           <div className="flex items-center justify-center gap-4 p-6 bg-gray-50 rounded-lg border border-[#d7d7d7]">
             <Avatar
               initials="MK"
-              size={ctrl.size as any || 'md'}
-              variant={ctrl.variant as any || 'default'}
+              size={(ctrl.size as any) || 'md'}
+              variant={(ctrl.variant as any) || 'default'}
               shape={(ctrl.extras.shape as any) || 'circle'}
               status={ctrl.extras.status !== 'none' ? (ctrl.extras.status as any) : undefined}
             />
             <Avatar
               initials="RS"
-              size={ctrl.size as any || 'md'}
-              variant={ctrl.variant as any || 'default'}
+              size={(ctrl.size as any) || 'md'}
+              variant={(ctrl.variant as any) || 'default'}
               shape={(ctrl.extras.shape as any) || 'circle'}
               status={ctrl.extras.status !== 'none' ? (ctrl.extras.status as any) : undefined}
             />
             <Avatar
               initials="JL"
-              size={ctrl.size as any || 'md'}
-              variant={ctrl.variant as any || 'default'}
+              size={(ctrl.size as any) || 'md'}
+              variant={(ctrl.variant as any) || 'default'}
               shape={(ctrl.extras.shape as any) || 'circle'}
               status={ctrl.extras.status !== 'none' ? (ctrl.extras.status as any) : undefined}
             />
@@ -118,10 +137,7 @@ export default function AvatarSection() {
         <Avatar initials="PW" />
         <Avatar initials="EL" />
       </ShowcaseSection>
-      <ShowcaseSection
-        title="Sizes"
-        description="Six size options from xs (24px) to 2xl (80px)."
-      >
+      <ShowcaseSection title="Sizes" description="Six size options from xs (24px) to 2xl (80px).">
         <Avatar initials="DS" size="xs" />
         <Avatar initials="DS" size="sm" />
         <Avatar initials="DS" size="md" />
@@ -129,10 +145,7 @@ export default function AvatarSection() {
         <Avatar initials="DS" size="xl" />
         <Avatar initials="DS" size="2xl" />
       </ShowcaseSection>
-      <ShowcaseSection
-        title="Shapes"
-        description="Circle (default) and square variants."
-      >
+      <ShowcaseSection title="Shapes" description="Circle (default) and square variants.">
         <Avatar initials="MK" shape="circle" size="lg" />
         <Avatar initials="MK" shape="square" size="lg" />
         <Avatar initials="RS" shape="circle" size="lg" variant="primary" />
@@ -142,10 +155,10 @@ export default function AvatarSection() {
         title="Status Indicators"
         description="Status dot overlays for presence indication."
       >
-        <Avatar initials="MK" status="online"  size="lg" />
+        <Avatar initials="MK" status="online" size="lg" />
         <Avatar initials="RS" status="offline" size="lg" variant="primary" />
-        <Avatar initials="JL" status="busy"    size="lg" variant="navy" />
-        <Avatar initials="AT" status="away"    size="lg" />
+        <Avatar initials="JL" status="busy" size="lg" variant="navy" />
+        <Avatar initials="AT" status="away" size="lg" />
       </ShowcaseSection>
       <ShowcaseSection
         title="Avatar Group"
@@ -162,10 +175,7 @@ export default function AvatarSection() {
               <Avatar initials={init} size="sm" />
             </div>
           ))}
-          <div
-            className="ring-2 ring-white rounded-full"
-            style={{ marginLeft: '-8px', zIndex: 0 }}
-          >
+          <div className="ring-2 ring-white rounded-full" style={{ marginLeft: '-8px', zIndex: 0 }}>
             <Avatar initials="+3" size="sm" variant="navy" />
           </div>
         </div>

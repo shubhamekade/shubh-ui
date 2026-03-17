@@ -2,7 +2,6 @@
 
 import React, { useState, useCallback, useEffect } from 'react';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
-import { type VariantProps } from 'class-variance-authority';
 import { cn } from '@/utils/cn';
 import { calendarVariants } from './component.variants';
 
@@ -38,21 +37,45 @@ export interface CalendarProps {
 // ─── Constants ───────────────────────────────────────────────────────────────
 
 const DAY_HEADERS = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
-const MONTH_NAMES = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-const MONTH_FULL = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+const MONTH_NAMES = [
+  'Jan',
+  'Feb',
+  'Mar',
+  'Apr',
+  'May',
+  'Jun',
+  'Jul',
+  'Aug',
+  'Sep',
+  'Oct',
+  'Nov',
+  'Dec',
+];
+const MONTH_FULL = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+];
 
 const YEAR_RANGE_SIZE = 12; // 4 cols × 3 rows
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
 function isSameDay(a: Date, b: Date) {
-  return a.getFullYear() === b.getFullYear() &&
+  return (
+    a.getFullYear() === b.getFullYear() &&
     a.getMonth() === b.getMonth() &&
-    a.getDate() === b.getDate();
-}
-
-function isSameMonth(a: Date, b: Date) {
-  return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth();
+    a.getDate() === b.getDate()
+  );
 }
 
 function getYearRangeStart(year: number) {
@@ -80,7 +103,16 @@ interface NavHeaderProps {
   nextAriaLabel: string;
 }
 
-function NavHeader({ label, onPrev, onNext, onLabelClick, isNavy, size, prevAriaLabel, nextAriaLabel }: NavHeaderProps) {
+function NavHeader({
+  label,
+  onPrev,
+  onNext,
+  onLabelClick,
+  isNavy,
+  size,
+  prevAriaLabel,
+  nextAriaLabel,
+}: NavHeaderProps) {
   const textSize = size === 'sm' ? 'text-xs' : size === 'lg' ? 'text-base' : 'text-sm';
   const btnSize = size === 'sm' ? 'h-6 w-6' : size === 'lg' ? 'h-8 w-8' : 'h-7 w-7';
   const iconSize = size === 'sm' ? 'h-3 w-3' : size === 'lg' ? 'h-4 w-4' : 'h-3.5 w-3.5';
@@ -154,7 +186,19 @@ interface DayViewProps {
   maxDate?: Date;
 }
 
-function DayView({ viewDate, selected, today, size, isNavy, onSelectDay, onPrevMonth, onNextMonth, onHeaderClick, minDate, maxDate }: DayViewProps) {
+function DayView({
+  viewDate,
+  selected,
+  today,
+  size,
+  isNavy,
+  onSelectDay,
+  onPrevMonth,
+  onNextMonth,
+  onHeaderClick,
+  minDate,
+  maxDate,
+}: DayViewProps) {
   const year = viewDate.getFullYear();
   const month = viewDate.getMonth();
 
@@ -164,7 +208,8 @@ function DayView({ viewDate, selected, today, size, isNavy, onSelectDay, onPrevM
 
   const headerText = `${MONTH_FULL[month]} ${year}`;
 
-  const cellSize = size === 'sm' ? 'h-7 w-7 text-xs' : size === 'lg' ? 'h-9 w-9 text-base' : 'h-8 w-8 text-sm';
+  const cellSize =
+    size === 'sm' ? 'h-7 w-7 text-xs' : size === 'lg' ? 'h-9 w-9 text-base' : 'h-8 w-8 text-sm';
   const dayHeaderSize = size === 'sm' ? 'text-xs' : size === 'lg' ? 'text-sm' : 'text-xs';
 
   // Build grid: 6 rows × 7 cols = 42 cells
@@ -205,7 +250,7 @@ function DayView({ viewDate, selected, today, size, isNavy, onSelectDay, onPrevM
 
       {/* Day-of-week headers */}
       <div className="grid grid-cols-7 mb-1" role="row">
-        {DAY_HEADERS.map(d => (
+        {DAY_HEADERS.map((d) => (
           <div
             key={d}
             role="columnheader"
@@ -234,7 +279,12 @@ function DayView({ viewDate, selected, today, size, isNavy, onSelectDay, onPrevM
               key={idx}
               type="button"
               role="gridcell"
-              aria-label={date.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
+              aria-label={date.toLocaleDateString('en-US', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+              })}
               aria-selected={isSelected}
               aria-disabled={disabled}
               tabIndex={isSelected ? 0 : -1}
@@ -283,7 +333,16 @@ interface MonthViewProps {
   onHeaderClick: () => void;
 }
 
-function MonthView({ viewDate, selected, size, isNavy, onSelectMonth, onPrevYear, onNextYear, onHeaderClick }: MonthViewProps) {
+function MonthView({
+  viewDate,
+  selected,
+  size,
+  isNavy,
+  onSelectMonth,
+  onPrevYear,
+  onNextYear,
+  onHeaderClick,
+}: MonthViewProps) {
   const year = viewDate.getFullYear();
   const cellSize = size === 'sm' ? 'h-8 text-xs' : size === 'lg' ? 'h-11 text-base' : 'h-9 text-sm';
 
@@ -347,7 +406,15 @@ interface YearViewProps {
   onNextRange: () => void;
 }
 
-function YearView({ viewDate, selected, size, isNavy, onSelectYear, onPrevRange, onNextRange }: YearViewProps) {
+function YearView({
+  viewDate,
+  selected,
+  size,
+  isNavy,
+  onSelectYear,
+  onPrevRange,
+  onNextRange,
+}: YearViewProps) {
   const rangeStart = getYearRangeStart(viewDate.getFullYear());
   const rangeEnd = rangeStart + YEAR_RANGE_SIZE - 1;
   const years = Array.from({ length: YEAR_RANGE_SIZE }, (_, i) => rangeStart + i);
@@ -367,7 +434,7 @@ function YearView({ viewDate, selected, size, isNavy, onSelectYear, onPrevRange,
       />
 
       <div className="grid grid-cols-4 gap-1 mt-2">
-        {years.map(yr => {
+        {years.map((yr) => {
           const isSelected = selected ? selected.getFullYear() === yr : false;
 
           return (
@@ -417,9 +484,7 @@ export default function Calendar({
   today.setHours(0, 0, 0, 0);
 
   // Internal selected state (uncontrolled fallback)
-  const [internalSelected, setInternalSelected] = useState<Date | null>(
-    defaultValue ?? null
-  );
+  const [internalSelected, setInternalSelected] = useState<Date | null>(defaultValue ?? null);
   const selected = value !== undefined ? value : internalSelected;
 
   // View date — the month/year currently being displayed
@@ -440,45 +505,48 @@ export default function Calendar({
   }, [value]);
 
   // ── Day view handlers ──
-  const handleSelectDay = useCallback((date: Date) => {
-    if (value === undefined) setInternalSelected(date);
-    onChange?.(date);
-  }, [value, onChange]);
+  const handleSelectDay = useCallback(
+    (date: Date) => {
+      if (value === undefined) setInternalSelected(date);
+      onChange?.(date);
+    },
+    [value, onChange]
+  );
 
   const handlePrevMonth = useCallback(() => {
-    setViewDate(d => new Date(d.getFullYear(), d.getMonth() - 1, 1));
+    setViewDate((d) => new Date(d.getFullYear(), d.getMonth() - 1, 1));
   }, []);
 
   const handleNextMonth = useCallback(() => {
-    setViewDate(d => new Date(d.getFullYear(), d.getMonth() + 1, 1));
+    setViewDate((d) => new Date(d.getFullYear(), d.getMonth() + 1, 1));
   }, []);
 
   // ── Month view handlers ──
   const handleSelectMonth = useCallback((month: number) => {
-    setViewDate(d => new Date(d.getFullYear(), month, 1));
+    setViewDate((d) => new Date(d.getFullYear(), month, 1));
     setView('day');
   }, []);
 
   const handlePrevYear = useCallback(() => {
-    setViewDate(d => new Date(d.getFullYear() - 1, d.getMonth(), 1));
+    setViewDate((d) => new Date(d.getFullYear() - 1, d.getMonth(), 1));
   }, []);
 
   const handleNextYear = useCallback(() => {
-    setViewDate(d => new Date(d.getFullYear() + 1, d.getMonth(), 1));
+    setViewDate((d) => new Date(d.getFullYear() + 1, d.getMonth(), 1));
   }, []);
 
   // ── Year view handlers ──
   const handleSelectYear = useCallback((year: number) => {
-    setViewDate(d => new Date(year, d.getMonth(), 1));
+    setViewDate((d) => new Date(year, d.getMonth(), 1));
     setView('month');
   }, []);
 
   const handlePrevRange = useCallback(() => {
-    setViewDate(d => new Date(d.getFullYear() - YEAR_RANGE_SIZE, d.getMonth(), 1));
+    setViewDate((d) => new Date(d.getFullYear() - YEAR_RANGE_SIZE, d.getMonth(), 1));
   }, []);
 
   const handleNextRange = useCallback(() => {
-    setViewDate(d => new Date(d.getFullYear() + YEAR_RANGE_SIZE, d.getMonth(), 1));
+    setViewDate((d) => new Date(d.getFullYear() + YEAR_RANGE_SIZE, d.getMonth(), 1));
   }, []);
 
   const containerPadding = size === 'sm' ? 'p-3' : size === 'lg' ? 'p-5' : 'p-4';
@@ -491,9 +559,7 @@ export default function Calendar({
         calendarVariants({ size }),
         containerPadding,
         'rounded-lg',
-        isNavy
-          ? 'bg-[#00002a] text-white'
-          : 'bg-white text-gray-900',
+        isNavy ? 'bg-[#00002a] text-white' : 'bg-white text-gray-900',
         className
       )}
     >

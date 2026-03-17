@@ -7,15 +7,19 @@ import SectionHeader from '../SectionHeader';
 import VariantControls, { useVariantControls } from '../VariantControls';
 
 export default function RadioSection() {
-  const [plan, setPlan]     = useState('pro');
-  const [size, setSize]     = useState('md');
+  const [plan, setPlan] = useState('pro');
+  const [size, setSize] = useState('md');
   const [playVal, setPlayVal] = useState('option1');
   const [ctrl, setCtrl] = useVariantControls({ size: 'md' });
 
   const plans = [
-    { value: 'free',       label: 'Free',       description: 'Up to 3 projects, community support' },
-    { value: 'pro',        label: 'Pro',         description: '$12/mo — Unlimited projects, priority support' },
-    { value: 'enterprise', label: 'Enterprise',  description: 'Custom pricing — SSO, SLA, dedicated account manager' },
+    { value: 'free', label: 'Free', description: 'Up to 3 projects, community support' },
+    { value: 'pro', label: 'Pro', description: '$12/mo — Unlimited projects, priority support' },
+    {
+      value: 'enterprise',
+      label: 'Enterprise',
+      description: 'Custom pricing — SSO, SLA, dedicated account manager',
+    },
   ];
 
   return (
@@ -35,8 +39,17 @@ export default function RadioSection() {
         props={[
           { name: 'label', type: 'string', description: 'Label text beside the radio' },
           { name: 'description', type: 'string', description: 'Secondary description text' },
-          { name: 'size', type: "'sm' | 'md' | 'lg'", default: "'md'", description: 'Size of radio and label' },
-          { name: 'name', type: 'string', description: 'Group name — required for native radio groups' },
+          {
+            name: 'size',
+            type: "'sm' | 'md' | 'lg'",
+            default: "'md'",
+            description: 'Size of radio and label',
+          },
+          {
+            name: 'name',
+            type: 'string',
+            description: 'Group name — required for native radio groups',
+          },
           { name: 'disabled', type: 'boolean', description: 'Prevents interaction' },
           { name: 'error', type: 'string', description: 'Error message' },
         ]}
@@ -60,13 +73,13 @@ export default function RadioSection() {
                 { value: 'option1', label: 'Option one' },
                 { value: 'option2', label: 'Option two' },
                 { value: 'option3', label: 'Option three' },
-              ].map(opt => (
+              ].map((opt) => (
                 <Radio
                   key={opt.value}
                   name="playground-radio"
                   value={opt.value}
                   label={opt.label}
-                  size={ctrl.size as any || 'md'}
+                  size={(ctrl.size as any) || 'md'}
                   disabled={ctrl.disabled}
                   checked={playVal === opt.value}
                   onChange={() => !ctrl.disabled && setPlayVal(opt.value)}
@@ -96,7 +109,7 @@ export default function RadioSection() {
 ))}`}
       >
         <div className="space-y-3 w-full max-w-sm">
-          {plans.map(p => (
+          {plans.map((p) => (
             <Radio
               key={p.value}
               name="plan-demo"
@@ -116,7 +129,7 @@ export default function RadioSection() {
         previewBg="white"
       >
         <div className="space-y-3">
-          {(['sm', 'md', 'lg'] as const).map(s => (
+          {(['sm', 'md', 'lg'] as const).map((s) => (
             <Radio
               key={s}
               name="size-demo"

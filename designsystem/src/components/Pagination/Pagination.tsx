@@ -24,13 +24,17 @@ function generatePages(current: number, total: number, siblings = 1): (number | 
   const leftSibling = Math.max(current - siblings, 1);
   const rightSibling = Math.min(current + siblings, total);
 
-  if (leftSibling > 2) { pages.push(1); pages.push('...'); }
-  else for (let i = 1; i < leftSibling; i++) pages.push(i);
+  if (leftSibling > 2) {
+    pages.push(1);
+    pages.push('...');
+  } else for (let i = 1; i < leftSibling; i++) pages.push(i);
 
   for (let i = leftSibling; i <= rightSibling; i++) pages.push(i);
 
-  if (rightSibling < total - 1) { pages.push('...'); pages.push(total); }
-  else for (let i = rightSibling + 1; i <= total; i++) pages.push(i);
+  if (rightSibling < total - 1) {
+    pages.push('...');
+    pages.push(total);
+  } else for (let i = rightSibling + 1; i <= total; i++) pages.push(i);
 
   return pages;
 }
@@ -96,7 +100,13 @@ const Pagination: React.FC<PaginationProps> = ({
 
         {pages.map((p, i) =>
           p === '...' ? (
-            <span key={`ellipsis-${i}`} className={cn('inline-flex items-center justify-center text-muted-foreground', sizeMap[size])}>
+            <span
+              key={`ellipsis-${i}`}
+              className={cn(
+                'inline-flex items-center justify-center text-muted-foreground',
+                sizeMap[size]
+              )}
+            >
               …
             </span>
           ) : (
@@ -107,7 +117,8 @@ const Pagination: React.FC<PaginationProps> = ({
               aria-current={page === p ? 'page' : undefined}
               className={cn(
                 btnClass,
-                page === p && 'bg-primary text-primary-foreground border-primary hover:bg-primary/90 hover:text-primary-foreground hover:border-primary/90'
+                page === p &&
+                  'bg-primary text-primary-foreground border-primary hover:bg-primary/90 hover:text-primary-foreground hover:border-primary/90'
               )}
             >
               {p}
@@ -140,12 +151,14 @@ const Pagination: React.FC<PaginationProps> = ({
       {showPageSize && onPageSizeChange && (
         <select
           value={pageSize}
-          onChange={e => onPageSizeChange(Number(e.target.value))}
+          onChange={(e) => onPageSizeChange(Number(e.target.value))}
           className="h-8 pl-2 pr-6 text-sm border border-border rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-ring bg-background text-foreground"
           aria-label="Rows per page"
         >
-          {pageSizeOptions.map(s => (
-            <option key={s} value={s}>{s} / page</option>
+          {pageSizeOptions.map((s) => (
+            <option key={s} value={s}>
+              {s} / page
+            </option>
           ))}
         </select>
       )}

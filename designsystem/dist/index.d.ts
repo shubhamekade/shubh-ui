@@ -21,9 +21,9 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>, VariantPr
 
 declare const Button: React__default.ForwardRefExoticComponent<ButtonProps & React__default.RefAttributes<HTMLButtonElement>>;
 
-interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, "size"> {
-    variant?: "default" | "error" | "success";
-    size?: "sm" | "md" | "lg";
+interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
+    variant?: 'default' | 'error' | 'success';
+    size?: 'sm' | 'md' | 'lg';
     leftElement?: ReactNode;
     rightElement?: ReactNode;
     clearable?: boolean;
@@ -490,10 +490,10 @@ interface StatsCardProps extends HTMLAttributes<HTMLDivElement> {
     value: string | number;
     subtitle?: string;
     icon?: ReactNode;
-    trend?: "up" | "down" | null;
+    trend?: 'up' | 'down' | null;
     trendPercent?: number;
     trendLabel?: string;
-    variant?: "default" | "primary" | "success" | "warning" | "danger";
+    variant?: 'default' | 'primary' | 'success' | 'warning' | 'danger';
 }
 declare const StatsCard: React$1.ForwardRefExoticComponent<StatsCardProps & React$1.RefAttributes<HTMLDivElement>>;
 
@@ -522,13 +522,7 @@ declare function useDebounce<T>(value: T, delay?: number): T;
  * @param initialValue - initial state (default false)
  * @returns [value, toggle, setOn, setOff, setValue]
  */
-declare function useToggle(initialValue?: boolean): [
-    boolean,
-    () => void,
-    () => void,
-    () => void,
-    (v: boolean) => void
-];
+declare function useToggle(initialValue?: boolean): [boolean, () => void, () => void, () => void, (v: boolean) => void];
 
 declare function cn(...inputs: ClassValue[]): string;
 

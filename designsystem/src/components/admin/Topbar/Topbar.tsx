@@ -1,7 +1,7 @@
-import { forwardRef, type HTMLAttributes } from "react";
-import { Bell, Search, User, Menu, X } from "lucide-react";
+import { forwardRef, type HTMLAttributes } from 'react';
+import { Bell, Search, User, Menu, X } from 'lucide-react';
 
-import { cn } from "../../../utils/cn";
+import { cn } from '../../../utils/cn';
 
 export interface TopbarProps extends HTMLAttributes<HTMLElement> {
   title?: string;
@@ -19,7 +19,7 @@ const Topbar = forwardRef<HTMLElement, TopbarProps>(
   (
     {
       className,
-      title = "Dashboard",
+      title = 'Dashboard',
       onSearchChange,
       onMenuToggle,
       menuOpen = false,
@@ -34,10 +34,7 @@ const Topbar = forwardRef<HTMLElement, TopbarProps>(
   ) => (
     <header
       ref={ref}
-      className={cn(
-        "w-full border-b border-slate-200 bg-white px-4 py-3 sm:px-6",
-        className
-      )}
+      className={cn('w-full border-b border-slate-200 bg-white px-4 py-3 sm:px-6', className)}
       {...props}
     >
       <div className="flex items-center justify-between gap-4">
@@ -46,7 +43,7 @@ const Topbar = forwardRef<HTMLElement, TopbarProps>(
           <button
             onClick={onMenuToggle}
             className="p-1.5 hover:bg-slate-100 rounded-lg transition-colors lg:hidden"
-            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
           >
             {menuOpen ? (
               <X className="h-5 w-5 text-slate-600" />
@@ -93,9 +90,10 @@ const Topbar = forwardRef<HTMLElement, TopbarProps>(
             aria-label="Profile menu"
           >
             {profileImage ? (
+              // eslint-disable-next-line @next/next/no-img-element
               <img
                 src={profileImage}
-                alt={userName || "User"}
+                alt={userName || 'User'}
                 className="h-6 w-6 rounded-full object-cover"
               />
             ) : (
@@ -113,6 +111,6 @@ const Topbar = forwardRef<HTMLElement, TopbarProps>(
   )
 );
 
-Topbar.displayName = "Topbar";
+Topbar.displayName = 'Topbar';
 
 export default Topbar;

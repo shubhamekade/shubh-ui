@@ -25,11 +25,26 @@ export default function SkeletonSection() {
         description="Use the live controls to switch variant and animation in real time."
         previewBg="white"
         props={[
-          { name: 'variant', type: "'text' | 'circle' | 'rect' | 'card'", default: "'rect'", description: 'Shape of the skeleton' },
+          {
+            name: 'variant',
+            type: "'text' | 'circle' | 'rect' | 'card'",
+            default: "'rect'",
+            description: 'Shape of the skeleton',
+          },
           { name: 'width', type: 'string | number', description: 'Width — number treated as px' },
           { name: 'height', type: 'string | number', description: 'Height — number treated as px' },
-          { name: 'lines', type: 'number', default: '1', description: 'Number of text lines (text variant only)' },
-          { name: 'animated', type: 'boolean', default: 'true', description: 'Enable pulse animation' },
+          {
+            name: 'lines',
+            type: 'number',
+            default: '1',
+            description: 'Number of text lines (text variant only)',
+          },
+          {
+            name: 'animated',
+            type: 'boolean',
+            default: 'true',
+            description: 'Enable pulse animation',
+          },
         ]}
       >
         <div className="w-full space-y-4">
@@ -57,10 +72,20 @@ export default function SkeletonSection() {
           />
           <div className="flex items-center justify-center p-8 bg-gray-50 rounded-lg border border-[#d7d7d7]">
             {ctrl?.variant === 'circle' && (
-              <Skeleton variant="circle" width={64} height={64} animated={ctrl?.extras?.animated === 'true'} />
+              <Skeleton
+                variant="circle"
+                width={64}
+                height={64}
+                animated={ctrl?.extras?.animated === 'true'}
+              />
             )}
             {ctrl?.variant === 'rect' && (
-              <Skeleton variant="rect" width={200} height={100} animated={ctrl?.extras?.animated === 'true'} />
+              <Skeleton
+                variant="rect"
+                width={200}
+                height={100}
+                animated={ctrl?.extras?.animated === 'true'}
+              />
             )}
             {ctrl?.variant === 'text' && (
               <div className="w-48">
@@ -125,7 +150,7 @@ export default function SkeletonSection() {
         previewBg="white"
       >
         <div className="w-full max-w-sm space-y-4">
-          <Button size="sm" variant="outline" onClick={() => setLoading(v => !v)}>
+          <Button size="sm" variant="outline" onClick={() => setLoading((v) => !v)}>
             {loading ? 'Show content' : 'Show skeleton'}
           </Button>
           {loading ? (
@@ -142,7 +167,8 @@ export default function SkeletonSection() {
                 </div>
               </div>
               <p className="text-sm text-[#808080] leading-relaxed">
-                Production-ready UI component library built with Next.js, TypeScript, and Tailwind CSS.
+                Production-ready UI component library built with Next.js, TypeScript, and Tailwind
+                CSS.
               </p>
               <div className="flex gap-2">
                 <button className="px-3 py-1.5 text-xs font-medium bg-[#000080] text-white rounded-md hover:bg-[#0000a0] transition-colors">

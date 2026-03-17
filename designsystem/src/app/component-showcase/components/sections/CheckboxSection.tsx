@@ -12,7 +12,7 @@ export default function CheckboxSection() {
   const [items, setItems] = useState({ a: true, b: false, c: true, d: false });
   const [ctrl, setCtrl] = useVariantControls({ size: 'md' });
 
-  const allChecked  = Object.values(items).every(Boolean);
+  const allChecked = Object.values(items).every(Boolean);
   const someChecked = Object.values(items).some(Boolean) && !allChecked;
 
   const toggleAll = () => {
@@ -37,8 +37,18 @@ export default function CheckboxSection() {
         props={[
           { name: 'label', type: 'string', description: 'Label text beside the checkbox' },
           { name: 'description', type: 'string', description: 'Secondary description text' },
-          { name: 'size', type: "'sm' | 'md' | 'lg'", default: "'md'", description: 'Size of the checkbox and label' },
-          { name: 'indeterminate', type: 'boolean', default: 'false', description: 'Shows dash icon — for select-all patterns' },
+          {
+            name: 'size',
+            type: "'sm' | 'md' | 'lg'",
+            default: "'md'",
+            description: 'Size of the checkbox and label',
+          },
+          {
+            name: 'indeterminate',
+            type: 'boolean',
+            default: 'false',
+            description: 'Shows dash icon — for select-all patterns',
+          },
           { name: 'error', type: 'string', description: 'Error message below checkbox' },
           { name: 'disabled', type: 'boolean', description: 'Prevents interaction' },
         ]}
@@ -60,14 +70,14 @@ export default function CheckboxSection() {
             <div className="space-y-3">
               <Checkbox
                 label="Accept terms of service"
-                size={ctrl.size as any || 'md'}
+                size={(ctrl.size as any) || 'md'}
                 disabled={ctrl.disabled}
                 defaultChecked
               />
               <Checkbox
                 label="Subscribe to release updates"
                 description="You'll receive an email when new versions are published."
-                size={ctrl.size as any || 'md'}
+                size={(ctrl.size as any) || 'md'}
                 disabled={ctrl.disabled}
               />
             </div>
@@ -86,13 +96,13 @@ export default function CheckboxSection() {
           <Checkbox
             label="Accept terms of service"
             checked={checked1}
-            onChange={e => setChecked1(e.target.checked)}
+            onChange={(e) => setChecked1(e.target.checked)}
           />
           <Checkbox
             label="Subscribe to release updates"
             description="You'll receive an email when new versions are published."
             checked={checked2}
-            onChange={e => setChecked2(e.target.checked)}
+            onChange={(e) => setChecked2(e.target.checked)}
           />
         </div>
       </ShowcaseSection>
@@ -110,12 +120,12 @@ export default function CheckboxSection() {
             onChange={toggleAll}
           />
           <div className="ml-6 space-y-2 border-l-2 border-[#d7d7d7] pl-4">
-            {(['a', 'b', 'c', 'd'] as const).map(k => (
+            {(['a', 'b', 'c', 'd'] as const).map((k) => (
               <Checkbox
                 key={k}
                 label={`Component ${k.toUpperCase()}`}
                 checked={items[k]}
-                onChange={e => setItems(prev => ({ ...prev, [k]: e.target.checked }))}
+                onChange={(e) => setItems((prev) => ({ ...prev, [k]: e.target.checked }))}
               />
             ))}
           </div>
@@ -134,11 +144,7 @@ export default function CheckboxSection() {
         </div>
       </ShowcaseSection>
 
-      <ShowcaseSection
-        title="States"
-        description="Disabled and error states."
-        previewBg="white"
-      >
+      <ShowcaseSection title="States" description="Disabled and error states." previewBg="white">
         <div className="space-y-3">
           <Checkbox label="Disabled unchecked" disabled />
           <Checkbox label="Disabled checked" disabled checked readOnly />

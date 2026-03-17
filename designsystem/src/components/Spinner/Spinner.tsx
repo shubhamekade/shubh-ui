@@ -7,19 +7,19 @@ export const spinnerVariants = cva(
   {
     variants: {
       size: {
-        xs:  'h-3 w-3 border',
-        sm:  'h-4 w-4',
-        md:  'h-6 w-6',
-        lg:  'h-8 w-8 border-[3px]',
-        xl:  'h-12 w-12 border-4',
+        xs: 'h-3 w-3 border',
+        sm: 'h-4 w-4',
+        md: 'h-6 w-6',
+        lg: 'h-8 w-8 border-[3px]',
+        xl: 'h-12 w-12 border-4',
       },
       color: {
-        primary:  'text-primary',
-        white:    'text-white',
-        muted:    'text-muted-foreground',
-        success:  'text-green-500',
-        warning:  'text-amber-400',
-        danger:   'text-red-500',
+        primary: 'text-primary',
+        white: 'text-white',
+        muted: 'text-muted-foreground',
+        success: 'text-green-500',
+        warning: 'text-amber-400',
+        danger: 'text-red-500',
       },
     },
     defaultVariants: { size: 'md', color: 'primary' },
@@ -27,7 +27,8 @@ export const spinnerVariants = cva(
 );
 
 export interface SpinnerProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'color'>,
+  extends
+    Omit<React.HTMLAttributes<HTMLDivElement>, 'color'>,
     VariantProps<typeof spinnerVariants> {
   label?: string;
 }

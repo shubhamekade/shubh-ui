@@ -11,10 +11,10 @@ import VariantControls, { useVariantControls } from '../VariantControls';
 import { Cog6ToothIcon as Settings, FunnelIcon as Filter } from '@heroicons/react/24/outline';
 
 export default function DrawerSection() {
-  const [rightOpen,  setRightOpen]  = useState(false);
-  const [leftOpen,   setLeftOpen]   = useState(false);
+  const [rightOpen, setRightOpen] = useState(false);
+  const [leftOpen, setLeftOpen] = useState(false);
   const [filterOpen, setFilterOpen] = useState(false);
-  const [playOpen,   setPlayOpen]   = useState(false);
+  const [playOpen, setPlayOpen] = useState(false);
   const [ctrl, setCtrl] = useVariantControls({
     extras: { placement: 'right', size: 'md' },
   });
@@ -35,9 +35,24 @@ export default function DrawerSection() {
         previewBg="white"
         props={[
           { name: 'open', type: 'boolean', required: true, description: 'Controls visibility' },
-          { name: 'onClose', type: '() => void', required: true, description: 'Called when drawer should close' },
-          { name: 'placement', type: "'left' | 'right' | 'top' | 'bottom'", default: "'right'", description: 'Which edge the drawer slides from' },
-          { name: 'size', type: "'sm' | 'md' | 'lg' | 'full'", default: "'md'", description: 'Width (horizontal) or height (vertical)' },
+          {
+            name: 'onClose',
+            type: '() => void',
+            required: true,
+            description: 'Called when drawer should close',
+          },
+          {
+            name: 'placement',
+            type: "'left' | 'right' | 'top' | 'bottom'",
+            default: "'right'",
+            description: 'Which edge the drawer slides from',
+          },
+          {
+            name: 'size',
+            type: "'sm' | 'md' | 'lg' | 'full'",
+            default: "'md'",
+            description: 'Width (horizontal) or height (vertical)',
+          },
           { name: 'title', type: 'string', description: 'Drawer heading' },
           { name: 'footer', type: 'ReactNode', description: 'Sticky footer content' },
         ]}
@@ -72,23 +87,22 @@ export default function DrawerSection() {
             onChange={setCtrl}
           />
           <div className="flex items-center justify-center p-6 bg-gray-50 rounded-lg border border-[#d7d7d7]">
-            <Button onClick={() => setPlayOpen(true)}>
-              Open drawer ({ctrl.extras.placement})
-            </Button>
+            <Button onClick={() => setPlayOpen(true)}>Open drawer ({ctrl.extras.placement})</Button>
           </div>
           <Drawer
             open={playOpen}
             onClose={() => setPlayOpen(false)}
             title="Drawer preview"
             description={`Placement: ${ctrl.extras.placement} · Size: ${ctrl.extras.size}`}
-            placement={ctrl.extras.placement as any || 'right'}
-            size={ctrl.extras.size as any || 'md'}
-            footer={
-              <Button onClick={() => setPlayOpen(false)}>Close</Button>
-            }
+            placement={(ctrl.extras.placement as any) || 'right'}
+            size={(ctrl.extras.size as any) || 'md'}
+            footer={<Button onClick={() => setPlayOpen(false)}>Close</Button>}
           >
             <p className="text-sm text-[#808080] leading-relaxed">
-              This drawer is rendered with <strong>placement="{ctrl.extras.placement}"</strong> and <strong>size="{ctrl.extras.size}"</strong>. Change the controls above and reopen to see the difference.
+              This drawer is rendered with{' '}
+              <strong>placement=&quot;{ctrl.extras.placement}&quot;</strong> and{' '}
+              <strong>size=&quot;{ctrl.extras.size}&quot;</strong>. Change the controls above and
+              reopen to see the difference.
             </p>
           </Drawer>
         </div>
@@ -117,7 +131,9 @@ export default function DrawerSection() {
           description="Configure display and behavior options."
           footer={
             <>
-              <Button variant="outline" onClick={() => setRightOpen(false)}>Discard</Button>
+              <Button variant="outline" onClick={() => setRightOpen(false)}>
+                Discard
+              </Button>
               <Button onClick={() => setRightOpen(false)}>Save settings</Button>
             </>
           }
@@ -127,9 +143,20 @@ export default function DrawerSection() {
             <Input label="Export path" defaultValue="@shubh/ui/Button" />
             <div className="space-y-3 pt-2">
               <p className="text-sm font-medium text-[#1e1e1e]">Options</p>
-              <Switch label="Auto-generate stories" description="Create Storybook stories automatically" defaultChecked />
-              <Switch label="Include in bundle" description="Include in the main package export" defaultChecked />
-              <Switch label="Mark as deprecated" description="Warn consumers this component is deprecated" />
+              <Switch
+                label="Auto-generate stories"
+                description="Create Storybook stories automatically"
+                defaultChecked
+              />
+              <Switch
+                label="Include in bundle"
+                description="Include in the main package export"
+                defaultChecked
+              />
+              <Switch
+                label="Mark as deprecated"
+                description="Warn consumers this component is deprecated"
+              />
             </div>
           </div>
         </Drawer>
@@ -139,7 +166,9 @@ export default function DrawerSection() {
         description="Left-side panel — useful for navigation or secondary menus."
         previewBg="white"
       >
-        <Button variant="secondary" onClick={() => setLeftOpen(true)}>Open left drawer</Button>
+        <Button variant="secondary" onClick={() => setLeftOpen(true)}>
+          Open left drawer
+        </Button>
         <Drawer
           open={leftOpen}
           onClose={() => setLeftOpen(false)}
@@ -148,7 +177,7 @@ export default function DrawerSection() {
           size="sm"
         >
           <nav className="space-y-1">
-            {['Components', 'Tokens', 'Patterns', 'Changelog', 'Contributing']?.map(item => (
+            {['Components', 'Tokens', 'Patterns', 'Changelog', 'Contributing']?.map((item) => (
               <button
                 key={item}
                 type="button"
@@ -166,7 +195,11 @@ export default function DrawerSection() {
         description="Complex filter panel — a common use case for data tables."
         previewBg="white"
       >
-        <Button variant="outline" leftIcon={<Filter className="h-4 w-4" />} onClick={() => setFilterOpen(true)}>
+        <Button
+          variant="outline"
+          leftIcon={<Filter className="h-4 w-4" />}
+          onClick={() => setFilterOpen(true)}
+        >
           Filters
         </Button>
         <Drawer
@@ -176,7 +209,9 @@ export default function DrawerSection() {
           description="Narrow down the component list."
           footer={
             <>
-              <Button variant="ghost" onClick={() => setFilterOpen(false)}>Clear all</Button>
+              <Button variant="ghost" onClick={() => setFilterOpen(false)}>
+                Clear all
+              </Button>
               <Button onClick={() => setFilterOpen(false)}>Apply filters</Button>
             </>
           }
@@ -185,18 +220,20 @@ export default function DrawerSection() {
             <div>
               <p className="text-sm font-medium text-[#1e1e1e] mb-2">Category</p>
               <div className="space-y-2">
-                {['Form', 'Navigation', 'Overlay', 'Feedback', 'Data Display', 'Utilities']?.map(cat => (
-                  <label key={cat} className="flex items-center gap-2 cursor-pointer">
-                    <input type="checkbox" className="rounded" defaultChecked={cat === 'Form'} />
-                    <span className="text-sm text-[#1e1e1e]">{cat}</span>
-                  </label>
-                ))}
+                {['Form', 'Navigation', 'Overlay', 'Feedback', 'Data Display', 'Utilities']?.map(
+                  (cat) => (
+                    <label key={cat} className="flex items-center gap-2 cursor-pointer">
+                      <input type="checkbox" className="rounded" defaultChecked={cat === 'Form'} />
+                      <span className="text-sm text-[#1e1e1e]">{cat}</span>
+                    </label>
+                  )
+                )}
               </div>
             </div>
             <div>
               <p className="text-sm font-medium text-[#1e1e1e] mb-2">Status</p>
               <div className="space-y-2">
-                {['Stable', 'Beta', 'Deprecated']?.map(s => (
+                {['Stable', 'Beta', 'Deprecated']?.map((s) => (
                   <label key={s} className="flex items-center gap-2 cursor-pointer">
                     <input type="checkbox" className="rounded" defaultChecked={s === 'Stable'} />
                     <span className="text-sm text-[#1e1e1e]">{s}</span>
@@ -204,7 +241,11 @@ export default function DrawerSection() {
                 ))}
               </div>
             </div>
-            <Input label="Search by name" placeholder="e.g. Button, Input…" leftElement={<span className="text-xs">🔍</span>} />
+            <Input
+              label="Search by name"
+              placeholder="e.g. Button, Input…"
+              leftElement={<span className="text-xs">🔍</span>}
+            />
           </div>
         </Drawer>
       </ShowcaseSection>

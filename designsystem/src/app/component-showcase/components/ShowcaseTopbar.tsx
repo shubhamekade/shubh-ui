@@ -15,8 +15,8 @@ import { type ComponentEntry } from './ComponentShowcaseClient';
 import { useShowcaseTheme } from '../context/ThemeContext';
 
 const statusColors: Record<string, string> = {
-  stable:     'bg-green-100 text-green-700 border-green-200',
-  beta:       'bg-amber-100 text-amber-700 border-amber-200',
+  stable: 'bg-green-100 text-green-700 border-green-200',
+  beta: 'bg-amber-100 text-amber-700 border-amber-200',
   deprecated: 'bg-red-100 text-red-700 border-red-200',
 };
 
@@ -43,9 +43,7 @@ export default function ShowcaseTopbar({ activeEntry, onMenuClick }: ShowcaseTop
     <header
       className={cn(
         'h-14 flex items-center gap-3 px-4 sm:px-6 shrink-0 border-b transition-colors duration-200',
-        isNavy
-          ? 'bg-[#000060] border-white/10'
-          : 'bg-white border-[#d7d7d7]'
+        isNavy ? 'bg-[#000060] border-white/10' : 'bg-white border-[#d7d7d7]'
       )}
     >
       {/* Mobile menu toggle */}
@@ -55,7 +53,8 @@ export default function ShowcaseTopbar({ activeEntry, onMenuClick }: ShowcaseTop
         className={cn(
           'lg:hidden p-1.5 rounded-md transition-colors',
           isNavy
-            ? 'text-white/60 hover:text-white hover:bg-white/10' :'text-[#808080] hover:text-[#1e1e1e] hover:bg-gray-100'
+            ? 'text-white/60 hover:text-white hover:bg-white/10'
+            : 'text-[#808080] hover:text-[#1e1e1e] hover:bg-gray-100'
         )}
         aria-label="Open navigation"
       >
@@ -66,7 +65,9 @@ export default function ShowcaseTopbar({ activeEntry, onMenuClick }: ShowcaseTop
       <div className="flex-1 min-w-0">
         {activeEntry ? (
           <div className="flex items-center gap-2 flex-wrap">
-            <span className={cn('text-sm', isNavy ? 'text-white/50' : 'text-[#808080]')}>Components</span>
+            <span className={cn('text-sm', isNavy ? 'text-white/50' : 'text-[#808080]')}>
+              Components
+            </span>
             <span className={cn(isNavy ? 'text-white/20' : 'text-[#d7d7d7]')}>/</span>
             <span className={cn('font-semibold text-sm', isNavy ? 'text-white' : 'text-[#1e1e1e]')}>
               {activeEntry.label}
@@ -101,13 +102,20 @@ export default function ShowcaseTopbar({ activeEntry, onMenuClick }: ShowcaseTop
               copied
                 ? 'bg-green-50 text-green-700 border-green-200'
                 : isNavy
-                  ? 'bg-white/10 text-white/60 border-white/10 hover:text-white hover:border-white/30 hover:bg-white/15' :'bg-gray-50 text-[#808080] border-[#d7d7d7] hover:text-[#1e1e1e] hover:border-[#b0b0b0] hover:bg-white'
+                  ? 'bg-white/10 text-white/60 border-white/10 hover:text-white hover:border-white/30 hover:bg-white/15'
+                  : 'bg-gray-50 text-[#808080] border-[#d7d7d7] hover:text-[#1e1e1e] hover:border-[#b0b0b0] hover:bg-white'
             )}
           >
             {copied ? (
-              <><Check className="h-3.5 w-3.5" />Copied!</>
+              <>
+                <Check className="h-3.5 w-3.5" />
+                Copied!
+              </>
             ) : (
-              <><Copy className="h-3.5 w-3.5" />Copy import</>
+              <>
+                <Copy className="h-3.5 w-3.5" />
+                Copy import
+              </>
             )}
           </button>
         )}
@@ -121,7 +129,8 @@ export default function ShowcaseTopbar({ activeEntry, onMenuClick }: ShowcaseTop
           className={cn(
             'p-1.5 rounded-md transition-colors',
             isNavy
-              ? 'text-white/60 hover:text-white hover:bg-white/10' :'text-[#808080] hover:text-[#1e1e1e] hover:bg-gray-100'
+              ? 'text-white/60 hover:text-white hover:bg-white/10'
+              : 'text-[#808080] hover:text-[#1e1e1e] hover:bg-gray-100'
           )}
         >
           {isNavy ? <SunIcon className="h-4 w-4" /> : <MoonIcon className="h-4 w-4" />}
@@ -134,7 +143,8 @@ export default function ShowcaseTopbar({ activeEntry, onMenuClick }: ShowcaseTop
           className={cn(
             'p-1.5 rounded-md transition-colors',
             isNavy
-              ? 'text-white/60 hover:text-white hover:bg-white/10' :'text-[#808080] hover:text-[#1e1e1e] hover:bg-gray-100'
+              ? 'text-white/60 hover:text-white hover:bg-white/10'
+              : 'text-[#808080] hover:text-[#1e1e1e] hover:bg-gray-100'
           )}
           aria-label="View on GitHub"
         >
@@ -145,7 +155,8 @@ export default function ShowcaseTopbar({ activeEntry, onMenuClick }: ShowcaseTop
           className={cn(
             'p-1.5 rounded-md transition-colors',
             isNavy
-              ? 'text-white/60 hover:text-white hover:bg-white/10' :'text-[#808080] hover:text-[#1e1e1e] hover:bg-gray-100'
+              ? 'text-white/60 hover:text-white hover:bg-white/10'
+              : 'text-[#808080] hover:text-[#1e1e1e] hover:bg-gray-100'
           )}
           aria-label="Documentation"
         >
