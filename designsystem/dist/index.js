@@ -477,7 +477,10 @@ var CardTitle = (0, import_react3.forwardRef)(
       "p",
       __spreadValues({
         ref,
-        className: cn("text-base font-semibold leading-snug tracking-tight text-foreground", className)
+        className: cn(
+          "text-base font-semibold leading-snug tracking-tight text-foreground",
+          className
+        )
       }, props)
     );
   }
@@ -485,7 +488,13 @@ var CardTitle = (0, import_react3.forwardRef)(
 var CardDescription = (0, import_react3.forwardRef)(
   (_a, ref) => {
     var _b = _a, { className } = _b, props = __objRest(_b, ["className"]);
-    return /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("p", __spreadValues({ ref, className: cn("text-sm leading-relaxed text-muted-foreground", className) }, props));
+    return /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(
+      "p",
+      __spreadValues({
+        ref,
+        className: cn("text-sm leading-relaxed text-muted-foreground", className)
+      }, props)
+    );
   }
 );
 var CardContent = (0, import_react3.forwardRef)(
@@ -688,8 +697,22 @@ var Modal = ({
             children: [
               (title || showCloseButton) && /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "flex items-start justify-between border-b border-border/50 px-6 py-4", children: [
                 /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { children: [
-                  title && /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("h2", { id: "modal-title", className: "text-lg font-semibold tracking-tight text-foreground", children: title }),
-                  description && /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("p", { id: "modal-description", className: "mt-1 text-sm leading-relaxed text-muted-foreground", children: description })
+                  title && /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
+                    "h2",
+                    {
+                      id: "modal-title",
+                      className: "text-lg font-semibold tracking-tight text-foreground",
+                      children: title
+                    }
+                  ),
+                  description && /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
+                    "p",
+                    {
+                      id: "modal-description",
+                      className: "mt-1 text-sm leading-relaxed text-muted-foreground",
+                      children: description
+                    }
+                  )
                 ] }),
                 showCloseButton && /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
                   "button",
@@ -733,59 +756,68 @@ function Table({
   loading = false
 }) {
   const cellPad = compact ? "px-3 py-2" : "px-4 py-3";
-  return /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("div", { className: cn("w-full overflow-x-auto rounded-xl border border-border bg-surface shadow-card", className), children: /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("table", { className: "w-full text-sm border-collapse", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("thead", { children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("tr", { className: "border-b border-border bg-muted/40", children: columns.map((col) => /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
-      "th",
-      {
-        style: { width: col.width },
-        className: cn(
-          cellPad,
-          "whitespace-nowrap text-xs font-medium uppercase tracking-[0.1em] text-muted-foreground",
-          col.align === "center" && "text-center",
-          col.align === "right" && "text-right",
-          col.sortable && "cursor-pointer select-none transition-colors hover:bg-background hover:text-foreground",
-          bordered && "border-r border-border last:border-r-0"
-        ),
-        onClick: () => col.sortable && (onSort == null ? void 0 : onSort(col.key)),
-        "aria-sort": sortKey === col.key ? sortDir === "asc" ? "ascending" : "descending" : void 0,
-        children: /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("span", { className: "inline-flex items-center gap-1", children: [
-          col.header,
-          col.sortable && sortKey === col.key && /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("span", { "aria-hidden": "true", className: "text-primary", children: sortDir === "asc" ? "\u2191" : "\u2193" })
-        ] })
-      },
-      col.key
-    )) }) }),
-    /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("tbody", { children: loading ? Array.from({ length: 5 }).map((_, i) => /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("tr", { className: "border-b border-border", children: columns.map((col) => /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("td", { className: cellPad, children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("div", { className: "h-4 rounded bg-muted animate-pulse" }) }, col.key)) }, i)) : data.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("tr", { children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("td", { colSpan: columns.length, className: "py-12 text-center text-muted-foreground", children: emptyMessage }) }) : data.map((row, i) => /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
-      "tr",
-      {
-        onClick: () => onRowClick == null ? void 0 : onRowClick(row),
-        className: cn(
-          "border-b border-border last:border-b-0 transition-colors duration-100",
-          striped && i % 2 === 1 && "bg-muted/30",
-          hoverable && "hover:bg-muted/50",
-          onRowClick && "cursor-pointer"
-        ),
-        children: columns.map((col) => {
-          var _a;
-          return /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
-            "td",
-            {
-              className: cn(
-                cellPad,
-                "text-foreground",
-                col.align === "center" && "text-center",
-                col.align === "right" && "text-right",
-                bordered && "border-r border-border last:border-r-0"
-              ),
-              children: col.cell ? col.cell(row, i) : String((_a = row[col.key]) != null ? _a : "\u2014")
-            },
-            col.key
-          );
-        })
-      },
-      keyExtractor(row, i)
-    )) })
-  ] }) });
+  return /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
+    "div",
+    {
+      className: cn(
+        "w-full overflow-x-auto rounded-xl border border-border bg-surface shadow-card",
+        className
+      ),
+      children: /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("table", { className: "w-full text-sm border-collapse", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("thead", { children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("tr", { className: "border-b border-border bg-muted/40", children: columns.map((col) => /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
+          "th",
+          {
+            style: { width: col.width },
+            className: cn(
+              cellPad,
+              "whitespace-nowrap text-xs font-medium uppercase tracking-[0.1em] text-muted-foreground",
+              col.align === "center" && "text-center",
+              col.align === "right" && "text-right",
+              col.sortable && "cursor-pointer select-none transition-colors hover:bg-background hover:text-foreground",
+              bordered && "border-r border-border last:border-r-0"
+            ),
+            onClick: () => col.sortable && (onSort == null ? void 0 : onSort(col.key)),
+            "aria-sort": sortKey === col.key ? sortDir === "asc" ? "ascending" : "descending" : void 0,
+            children: /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("span", { className: "inline-flex items-center gap-1", children: [
+              col.header,
+              col.sortable && sortKey === col.key && /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("span", { "aria-hidden": "true", className: "text-primary", children: sortDir === "asc" ? "\u2191" : "\u2193" })
+            ] })
+          },
+          col.key
+        )) }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("tbody", { children: loading ? Array.from({ length: 5 }).map((_, i) => /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("tr", { className: "border-b border-border", children: columns.map((col) => /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("td", { className: cellPad, children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("div", { className: "h-4 rounded bg-muted animate-pulse" }) }, col.key)) }, i)) : data.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("tr", { children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("td", { colSpan: columns.length, className: "py-12 text-center text-muted-foreground", children: emptyMessage }) }) : data.map((row, i) => /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
+          "tr",
+          {
+            onClick: () => onRowClick == null ? void 0 : onRowClick(row),
+            className: cn(
+              "border-b border-border last:border-b-0 transition-colors duration-100",
+              striped && i % 2 === 1 && "bg-muted/30",
+              hoverable && "hover:bg-muted/50",
+              onRowClick && "cursor-pointer"
+            ),
+            children: columns.map((col) => {
+              var _a;
+              return /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
+                "td",
+                {
+                  className: cn(
+                    cellPad,
+                    "text-foreground",
+                    col.align === "center" && "text-center",
+                    col.align === "right" && "text-right",
+                    bordered && "border-r border-border last:border-r-0"
+                  ),
+                  children: col.cell ? col.cell(row, i) : String((_a = row[col.key]) != null ? _a : "\u2014")
+                },
+                col.key
+              );
+            })
+          },
+          keyExtractor(row, i)
+        )) })
+      ] })
+    }
+  );
 }
 Table.displayName = "Table";
 var Table_default = Table;
@@ -844,7 +876,8 @@ var Pagination = ({
       (page - 1) * pageSize + 1,
       "\u2013",
       Math.min(page * pageSize, total),
-      " of ",
+      " of",
+      " ",
       total.toLocaleString("en-US")
     ] }),
     /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("div", { className: "flex items-center gap-1 ml-auto", children: [
@@ -2385,7 +2418,10 @@ function DatePicker({
   const selected = value !== void 0 ? value : internalValue;
   const [open, setOpen] = (0, import_react11.useState)(false);
   const wrapperRef = (0, import_react11.useRef)(null);
-  useClickOutside(wrapperRef, (0, import_react11.useCallback)(() => setOpen(false), []));
+  useClickOutside(
+    wrapperRef,
+    (0, import_react11.useCallback)(() => setOpen(false), [])
+  );
   const handleKeyDown = (e) => {
     if (e.key === "Escape") setOpen(false);
   };
@@ -2402,120 +2438,114 @@ function DatePicker({
   const displayValue = selected ? formatDate(selected) : "";
   const hasError = Boolean(error);
   const cfg = sizeConfig[size];
-  return /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)(
-    "div",
-    {
-      ref: wrapperRef,
-      className: cn("relative w-full", className),
-      onKeyDown: handleKeyDown,
-      children: [
-        label && /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("label", { htmlFor: inputId, className: "mb-1.5 block text-sm font-medium text-foreground", children: [
-          label,
-          required && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("span", { className: "ml-1 text-destructive", "aria-label": "required", children: "*" })
-        ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("div", { className: "relative flex items-center", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(
-            "div",
-            {
-              "aria-hidden": "true",
-              className: cn(
-                "pointer-events-none absolute left-0 top-0 flex h-full items-center justify-center border-r",
-                cfg.zone,
-                hasError ? "border-destructive/40 text-destructive/80" : open ? "border-primary/30 text-primary" : "border-input text-muted-foreground/70 group-hover:text-muted-foreground",
-                disabled && "opacity-40"
-              ),
-              children: /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(import_outline2.CalendarIcon, { className: cfg.icon })
-            }
+  return /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("div", { ref: wrapperRef, className: cn("relative w-full", className), onKeyDown: handleKeyDown, children: [
+    label && /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("label", { htmlFor: inputId, className: "mb-1.5 block text-sm font-medium text-foreground", children: [
+      label,
+      required && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("span", { className: "ml-1 text-destructive", "aria-label": "required", children: "*" })
+    ] }),
+    /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("div", { className: "relative flex items-center", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(
+        "div",
+        {
+          "aria-hidden": "true",
+          className: cn(
+            "pointer-events-none absolute left-0 top-0 flex h-full items-center justify-center border-r",
+            cfg.zone,
+            hasError ? "border-destructive/40 text-destructive/80" : open ? "border-primary/30 text-primary" : "border-input text-muted-foreground/70 group-hover:text-muted-foreground",
+            disabled && "opacity-40"
           ),
-          /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(
-            "button",
-            {
-              id: inputId,
-              type: "button",
-              role: "combobox",
-              "aria-haspopup": "dialog",
-              "aria-expanded": open,
-              "aria-label": (_a = ariaLabel != null ? ariaLabel : label) != null ? _a : placeholder,
-              "aria-invalid": hasError,
-              disabled,
-              onClick: () => !disabled && setOpen((v) => !v),
-              className: cn(
-                "relative flex w-full items-center border bg-surface transition-all duration-150",
-                cfg.height,
-                cfg.text,
-                cfg.pl,
-                cfg.pr,
-                cfg.radius,
-                // State: open
-                open && !hasError && "border-primary shadow-[0_0_0_3px_hsl(var(--primary)/0.12)]",
-                // State: error
-                hasError && "border-destructive/60 shadow-[0_0_0_3px_hsl(var(--destructive)/0.10)]",
-                // State: default / hover
-                !open && !hasError && "border-input hover:border-muted-foreground/40",
-                // Text colour
-                displayValue ? "text-foreground font-medium" : "text-muted-foreground/60",
-                // Disabled
-                disabled ? "cursor-not-allowed opacity-50 bg-muted/40 hover:border-input" : "cursor-pointer"
-              ),
-              children: displayValue || placeholder
-            }
+          children: /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(import_outline2.CalendarIcon, { className: cfg.icon })
+        }
+      ),
+      /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(
+        "button",
+        {
+          id: inputId,
+          type: "button",
+          role: "combobox",
+          "aria-haspopup": "dialog",
+          "aria-expanded": open,
+          "aria-controls": open ? `${inputId}-popover` : void 0,
+          "aria-label": (_a = ariaLabel != null ? ariaLabel : label) != null ? _a : placeholder,
+          "aria-invalid": hasError,
+          disabled,
+          onClick: () => !disabled && setOpen((v) => !v),
+          className: cn(
+            "relative flex w-full items-center border bg-surface transition-all duration-150",
+            cfg.height,
+            cfg.text,
+            cfg.pl,
+            cfg.pr,
+            cfg.radius,
+            // State: open
+            open && !hasError && "border-primary shadow-[0_0_0_3px_hsl(var(--primary)/0.12)]",
+            // State: error
+            hasError && "border-destructive/60 shadow-[0_0_0_3px_hsl(var(--destructive)/0.10)]",
+            // State: default / hover
+            !open && !hasError && "border-input hover:border-muted-foreground/40",
+            // Text colour
+            displayValue ? "text-foreground font-medium" : "text-muted-foreground/60",
+            // Disabled
+            disabled ? "cursor-not-allowed opacity-50 bg-muted/40 hover:border-input" : "cursor-pointer"
           ),
-          /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("div", { className: "pointer-events-none absolute right-0 top-0 flex h-full items-center pr-3", children: selected && !disabled ? /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(
-            "button",
-            {
-              type: "button",
-              onClick: handleClear,
-              "aria-label": "Clear date",
-              className: cn(
-                "pointer-events-auto flex items-center justify-center rounded-md p-0.5",
-                "text-muted-foreground/60 transition-colors",
-                "hover:bg-muted hover:text-foreground"
-              ),
-              children: /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(import_outline2.XMarkIcon, { className: cfg.icon })
-            }
-          ) : /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(
-            import_outline2.CalendarIcon,
-            {
-              "aria-hidden": "true",
-              className: cn(
-                cfg.icon,
-                "text-muted-foreground/50 transition-colors duration-150",
-                open && "text-primary"
-              )
-            }
-          ) })
-        ] }),
-        hasError && typeof error === "string" && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("p", { className: cn("mt-1.5 text-destructive", cfg.hint), role: "alert", children: error }),
-        !hasError && hint && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("p", { className: cn("mt-1.5 text-muted-foreground", cfg.hint), children: hint }),
-        open && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(
-          "div",
+          children: displayValue || placeholder
+        }
+      ),
+      /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("div", { className: "pointer-events-none absolute right-0 top-0 flex h-full items-center pr-3", children: selected && !disabled ? /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(
+        "button",
+        {
+          type: "button",
+          onClick: handleClear,
+          "aria-label": "Clear date",
+          className: cn(
+            "pointer-events-auto flex items-center justify-center rounded-md p-0.5",
+            "text-muted-foreground/60 transition-colors",
+            "hover:bg-muted hover:text-foreground"
+          ),
+          children: /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(import_outline2.XMarkIcon, { className: cfg.icon })
+        }
+      ) : /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(
+        import_outline2.CalendarIcon,
+        {
+          "aria-hidden": "true",
+          className: cn(
+            cfg.icon,
+            "text-muted-foreground/50 transition-colors duration-150",
+            open && "text-primary"
+          )
+        }
+      ) })
+    ] }),
+    hasError && typeof error === "string" && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("p", { className: cn("mt-1.5 text-destructive", cfg.hint), role: "alert", children: error }),
+    !hasError && hint && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("p", { className: cn("mt-1.5 text-muted-foreground", cfg.hint), children: hint }),
+    open && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(
+      "div",
+      {
+        id: `${inputId}-popover`,
+        role: "dialog",
+        "aria-label": "Date picker calendar",
+        "aria-modal": "false",
+        className: cn(
+          "absolute left-0 top-full z-50 mt-2",
+          "rounded-2xl border border-border bg-popover shadow-dropdown",
+          "p-2",
+          "animate-[fade-in_0.18s_ease-out]",
+          "origin-top"
+        ),
+        children: /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(
+          Calendar,
           {
-            role: "dialog",
-            "aria-label": "Date picker calendar",
-            "aria-modal": "false",
-            className: cn(
-              "absolute left-0 top-full z-50 mt-2",
-              "rounded-2xl border border-border bg-popover shadow-dropdown",
-              "p-2",
-              "animate-[fade-in_0.18s_ease-out]",
-              "origin-top"
-            ),
-            children: /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(
-              Calendar,
-              {
-                value: selected != null ? selected : null,
-                onChange: handleSelect,
-                theme,
-                minDate,
-                maxDate,
-                "aria-label": "Pick a date"
-              }
-            )
+            value: selected != null ? selected : null,
+            onChange: handleSelect,
+            theme,
+            minDate,
+            maxDate,
+            "aria-label": "Pick a date"
           }
         )
-      ]
-    }
-  );
+      }
+    )
+  ] });
 }
 
 // src/components/Checkbox/Checkbox.tsx
@@ -2952,7 +2982,7 @@ var Progress = (_a) => {
     showLabel = false,
     label,
     animated = false,
-    striped = false
+    striped: _striped = false
   } = _b, props = __objRest(_b, [
     "className",
     "size",
@@ -3248,24 +3278,30 @@ function ServerDataTable({
   const colCount = columns.length;
   const colStyle = { flex: 1, minWidth: 0 };
   return /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("div", { className: `w-full ${className}`, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("div", { className: "mb-5 flex justify-center", children: /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("div", { className: `inline-flex overflow-hidden rounded-full border ${tk.toggleBorder} bg-background/70 p-1`, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(
-        "button",
-        {
-          onClick: () => handleStatusToggle("active"),
-          className: `rounded-full px-7 py-2 text-sm font-semibold transition-colors focus:outline-none ${status === "active" ? tk.toggleActiveBg : tk.toggleInactiveBg}`,
-          children: "Active"
-        }
-      ),
-      /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(
-        "button",
-        {
-          onClick: () => handleStatusToggle("closed"),
-          className: `rounded-full px-7 py-2 text-sm font-semibold transition-colors focus:outline-none ${status === "closed" ? tk.toggleActiveBg : tk.toggleInactiveBg}`,
-          children: "Closed"
-        }
-      )
-    ] }) }),
+    /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("div", { className: "mb-5 flex justify-center", children: /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)(
+      "div",
+      {
+        className: `inline-flex overflow-hidden rounded-full border ${tk.toggleBorder} bg-background/70 p-1`,
+        children: [
+          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(
+            "button",
+            {
+              onClick: () => handleStatusToggle("active"),
+              className: `rounded-full px-7 py-2 text-sm font-semibold transition-colors focus:outline-none ${status === "active" ? tk.toggleActiveBg : tk.toggleInactiveBg}`,
+              children: "Active"
+            }
+          ),
+          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(
+            "button",
+            {
+              onClick: () => handleStatusToggle("closed"),
+              className: `rounded-full px-7 py-2 text-sm font-semibold transition-colors focus:outline-none ${status === "closed" ? tk.toggleActiveBg : tk.toggleInactiveBg}`,
+              children: "Closed"
+            }
+          )
+        ]
+      }
+    ) }),
     /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("div", { className: "relative mb-4 max-w-xs", children: [
       /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(
         import_outline3.MagnifyingGlassIcon,
@@ -3508,11 +3544,7 @@ var Skeleton = (_a) => {
     "animated",
     "style"
   ]);
-  const base = cn(
-    "rounded-lg bg-muted/80",
-    animated && "animate-pulse",
-    className
-  );
+  const base = cn("rounded-lg bg-muted/80", animated && "animate-pulse", className);
   if (variant === "text" && lines > 1) {
     return /* @__PURE__ */ (0, import_jsx_runtime27.jsx)("div", __spreadProps(__spreadValues({ className: "flex flex-col gap-2" }, props), { children: Array.from({ length: lines }).map((_, i) => /* @__PURE__ */ (0, import_jsx_runtime27.jsx)(
       "div",
@@ -3535,20 +3567,26 @@ var Skeleton = (_a) => {
     }, props)
   );
 };
-var SkeletonCard = ({ className }) => /* @__PURE__ */ (0, import_jsx_runtime27.jsxs)("div", { className: cn("space-y-3 rounded-2xl border border-border bg-card p-5 shadow-card", className), children: [
-  /* @__PURE__ */ (0, import_jsx_runtime27.jsxs)("div", { className: "flex items-center gap-3", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime27.jsx)(Skeleton, { variant: "circle", width: 40, height: 40 }),
-    /* @__PURE__ */ (0, import_jsx_runtime27.jsxs)("div", { className: "flex-1 space-y-2", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime27.jsx)(Skeleton, { variant: "text", width: "60%", height: 16 }),
-      /* @__PURE__ */ (0, import_jsx_runtime27.jsx)(Skeleton, { variant: "text", width: "40%", height: 12 })
-    ] })
-  ] }),
-  /* @__PURE__ */ (0, import_jsx_runtime27.jsx)(Skeleton, { variant: "text", lines: 3 }),
-  /* @__PURE__ */ (0, import_jsx_runtime27.jsxs)("div", { className: "flex gap-2 pt-1", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime27.jsx)(Skeleton, { width: 80, height: 32 }),
-    /* @__PURE__ */ (0, import_jsx_runtime27.jsx)(Skeleton, { width: 80, height: 32 })
-  ] })
-] });
+var SkeletonCard = ({ className }) => /* @__PURE__ */ (0, import_jsx_runtime27.jsxs)(
+  "div",
+  {
+    className: cn("space-y-3 rounded-2xl border border-border bg-card p-5 shadow-card", className),
+    children: [
+      /* @__PURE__ */ (0, import_jsx_runtime27.jsxs)("div", { className: "flex items-center gap-3", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime27.jsx)(Skeleton, { variant: "circle", width: 40, height: 40 }),
+        /* @__PURE__ */ (0, import_jsx_runtime27.jsxs)("div", { className: "flex-1 space-y-2", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime27.jsx)(Skeleton, { variant: "text", width: "60%", height: 16 }),
+          /* @__PURE__ */ (0, import_jsx_runtime27.jsx)(Skeleton, { variant: "text", width: "40%", height: 12 })
+        ] })
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime27.jsx)(Skeleton, { variant: "text", lines: 3 }),
+      /* @__PURE__ */ (0, import_jsx_runtime27.jsxs)("div", { className: "flex gap-2 pt-1", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime27.jsx)(Skeleton, { width: 80, height: 32 }),
+        /* @__PURE__ */ (0, import_jsx_runtime27.jsx)(Skeleton, { width: 80, height: 32 })
+      ] })
+    ]
+  }
+);
 SkeletonCard.displayName = "SkeletonCard";
 Skeleton.displayName = "Skeleton";
 var Skeleton_default = Skeleton;
@@ -3868,7 +3906,10 @@ var Topbar = (0, import_react20.forwardRef)(
       "header",
       __spreadProps(__spreadValues({
         ref,
-        className: cn("w-full border-b border-white/20 bg-white/70 px-4 py-3 backdrop-blur-xl dark:border-border/70 dark:bg-card/70 sm:px-6", className)
+        className: cn(
+          "w-full border-b border-white/20 bg-white/70 px-4 py-3 backdrop-blur-xl dark:border-border/70 dark:bg-card/70 sm:px-6",
+          className
+        )
       }, props), {
         children: /* @__PURE__ */ (0, import_jsx_runtime32.jsxs)("div", { className: "flex items-center justify-between gap-4", children: [
           /* @__PURE__ */ (0, import_jsx_runtime32.jsxs)("div", { className: "flex items-center gap-3", children: [
@@ -4171,16 +4212,28 @@ var DashboardShell = (0, import_react25.forwardRef)(
       "div",
       __spreadProps(__spreadValues({
         ref,
-        className: cn("grid min-h-screen grid-cols-1 bg-background text-foreground lg:grid-cols-[18rem_minmax(0,1fr)]", className)
+        className: cn(
+          "grid min-h-screen grid-cols-1 bg-background text-foreground lg:grid-cols-[18rem_minmax(0,1fr)]",
+          className
+        )
       }, props), {
         children: [
           sidebar ? /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("aside", { className: "hidden border-r border-sidebar-border bg-sidebar text-sidebar-foreground lg:flex lg:flex-col", children: sidebar }) : null,
           /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("div", { className: "flex min-w-0 flex-col", children: [
             header ? /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("header", { className: "sticky top-0 z-30 border-b border-border bg-background/88 backdrop-blur-xl", children: header }) : null,
-            /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("div", { className: cn("grid flex-1 grid-cols-1 gap-2xl px-4 py-2xl sm:px-6 xl:grid-cols-[minmax(0,1fr)_20rem]", contentClassName), children: [
-              /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("main", { className: "min-w-0", children }),
-              aside ? /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("aside", { className: "hidden xl:block", children: aside }) : null
-            ] })
+            /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)(
+              "div",
+              {
+                className: cn(
+                  "grid flex-1 grid-cols-1 gap-2xl px-4 py-2xl sm:px-6 xl:grid-cols-[minmax(0,1fr)_20rem]",
+                  contentClassName
+                ),
+                children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("main", { className: "min-w-0", children }),
+                  aside ? /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("aside", { className: "hidden xl:block", children: aside }) : null
+                ]
+              }
+            )
           ] })
         ]
       })
@@ -4217,10 +4270,12 @@ var headingVariants = (0, import_class_variance_authority11.cva)("font-display f
     size: "md"
   }
 });
-var Heading = (0, import_react27.forwardRef)((_a, ref) => {
-  var _b = _a, { className, size } = _b, props = __objRest(_b, ["className", "size"]);
-  return /* @__PURE__ */ (0, import_jsx_runtime39.jsx)("h2", __spreadValues({ ref, className: cn(headingVariants({ size }), className) }, props));
-});
+var Heading = (0, import_react27.forwardRef)(
+  (_a, ref) => {
+    var _b = _a, { className, size } = _b, props = __objRest(_b, ["className", "size"]);
+    return /* @__PURE__ */ (0, import_jsx_runtime39.jsx)("h2", __spreadValues({ ref, className: cn(headingVariants({ size }), className) }, props));
+  }
+);
 Heading.displayName = "Heading";
 var Heading_default = Heading;
 
@@ -4249,10 +4304,12 @@ var inlineVariants = (0, import_class_variance_authority12.cva)("flex flex-wrap 
     justify: "start"
   }
 });
-var Inline = (0, import_react28.forwardRef)((_a, ref) => {
-  var _b = _a, { className, gap, justify } = _b, props = __objRest(_b, ["className", "gap", "justify"]);
-  return /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("div", __spreadValues({ ref, className: cn(inlineVariants({ gap, justify }), className) }, props));
-});
+var Inline = (0, import_react28.forwardRef)(
+  (_a, ref) => {
+    var _b = _a, { className, gap, justify } = _b, props = __objRest(_b, ["className", "gap", "justify"]);
+    return /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("div", __spreadValues({ ref, className: cn(inlineVariants({ gap, justify }), className) }, props));
+  }
+);
 Inline.displayName = "Inline";
 var Inline_default = Inline;
 
@@ -4786,109 +4843,146 @@ var editableColorTokens = [
 ];
 function ThemeEditor() {
   const { theme, themeId, themes, setTheme, updateColor, updateRadius, resetOverrides } = useTheme();
-  return /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)(Card_default, { variant: "elevated", className: "overflow-hidden border-border/80 bg-surface-elevated/90 shadow-card-md", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(CardHeader, { className: "border-b border-border/70 pb-lg", children: /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)("div", { className: "flex items-start justify-between gap-lg", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)("div", { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(CardTitle, { className: "text-xl", children: "Theme Editor" }),
-        /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(CardDescription, { children: "Switch themes, tune tokens, and inspect the live system preview in real time." })
-      ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Button_default, { variant: "secondary", size: "sm", onClick: resetOverrides, leftIcon: /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(import_lucide_react16.RotateCcw, { className: "h-4 w-4" }), children: "Reset" })
-    ] }) }),
-    /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)(CardContent, { className: "grid gap-xl pt-xl xl:grid-cols-[minmax(0,1fr)_20rem]", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)("div", { className: "grid gap-xl md:grid-cols-2", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)("div", { className: "space-y-lg", children: [
+  return /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)(
+    Card_default,
+    {
+      variant: "elevated",
+      className: "overflow-hidden border-border/80 bg-surface-elevated/90 shadow-card-md",
+      children: [
+        /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(CardHeader, { className: "border-b border-border/70 pb-lg", children: /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)("div", { className: "flex items-start justify-between gap-lg", children: [
           /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)("div", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime45.jsx)("p", { className: "mb-sm text-sm font-semibold text-foreground", children: "Theme Presets" }),
-            /* @__PURE__ */ (0, import_jsx_runtime45.jsx)("div", { className: "grid gap-sm sm:grid-cols-3", children: themes.map((item) => /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)(
-              "button",
-              {
-                type: "button",
-                onClick: () => setTheme(item.id),
-                className: [
-                  "rounded-xl border px-lg py-md text-left transition-colors",
-                  item.id === themeId ? "border-primary bg-accent text-accent-foreground" : "border-border bg-surface hover:bg-surface-muted"
-                ].join(" "),
-                children: [
-                  /* @__PURE__ */ (0, import_jsx_runtime45.jsx)("p", { className: "text-sm font-semibold", children: item.name }),
-                  /* @__PURE__ */ (0, import_jsx_runtime45.jsx)("p", { className: "mt-1 text-xs text-muted-foreground", children: item.description })
-                ]
-              },
-              item.id
-            )) })
+            /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(CardTitle, { className: "text-xl", children: "Theme Editor" }),
+            /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(CardDescription, { children: "Switch themes, tune tokens, and inspect the live system preview in real time." })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)("div", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime45.jsx)("p", { className: "mb-sm text-sm font-semibold text-foreground", children: "Color Tokens" }),
-            /* @__PURE__ */ (0, import_jsx_runtime45.jsx)("div", { className: "grid gap-md sm:grid-cols-2", children: editableColorTokens.map((token) => /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)("label", { className: "flex items-center gap-md rounded-xl border border-border bg-surface p-md", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(
+            Button_default,
+            {
+              variant: "secondary",
+              size: "sm",
+              onClick: resetOverrides,
+              leftIcon: /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(import_lucide_react16.RotateCcw, { className: "h-4 w-4" }),
+              children: "Reset"
+            }
+          )
+        ] }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)(CardContent, { className: "grid gap-xl pt-xl xl:grid-cols-[minmax(0,1fr)_20rem]", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)("div", { className: "grid gap-xl md:grid-cols-2", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)("div", { className: "space-y-lg", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)("div", { children: [
+                /* @__PURE__ */ (0, import_jsx_runtime45.jsx)("p", { className: "mb-sm text-sm font-semibold text-foreground", children: "Theme Presets" }),
+                /* @__PURE__ */ (0, import_jsx_runtime45.jsx)("div", { className: "grid gap-sm sm:grid-cols-3", children: themes.map((item) => /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)(
+                  "button",
+                  {
+                    type: "button",
+                    onClick: () => setTheme(item.id),
+                    className: [
+                      "rounded-xl border px-lg py-md text-left transition-colors",
+                      item.id === themeId ? "border-primary bg-accent text-accent-foreground" : "border-border bg-surface hover:bg-surface-muted"
+                    ].join(" "),
+                    children: [
+                      /* @__PURE__ */ (0, import_jsx_runtime45.jsx)("p", { className: "text-sm font-semibold", children: item.name }),
+                      /* @__PURE__ */ (0, import_jsx_runtime45.jsx)("p", { className: "mt-1 text-xs text-muted-foreground", children: item.description })
+                    ]
+                  },
+                  item.id
+                )) })
+              ] }),
+              /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)("div", { children: [
+                /* @__PURE__ */ (0, import_jsx_runtime45.jsx)("p", { className: "mb-sm text-sm font-semibold text-foreground", children: "Color Tokens" }),
+                /* @__PURE__ */ (0, import_jsx_runtime45.jsx)("div", { className: "grid gap-md sm:grid-cols-2", children: editableColorTokens.map((token) => /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)(
+                  "label",
+                  {
+                    className: "flex items-center gap-md rounded-xl border border-border bg-surface p-md",
+                    children: [
+                      /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(
+                        "input",
+                        {
+                          type: "color",
+                          value: theme.tokens.colors[token.key],
+                          onChange: (event) => updateColor(token.key, event.target.value),
+                          className: "h-11 w-11 rounded-lg border border-border bg-transparent p-1"
+                        }
+                      ),
+                      /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)("span", { className: "min-w-0", children: [
+                        /* @__PURE__ */ (0, import_jsx_runtime45.jsx)("span", { className: "block text-sm font-medium text-foreground", children: token.label }),
+                        /* @__PURE__ */ (0, import_jsx_runtime45.jsx)("span", { className: "block truncate text-xs text-muted-foreground", children: theme.tokens.colors[token.key] })
+                      ] })
+                    ]
+                  },
+                  token.key
+                )) })
+              ] }),
+              /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)("div", { children: [
+                /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)("div", { className: "mb-sm flex items-center justify-between", children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime45.jsx)("p", { className: "text-sm font-semibold text-foreground", children: "Radius Scale" }),
+                  /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Badge_default, { variant: "outline", children: theme.tokens.radius.md })
+                ] }),
+                /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(
+                  "input",
+                  {
+                    type: "range",
+                    min: 6,
+                    max: 32,
+                    step: 1,
+                    value: parseInt(theme.tokens.radius.md, 10),
+                    onChange: (event) => updateRadius("md", `${event.target.value}px`),
+                    className: "w-full accent-primary"
+                  }
+                )
+              ] })
+            ] }),
+            /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)("div", { className: "space-y-md rounded-2xl border border-border bg-background p-lg", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime45.jsx)("p", { className: "text-sm font-semibold text-foreground", children: "Token Inspector" }),
+              /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Input_default, { label: "Font Stack", value: theme.tokens.typography.fontSans, readOnly: true }),
               /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(
-                "input",
+                Input_default,
                 {
-                  type: "color",
-                  value: theme.tokens.colors[token.key],
-                  onChange: (event) => updateColor(token.key, event.target.value),
-                  className: "h-11 w-11 rounded-lg border border-border bg-transparent p-1"
+                  label: "Spacing Scale",
+                  value: `${theme.tokens.spacing.sm} / ${theme.tokens.spacing.lg} / ${theme.tokens.spacing["2xl"]}`,
+                  readOnly: true
                 }
               ),
-              /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)("span", { className: "min-w-0", children: [
-                /* @__PURE__ */ (0, import_jsx_runtime45.jsx)("span", { className: "block text-sm font-medium text-foreground", children: token.label }),
-                /* @__PURE__ */ (0, import_jsx_runtime45.jsx)("span", { className: "block truncate text-xs text-muted-foreground", children: theme.tokens.colors[token.key] })
-              ] })
-            ] }, token.key)) })
-          ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)("div", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)("div", { className: "mb-sm flex items-center justify-between", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime45.jsx)("p", { className: "text-sm font-semibold text-foreground", children: "Radius Scale" }),
-              /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Badge_default, { variant: "outline", children: theme.tokens.radius.md })
-            ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(
-              "input",
-              {
-                type: "range",
-                min: 6,
-                max: 32,
-                step: 1,
-                value: parseInt(theme.tokens.radius.md, 10),
-                onChange: (event) => updateRadius("md", `${event.target.value}px`),
-                className: "w-full accent-primary"
-              }
-            )
-          ] })
-        ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)("div", { className: "space-y-md rounded-2xl border border-border bg-background p-lg", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime45.jsx)("p", { className: "text-sm font-semibold text-foreground", children: "Token Inspector" }),
-          /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Input_default, { label: "Font Stack", value: theme.tokens.typography.fontSans, readOnly: true }),
-          /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Input_default, { label: "Spacing Scale", value: `${theme.tokens.spacing.sm} / ${theme.tokens.spacing.lg} / ${theme.tokens.spacing["2xl"]}`, readOnly: true }),
-          /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Input_default, { label: "Border Radius", value: `${theme.tokens.radius.sm} / ${theme.tokens.radius.md} / ${theme.tokens.radius.lg}`, readOnly: true })
-        ] })
-      ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)("div", { className: "rounded-2xl border border-border bg-background p-lg shadow-card", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime45.jsx)("p", { className: "mb-md text-sm font-semibold text-foreground", children: "Live Preview" }),
-        /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)("div", { className: "space-y-md rounded-2xl border border-border bg-surface p-lg shadow-card", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)("div", { className: "flex items-center justify-between gap-sm", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)("div", { children: [
-              /* @__PURE__ */ (0, import_jsx_runtime45.jsx)("p", { className: "text-sm font-semibold text-foreground", children: "Quarterly Revenue" }),
-              /* @__PURE__ */ (0, import_jsx_runtime45.jsx)("p", { className: "text-xs text-muted-foreground", children: "Token-driven card, badge, button, and input states." })
-            ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Badge_default, { variant: "primary", children: "Live" })
-          ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)("div", { className: "grid grid-cols-2 gap-sm", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)("div", { className: "rounded-xl border border-border bg-surface-muted p-md", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime45.jsx)("p", { className: "text-xs text-muted-foreground", children: "Primary" }),
-              /* @__PURE__ */ (0, import_jsx_runtime45.jsx)("p", { className: "mt-1 text-lg font-semibold text-foreground", children: "$1.24M" })
-            ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)("div", { className: "rounded-xl border border-success-border bg-success-soft p-md text-success", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime45.jsx)("p", { className: "text-xs text-current/75", children: "Growth" }),
-              /* @__PURE__ */ (0, import_jsx_runtime45.jsx)("p", { className: "mt-1 text-lg font-semibold text-current", children: "+18.4%" })
+              /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(
+                Input_default,
+                {
+                  label: "Border Radius",
+                  value: `${theme.tokens.radius.sm} / ${theme.tokens.radius.md} / ${theme.tokens.radius.lg}`,
+                  readOnly: true
+                }
+              )
             ] })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Input_default, { label: "Search", placeholder: "Tokens update this instantly" }),
-          /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)("div", { className: "flex gap-sm", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Button_default, { children: "Primary Action" }),
-            /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Button_default, { variant: "secondary", children: "Secondary" })
+          /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)("div", { className: "rounded-2xl border border-border bg-background p-lg shadow-card", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime45.jsx)("p", { className: "mb-md text-sm font-semibold text-foreground", children: "Live Preview" }),
+            /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)("div", { className: "space-y-md rounded-2xl border border-border bg-surface p-lg shadow-card", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)("div", { className: "flex items-center justify-between gap-sm", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)("div", { children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime45.jsx)("p", { className: "text-sm font-semibold text-foreground", children: "Quarterly Revenue" }),
+                  /* @__PURE__ */ (0, import_jsx_runtime45.jsx)("p", { className: "text-xs text-muted-foreground", children: "Token-driven card, badge, button, and input states." })
+                ] }),
+                /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Badge_default, { variant: "primary", children: "Live" })
+              ] }),
+              /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)("div", { className: "grid grid-cols-2 gap-sm", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)("div", { className: "rounded-xl border border-border bg-surface-muted p-md", children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime45.jsx)("p", { className: "text-xs text-muted-foreground", children: "Primary" }),
+                  /* @__PURE__ */ (0, import_jsx_runtime45.jsx)("p", { className: "mt-1 text-lg font-semibold text-foreground", children: "$1.24M" })
+                ] }),
+                /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)("div", { className: "rounded-xl border border-success-border bg-success-soft p-md text-success", children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime45.jsx)("p", { className: "text-xs text-current/75", children: "Growth" }),
+                  /* @__PURE__ */ (0, import_jsx_runtime45.jsx)("p", { className: "mt-1 text-lg font-semibold text-current", children: "+18.4%" })
+                ] })
+              ] }),
+              /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Input_default, { label: "Search", placeholder: "Tokens update this instantly" }),
+              /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)("div", { className: "flex gap-sm", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Button_default, { children: "Primary Action" }),
+                /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Button_default, { variant: "secondary", children: "Secondary" })
+              ] })
+            ] })
           ] })
         ] })
-      ] })
-    ] })
-  ] });
+      ]
+    }
+  );
 }
 
 // src/hooks/useDebounce.ts

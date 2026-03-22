@@ -1,6 +1,6 @@
 {
   "name": "shubh-cli",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "CLI tool for scaffolding components from shubh-ui design system",
   "bin": {
     "shubh-ui": "./dist/index.js"

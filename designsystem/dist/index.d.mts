@@ -576,8 +576,7 @@ declare const motionTokens: {
     };
 };
 
-interface BoxProps extends HTMLAttributes<HTMLDivElement> {
-}
+type BoxProps = HTMLAttributes<HTMLDivElement>;
 declare const Box: React$1.ForwardRefExoticComponent<BoxProps & React$1.RefAttributes<HTMLDivElement>>;
 
 declare const headingVariants: (props?: ({
