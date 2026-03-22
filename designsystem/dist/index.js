@@ -176,8 +176,8 @@ var buttonVariants = (0, import_class_variance_authority.cva)(
           "active:scale-[0.97] active:translate-y-0"
         ],
         outline: [
-          "border border-border bg-transparent text-foreground",
-          "hover:bg-muted hover:border-foreground/20 hover:-translate-y-px",
+          "border border-primary bg-transparent text-primary",
+          "hover:bg-primary hover:border-primary hover:-translate-y-px hover:text-primary-foreground",
           "active:scale-[0.97] active:translate-y-0"
         ],
         ghost: [
