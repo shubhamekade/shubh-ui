@@ -31,6 +31,7 @@ const VALID_COMPONENTS = [
   "accordion",
   "breadcrumb",
   "calendar",
+  "datepicker",
   "divider",
   "drawer",
   "progress",
@@ -39,6 +40,9 @@ const VALID_COMPONENTS = [
   "tag",
   "tooltip",
   "serverdatatable",
+  "adminsidebar",
+  "statscard",
+  "topbar",
 ];
 
 export async function addCommand(components: string[]) {

@@ -11,7 +11,10 @@
     "dev": "tsx watch src/index.ts",
     "build": "tsc",
     "lint": "eslint src/**/*.ts",
-    "format": "prettier --write \"src/**/*.ts\""
+    "format": "prettier --write \"src/**/*.ts\"",
+    "type-check": "tsc --noEmit",
+    "test": "echo 'No tests in CLI package'",
+    "ci": "npm run type-check && npm run build"
   },
   "keywords": [
     "cli",

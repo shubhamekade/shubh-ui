@@ -1,54 +1,97 @@
-import { forwardRef, useMemo, useState, type ImgHTMLAttributes } from "react";
-import { cn } from "@/utils/cn";
+import React from 'react';
+import { cva, type VariantProps } from 'class-variance-authority';
+import { User } from 'lucide-react';
+import { cn } from '@/utils/cn';
 
-export interface AvatarProps extends Omit<ImgHTMLAttributes<HTMLImageElement>, "size"> {
-  name?: string;
-  size?: "sm" | "md" | "lg";
-  shape?: "circle" | "square";
-  fallback?: string;
-}
-
-const sizeClasses: Record<NonNullable<AvatarProps["size"]>, string> = {
-  sm: "h-8 w-8 text-xs",
-  md: "h-10 w-10 text-sm",
-  lg: "h-14 w-14 text-base",
-};
-
-const Avatar = forwardRef<HTMLImageElement, AvatarProps>(
-  ({ className, name, size = "md", shape = "circle", fallback, alt, src, ...props }, ref) => {
-    const [hasError, setHasError] = useState(false);
-
-    const initials = useMemo(() => {
-      if (fallback) return fallback;
-      if (!name) return "?";
-      const parts = name.trim().split(/\s+/);
-      return (parts[0]?.[0] ?? "") + (parts[1]?.[0] ?? "");
-    }, [fallback, name]);
-
-    const sharedClasses = cn(
-      "inline-flex items-center justify-center overflow-hidden bg-slate-100 font-medium text-slate-700",
-      sizeClasses[size],
-      shape === "circle" ? "rounded-full" : "rounded-md",
-      className
-    );
-
-    if (!src || hasError) {
-      return <span className={sharedClasses} aria-label={alt ?? name ?? "avatar"}>{initials.toUpperCase()}</span>;
-    }
-
-    return (
-      <img
-        ref={ref}
-        src={src}
-        alt={alt ?? name ?? "avatar"}
-        onError={() => setHasError(true)}
-        className={sharedClasses}
-        {...props}
-      />
-    );
+export const avatarVariants = cva(
+  'inline-flex items-center justify-center shrink-0 overflow-hidden font-semibold select-none ring-2 ring-border/50',
+  {
+    variants: {
+      size: {
+        xs: 'h-6 w-6 text-[10px]',
+        sm: 'h-8 w-8 text-xs',
+        md: 'h-9 w-9 text-sm',
+        lg: 'h-11 w-11 text-base',
+        xl: 'h-14 w-14 text-lg',
+        '2xl': 'h-18 w-18 text-xl',
+      },
+      shape: {
+        circle: 'rounded-full',
+        square: 'rounded-xl',
+      },
+      variant: {
+        image: 'ring-0',
+        initials: 'bg-accent text-accent-foreground ring-0',
+        icon: 'bg-muted text-muted-foreground ring-0',
+        navy: 'bg-sidebar text-sidebar-foreground ring-0',
+        primary: 'bg-primary text-primary-foreground ring-0',
+      },
+    },
+    defaultVariants: {
+      size: 'md',
+      shape: 'circle',
+      variant: 'initials',
+    },
   }
 );
 
-Avatar.displayName = "Avatar";
+export interface AvatarProps
+  extends React.HTMLAttributes<HTMLDivElement>, VariantProps<typeof avatarVariants> {
+  src?: string;
+  alt?: string;
+  initials?: string;
+  status?: 'online' | 'offline' | 'busy' | 'away';
+}
 
+const statusColors: Record<string, string> = {
+  online: 'bg-success',
+  offline: 'bg-muted-foreground',
+  busy: 'bg-destructive',
+  away: 'bg-warning',
+};
+
+const Avatar: React.FC<AvatarProps> = ({
+  className,
+  size,
+  shape,
+  variant: _variant,
+  src,
+  alt = 'Avatar',
+  initials,
+  status,
+  ...props
+}) => {
+  const effectiveVariant = src ? 'image' : initials ? 'initials' : 'icon';
+
+  return (
+    <div className="relative inline-flex">
+      <div
+        className={cn(avatarVariants({ size, shape, variant: effectiveVariant }), className)}
+        role="img"
+        aria-label={alt}
+        {...props}
+      >
+        {src ? (
+          <img src={src} alt={alt} className="h-full w-full object-cover" />
+        ) : initials ? (
+          <span aria-hidden="true">{initials}</span>
+        ) : (
+          <User className="h-1/2 w-1/2" aria-hidden="true" />
+        )}
+      </div>
+      {status && (
+        <span
+          className={cn(
+            'absolute bottom-0 right-0 block rounded-full ring-2 ring-card',
+            statusColors[status],
+            size === 'xs' || size === 'sm' ? 'h-2 w-2' : 'h-3 w-3'
+          )}
+          aria-label={`Status: ${status}`}
+        />
+      )}
+    </div>
+  );
+};
+
+Avatar.displayName = 'Avatar';
 export default Avatar;
