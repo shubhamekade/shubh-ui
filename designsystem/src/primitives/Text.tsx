@@ -32,12 +32,13 @@ const textVariants = cva('', {
 });
 
 export interface TextProps
-  extends HTMLAttributes<HTMLParagraphElement>,
-    VariantProps<typeof textVariants> {}
+  extends HTMLAttributes<HTMLParagraphElement>, VariantProps<typeof textVariants> {}
 
 const Text = forwardRef<HTMLParagraphElement, TextProps>(
   ({ className, size, tone, weight, ...props }, ref) => {
-    return <p ref={ref} className={cn(textVariants({ size, tone, weight }), className)} {...props} />;
+    return (
+      <p ref={ref} className={cn(textVariants({ size, tone, weight }), className)} {...props} />
+    );
   }
 );
 

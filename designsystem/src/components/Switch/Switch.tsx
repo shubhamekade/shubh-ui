@@ -41,9 +41,9 @@ const Switch = forwardRef<HTMLInputElement, SwitchProps>(
     const track = (
       <div
         className={cn(
-        'relative inline-flex items-center rounded-full border-2 transition-all duration-200 ease-out cursor-pointer',
-        s.track,
-        checked ? 'border-primary bg-primary' : 'border-input bg-muted/80',
+          'relative inline-flex items-center rounded-full border-2 transition-all duration-200 ease-out cursor-pointer',
+          s.track,
+          checked ? 'border-primary bg-primary' : 'border-input bg-muted/80',
           disabled && 'opacity-50 cursor-not-allowed'
         )}
         aria-hidden="true"

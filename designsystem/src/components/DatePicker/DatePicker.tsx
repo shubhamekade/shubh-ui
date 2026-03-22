@@ -1,12 +1,6 @@
 'use client';
 
-import React, {
-  useState,
-  useRef,
-  useCallback,
-  useId,
-  type KeyboardEvent,
-} from 'react';
+import React, { useState, useRef, useCallback, useId, type KeyboardEvent } from 'react';
 import { CalendarIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import { cn } from '@/utils/cn';
 import { useClickOutside } from '@/hooks/useClickOutside';
@@ -62,33 +56,33 @@ const DEFAULT_FORMAT = (date: Date) =>
 const sizeConfig = {
   sm: {
     height: 'h-8',
-    text:   'text-sm',
-    icon:   'h-3.5 w-3.5',
-    zone:   'w-9',          // 36 px left icon zone
-    pl:     'pl-10',        // 40 px — text starts after zone + gap
-    pr:     'pr-9',
+    text: 'text-sm',
+    icon: 'h-3.5 w-3.5',
+    zone: 'w-9', // 36 px left icon zone
+    pl: 'pl-10', // 40 px — text starts after zone + gap
+    pr: 'pr-9',
     radius: 'rounded-lg',
-    hint:   'text-xs',
+    hint: 'text-xs',
   },
   md: {
     height: 'h-10',
-    text:   'text-sm',
-    icon:   'h-4 w-4',
-    zone:   'w-10',         // 40 px
-    pl:     'pl-11',        // 44 px
-    pr:     'pr-10',
+    text: 'text-sm',
+    icon: 'h-4 w-4',
+    zone: 'w-10', // 40 px
+    pl: 'pl-11', // 44 px
+    pr: 'pr-10',
     radius: 'rounded-xl',
-    hint:   'text-xs',
+    hint: 'text-xs',
   },
   lg: {
     height: 'h-11',
-    text:   'text-sm',
-    icon:   'h-[18px] w-[18px]',
-    zone:   'w-12',         // 48 px
-    pl:     'pl-[52px]',    // 52 px
-    pr:     'pr-11',
+    text: 'text-sm',
+    icon: 'h-[18px] w-[18px]',
+    zone: 'w-12', // 48 px
+    pl: 'pl-[52px]', // 52 px
+    pr: 'pr-11',
     radius: 'rounded-xl',
-    hint:   'text-xs',
+    hint: 'text-xs',
   },
 } as const;
 
@@ -122,7 +116,10 @@ export default function DatePicker({
   const [open, setOpen] = useState(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
 
-  useClickOutside(wrapperRef, useCallback(() => setOpen(false), []));
+  useClickOutside(
+    wrapperRef,
+    useCallback(() => setOpen(false), [])
+  );
 
   const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
     if (e.key === 'Escape') setOpen(false);
@@ -145,24 +142,21 @@ export default function DatePicker({
   const cfg = sizeConfig[size];
 
   return (
-    <div
-      ref={wrapperRef}
-      className={cn('relative w-full', className)}
-      onKeyDown={handleKeyDown}
-    >
+    <div ref={wrapperRef} className={cn('relative w-full', className)} onKeyDown={handleKeyDown}>
       {/* Label */}
       {label && (
         <label htmlFor={inputId} className="mb-1.5 block text-sm font-medium text-foreground">
           {label}
           {required && (
-            <span className="ml-1 text-destructive" aria-label="required">*</span>
+            <span className="ml-1 text-destructive" aria-label="required">
+              *
+            </span>
           )}
         </label>
       )}
 
       {/* Trigger */}
       <div className="relative flex items-center">
-
         {/* Left icon zone with separator line */}
         <div
           aria-hidden="true"
@@ -172,9 +166,9 @@ export default function DatePicker({
             hasError
               ? 'border-destructive/40 text-destructive/80'
               : open
-              ? 'border-primary/30 text-primary'
-              : 'border-input text-muted-foreground/70 group-hover:text-muted-foreground',
-            disabled && 'opacity-40',
+                ? 'border-primary/30 text-primary'
+                : 'border-input text-muted-foreground/70 group-hover:text-muted-foreground',
+            disabled && 'opacity-40'
           )}
         >
           <CalendarIcon className={cfg.icon} />
@@ -187,6 +181,7 @@ export default function DatePicker({
           role="combobox"
           aria-haspopup="dialog"
           aria-expanded={open}
+          aria-controls={open ? `${inputId}-popover` : undefined}
           aria-label={ariaLabel ?? label ?? placeholder}
           aria-invalid={hasError}
           disabled={disabled}
@@ -209,7 +204,7 @@ export default function DatePicker({
             // Disabled
             disabled
               ? 'cursor-not-allowed opacity-50 bg-muted/40 hover:border-input'
-              : 'cursor-pointer',
+              : 'cursor-pointer'
           )}
         >
           {displayValue || placeholder}
@@ -225,7 +220,7 @@ export default function DatePicker({
               className={cn(
                 'pointer-events-auto flex items-center justify-center rounded-md p-0.5',
                 'text-muted-foreground/60 transition-colors',
-                'hover:bg-muted hover:text-foreground',
+                'hover:bg-muted hover:text-foreground'
               )}
             >
               <XMarkIcon className={cfg.icon} />
@@ -236,7 +231,7 @@ export default function DatePicker({
               className={cn(
                 cfg.icon,
                 'text-muted-foreground/50 transition-colors duration-150',
-                open && 'text-primary',
+                open && 'text-primary'
               )}
             />
           )}
@@ -249,13 +244,12 @@ export default function DatePicker({
           {error}
         </p>
       )}
-      {!hasError && hint && (
-        <p className={cn('mt-1.5 text-muted-foreground', cfg.hint)}>{hint}</p>
-      )}
+      {!hasError && hint && <p className={cn('mt-1.5 text-muted-foreground', cfg.hint)}>{hint}</p>}
 
       {/* Calendar popover */}
       {open && (
         <div
+          id={`${inputId}-popover`}
           role="dialog"
           aria-label="Date picker calendar"
           aria-modal="false"
@@ -264,7 +258,7 @@ export default function DatePicker({
             'rounded-2xl border border-border bg-popover shadow-dropdown',
             'p-2',
             'animate-[fade-in_0.18s_ease-out]',
-            'origin-top',
+            'origin-top'
           )}
         >
           <Calendar

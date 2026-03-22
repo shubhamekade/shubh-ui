@@ -61,7 +61,10 @@ const CardTitle = forwardRef<HTMLParagraphElement, HTMLAttributes<HTMLParagraphE
   ({ className, ...props }, ref) => (
     <p
       ref={ref}
-      className={cn('text-base font-semibold leading-snug tracking-tight text-foreground', className)}
+      className={cn(
+        'text-base font-semibold leading-snug tracking-tight text-foreground',
+        className
+      )}
       {...props}
     />
   )
@@ -69,7 +72,11 @@ const CardTitle = forwardRef<HTMLParagraphElement, HTMLAttributes<HTMLParagraphE
 
 const CardDescription = forwardRef<HTMLParagraphElement, HTMLAttributes<HTMLParagraphElement>>(
   ({ className, ...props }, ref) => (
-    <p ref={ref} className={cn('text-sm leading-relaxed text-muted-foreground', className)} {...props} />
+    <p
+      ref={ref}
+      className={cn('text-sm leading-relaxed text-muted-foreground', className)}
+      {...props}
+    />
   )
 );
 

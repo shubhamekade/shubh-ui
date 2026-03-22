@@ -81,7 +81,9 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
             {label && (
               <span className={cn('font-medium text-foreground block', s.label)}>{label}</span>
             )}
-            {description && <span className="mt-0.5 block text-xs text-muted-foreground">{description}</span>}
+            {description && (
+              <span className="mt-0.5 block text-xs text-muted-foreground">{description}</span>
+            )}
           </label>
         )}
         {error && (

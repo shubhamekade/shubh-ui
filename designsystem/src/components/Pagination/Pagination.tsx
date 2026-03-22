@@ -73,7 +73,8 @@ const Pagination: React.FC<PaginationProps> = ({
     <div className={cn('flex items-center flex-wrap gap-3', className)}>
       {showTotal && (
         <span className="text-sm text-muted-foreground tabular-nums">
-          {(page - 1) * pageSize + 1}–{Math.min(page * pageSize, total)} of {total.toLocaleString('en-US')}
+          {(page - 1) * pageSize + 1}–{Math.min(page * pageSize, total)} of{' '}
+          {total.toLocaleString('en-US')}
         </span>
       )}
       <div className="flex items-center gap-1 ml-auto">

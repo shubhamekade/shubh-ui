@@ -196,7 +196,7 @@ export default function ListViewLayout() {
     });
   }, [search, categoryFilter, statusFilter]);
 
-  const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
+  const _totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
   const paginated = filtered.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE);
 
   const toggleSelect = (id: string) => {
@@ -493,18 +493,9 @@ export default function ListViewLayout() {
                       <Skeleton variant="text" className="h-4 w-48" />
                       <Skeleton variant="text" className="h-3 w-72" />
                     </div>
-                    <Skeleton
-                      variant="rect"
-                      className="w-20 h-5 rounded-full hidden md:block"
-                    />
-                    <Skeleton
-                      variant="rect"
-                      className="w-16 h-5 rounded-full hidden lg:block"
-                    />
-                    <Skeleton
-                      variant="rect"
-                      className="w-16 h-5 rounded-full hidden xl:block"
-                    />
+                    <Skeleton variant="rect" className="w-20 h-5 rounded-full hidden md:block" />
+                    <Skeleton variant="rect" className="w-16 h-5 rounded-full hidden lg:block" />
+                    <Skeleton variant="rect" className="w-16 h-5 rounded-full hidden xl:block" />
                     <Skeleton variant="circle" className="w-7 h-7 hidden lg:block" />
                     <Skeleton variant="rect" className="w-6 h-6 rounded" />
                   </div>

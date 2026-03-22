@@ -139,12 +139,18 @@ const Modal: React.FC<ModalProps> = ({
               <div className="flex items-start justify-between border-b border-border/50 px-6 py-4">
                 <div>
                   {title && (
-                    <h2 id="modal-title" className="text-lg font-semibold tracking-tight text-foreground">
+                    <h2
+                      id="modal-title"
+                      className="text-lg font-semibold tracking-tight text-foreground"
+                    >
                       {title}
                     </h2>
                   )}
                   {description && (
-                    <p id="modal-description" className="mt-1 text-sm leading-relaxed text-muted-foreground">
+                    <p
+                      id="modal-description"
+                      className="mt-1 text-sm leading-relaxed text-muted-foreground"
+                    >
                       {description}
                     </p>
                   )}
@@ -164,7 +170,9 @@ const Modal: React.FC<ModalProps> = ({
 
             {children && <div className="p-6">{children}</div>}
 
-            {footer && <div className="flex items-center justify-end gap-2 px-6 pb-6 pt-2">{footer}</div>}
+            {footer && (
+              <div className="flex items-center justify-end gap-2 px-6 pb-6 pt-2">{footer}</div>
+            )}
           </motion.div>
         </div>
       ) : null}

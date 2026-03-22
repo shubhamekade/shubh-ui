@@ -12,8 +12,10 @@ export const inputVariants = cva(
     variants: {
       variant: {
         default: 'border-input hover:border-muted-foreground/30',
-        error: 'border-destructive/40 bg-destructive-soft focus-visible:ring-destructive/20 focus-visible:border-destructive/60',
-        success: 'border-success/40 bg-success-soft focus-visible:ring-success/20 focus-visible:border-success/60',
+        error:
+          'border-destructive/40 bg-destructive-soft focus-visible:ring-destructive/20 focus-visible:border-destructive/60',
+        success:
+          'border-success/40 bg-success-soft focus-visible:ring-success/20 focus-visible:border-success/60',
       },
       size: {
         sm: 'h-8 rounded-lg px-3 text-sm',

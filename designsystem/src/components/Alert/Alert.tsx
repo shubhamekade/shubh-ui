@@ -11,7 +11,8 @@ export const alertVariants = cva(
         info: 'border-l-primary/70 border-primary/10 bg-accent text-accent-foreground',
         success: 'border-l-success/70 border-success/15 bg-success-soft text-success',
         warning: 'border-l-warning/70 border-warning/15 bg-warning-soft text-warning-foreground',
-        destructive: 'border-l-destructive/70 border-destructive/15 bg-destructive-soft text-destructive',
+        destructive:
+          'border-l-destructive/70 border-destructive/15 bg-destructive-soft text-destructive',
         navy: 'border-l-sidebar-border border-sidebar-border/50 bg-sidebar text-sidebar-foreground',
         neutral: 'border-l-border/80 border-border/60 bg-muted/60 text-foreground',
       },

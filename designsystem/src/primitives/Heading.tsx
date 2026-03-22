@@ -18,12 +18,13 @@ const headingVariants = cva('font-display font-semibold tracking-tight text-fore
 });
 
 export interface HeadingProps
-  extends HTMLAttributes<HTMLHeadingElement>,
-    VariantProps<typeof headingVariants> {}
+  extends HTMLAttributes<HTMLHeadingElement>, VariantProps<typeof headingVariants> {}
 
-const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(({ className, size, ...props }, ref) => {
-  return <h2 ref={ref} className={cn(headingVariants({ size }), className)} {...props} />;
-});
+const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
+  ({ className, size, ...props }, ref) => {
+    return <h2 ref={ref} className={cn(headingVariants({ size }), className)} {...props} />;
+  }
+);
 
 Heading.displayName = 'Heading';
 

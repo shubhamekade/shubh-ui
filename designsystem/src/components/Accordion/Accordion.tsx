@@ -69,7 +69,8 @@ const Accordion: React.FC<AccordionProps> = ({
         <div
           key={item.id}
           className={cn(
-            variant === 'filled' && 'mb-1.5 overflow-hidden rounded-xl border border-border bg-surface'
+            variant === 'filled' &&
+              'mb-1.5 overflow-hidden rounded-xl border border-border bg-surface'
           )}
         >
           <button
@@ -82,7 +83,9 @@ const Accordion: React.FC<AccordionProps> = ({
               variant === 'filled' && 'bg-muted/40 px-4 hover:bg-muted/70',
               variant === 'bordered' && 'px-4',
               variant === 'flush' && 'px-0',
-              item.disabled ? 'opacity-40 cursor-not-allowed' : 'cursor-pointer hover:text-foreground',
+              item.disabled
+                ? 'opacity-40 cursor-not-allowed'
+                : 'cursor-pointer hover:text-foreground',
               isOpen(item.id) ? 'text-foreground' : 'text-muted-foreground'
             )}
           >

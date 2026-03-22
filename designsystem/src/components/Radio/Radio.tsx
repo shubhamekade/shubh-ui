@@ -41,7 +41,9 @@ const Radio = forwardRef<HTMLInputElement, RadioProps>(
             className={cn(
               'flex items-center justify-center rounded-full border transition-all duration-150 ease-out',
               s.outer,
-              checked ? 'border-primary bg-background shadow-sm' : 'border-input hover:border-primary/50',
+              checked
+                ? 'border-primary bg-background shadow-sm'
+                : 'border-input hover:border-primary/50',
               disabled && 'opacity-50 cursor-not-allowed',
               error && !checked && 'border-destructive/40 bg-destructive-soft'
             )}

@@ -14,7 +14,10 @@ const DashboardShell = forwardRef<HTMLDivElement, DashboardShellProps>(
     return (
       <div
         ref={ref}
-        className={cn('grid min-h-screen grid-cols-1 bg-background text-foreground lg:grid-cols-[18rem_minmax(0,1fr)]', className)}
+        className={cn(
+          'grid min-h-screen grid-cols-1 bg-background text-foreground lg:grid-cols-[18rem_minmax(0,1fr)]',
+          className
+        )}
         {...props}
       >
         {sidebar ? (
@@ -28,7 +31,12 @@ const DashboardShell = forwardRef<HTMLDivElement, DashboardShellProps>(
               {header}
             </header>
           ) : null}
-          <div className={cn('grid flex-1 grid-cols-1 gap-2xl px-4 py-2xl sm:px-6 xl:grid-cols-[minmax(0,1fr)_20rem]', contentClassName)}>
+          <div
+            className={cn(
+              'grid flex-1 grid-cols-1 gap-2xl px-4 py-2xl sm:px-6 xl:grid-cols-[minmax(0,1fr)_20rem]',
+              contentClassName
+            )}
+          >
             <main className="min-w-0">{children}</main>
             {aside ? <aside className="hidden xl:block">{aside}</aside> : null}
           </div>

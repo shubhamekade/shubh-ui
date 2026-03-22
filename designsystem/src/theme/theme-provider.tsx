@@ -3,12 +3,7 @@
 import React, { createContext, useContext, useEffect, useMemo, useState } from 'react';
 
 import { designThemeMap, designThemes } from './themes';
-import type {
-  ColorTokens,
-  DesignTheme,
-  RadiusTokens,
-  RuntimeThemeOverrides,
-} from './types';
+import type { ColorTokens, DesignTheme, RadiusTokens, RuntimeThemeOverrides } from './types';
 
 interface ThemeContextValue {
   themeId: string;
@@ -54,8 +49,7 @@ function hexToHsl(hexValue: string) {
   }
 
   const delta = max - min;
-  const saturation =
-    lightness > 0.5 ? delta / (2 - max - min) : delta / (max + min);
+  const saturation = lightness > 0.5 ? delta / (2 - max - min) : delta / (max + min);
 
   let hue = 0;
   switch (max) {
@@ -216,7 +210,8 @@ export function ThemeProvider({
   }, [storageKey, themes]);
 
   const theme = useMemo(() => {
-    const sourceTheme = themes.find((item) => item.id === themeId) ?? designThemeMap[defaultTheme] ?? themes[0];
+    const sourceTheme =
+      themes.find((item) => item.id === themeId) ?? designThemeMap[defaultTheme] ?? themes[0];
     return mergeTheme(sourceTheme, overrides);
   }, [defaultTheme, overrides, themeId, themes]);
 
@@ -245,9 +240,7 @@ export function ThemeProvider({
       },
       updateRadius: (token, value) => {
         const numeric = parseFloat(value);
-        const normalized = Number.isNaN(numeric)
-          ? value
-          : `${clamp(numeric, 2, 40)}px`;
+        const normalized = Number.isNaN(numeric) ? value : `${clamp(numeric, 2, 40)}px`;
 
         setOverrides((current) => ({
           ...current,

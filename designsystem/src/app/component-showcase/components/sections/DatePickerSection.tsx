@@ -25,11 +25,11 @@ export default function DatePickerSection() {
     : 'bg-gray-100 text-gray-600 hover:bg-[#dae8ff]';
 
   // Form demo
-  const [formDate, setFormDate] = useState<Date | null>(null);
-  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [_formDate, _setFormDate] = useState<Date | null>(null);
+  const [_formSubmitted, _setFormSubmitted] = useState(false);
 
   // States demo
-  const [stateDate, setStateDate] = useState<Date | null>(new Date(2024, 9, 14));
+  const [_stateDate, _setStateDate] = useState<Date | null>(new Date(2024, 9, 14));
 
   return (
     <div>
@@ -95,7 +95,11 @@ export default function DatePickerSection() {
           {sizes.map((s) => (
             <div key={s} className="w-56 flex flex-col gap-1">
               <p className={`text-xs font-semibold uppercase tracking-wide ${labelClass}`}>{s}</p>
-              <DatePicker size={s} theme={calendarTheme} placeholder={`${s.toUpperCase()} picker`} />
+              <DatePicker
+                size={s}
+                theme={calendarTheme}
+                placeholder={`${s.toUpperCase()} picker`}
+              />
             </div>
           ))}
         </div>
@@ -123,19 +127,51 @@ export default function DatePickerSection() {
         previewBg="white"
         props={[
           { name: 'value', type: 'Date | null', description: 'Controlled selected date' },
-          { name: 'defaultValue', type: 'Date | null', description: 'Default value (uncontrolled)' },
-          { name: 'onChange', type: '(date: Date | null) => void', description: 'Called on select or clear' },
-          { name: 'placeholder', type: 'string', default: '"Select a date"', description: 'Input placeholder' },
-          { name: 'size', type: "'sm' | 'md' | 'lg'", default: "'md'", description: 'Size variant' },
-          { name: 'theme', type: "'navy' | 'light'", default: "'light'", description: 'Calendar theme' },
+          {
+            name: 'defaultValue',
+            type: 'Date | null',
+            description: 'Default value (uncontrolled)',
+          },
+          {
+            name: 'onChange',
+            type: '(date: Date | null) => void',
+            description: 'Called on select or clear',
+          },
+          {
+            name: 'placeholder',
+            type: 'string',
+            default: '"Select a date"',
+            description: 'Input placeholder',
+          },
+          {
+            name: 'size',
+            type: "'sm' | 'md' | 'lg'",
+            default: "'md'",
+            description: 'Size variant',
+          },
+          {
+            name: 'theme',
+            type: "'navy' | 'light'",
+            default: "'light'",
+            description: 'Calendar theme',
+          },
           { name: 'label', type: 'string', description: 'Label above the input' },
           { name: 'required', type: 'boolean', description: 'Required indicator' },
           { name: 'error', type: 'string | boolean', description: 'Error state and message' },
           { name: 'hint', type: 'string', description: 'Helper text below input' },
-          { name: 'disabled', type: 'boolean', default: 'false', description: 'Disables the picker' },
+          {
+            name: 'disabled',
+            type: 'boolean',
+            default: 'false',
+            description: 'Disables the picker',
+          },
           { name: 'minDate', type: 'Date', description: 'Earliest selectable date' },
           { name: 'maxDate', type: 'Date', description: 'Latest selectable date' },
-          { name: 'formatDate', type: '(date: Date) => string', description: 'Custom display formatter' },
+          {
+            name: 'formatDate',
+            type: '(date: Date) => string',
+            description: 'Custom display formatter',
+          },
         ]}
       >
         <div className="w-full space-y-4">

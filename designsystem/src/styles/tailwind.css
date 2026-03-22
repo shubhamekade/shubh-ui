@@ -85,10 +85,12 @@
   --ds-space-4xl: 2.5rem;
   --ds-space-5xl: 3rem;
 
-  --ds-font-sans: 'Plus Jakarta Sans', 'Inter', 'SF Pro Text', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', sans-serif;
-  --ds-font-display: 'Plus Jakarta Sans', 'Inter', 'SF Pro Display', -apple-system,
-    BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --ds-font-sans:
+    'Plus Jakarta Sans', 'Inter', 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    sans-serif;
+  --ds-font-display:
+    'Plus Jakarta Sans', 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    sans-serif;
   --ds-font-mono: 'IBM Plex Mono', monospace;
 
   --ds-text-xs: 0.75rem;
@@ -245,7 +247,9 @@
 }
 
 @layer base {
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     @apply border-border;
     box-sizing: border-box;
   }
@@ -264,11 +268,18 @@
     line-height: 1.5;
     letter-spacing: -0.011em;
   }
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     letter-spacing: -0.025em;
     line-height: 1.2;
   }
-  code, pre, .font-mono {
+  code,
+  pre,
+  .font-mono {
     font-family: var(--ds-font-mono);
   }
   /* Smooth focus ring removal for mouse users */
@@ -342,13 +353,27 @@
   position: relative;
 }
 
-.code-block .token-keyword { color: hsl(var(--destructive)); }
-.code-block .token-string  { color: hsl(var(--info)); }
-.code-block .token-comment { color: hsl(var(--muted-foreground)); }
-.code-block .token-prop    { color: hsl(var(--primary)); }
-.code-block .token-value   { color: hsl(var(--warning)); }
-.code-block .token-tag     { color: hsl(var(--success)); }
-.code-block .token-attr    { color: hsl(var(--destructive)); }
+.code-block .token-keyword {
+  color: hsl(var(--destructive));
+}
+.code-block .token-string {
+  color: hsl(var(--info));
+}
+.code-block .token-comment {
+  color: hsl(var(--muted-foreground));
+}
+.code-block .token-prop {
+  color: hsl(var(--primary));
+}
+.code-block .token-value {
+  color: hsl(var(--warning));
+}
+.code-block .token-tag {
+  color: hsl(var(--success));
+}
+.code-block .token-attr {
+  color: hsl(var(--destructive));
+}
 
 .focus-ring {
   @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-ring/30 focus-visible:ring-offset-2;
@@ -388,8 +413,7 @@
 }
 
 .preview-bg {
-  background-image: 
-    radial-gradient(circle, hsl(var(--border)) 1px, transparent 1px);
+  background-image: radial-gradient(circle, hsl(var(--border)) 1px, transparent 1px);
   background-size: 20px 20px;
 }
 

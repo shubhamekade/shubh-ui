@@ -266,7 +266,9 @@ export default function ServerDataTable<T extends Record<string, unknown>>({
     <div className={`w-full ${className}`}>
       {/* ── Status Toggle ── */}
       <div className="mb-5 flex justify-center">
-        <div className={`inline-flex overflow-hidden rounded-full border ${tk.toggleBorder} bg-background/70 p-1`}>
+        <div
+          className={`inline-flex overflow-hidden rounded-full border ${tk.toggleBorder} bg-background/70 p-1`}
+        >
           <button
             onClick={() => handleStatusToggle('active')}
             className={`rounded-full px-7 py-2 text-sm font-semibold transition-colors focus:outline-none ${

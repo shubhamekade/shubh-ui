@@ -17,10 +17,14 @@ const editableColorTokens = [
 ] as const;
 
 export default function ThemeEditor() {
-  const { theme, themeId, themes, setTheme, updateColor, updateRadius, resetOverrides } = useTheme();
+  const { theme, themeId, themes, setTheme, updateColor, updateRadius, resetOverrides } =
+    useTheme();
 
   return (
-    <Card variant="elevated" className="overflow-hidden border-border/80 bg-surface-elevated/90 shadow-card-md">
+    <Card
+      variant="elevated"
+      className="overflow-hidden border-border/80 bg-surface-elevated/90 shadow-card-md"
+    >
       <CardHeader className="border-b border-border/70 pb-lg">
         <div className="flex items-start justify-between gap-lg">
           <div>
@@ -29,7 +33,12 @@ export default function ThemeEditor() {
               Switch themes, tune tokens, and inspect the live system preview in real time.
             </CardDescription>
           </div>
-          <Button variant="secondary" size="sm" onClick={resetOverrides} leftIcon={<RotateCcw className="h-4 w-4" />}>
+          <Button
+            variant="secondary"
+            size="sm"
+            onClick={resetOverrides}
+            leftIcon={<RotateCcw className="h-4 w-4" />}
+          >
             Reset
           </Button>
         </div>
@@ -63,7 +72,10 @@ export default function ThemeEditor() {
               <p className="mb-sm text-sm font-semibold text-foreground">Color Tokens</p>
               <div className="grid gap-md sm:grid-cols-2">
                 {editableColorTokens.map((token) => (
-                  <label key={token.key} className="flex items-center gap-md rounded-xl border border-border bg-surface p-md">
+                  <label
+                    key={token.key}
+                    className="flex items-center gap-md rounded-xl border border-border bg-surface p-md"
+                  >
                     <input
                       type="color"
                       value={theme.tokens.colors[token.key]}
@@ -71,8 +83,12 @@ export default function ThemeEditor() {
                       className="h-11 w-11 rounded-lg border border-border bg-transparent p-1"
                     />
                     <span className="min-w-0">
-                      <span className="block text-sm font-medium text-foreground">{token.label}</span>
-                      <span className="block truncate text-xs text-muted-foreground">{theme.tokens.colors[token.key]}</span>
+                      <span className="block text-sm font-medium text-foreground">
+                        {token.label}
+                      </span>
+                      <span className="block truncate text-xs text-muted-foreground">
+                        {theme.tokens.colors[token.key]}
+                      </span>
                     </span>
                   </label>
                 ))}
@@ -99,8 +115,16 @@ export default function ThemeEditor() {
           <div className="space-y-md rounded-2xl border border-border bg-background p-lg">
             <p className="text-sm font-semibold text-foreground">Token Inspector</p>
             <Input label="Font Stack" value={theme.tokens.typography.fontSans} readOnly />
-            <Input label="Spacing Scale" value={`${theme.tokens.spacing.sm} / ${theme.tokens.spacing.lg} / ${theme.tokens.spacing['2xl']}`} readOnly />
-            <Input label="Border Radius" value={`${theme.tokens.radius.sm} / ${theme.tokens.radius.md} / ${theme.tokens.radius.lg}`} readOnly />
+            <Input
+              label="Spacing Scale"
+              value={`${theme.tokens.spacing.sm} / ${theme.tokens.spacing.lg} / ${theme.tokens.spacing['2xl']}`}
+              readOnly
+            />
+            <Input
+              label="Border Radius"
+              value={`${theme.tokens.radius.sm} / ${theme.tokens.radius.md} / ${theme.tokens.radius.lg}`}
+              readOnly
+            />
           </div>
         </div>
 
@@ -110,7 +134,9 @@ export default function ThemeEditor() {
             <div className="flex items-center justify-between gap-sm">
               <div>
                 <p className="text-sm font-semibold text-foreground">Quarterly Revenue</p>
-                <p className="text-xs text-muted-foreground">Token-driven card, badge, button, and input states.</p>
+                <p className="text-xs text-muted-foreground">
+                  Token-driven card, badge, button, and input states.
+                </p>
               </div>
               <Badge variant="primary">Live</Badge>
             </div>

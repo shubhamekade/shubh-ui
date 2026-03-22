@@ -46,7 +46,12 @@ function Table<T = Record<string, unknown>>({
   const cellPad = compact ? 'px-3 py-2' : 'px-4 py-3';
 
   return (
-    <div className={cn('w-full overflow-x-auto rounded-xl border border-border bg-surface shadow-card', className)}>
+    <div
+      className={cn(
+        'w-full overflow-x-auto rounded-xl border border-border bg-surface shadow-card',
+        className
+      )}
+    >
       <table className="w-full text-sm border-collapse">
         <thead>
           <tr className="border-b border-border bg-muted/40">

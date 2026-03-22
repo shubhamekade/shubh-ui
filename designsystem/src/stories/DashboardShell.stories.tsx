@@ -49,7 +49,9 @@ export const Default: Story = {
         <div className="flex items-center justify-between px-6 py-4">
           <div>
             <p className="text-sm font-semibold">Operations</p>
-            <p className="text-xs text-muted-foreground">Composable navbar + sidebar + content shell</p>
+            <p className="text-xs text-muted-foreground">
+              Composable navbar + sidebar + content shell
+            </p>
           </div>
           <Button size="sm">Invite user</Button>
         </div>
@@ -78,7 +80,9 @@ export const Default: Story = {
             </CardHeader>
             <CardContent>
               <p className="text-3xl font-semibold text-foreground">98.4%</p>
-              <p className="mt-2 text-sm text-muted-foreground">Token-based dashboard card content</p>
+              <p className="mt-2 text-sm text-muted-foreground">
+                Token-based dashboard card content
+              </p>
             </CardContent>
           </Card>
         ))}

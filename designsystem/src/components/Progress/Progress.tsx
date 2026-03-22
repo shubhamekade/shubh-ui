@@ -43,7 +43,7 @@ const Progress: React.FC<ProgressProps> = ({
   showLabel = false,
   label,
   animated = false,
-  striped = false,
+  striped: _striped = false,
   ...props
 }) => {
   const pct = Math.min(Math.max((value / max) * 100, 0), 100);

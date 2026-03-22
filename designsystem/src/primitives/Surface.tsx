@@ -32,8 +32,7 @@ const surfaceVariants = cva('border text-foreground shadow-card', {
 });
 
 export interface SurfaceProps
-  extends HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof surfaceVariants> {}
+  extends HTMLAttributes<HTMLDivElement>, VariantProps<typeof surfaceVariants> {}
 
 const Surface = forwardRef<HTMLDivElement, SurfaceProps>(
   ({ className, variant, radius, padding, ...props }, ref) => {

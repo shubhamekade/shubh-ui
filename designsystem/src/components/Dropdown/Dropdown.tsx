@@ -106,7 +106,9 @@ const Dropdown: React.FC<DropdownProps> = ({
         'aria-expanded': open,
         'aria-controls': menuId,
         onClick: (e: React.MouseEvent) => {
-          (trigger.props as Record<string, unknown> & { onClick?: (e: React.MouseEvent) => void }).onClick?.(e);
+          (
+            trigger.props as Record<string, unknown> & { onClick?: (e: React.MouseEvent) => void }
+          ).onClick?.(e);
           setOpen((v) => !v);
         },
         onKeyDown: handleTriggerKeyDown,

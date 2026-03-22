@@ -447,10 +447,7 @@ export default function ProfilePageLayout() {
                 {/* Security Tab */}
                 {activeTab === 'security' && (
                   <div className="space-y-5">
-                    <Alert
-                      variant="warning"
-                      title="Password Strength"
-                    >
+                    <Alert variant="warning" title="Password Strength">
                       Your password was last changed 90 days ago. Consider updating it.
                     </Alert>
 

@@ -27,8 +27,7 @@ const stackVariants = cva('flex flex-col', {
 });
 
 export interface StackProps
-  extends HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof stackVariants> {}
+  extends HTMLAttributes<HTMLDivElement>, VariantProps<typeof stackVariants> {}
 
 const Stack = forwardRef<HTMLDivElement, StackProps>(({ className, gap, align, ...props }, ref) => {
   return <div ref={ref} className={cn(stackVariants({ gap, align }), className)} {...props} />;

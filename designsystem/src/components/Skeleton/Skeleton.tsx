@@ -19,11 +19,7 @@ const Skeleton: React.FC<SkeletonProps> = ({
   style,
   ...props
 }) => {
-  const base = cn(
-    'rounded-lg bg-muted/80',
-    animated && 'animate-pulse',
-    className
-  );
+  const base = cn('rounded-lg bg-muted/80', animated && 'animate-pulse', className);
 
   if (variant === 'text' && lines > 1) {
     return (
@@ -54,7 +50,9 @@ const Skeleton: React.FC<SkeletonProps> = ({
 };
 
 const SkeletonCard: React.FC<{ className?: string }> = ({ className }) => (
-  <div className={cn('space-y-3 rounded-2xl border border-border bg-card p-5 shadow-card', className)}>
+  <div
+    className={cn('space-y-3 rounded-2xl border border-border bg-card p-5 shadow-card', className)}
+  >
     <div className="flex items-center gap-3">
       <Skeleton variant="circle" width={40} height={40} />
       <div className="flex-1 space-y-2">

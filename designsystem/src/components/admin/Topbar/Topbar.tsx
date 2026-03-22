@@ -34,7 +34,10 @@ const Topbar = forwardRef<HTMLElement, TopbarProps>(
   ) => (
     <header
       ref={ref}
-      className={cn('w-full border-b border-white/20 bg-white/70 px-4 py-3 backdrop-blur-xl dark:border-border/70 dark:bg-card/70 sm:px-6', className)}
+      className={cn(
+        'w-full border-b border-white/20 bg-white/70 px-4 py-3 backdrop-blur-xl dark:border-border/70 dark:bg-card/70 sm:px-6',
+        className
+      )}
       {...props}
     >
       <div className="flex items-center justify-between gap-4">

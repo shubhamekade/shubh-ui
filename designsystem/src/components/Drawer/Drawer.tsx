@@ -110,7 +110,9 @@ const Drawer: React.FC<DrawerProps> = ({
               <div className="flex shrink-0 items-center justify-between border-b border-border/80 p-6">
                 <div>
                   {title && <h2 className="text-base font-semibold text-foreground">{title}</h2>}
-                  {description && <p className="mt-0.5 text-sm text-muted-foreground">{description}</p>}
+                  {description && (
+                    <p className="mt-0.5 text-sm text-muted-foreground">{description}</p>
+                  )}
                 </div>
                 {showCloseButton && (
                   <button

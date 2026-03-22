@@ -26,12 +26,13 @@ const inlineVariants = cva('flex flex-wrap items-center', {
 });
 
 export interface InlineProps
-  extends HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof inlineVariants> {}
+  extends HTMLAttributes<HTMLDivElement>, VariantProps<typeof inlineVariants> {}
 
-const Inline = forwardRef<HTMLDivElement, InlineProps>(({ className, gap, justify, ...props }, ref) => {
-  return <div ref={ref} className={cn(inlineVariants({ gap, justify }), className)} {...props} />;
-});
+const Inline = forwardRef<HTMLDivElement, InlineProps>(
+  ({ className, gap, justify, ...props }, ref) => {
+    return <div ref={ref} className={cn(inlineVariants({ gap, justify }), className)} {...props} />;
+  }
+);
 
 Inline.displayName = 'Inline';
 
