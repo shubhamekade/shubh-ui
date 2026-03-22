@@ -31,7 +31,8 @@
     "test:watch": "vitest",
     "serve": "next start",
     "type-check": "tsc -p tsconfig.lib.json --noEmit",
-    "type-check:showcase": "tsc --noEmit"
+    "type-check:showcase": "tsc --noEmit",
+    "ci": "npm run type-check && npm run test && npm run build"
   },
   "peerDependencies": {
     "react": ">=18",
