@@ -225,10 +225,11 @@ export default function ProfilePageLayout() {
                 <Alert
                   variant="success"
                   title="Changes saved!"
-                  description="Your profile has been updated successfully."
                   dismissible
                   onDismiss={() => setSaved(false)}
-                />
+                >
+                  Your profile has been updated successfully.
+                </Alert>
               </div>
             )}
 
@@ -359,7 +360,9 @@ export default function ProfilePageLayout() {
                         </label>
                         <Select
                           value={form.timezone}
-                          onChange={(e) => setField('timezone', e.target.value)}
+                          onChange={(value) =>
+                            setField('timezone', Array.isArray(value) ? (value[0] ?? '') : value)
+                          }
                           options={[
                             { value: 'America/New_York', label: 'Eastern Time (ET)' },
                             { value: 'America/Chicago', label: 'Central Time (CT)' },
@@ -375,7 +378,9 @@ export default function ProfilePageLayout() {
                         </label>
                         <Select
                           value={form.language}
-                          onChange={(e) => setField('language', e.target.value)}
+                          onChange={(value) =>
+                            setField('language', Array.isArray(value) ? (value[0] ?? '') : value)
+                          }
                           options={[
                             { value: 'en', label: 'English' },
                             { value: 'es', label: 'Spanish' },
@@ -445,8 +450,9 @@ export default function ProfilePageLayout() {
                     <Alert
                       variant="warning"
                       title="Password Strength"
-                      description="Your password was last changed 90 days ago. Consider updating it."
-                    />
+                    >
+                      Your password was last changed 90 days ago. Consider updating it.
+                    </Alert>
 
                     <div>
                       <label className={cn('block text-sm font-medium mb-1.5', labelText)}>
@@ -511,7 +517,12 @@ export default function ProfilePageLayout() {
                       </label>
                       <Select
                         value={form.sessionTimeout}
-                        onChange={(e) => setField('sessionTimeout', e.target.value)}
+                        onChange={(value) =>
+                          setField(
+                            'sessionTimeout',
+                            Array.isArray(value) ? (value[0] ?? '') : value
+                          )
+                        }
                         options={[
                           { value: '15', label: '15 minutes' },
                           { value: '30', label: '30 minutes' },
@@ -533,7 +544,9 @@ export default function ProfilePageLayout() {
                       </label>
                       <Select
                         value={form.theme}
-                        onChange={(e) => setField('theme', e.target.value)}
+                        onChange={(value) =>
+                          setField('theme', Array.isArray(value) ? (value[0] ?? '') : value)
+                        }
                         options={[
                           { value: 'light', label: 'Light' },
                           { value: 'dark', label: 'Dark' },
@@ -547,7 +560,9 @@ export default function ProfilePageLayout() {
                       </label>
                       <Select
                         value={form.density}
-                        onChange={(e) => setField('density', e.target.value)}
+                        onChange={(value) =>
+                          setField('density', Array.isArray(value) ? (value[0] ?? '') : value)
+                        }
                         options={[
                           { value: 'compact', label: 'Compact' },
                           { value: 'comfortable', label: 'Comfortable' },

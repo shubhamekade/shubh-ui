@@ -113,16 +113,16 @@ export default function InputSection() {
 
       <ShowcaseSection
         title="Variants"
-        description="Default, filled, error, and success validation states."
+        description="Default, error, and success validation states."
         previewBg="white"
         code={`<Input placeholder="Default input" />
-<Input variant="filled" placeholder="Filled variant" />
+<Input variant="default" placeholder="Default variant" />
 <Input variant="error" error="This field is required" placeholder="Error state" />
 <Input variant="success" success="Looks good!" placeholder="Success state" />`}
       >
         <div className="w-full max-w-sm space-y-3">
           <Input placeholder="Default input" />
-          <Input variant="filled" placeholder="Filled variant" />
+          <Input variant="default" placeholder="Default variant" />
           <Input
             variant="error"
             error="This field is required"

@@ -46,22 +46,22 @@ function Table<T = Record<string, unknown>>({
   const cellPad = compact ? 'px-3 py-2' : 'px-4 py-3';
 
   return (
-    <div className={cn('w-full overflow-x-auto rounded-lg border border-[#d7d7d7]', className)}>
+    <div className={cn('w-full overflow-x-auto rounded-xl border border-border bg-surface shadow-card', className)}>
       <table className="w-full text-sm border-collapse">
         <thead>
-          <tr className="bg-gray-50 border-b border-[#d7d7d7]">
+          <tr className="border-b border-border bg-muted/40">
             {columns.map((col) => (
               <th
                 key={col.key}
                 style={{ width: col.width }}
                 className={cn(
                   cellPad,
-                  'text-xs font-semibold text-[#808080] tracking-wide uppercase whitespace-nowrap',
+                  'whitespace-nowrap text-xs font-medium uppercase tracking-[0.1em] text-muted-foreground',
                   col.align === 'center' && 'text-center',
                   col.align === 'right' && 'text-right',
                   col.sortable &&
-                    'cursor-pointer select-none hover:text-[#1e1e1e] hover:bg-gray-100 transition-colors',
-                  bordered && 'border-r border-[#d7d7d7] last:border-r-0'
+                    'cursor-pointer select-none transition-colors hover:bg-background hover:text-foreground',
+                  bordered && 'border-r border-border last:border-r-0'
                 )}
                 onClick={() => col.sortable && onSort?.(col.key)}
                 aria-sort={
@@ -71,7 +71,7 @@ function Table<T = Record<string, unknown>>({
                 <span className="inline-flex items-center gap-1">
                   {col.header}
                   {col.sortable && sortKey === col.key && (
-                    <span aria-hidden="true" className="text-[#000080]">
+                    <span aria-hidden="true" className="text-primary">
                       {sortDir === 'asc' ? '↑' : '↓'}
                     </span>
                   )}
@@ -83,17 +83,17 @@ function Table<T = Record<string, unknown>>({
         <tbody>
           {loading ? (
             Array.from({ length: 5 }).map((_, i) => (
-              <tr key={i} className="border-b border-[#d7d7d7]">
+              <tr key={i} className="border-b border-border">
                 {columns.map((col) => (
                   <td key={col.key} className={cellPad}>
-                    <div className="h-4 bg-gray-200 rounded animate-pulse" />
+                    <div className="h-4 rounded bg-muted animate-pulse" />
                   </td>
                 ))}
               </tr>
             ))
           ) : data.length === 0 ? (
             <tr>
-              <td colSpan={columns.length} className="py-12 text-center text-[#808080]">
+              <td colSpan={columns.length} className="py-12 text-center text-muted-foreground">
                 {emptyMessage}
               </td>
             </tr>
@@ -103,9 +103,9 @@ function Table<T = Record<string, unknown>>({
                 key={keyExtractor(row, i)}
                 onClick={() => onRowClick?.(row)}
                 className={cn(
-                  'border-b border-[#d7d7d7] last:border-b-0 transition-colors duration-100',
-                  striped && i % 2 === 1 && 'bg-gray-50/60',
-                  hoverable && 'hover:bg-[#dae8ff]/30',
+                  'border-b border-border last:border-b-0 transition-colors duration-100',
+                  striped && i % 2 === 1 && 'bg-muted/30',
+                  hoverable && 'hover:bg-muted/50',
                   onRowClick && 'cursor-pointer'
                 )}
               >
@@ -114,10 +114,10 @@ function Table<T = Record<string, unknown>>({
                     key={col.key}
                     className={cn(
                       cellPad,
-                      'text-[#1e1e1e]',
+                      'text-foreground',
                       col.align === 'center' && 'text-center',
                       col.align === 'right' && 'text-right',
-                      bordered && 'border-r border-[#d7d7d7] last:border-r-0'
+                      bordered && 'border-r border-border last:border-r-0'
                     )}
                   >
                     {col.cell

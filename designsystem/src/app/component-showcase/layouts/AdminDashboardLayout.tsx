@@ -378,10 +378,11 @@ export default function AdminDashboardLayout() {
               <Alert
                 variant="info"
                 title="System Update Scheduled"
-                description="Maintenance window is set for Sunday, 2:00–4:00 AM UTC. Expect brief downtime."
                 dismissible
                 onDismiss={() => setAlertVisible(false)}
-              />
+              >
+                Maintenance window is set for Sunday, 2:00–4:00 AM UTC. Expect brief downtime.
+              </Alert>
             </div>
           )}
 
@@ -594,10 +595,12 @@ export default function AdminDashboardLayout() {
             >
               <p className={cn('text-xs', paginationText)}>Showing 1–6 of 248 users</p>
               <Pagination
-                currentPage={currentPage}
-                totalPages={42}
+                page={currentPage}
+                total={248}
+                pageSize={6}
                 onPageChange={setCurrentPage}
                 size="sm"
+                showTotal={false}
               />
             </div>
           </div>

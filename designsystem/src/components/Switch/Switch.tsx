@@ -14,9 +14,9 @@ export interface SwitchProps extends Omit<
 }
 
 const sizeMap = {
-  sm: { track: 'h-4 w-7', thumb: 'h-3 w-3', translate: 'translate-x-3', label: 'text-xs' },
-  md: { track: 'h-5 w-9', thumb: 'h-4 w-4', translate: 'translate-x-4', label: 'text-sm' },
-  lg: { track: 'h-6 w-11', thumb: 'h-5 w-5', translate: 'translate-x-5', label: 'text-base' },
+  sm: { track: 'h-5 w-8', thumb: 'h-3.5 w-3.5', translate: '1rem', label: 'text-xs' },
+  md: { track: 'h-6 w-10', thumb: 'h-4.5 w-4.5', translate: '1.125rem', label: 'text-sm' },
+  lg: { track: 'h-7 w-12', thumb: 'h-5.5 w-5.5', translate: '1.25rem', label: 'text-base' },
 };
 
 const Switch = forwardRef<HTMLInputElement, SwitchProps>(
@@ -41,18 +41,19 @@ const Switch = forwardRef<HTMLInputElement, SwitchProps>(
     const track = (
       <div
         className={cn(
-          'relative inline-flex items-center rounded-full transition-colors duration-200 ease-in-out cursor-pointer',
-          s.track,
-          checked ? 'bg-primary' : 'bg-muted',
+        'relative inline-flex items-center rounded-full border-2 transition-all duration-200 ease-out cursor-pointer',
+        s.track,
+        checked ? 'border-primary bg-primary' : 'border-input bg-muted/80',
           disabled && 'opacity-50 cursor-not-allowed'
         )}
         aria-hidden="true"
       >
         <span
+          style={{ '--switch-translate': s.translate } as React.CSSProperties}
           className={cn(
-            'inline-block rounded-full bg-background shadow-sm transition-transform duration-200 ease-in-out',
+            'inline-block rounded-full bg-background shadow-sm transition-transform duration-200 ease-out',
             s.thumb,
-            checked ? s.translate : 'translate-x-0.5'
+            checked ? 'translate-x-[var(--switch-translate)]' : 'translate-x-0.5'
           )}
         />
       </div>

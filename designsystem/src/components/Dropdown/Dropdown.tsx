@@ -55,7 +55,7 @@ const Dropdown: React.FC<DropdownProps> = ({
     firstItem?.focus();
   }, [open]);
 
-  const handleTriggerKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
+  const handleTriggerKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
     if (event.key === 'Enter' || event.key === ' ' || event.key === 'ArrowDown') {
       event.preventDefault();
       setOpen(true);
@@ -98,19 +98,24 @@ const Dropdown: React.FC<DropdownProps> = ({
     }
   };
 
+  // Inject ARIA/interaction props onto the trigger element directly so we
+  // never render a <button> wrapping another <button> (invalid HTML).
+  const triggerEl = React.isValidElement(trigger)
+    ? React.cloneElement(trigger as React.ReactElement<Record<string, unknown>>, {
+        'aria-haspopup': 'menu',
+        'aria-expanded': open,
+        'aria-controls': menuId,
+        onClick: (e: React.MouseEvent) => {
+          (trigger.props as Record<string, unknown> & { onClick?: (e: React.MouseEvent) => void }).onClick?.(e);
+          setOpen((v) => !v);
+        },
+        onKeyDown: handleTriggerKeyDown,
+      })
+    : trigger;
+
   return (
     <div ref={ref} className={cn('relative inline-flex', className)}>
-      <button
-        type="button"
-        aria-haspopup="menu"
-        aria-expanded={open}
-        aria-controls={menuId}
-        onClick={() => setOpen((v) => !v)}
-        onKeyDown={handleTriggerKeyDown}
-        className="cursor-pointer"
-      >
-        {trigger}
-      </button>
+      {triggerEl}
       {open && (
         <div
           ref={menuRef}
@@ -118,7 +123,7 @@ const Dropdown: React.FC<DropdownProps> = ({
           role="menu"
           onKeyDown={handleMenuKeyDown}
           className={cn(
-            'absolute z-50 mt-1 min-w-[180px] bg-background border border-border rounded-lg shadow-dropdown py-1 animate-fade-in',
+            'absolute z-50 mt-1.5 min-w-[200px] rounded-xl border border-border/80 bg-popover p-1 shadow-dropdown animate-fade-in',
             align === 'right' ? 'right-0' : 'left-0',
             'top-full',
             menuClassName
@@ -129,7 +134,7 @@ const Dropdown: React.FC<DropdownProps> = ({
               return (
                 <div key={item.id}>
                   {item.label && (
-                    <span className="block px-3 py-1 text-xs font-semibold text-muted-foreground uppercase tracking-wide">
+                    <span className="block px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">
                       {item.label}
                     </span>
                   )}
@@ -150,10 +155,10 @@ const Dropdown: React.FC<DropdownProps> = ({
                   setOpen(false);
                 }}
                 className={cn(
-                  'w-full flex items-center gap-2 px-3 py-2 text-sm transition-colors duration-100 text-left',
+                  'flex w-full items-center gap-2 rounded-lg px-2.5 py-2 text-left text-sm transition-colors duration-100',
                   d.danger
-                    ? 'text-red-600 hover:bg-red-50'
-                    : 'text-foreground hover:bg-accent hover:text-accent-foreground',
+                    ? 'text-destructive hover:bg-destructive-soft'
+                    : 'text-foreground hover:bg-muted',
                   d.disabled && 'opacity-40 cursor-not-allowed'
                 )}
               >
@@ -162,7 +167,7 @@ const Dropdown: React.FC<DropdownProps> = ({
                     {d.checked && <Check className="h-3.5 w-3.5" />}
                   </span>
                 )}
-                {d.icon && <span className="shrink-0 text-[#808080]">{d.icon}</span>}
+                {d.icon && <span className="shrink-0 text-muted-foreground">{d.icon}</span>}
                 <span className="flex-1">{d.label}</span>
                 {d.shortcut && (
                   <kbd className="text-xs text-muted-foreground font-mono">{d.shortcut}</kbd>

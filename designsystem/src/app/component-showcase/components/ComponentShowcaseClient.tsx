@@ -12,6 +12,7 @@ import {
 } from '@heroicons/react/24/outline';
 
 import { useDebounce } from '@/hooks/useDebounce';
+import { ThemeEditor } from '@/components/ThemeEditor';
 import ShowcaseSidebar from './ShowcaseSidebar';
 import ShowcaseTopbar from './ShowcaseTopbar';
 import { ShowcaseThemeProvider, useShowcaseTheme } from '../context/ThemeContext';
@@ -276,7 +277,7 @@ function ComponentShowcaseInner() {
   return (
     <div
       className={`flex h-screen overflow-hidden font-sans transition-colors duration-200 ${
-        isNavy ? 'bg-[#00003a]' : 'bg-white'
+        isNavy ? 'bg-background' : 'bg-background'
       }`}
     >
       {/* Desktop Sidebar */}
@@ -294,7 +295,7 @@ function ComponentShowcaseInner() {
       {/* Mobile Sidebar Overlay */}
       {sidebarOpen && (
         <div className="fixed inset-0 z-40 lg:hidden">
-          <div className="absolute inset-0 bg-black/50" onClick={() => setSidebarOpen(false)} />
+          <div className="absolute inset-0 bg-overlay/50" onClick={() => setSidebarOpen(false)} />
           <ShowcaseSidebar
             categories={filteredCategories}
             activeComponent={activeComponent}
@@ -317,17 +318,20 @@ function ComponentShowcaseInner() {
         {/* Scrollable content */}
         <main
           className={`flex-1 overflow-y-auto scrollbar-thin transition-colors duration-200 ${
-            isNavy ? 'bg-[#00003a]' : 'bg-[#f9f9f9]'
+            isNavy ? 'bg-background' : 'bg-background'
           }`}
           id="main-content"
         >
-          <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-16 py-8">
+          <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-16 py-8">
+            <div className="mb-8">
+              <ThemeEditor />
+            </div>
             {ActiveSection ? (
               <ActiveSection />
             ) : (
               <div className="flex flex-col items-center justify-center py-24 text-center">
-                <Package className="h-12 w-12 text-[#d7d7d7] mb-4" />
-                <p className="text-[#808080] text-sm">Select a component from the sidebar</p>
+                <Package className="mb-4 h-12 w-12 text-muted-foreground" />
+                <p className="text-sm text-muted-foreground">Select a component from the sidebar</p>
               </div>
             )}
           </div>

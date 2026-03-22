@@ -4,27 +4,27 @@ import { User } from 'lucide-react';
 import { cn } from '@/utils/cn';
 
 export const avatarVariants = cva(
-  'inline-flex items-center justify-center shrink-0 overflow-hidden font-medium select-none',
+  'inline-flex items-center justify-center shrink-0 overflow-hidden font-semibold select-none ring-2 ring-border/50',
   {
     variants: {
       size: {
-        xs: 'h-6 w-6 text-xs',
-        sm: 'h-8 w-8 text-sm',
-        md: 'h-10 w-10 text-base',
-        lg: 'h-12 w-12 text-lg',
-        xl: 'h-16 w-16 text-xl',
-        '2xl': 'h-20 w-20 text-2xl',
+        xs: 'h-6 w-6 text-[10px]',
+        sm: 'h-8 w-8 text-xs',
+        md: 'h-9 w-9 text-sm',
+        lg: 'h-11 w-11 text-base',
+        xl: 'h-14 w-14 text-lg',
+        '2xl': 'h-18 w-18 text-xl',
       },
       shape: {
         circle: 'rounded-full',
-        square: 'rounded-md',
+        square: 'rounded-xl',
       },
       variant: {
-        image: '',
-        initials: 'bg-accent text-accent-foreground',
-        icon: 'bg-muted text-muted-foreground',
-        navy: 'bg-navy text-white',
-        primary: 'bg-primary text-primary-foreground',
+        image: 'ring-0',
+        initials: 'bg-accent text-accent-foreground ring-0',
+        icon: 'bg-muted text-muted-foreground ring-0',
+        navy: 'bg-sidebar text-sidebar-foreground ring-0',
+        primary: 'bg-primary text-primary-foreground ring-0',
       },
     },
     defaultVariants: {
@@ -44,10 +44,10 @@ export interface AvatarProps
 }
 
 const statusColors: Record<string, string> = {
-  online: 'bg-green-500',
+  online: 'bg-success',
   offline: 'bg-muted-foreground',
-  busy: 'bg-red-500',
-  away: 'bg-amber-400',
+  busy: 'bg-destructive',
+  away: 'bg-warning',
 };
 
 const Avatar: React.FC<AvatarProps> = ({
@@ -83,7 +83,7 @@ const Avatar: React.FC<AvatarProps> = ({
       {status && (
         <span
           className={cn(
-            'absolute bottom-0 right-0 block rounded-full ring-2 ring-white',
+            'absolute bottom-0 right-0 block rounded-full ring-2 ring-card',
             statusColors[status],
             size === 'xs' || size === 'sm' ? 'h-2 w-2' : 'h-3 w-3'
           )}

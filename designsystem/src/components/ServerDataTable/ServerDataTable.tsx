@@ -61,93 +61,81 @@ export type ColumnDef<T> = {
 function getThemeTokens(theme: ServerDataTableTheme) {
   if (theme === 'navy') {
     return {
-      // Status toggle
-      toggleBorder: 'border-[#6699cc]',
-      toggleActiveBg: 'bg-[#000060] text-white',
-      toggleInactiveBg: 'bg-[#000040] text-[#99bbdd]',
-      // Search
-      searchBorder: 'border-[#000060]',
-      searchBg: 'bg-[#000030] text-white placeholder-[#6688aa]',
-      searchFocus: 'focus:ring-[#6699cc]/40 focus:border-[#6699cc]',
-      searchIcon: 'text-[#6688aa]',
-      // Header
-      headerBg: '#000060',
-      headerText: 'text-[#aaccee]',
+      toggleBorder: 'border-border',
+      toggleActiveBg: 'bg-primary text-primary-foreground',
+      toggleInactiveBg: 'bg-navy-dark text-sky-light',
+      searchBorder: 'border-border',
+      searchBg: 'bg-navy-dark text-white placeholder:text-muted-foreground',
+      searchFocus: 'focus:ring-ring/30 focus:border-ring',
+      searchIcon: 'text-muted-foreground',
+      headerBg: 'hsl(var(--secondary))',
+      headerText: 'text-foreground',
       headerHover: 'hover:text-white',
-      // Row card
-      rowBg: 'bg-[#000040]',
-      rowBorder: 'border-[#000060]',
-      rowExpandedBorder: 'border-[#6699cc]/40',
-      rowText: 'text-[#ddeeff]',
-      // Expand button
-      expandBtnBorder: 'border-[#000060] hover:border-[#6699cc] hover:bg-[#6699cc]/10',
-      expandBtnIcon: 'text-[#aaccee]',
-      expandBtnFocus: 'focus:ring-[#6699cc]/30',
-      // Expanded panel
-      expandedBg: 'bg-[#000030]',
-      expandedBorder: 'border-[#6699cc]/40',
-      // Note input
-      noteInputBorder: 'border-[#000060]',
-      noteInputBg: 'bg-[#000040] text-[#ddeeff] placeholder-[#6688aa]',
-      noteInputFocus: 'focus:ring-[#6699cc]/30 focus:border-[#6699cc]',
-      noteLabel: 'text-[#aaccee]',
-      appliedText: 'text-[#aaccee]',
-      // Pagination
-      paginationText: 'text-[#6688aa]',
-      paginationBtn: 'border-[#000060] text-[#aaccee] hover:bg-[#000060]',
-      paginationActivePage: 'bg-[#000080] text-white',
-      paginationInactivePage: 'border-[#000060] text-[#aaccee] hover:bg-[#000060]',
-      paginationEllipsis: 'text-[#6688aa]',
-      // Empty state
-      emptyBg: 'bg-[#000040]',
-      emptyBorder: 'border-[#000060]',
-      emptyText: 'text-[#6688aa]',
-      // Skeleton
-      skeletonBg: 'bg-[#000040]',
-      skeletonBorder: 'border-[#000060]',
-      skeletonPulse: 'bg-[#000060]',
-      // Sort icon active
-      sortIconActive: 'text-[#6699cc]',
+      rowBg: 'bg-navy-dark',
+      rowBorder: 'border-border',
+      rowExpandedBorder: 'border-primary/35',
+      rowText: 'text-sky-light',
+      expandBtnBorder: 'border-border hover:border-primary hover:bg-primary/10',
+      expandBtnIcon: 'text-sky-light',
+      expandBtnFocus: 'focus:ring-ring/30',
+      expandedBg: 'bg-navy',
+      expandedBorder: 'border-primary/30',
+      noteInputBorder: 'border-border',
+      noteInputBg: 'bg-navy-dark text-sky-light placeholder:text-muted-foreground',
+      noteInputFocus: 'focus:ring-ring/30 focus:border-ring',
+      noteLabel: 'text-sky-light',
+      appliedText: 'text-sky-light',
+      paginationText: 'text-muted-foreground',
+      paginationBtn: 'border-border text-sky-light hover:bg-navy-medium',
+      paginationActivePage: 'bg-primary text-primary-foreground',
+      paginationInactivePage: 'border-border text-sky-light hover:bg-navy-medium',
+      paginationEllipsis: 'text-muted-foreground',
+      emptyBg: 'bg-navy-dark',
+      emptyBorder: 'border-border',
+      emptyText: 'text-muted-foreground',
+      skeletonBg: 'bg-navy-dark',
+      skeletonBorder: 'border-border',
+      skeletonPulse: 'bg-navy-medium',
+      sortIconActive: 'text-primary',
     };
   }
-  // light
   return {
-    toggleBorder: 'border-[#000080]',
-    toggleActiveBg: 'bg-[#000080] text-white',
-    toggleInactiveBg: 'bg-white text-[#000080]',
-    searchBorder: 'border-gray-300',
-    searchBg: 'bg-white text-gray-900 placeholder-gray-400',
-    searchFocus: 'focus:ring-[#000080]/30 focus:border-[#000080]',
-    searchIcon: 'text-gray-400',
-    headerBg: '#dde3f0',
-    headerText: 'text-[#000040]',
-    headerHover: 'hover:text-[#000080]',
-    rowBg: 'bg-white',
-    rowBorder: 'border-gray-200',
-    rowExpandedBorder: 'border-[#000080]/30',
-    rowText: 'text-[#1e1e1e]',
-    expandBtnBorder: 'border-gray-300 hover:border-[#000080] hover:bg-[#000080]/5',
-    expandBtnIcon: 'text-gray-600',
-    expandBtnFocus: 'focus:ring-[#000080]/30',
-    expandedBg: 'bg-white',
-    expandedBorder: 'border-[#000080]/30',
-    noteInputBorder: 'border-gray-300',
-    noteInputBg: 'bg-white text-gray-900 placeholder-gray-400',
-    noteInputFocus: 'focus:ring-[#000080]/30 focus:border-[#000080]',
-    noteLabel: 'text-[#1e1e1e]',
-    appliedText: 'text-[#1e1e1e]',
-    paginationText: 'text-gray-500',
-    paginationBtn: 'border-gray-300 text-gray-700 hover:bg-gray-50',
-    paginationActivePage: 'bg-[#000080] text-white',
-    paginationInactivePage: 'border-gray-300 text-gray-700 hover:bg-gray-50',
-    paginationEllipsis: 'text-gray-400',
-    emptyBg: 'bg-white',
-    emptyBorder: 'border-gray-200',
-    emptyText: 'text-gray-400',
-    skeletonBg: 'bg-white',
-    skeletonBorder: 'border-gray-200',
-    skeletonPulse: 'bg-gray-200',
-    sortIconActive: 'text-[#000080]',
+    toggleBorder: 'border-border',
+    toggleActiveBg: 'bg-primary text-primary-foreground',
+    toggleInactiveBg: 'bg-background text-primary',
+    searchBorder: 'border-border',
+    searchBg: 'bg-background text-foreground placeholder:text-muted-foreground',
+    searchFocus: 'focus:ring-ring/20 focus:border-ring',
+    searchIcon: 'text-muted-foreground',
+    headerBg: 'hsl(var(--secondary))',
+    headerText: 'text-foreground',
+    headerHover: 'hover:text-primary',
+    rowBg: 'bg-card',
+    rowBorder: 'border-border',
+    rowExpandedBorder: 'border-primary/20',
+    rowText: 'text-foreground',
+    expandBtnBorder: 'border-border hover:border-primary hover:bg-primary/6',
+    expandBtnIcon: 'text-muted-foreground',
+    expandBtnFocus: 'focus:ring-ring/20',
+    expandedBg: 'bg-background',
+    expandedBorder: 'border-primary/18',
+    noteInputBorder: 'border-border',
+    noteInputBg: 'bg-background text-foreground placeholder:text-muted-foreground',
+    noteInputFocus: 'focus:ring-ring/20 focus:border-ring',
+    noteLabel: 'text-foreground',
+    appliedText: 'text-foreground',
+    paginationText: 'text-muted-foreground',
+    paginationBtn: 'border-border text-foreground hover:bg-muted',
+    paginationActivePage: 'bg-primary text-primary-foreground',
+    paginationInactivePage: 'border-border text-foreground hover:bg-muted',
+    paginationEllipsis: 'text-muted-foreground',
+    emptyBg: 'bg-card',
+    emptyBorder: 'border-border',
+    emptyText: 'text-muted-foreground',
+    skeletonBg: 'bg-card',
+    skeletonBorder: 'border-border',
+    skeletonPulse: 'bg-muted',
+    sortIconActive: 'text-primary',
   };
 }
 
@@ -156,7 +144,7 @@ function getThemeTokens(theme: ServerDataTableTheme) {
 function SkeletonRow({ cols, tk }: { cols: number; tk: ReturnType<typeof getThemeTokens> }) {
   return (
     <div
-      className={`${tk.skeletonBg} rounded-xl border ${tk.skeletonBorder} shadow-sm px-4 py-3 mb-2 flex items-center gap-4 animate-pulse`}
+      className={`${tk.skeletonBg} mb-2 flex items-center gap-4 rounded-2xl border ${tk.skeletonBorder} px-4 py-3 shadow-card animate-pulse`}
     >
       {Array.from({ length: cols }).map((_, i) => (
         <div key={i} className={`flex-1 h-4 ${tk.skeletonPulse} rounded`} />
@@ -171,7 +159,7 @@ function SkeletonRow({ cols, tk }: { cols: number; tk: ReturnType<typeof getThem
 function SortIcon({ direction, activeClass }: { direction: SortDirection; activeClass: string }) {
   if (direction === 'asc') return <ChevronUpIcon className={`h-3.5 w-3.5 ${activeClass}`} />;
   if (direction === 'desc') return <ChevronDownIcon className={`h-3.5 w-3.5 ${activeClass}`} />;
-  return <ChevronDownIcon className="h-3.5 w-3.5 text-gray-400" />;
+  return <ChevronDownIcon className="h-3.5 w-3.5 text-muted-foreground" />;
 }
 
 // ─── Main Component ───────────────────────────────────────────────────────────
@@ -277,11 +265,11 @@ export default function ServerDataTable<T extends Record<string, unknown>>({
   return (
     <div className={`w-full ${className}`}>
       {/* ── Status Toggle ── */}
-      <div className="flex justify-center mb-5">
-        <div className={`inline-flex rounded-full border-2 ${tk.toggleBorder} overflow-hidden`}>
+      <div className="mb-5 flex justify-center">
+        <div className={`inline-flex overflow-hidden rounded-full border ${tk.toggleBorder} bg-background/70 p-1`}>
           <button
             onClick={() => handleStatusToggle('active')}
-            className={`px-8 py-2 text-sm font-semibold transition-colors focus:outline-none ${
+            className={`rounded-full px-7 py-2 text-sm font-semibold transition-colors focus:outline-none ${
               status === 'active' ? tk.toggleActiveBg : tk.toggleInactiveBg
             }`}
           >
@@ -289,7 +277,7 @@ export default function ServerDataTable<T extends Record<string, unknown>>({
           </button>
           <button
             onClick={() => handleStatusToggle('closed')}
-            className={`px-8 py-2 text-sm font-semibold transition-colors focus:outline-none ${
+            className={`rounded-full px-7 py-2 text-sm font-semibold transition-colors focus:outline-none ${
               status === 'closed' ? tk.toggleActiveBg : tk.toggleInactiveBg
             }`}
           >
@@ -299,22 +287,22 @@ export default function ServerDataTable<T extends Record<string, unknown>>({
       </div>
 
       {/* ── Search ── */}
-      <div className="mb-4 relative max-w-xs">
+      <div className="relative mb-4 max-w-xs">
         <MagnifyingGlassIcon
-          className={`absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 ${tk.searchIcon} pointer-events-none`}
+          className={`pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 ${tk.searchIcon}`}
         />
         <input
           type="text"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Search..."
-          className={`w-full pl-9 pr-3 py-2 text-sm border ${tk.searchBorder} ${tk.searchBg} rounded-lg focus:outline-none focus:ring-2 ${tk.searchFocus}`}
+          className={`w-full rounded-xl border ${tk.searchBorder} ${tk.searchBg} py-2.5 pl-10 pr-3 text-sm focus:outline-none focus:ring-2 ${tk.searchFocus}`}
         />
       </div>
 
       {/* ── Column Headers ── */}
       <div
-        className="flex items-center gap-2 px-4 py-2.5 rounded-lg mb-2"
+        className="mb-2 flex items-center gap-2 rounded-2xl px-4 py-3"
         style={{ background: tk.headerBg }}
       >
         {columns.map((col) => (
@@ -345,7 +333,7 @@ export default function ServerDataTable<T extends Record<string, unknown>>({
           ))
         ) : data.length === 0 ? (
           <div
-            className={`${tk.emptyBg} rounded-xl border ${tk.emptyBorder} shadow-sm px-4 py-10 text-center text-sm ${tk.emptyText}`}
+            className={`${tk.emptyBg} rounded-2xl border ${tk.emptyBorder} px-4 py-10 text-center text-sm shadow-card ${tk.emptyText}`}
           >
             No records found.
           </div>
@@ -359,7 +347,7 @@ export default function ServerDataTable<T extends Record<string, unknown>>({
               <div key={key} className="mb-2">
                 {/* Row card */}
                 <div
-                  className={`${tk.rowBg} rounded-xl border shadow-sm px-4 py-3 flex items-center gap-2 transition-all ${
+                  className={`${tk.rowBg} flex items-center gap-2 rounded-2xl border px-4 py-3 shadow-card transition-all ${
                     isExpanded ? `${tk.rowExpandedBorder} rounded-b-none mb-0` : tk.rowBorder
                   }`}
                 >
@@ -376,7 +364,7 @@ export default function ServerDataTable<T extends Record<string, unknown>>({
                   <button
                     onClick={() => toggleExpand(key)}
                     aria-label={isExpanded ? 'Collapse row' : 'Expand row'}
-                    className={`w-8 h-8 flex-shrink-0 flex items-center justify-center rounded-full border ${tk.expandBtnBorder} transition-colors focus:outline-none focus:ring-2 ${tk.expandBtnFocus}`}
+                    className={`flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full border ${tk.expandBtnBorder} transition-colors focus:outline-none focus:ring-2 ${tk.expandBtnFocus}`}
                   >
                     {isExpanded ? (
                       <ChevronUpIcon className={`h-4 w-4 ${tk.expandBtnIcon}`} />
@@ -389,7 +377,7 @@ export default function ServerDataTable<T extends Record<string, unknown>>({
                 {/* Expanded panel */}
                 {isExpanded && (
                   <div
-                    className={`${tk.expandedBg} border border-t-0 ${tk.expandedBorder} rounded-b-xl px-4 py-4`}
+                    className={`${tk.expandedBg} rounded-b-2xl border border-t-0 ${tk.expandedBorder} px-4 py-4`}
                   >
                     {renderExpandedRow ? (
                       renderExpandedRow(
@@ -432,7 +420,7 @@ export default function ServerDataTable<T extends Record<string, unknown>>({
             <button
               onClick={() => setPage((p) => Math.max(1, p - 1))}
               disabled={page === 1}
-              className={`flex items-center gap-1 px-3 py-1.5 text-xs font-medium rounded-lg border ${tk.paginationBtn} disabled:opacity-40 disabled:cursor-not-allowed transition-colors`}
+              className={`flex items-center gap-1 rounded-lg border px-3 py-1.5 text-xs font-medium ${tk.paginationBtn} disabled:opacity-40 disabled:cursor-not-allowed transition-all duration-200 ease-in-out`}
             >
               <ChevronLeftIcon className="h-3.5 w-3.5" />
               Previous
@@ -461,7 +449,7 @@ export default function ServerDataTable<T extends Record<string, unknown>>({
                   <button
                     key={p}
                     onClick={() => setPage(p as number)}
-                    className={`w-8 h-8 text-xs font-medium rounded-lg transition-colors ${
+                    className={`h-8 w-8 rounded-lg text-xs font-medium transition-all duration-200 ease-in-out ${
                       page === p ? tk.paginationActivePage : `border ${tk.paginationInactivePage}`
                     }`}
                   >
@@ -473,7 +461,7 @@ export default function ServerDataTable<T extends Record<string, unknown>>({
             <button
               onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
               disabled={page === totalPages}
-              className={`flex items-center gap-1 px-3 py-1.5 text-xs font-medium rounded-lg border ${tk.paginationBtn} disabled:opacity-40 disabled:cursor-not-allowed transition-colors`}
+              className={`flex items-center gap-1 rounded-lg border px-3 py-1.5 text-xs font-medium ${tk.paginationBtn} disabled:opacity-40 disabled:cursor-not-allowed transition-all duration-200 ease-in-out`}
             >
               Next
               <ChevronRightIcon className="h-3.5 w-3.5" />
@@ -514,7 +502,7 @@ function DefaultExpandedContent({
           value={note}
           onChange={(e) => onNoteChange(e.target.value)}
           placeholder="Reason"
-          className={`flex-1 max-w-sm px-3 py-1.5 text-sm border ${tk.noteInputBorder} ${tk.noteInputBg} rounded-lg focus:outline-none focus:ring-2 ${tk.noteInputFocus}`}
+          className={`max-w-sm flex-1 rounded-xl border ${tk.noteInputBorder} ${tk.noteInputBg} px-3 py-2 text-sm focus:outline-none focus:ring-2 ${tk.noteInputFocus}`}
         />
       </div>
 
@@ -526,16 +514,13 @@ function DefaultExpandedContent({
         <div className="flex items-center gap-3">
           <button
             onClick={onReject}
-            className="px-5 py-2 text-sm font-semibold text-white bg-red-500 hover:bg-red-600 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-red-400"
+            className="rounded-xl border border-destructive bg-destructive px-5 py-2 text-sm font-semibold text-destructive-foreground transition-all duration-200 ease-in-out hover:bg-destructive/92 focus:outline-none focus:ring-2 focus:ring-ring/30"
           >
             Reject
           </button>
           <button
             onClick={onApprove}
-            className="px-5 py-2 text-sm font-semibold text-white rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-green-600"
-            style={{ backgroundColor: '#1a6b2a' }}
-            onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#155722')}
-            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#1a6b2a')}
+            className="rounded-xl border border-success bg-success px-5 py-2 text-white text-sm font-semibold transition-all duration-200 ease-in-out hover:bg-success/90 focus:outline-none focus:ring-2 focus:ring-ring/30"
           >
             Approve
           </button>

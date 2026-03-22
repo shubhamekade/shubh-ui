@@ -2,6 +2,8 @@
 
 import React, { useEffect, useRef } from 'react';
 import { X } from 'lucide-react';
+import { AnimatePresence, motion } from '@/motion';
+
 import { cn } from '../../utils/cn';
 
 export interface ModalProps {
@@ -100,70 +102,73 @@ const Modal: React.FC<ModalProps> = ({
     return () => document.removeEventListener('keydown', handler);
   }, [open]);
 
-  if (!open) return null;
-
   return (
-    <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby={title ? 'modal-title' : undefined}
-      aria-describedby={description ? 'modal-description' : undefined}
-    >
-      {/* Overlay */}
-      <div
-        className="absolute inset-0 bg-black/50 backdrop-blur-sm animate-fade-in"
-        onClick={closeOnOverlay ? onClose : undefined}
-        aria-hidden="true"
-      />
-      {/* Panel */}
-      <div
-        ref={dialogRef}
-        tabIndex={-1}
-        className={cn(
-          'relative w-full bg-background rounded-xl shadow-modal animate-scale-in',
-          'focus:outline-none',
-          sizeMap[size],
-          className
-        )}
-      >
-        {/* Header */}
-        {(title || showCloseButton) && (
-          <div className="flex items-start justify-between p-5 border-b border-border">
-            <div>
-              {title && (
-                <h2 id="modal-title" className="text-base font-semibold text-foreground">
-                  {title}
-                </h2>
-              )}
-              {description && (
-                <p id="modal-description" className="text-sm text-muted-foreground mt-1">
-                  {description}
-                </p>
-              )}
-            </div>
-            {showCloseButton && (
-              <button
-                type="button"
-                onClick={onClose}
-                aria-label="Close modal"
-                className="ml-4 shrink-0 p-1 rounded-md text-muted-foreground hover:text-foreground hover:bg-gray-100 transition-colors"
-              >
-                <X className="h-4 w-4" />
-              </button>
+    <AnimatePresence>
+      {open ? (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby={title ? 'modal-title' : undefined}
+          aria-describedby={description ? 'modal-description' : undefined}
+        >
+          <motion.div
+            className="absolute inset-0 bg-overlay/50 backdrop-blur-md"
+            onClick={closeOnOverlay ? onClose : undefined}
+            aria-hidden="true"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.18 }}
+          />
+          <motion.div
+            ref={dialogRef}
+            tabIndex={-1}
+            className={cn(
+              'relative w-full rounded-2xl border border-border/50 bg-surface/95 shadow-modal backdrop-blur-xl',
+              'focus:outline-none',
+              sizeMap[size],
+              className
             )}
-          </div>
-        )}
+            initial={{ opacity: 0, y: 16, scale: 0.97 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 8, scale: 0.98 }}
+            transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          >
+            {(title || showCloseButton) && (
+              <div className="flex items-start justify-between border-b border-border/50 px-6 py-4">
+                <div>
+                  {title && (
+                    <h2 id="modal-title" className="text-lg font-semibold tracking-tight text-foreground">
+                      {title}
+                    </h2>
+                  )}
+                  {description && (
+                    <p id="modal-description" className="mt-1 text-sm leading-relaxed text-muted-foreground">
+                      {description}
+                    </p>
+                  )}
+                </div>
+                {showCloseButton && (
+                  <button
+                    type="button"
+                    onClick={onClose}
+                    aria-label="Close modal"
+                    className="ml-4 shrink-0 flex h-8 w-8 items-center justify-center rounded-lg text-muted-foreground transition-all duration-150 hover:bg-muted hover:text-foreground"
+                  >
+                    <X className="h-4 w-4" />
+                  </button>
+                )}
+              </div>
+            )}
 
-        {/* Body */}
-        {children && <div className="p-5">{children}</div>}
+            {children && <div className="p-6">{children}</div>}
 
-        {/* Footer */}
-        {footer && (
-          <div className="flex items-center justify-end gap-2 px-5 pb-5 pt-2">{footer}</div>
-        )}
-      </div>
-    </div>
+            {footer && <div className="flex items-center justify-end gap-2 px-6 pb-6 pt-2">{footer}</div>}
+          </motion.div>
+        </div>
+      ) : null}
+    </AnimatePresence>
   );
 };
 

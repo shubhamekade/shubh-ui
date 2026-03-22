@@ -55,7 +55,7 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({
               ) : item.href ? (
                 <a
                   href={item.href}
-                  className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-1"
+                  className="flex items-center gap-1 rounded-md px-1 py-0.5 text-muted-foreground transition-colors duration-150 hover:text-foreground"
                 >
                   {item.icon}
                   {item.label}

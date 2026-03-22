@@ -118,18 +118,18 @@ function NavHeader({
   const iconSize = size === 'sm' ? 'h-3 w-3' : size === 'lg' ? 'h-4 w-4' : 'h-3.5 w-3.5';
 
   return (
-    <div className="flex items-center justify-between mb-3">
+    <div className="mb-3 flex items-center justify-between">
       <button
         type="button"
         onClick={onPrev}
         aria-label={prevAriaLabel}
         className={cn(
           btnSize,
-          'flex items-center justify-center rounded transition-colors duration-100',
-          'focus:outline-none focus-visible:ring-2 focus-visible:ring-[#000080] focus-visible:ring-offset-1',
+          'flex items-center justify-center rounded-xl transition-colors duration-100',
+          'focus:outline-none focus-visible:ring-2 focus-visible:ring-ring/25 focus-visible:ring-offset-1',
           isNavy
-            ? 'text-gray-400 hover:text-white hover:bg-[#000060]'
-            : 'text-gray-400 hover:text-gray-700 hover:bg-[#dae8ff]'
+            ? 'text-muted-foreground hover:bg-accent hover:text-foreground'
+            : 'text-muted-foreground hover:bg-accent hover:text-foreground'
         )}
       >
         <ChevronLeftIcon className={iconSize} />
@@ -140,11 +140,11 @@ function NavHeader({
         onClick={onLabelClick}
         className={cn(
           textSize,
-          'font-medium px-2 py-0.5 rounded transition-colors duration-100',
-          'focus:outline-none focus-visible:ring-2 focus-visible:ring-[#000080] focus-visible:ring-offset-1',
+          'rounded-xl px-2.5 py-1 font-medium transition-colors duration-100',
+          'focus:outline-none focus-visible:ring-2 focus-visible:ring-ring/25 focus-visible:ring-offset-1',
           isNavy
-            ? 'text-gray-300 hover:text-white hover:bg-[#000060]'
-            : 'text-gray-500 hover:text-gray-800 hover:bg-[#dae8ff]'
+            ? 'text-foreground hover:bg-accent hover:text-foreground'
+            : 'text-muted-foreground hover:bg-accent hover:text-foreground'
         )}
         aria-label={`Switch to broader view, currently showing ${label}`}
       >
@@ -157,11 +157,11 @@ function NavHeader({
         aria-label={nextAriaLabel}
         className={cn(
           btnSize,
-          'flex items-center justify-center rounded transition-colors duration-100',
-          'focus:outline-none focus-visible:ring-2 focus-visible:ring-[#000080] focus-visible:ring-offset-1',
+          'flex items-center justify-center rounded-xl transition-colors duration-100',
+          'focus:outline-none focus-visible:ring-2 focus-visible:ring-ring/25 focus-visible:ring-offset-1',
           isNavy
-            ? 'text-gray-400 hover:text-white hover:bg-[#000060]'
-            : 'text-gray-400 hover:text-gray-700 hover:bg-[#dae8ff]'
+            ? 'text-muted-foreground hover:bg-accent hover:text-foreground'
+            : 'text-muted-foreground hover:bg-accent hover:text-foreground'
         )}
       >
         <ChevronRightIcon className={iconSize} />
@@ -175,7 +175,7 @@ function NavHeader({
 interface DayViewProps {
   viewDate: Date;
   selected: Date | null;
-  today: Date;
+  today: Date | null;
   size: CalendarSize;
   isNavy: boolean;
   onSelectDay: (date: Date) => void;
@@ -259,7 +259,7 @@ function DayView({
               'flex items-center justify-center font-medium',
               cellSize,
               dayHeaderSize,
-              isNavy ? 'text-gray-400' : 'text-gray-400'
+              'text-muted-foreground'
             )}
           >
             {d}
@@ -271,7 +271,7 @@ function DayView({
       <div className="grid grid-cols-7 gap-0">
         {cells.map(({ date, outside }, idx) => {
           const isSelected = selected ? isSameDay(date, selected) : false;
-          const isToday = isSameDay(date, today);
+          const isToday = today ? isSameDay(date, today) : false;
           const disabled = isDisabled(date);
 
           return (
@@ -293,21 +293,15 @@ function DayView({
               className={cn(
                 cellSize,
                 'flex items-center justify-center rounded transition-colors duration-100',
-                'focus:outline-none focus-visible:ring-2 focus-visible:ring-[#000080] focus-visible:ring-offset-1',
+                'focus:outline-none focus-visible:ring-2 focus-visible:ring-ring/25 focus-visible:ring-offset-1',
                 'border',
                 isSelected
-                  ? 'bg-[#000080] text-white font-semibold border-[#000080] hover:bg-[#0000a0]'
+                  ? 'border-primary bg-primary text-white font-semibold hover:bg-primary/92'
                   : outside
-                    ? isNavy
-                      ? 'text-gray-600 border-transparent hover:bg-[#000060]'
-                      : 'text-gray-300 border-transparent hover:bg-gray-50'
+                    ? 'border-transparent text-muted-foreground/60 hover:bg-muted/60'
                     : isToday && !isSelected
-                      ? isNavy
-                        ? 'text-white border-[#000080] hover:bg-[#000060]'
-                        : 'text-[#000080] border-[#000080] font-semibold hover:bg-[#dae8ff]'
-                      : isNavy
-                        ? 'text-gray-200 border-[#000040] hover:bg-[#000060]'
-                        : 'text-gray-700 border-gray-200 hover:bg-[#dae8ff]',
+                      ? 'border-primary/30 bg-accent/70 font-semibold text-primary hover:bg-accent'
+                      : 'border-border text-foreground hover:bg-accent',
                 disabled && 'opacity-40 cursor-not-allowed pointer-events-none'
               )}
             >
@@ -359,7 +353,7 @@ function MonthView({
         nextAriaLabel="Next year"
       />
 
-      <div className="grid grid-cols-4 gap-1 mt-2">
+      <div className="mt-2 grid grid-cols-4 gap-1">
         {MONTH_NAMES.map((name, idx) => {
           const isSelected = selected
             ? selected.getFullYear() === year && selected.getMonth() === idx
@@ -376,13 +370,11 @@ function MonthView({
               onClick={() => onSelectMonth(idx)}
               className={cn(
                 cellSize,
-                'flex items-center justify-center rounded-md font-medium transition-colors duration-100',
-                'focus:outline-none focus-visible:ring-2 focus-visible:ring-[#000080] focus-visible:ring-offset-1',
+                'flex items-center justify-center rounded-xl font-medium transition-colors duration-100',
+                'focus:outline-none focus-visible:ring-2 focus-visible:ring-ring/25 focus-visible:ring-offset-1',
                 isSelected
-                  ? 'bg-[#000080] text-white hover:bg-[#0000a0]'
-                  : isNavy
-                    ? 'text-gray-200 hover:bg-[#000060]'
-                    : 'text-gray-700 hover:bg-[#dae8ff]'
+                  ? 'bg-primary text-white hover:bg-primary/92'
+                  : 'text-foreground hover:bg-accent'
               )}
             >
               {name}
@@ -433,7 +425,7 @@ function YearView({
         nextAriaLabel={`Next ${YEAR_RANGE_SIZE} years`}
       />
 
-      <div className="grid grid-cols-4 gap-1 mt-2">
+      <div className="mt-2 grid grid-cols-4 gap-1">
         {years.map((yr) => {
           const isSelected = selected ? selected.getFullYear() === yr : false;
 
@@ -448,13 +440,11 @@ function YearView({
               onClick={() => onSelectYear(yr)}
               className={cn(
                 cellSize,
-                'flex items-center justify-center rounded-md font-medium transition-colors duration-100',
-                'focus:outline-none focus-visible:ring-2 focus-visible:ring-[#000080] focus-visible:ring-offset-1',
+                'flex items-center justify-center rounded-xl font-medium transition-colors duration-100',
+                'focus:outline-none focus-visible:ring-2 focus-visible:ring-ring/25 focus-visible:ring-offset-1',
                 isSelected
-                  ? 'bg-[#000080] text-white hover:bg-[#0000a0]'
-                  : isNavy
-                    ? 'text-gray-200 hover:bg-[#000060]'
-                    : 'text-gray-700 hover:bg-[#dae8ff]'
+                  ? 'bg-primary text-white hover:bg-primary/92'
+                  : 'text-foreground hover:bg-accent'
               )}
             >
               {yr}
@@ -480,8 +470,13 @@ export default function Calendar({
   className,
   'aria-label': ariaLabel = 'Calendar',
 }: CalendarProps) {
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
+  const [today, setToday] = useState<Date | null>(null);
+
+  useEffect(() => {
+    const current = new Date();
+    current.setHours(0, 0, 0, 0);
+    setToday(current);
+  }, []);
 
   // Internal selected state (uncontrolled fallback)
   const [internalSelected, setInternalSelected] = useState<Date | null>(defaultValue ?? null);
@@ -489,7 +484,7 @@ export default function Calendar({
 
   // View date — the month/year currently being displayed
   const [viewDate, setViewDate] = useState<Date>(() => {
-    const base = selected ?? today;
+    const base = selected ?? defaultValue ?? new Date(2000, 0, 1);
     return new Date(base.getFullYear(), base.getMonth(), 1);
   });
 
@@ -503,6 +498,12 @@ export default function Calendar({
       setViewDate(new Date(value.getFullYear(), value.getMonth(), 1));
     }
   }, [value]);
+
+  useEffect(() => {
+    if (value || selected) return;
+    const current = new Date();
+    setViewDate(new Date(current.getFullYear(), current.getMonth(), 1));
+  }, [selected, value]);
 
   // ── Day view handlers ──
   const handleSelectDay = useCallback(
@@ -555,11 +556,12 @@ export default function Calendar({
     <div
       role="application"
       aria-label={ariaLabel}
+      data-theme={theme}
       className={cn(
         calendarVariants({ size }),
         containerPadding,
-        'rounded-lg',
-        isNavy ? 'bg-[#00002a] text-white' : 'bg-white text-gray-900',
+        'rounded-2xl border border-border shadow-card',
+        isNavy ? 'bg-sidebar text-sidebar-foreground' : 'bg-card text-foreground',
         className
       )}
     >

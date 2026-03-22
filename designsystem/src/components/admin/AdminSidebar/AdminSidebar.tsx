@@ -36,20 +36,20 @@ const AdminSidebar = forwardRef<HTMLElement, AdminSidebarProps>(
     <aside
       ref={ref}
       className={cn(
-        'bg-slate-900 text-white transition-all duration-200 flex flex-col',
+        'flex flex-col border-r border-sidebar-border bg-sidebar text-sidebar-foreground transition-all duration-200',
         collapsed ? 'w-20' : 'w-64',
         className
       )}
       {...props}
     >
       {/* Header */}
-      <div className="flex items-center justify-between p-4 border-b border-slate-800">
+      <div className="flex items-center justify-between border-b border-sidebar-border p-4">
         <h1 className={cn('font-bold transition-all', collapsed ? 'text-xs' : 'text-lg')}>
           {collapsed ? 'UI' : '@shubh/ui'}
         </h1>
         <button
           onClick={onToggle}
-          className="p-1 hover:bg-slate-800 rounded-lg transition-colors"
+          className="rounded-xl p-2 transition-colors hover:bg-sidebar-accent"
           aria-label={collapsed ? 'Expand' : 'Collapse'}
         >
           {collapsed ? <Menu className="h-4 w-4" /> : <X className="h-4 w-4" />}
@@ -57,16 +57,16 @@ const AdminSidebar = forwardRef<HTMLElement, AdminSidebarProps>(
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 overflow-y-auto py-4 px-3 space-y-1">
+      <nav className="flex-1 space-y-1 overflow-y-auto px-3 py-4">
         {navigation.map((item) => (
           <div key={item.id}>
             <button
               onClick={() => onNavigate?.(item.id)}
               className={cn(
-                'w-full flex items-center gap-3 px-3 py-2 rounded-lg transition-colors text-left',
+                'flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left transition-colors',
                 activeItem === item.id
                   ? 'bg-primary text-primary-foreground'
-                  : 'text-muted-foreground hover:bg-muted/10'
+                  : 'text-sidebar-foreground/80 hover:bg-sidebar-accent hover:text-sidebar-foreground'
               )}
             >
               {item.icon && <span className="flex-shrink-0">{item.icon}</span>}
@@ -79,10 +79,10 @@ const AdminSidebar = forwardRef<HTMLElement, AdminSidebarProps>(
                     key={child.id}
                     onClick={() => onNavigate?.(child.id)}
                     className={cn(
-                      'w-full flex items-center gap-3 px-3 py-1.5 rounded text-xs transition-colors text-left',
+                      'flex w-full items-center gap-3 rounded-xl px-3 py-2 text-left text-xs transition-colors',
                       activeItem === child.id
                         ? 'bg-primary/80 text-primary-foreground'
-                        : 'text-muted-foreground hover:bg-muted/10'
+                        : 'text-sidebar-foreground/65 hover:bg-sidebar-accent hover:text-sidebar-foreground'
                     )}
                   >
                     {child.label}
@@ -95,7 +95,7 @@ const AdminSidebar = forwardRef<HTMLElement, AdminSidebarProps>(
       </nav>
 
       {/* Footer */}
-      {children && <div className="border-t border-border p-4">{children}</div>}
+      {children && <div className="border-t border-sidebar-border p-4">{children}</div>}
     </aside>
   )
 );

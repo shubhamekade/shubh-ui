@@ -17,22 +17,22 @@ export interface StatsCardProps extends HTMLAttributes<HTMLDivElement> {
 const variantStyles = {
   default: 'bg-card border-border text-card-foreground',
   primary: 'bg-accent border-primary/20 text-accent-foreground',
-  success: 'bg-green-50 border-green-200 text-green-900',
-  warning: 'bg-amber-50 border-amber-200 text-amber-900',
-  danger: 'bg-red-50 border-red-200 text-red-900',
+  success: 'bg-success-soft border-success-border text-success',
+  warning: 'bg-warning-soft border-warning-border text-warning-foreground',
+  danger: 'bg-destructive-soft border-destructive-border text-destructive',
 };
 
 const iconBgVariants = {
   default: 'bg-muted',
   primary: 'bg-accent',
-  success: 'bg-green-100',
-  warning: 'bg-amber-100',
-  danger: 'bg-red-100',
+  success: 'bg-success-soft',
+  warning: 'bg-warning-soft',
+  danger: 'bg-destructive-soft',
 };
 
 const trendColorVariants = {
-  up: 'text-green-600',
-  down: 'text-red-600',
+  up: 'text-success',
+  down: 'text-destructive',
 };
 
 const StatsCard = forwardRef<HTMLDivElement, StatsCardProps>(
@@ -54,7 +54,7 @@ const StatsCard = forwardRef<HTMLDivElement, StatsCardProps>(
     <div
       ref={ref}
       className={cn(
-        'rounded-lg border p-6 transition-shadow hover:shadow-md',
+        'rounded-2xl border p-6 shadow-card transition-colors hover:border-foreground/10',
         variantStyles[variant],
         className
       )}

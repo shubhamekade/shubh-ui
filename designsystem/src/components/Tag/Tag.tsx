@@ -12,19 +12,19 @@ export interface TagProps extends React.HTMLAttributes<HTMLSpanElement> {
 }
 
 const colorMap = {
-  default: 'bg-gray-100 text-gray-700 border-gray-200',
-  blue: 'bg-[#dae8ff] text-[#000080] border-[#b3d4ff]',
-  green: 'bg-green-50 text-green-700 border-green-200',
-  red: 'bg-red-50 text-red-700 border-red-200',
-  amber: 'bg-amber-50 text-amber-700 border-amber-200',
-  purple: 'bg-purple-50 text-purple-700 border-purple-200',
-  pink: 'bg-pink-50 text-pink-700 border-pink-200',
+  default: 'border-border/80 bg-muted/60 text-foreground',
+  blue: 'border-info/20 bg-info-soft text-info',
+  green: 'border-success/20 bg-success-soft text-success',
+  red: 'border-destructive/20 bg-destructive-soft text-destructive',
+  amber: 'border-warning/20 bg-warning-soft text-warning-foreground',
+  purple: 'border-primary/20 bg-accent text-accent-foreground',
+  pink: 'border-border/60 bg-secondary text-secondary-foreground',
 };
 
 const sizeMap = {
-  sm: 'h-5 px-2 text-xs gap-1',
-  md: 'h-6 px-2.5 text-xs gap-1.5',
-  lg: 'h-7 px-3 text-sm gap-1.5',
+  sm: 'h-5 px-1.5 text-[10px] gap-1 tracking-wide',
+  md: 'h-6 px-2 text-xs gap-1',
+  lg: 'h-7 px-2.5 text-xs gap-1.5',
 };
 
 const Tag: React.FC<TagProps> = ({
@@ -40,7 +40,7 @@ const Tag: React.FC<TagProps> = ({
 }) => (
   <span
     className={cn(
-      'inline-flex items-center rounded-md border font-medium transition-colors',
+      'inline-flex items-center rounded-xl border font-medium transition-colors',
       sizeMap[size],
       colorMap[color],
       className
@@ -53,7 +53,7 @@ const Tag: React.FC<TagProps> = ({
       <button
         type="button"
         onClick={onRemove}
-        className="shrink-0 hover:opacity-70 transition-opacity ml-0.5"
+        className="ml-0.5 shrink-0 rounded-md p-0.5 transition-opacity hover:bg-foreground/5 hover:opacity-70"
         aria-label={`Remove ${children} tag`}
       >
         <X className="h-3 w-3" />

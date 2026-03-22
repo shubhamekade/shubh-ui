@@ -62,10 +62,10 @@ const Pagination: React.FC<PaginationProps> = ({
   const totalPages = Math.ceil(total / pageSize);
   const pages = generatePages(page, totalPages, siblingCount);
   const btnClass = cn(
-    'inline-flex items-center justify-center rounded-md border border-border font-medium transition-all duration-100',
-    'hover:bg-accent hover:border-primary hover:text-accent-foreground',
-    'disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-transparent disabled:hover:border-border disabled:hover:text-inherit',
-    'focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1',
+    'inline-flex items-center justify-center rounded-lg border border-border bg-background font-medium transition-all duration-150 ease-out',
+    'hover:bg-muted hover:border-muted-foreground/20',
+    'disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-transparent disabled:hover:border-border',
+    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/30 focus-visible:ring-offset-1',
     sizeMap[size]
   );
 
@@ -73,7 +73,7 @@ const Pagination: React.FC<PaginationProps> = ({
     <div className={cn('flex items-center flex-wrap gap-3', className)}>
       {showTotal && (
         <span className="text-sm text-muted-foreground tabular-nums">
-          {(page - 1) * pageSize + 1}–{Math.min(page * pageSize, total)} of {total.toLocaleString()}
+          {(page - 1) * pageSize + 1}–{Math.min(page * pageSize, total)} of {total.toLocaleString('en-US')}
         </span>
       )}
       <div className="flex items-center gap-1 ml-auto">
@@ -118,7 +118,7 @@ const Pagination: React.FC<PaginationProps> = ({
               className={cn(
                 btnClass,
                 page === p &&
-                  'bg-primary text-primary-foreground border-primary hover:bg-primary/90 hover:text-primary-foreground hover:border-primary/90'
+                  'border-primary bg-primary text-primary-foreground hover:bg-primary/92 hover:text-primary-foreground hover:border-primary/92'
               )}
             >
               {p}
@@ -152,7 +152,7 @@ const Pagination: React.FC<PaginationProps> = ({
         <select
           value={pageSize}
           onChange={(e) => onPageSizeChange(Number(e.target.value))}
-          className="h-8 pl-2 pr-6 text-sm border border-border rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-ring bg-background text-foreground"
+          className="h-8 rounded-xl border border-border bg-background pl-3 pr-8 text-sm text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           aria-label="Rows per page"
         >
           {pageSizeOptions.map((s) => (

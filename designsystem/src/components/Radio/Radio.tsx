@@ -26,7 +26,7 @@ const Radio = forwardRef<HTMLInputElement, RadioProps>(
     const s = sizeMap[size];
 
     return (
-      <div className={cn('flex items-start gap-2', className)}>
+      <div className={cn('flex items-start gap-3', className)}>
         <div className="relative flex items-center justify-center shrink-0 mt-0.5">
           <input
             ref={ref}
@@ -39,11 +39,11 @@ const Radio = forwardRef<HTMLInputElement, RadioProps>(
           />
           <div
             className={cn(
-              'flex items-center justify-center rounded-full border-2 transition-all duration-150',
+              'flex items-center justify-center rounded-full border transition-all duration-150 ease-out',
               s.outer,
-              checked ? 'border-primary' : 'border-input hover:border-primary',
+              checked ? 'border-primary bg-background shadow-sm' : 'border-input hover:border-primary/50',
               disabled && 'opacity-50 cursor-not-allowed',
-              error && !checked && 'border-red-400'
+              error && !checked && 'border-destructive/40 bg-destructive-soft'
             )}
             aria-hidden="true"
           >

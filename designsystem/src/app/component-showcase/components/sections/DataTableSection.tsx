@@ -1,7 +1,12 @@
 'use client';
 
 import React from 'react';
-import ServerDataTable, { FetchParams, FetchResult, ColumnDef } from '@/components/ServerDataTable';
+import ServerDataTable, {
+  FetchParams,
+  FetchResult,
+  ColumnDef,
+  ServerDataTableTheme,
+} from '@/components/ServerDataTable';
 import ShowcaseSection from '../ShowcaseSection';
 import SectionHeader from '../SectionHeader';
 import { useShowcaseTheme } from '@/app/component-showcase/context/ThemeContext';
@@ -222,6 +227,7 @@ async function mockFetchData(params: FetchParams): Promise<FetchResult<RequestRo
 export default function DataTableSection() {
   const { theme } = useShowcaseTheme();
   const cellTextClass = theme === 'navy' ? 'text-[#ddeeff]' : 'text-[#1e1e1e]';
+  const tableTheme: ServerDataTableTheme = theme === 'light' ? 'light' : 'navy';
 
   const columns: ColumnDef<RequestRow>[] = [
     {
@@ -344,7 +350,7 @@ export default function DataTableSection() {
             keyExtractor={(row) => row.id}
             pageSize={5}
             appliedDateField="appliedOn"
-            theme={theme}
+            theme={tableTheme}
             onApprove={(row, note) => alert(`Approved: ${row.name}\nNote: ${note || '(none)'}`)}
             onReject={(row, note) => alert(`Rejected: ${row.name}\nNote: ${note || '(none)'}`)}
           />

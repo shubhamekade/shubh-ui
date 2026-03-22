@@ -2,14 +2,14 @@ import React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/utils/cn';
 
-export const progressTrackVariants = cva('w-full overflow-hidden rounded-full bg-muted', {
+export const progressTrackVariants = cva('w-full overflow-hidden rounded-full bg-muted/80', {
   variants: {
     size: {
       xs: 'h-1',
       sm: 'h-1.5',
-      md: 'h-2.5',
-      lg: 'h-4',
-      xl: 'h-6',
+      md: 'h-2',
+      lg: 'h-3',
+      xl: 'h-5',
     },
   },
   defaultVariants: { size: 'md' },
@@ -51,10 +51,10 @@ const Progress: React.FC<ProgressProps> = ({
   return (
     <div className={cn('w-full', className)} {...props}>
       {(showLabel || label) && (
-        <div className="flex justify-between items-center mb-1.5">
-          <span className="text-xs font-medium text-[#1e1e1e]">{label}</span>
+        <div className="mb-1.5 flex items-center justify-between">
+          <span className="text-xs font-medium text-foreground">{label}</span>
           {showLabel && (
-            <span className="text-xs text-[#808080] tabular-nums">{Math.round(pct)}%</span>
+            <span className="text-xs tabular-nums text-muted-foreground">{Math.round(pct)}%</span>
           )}
         </div>
       )}
@@ -70,7 +70,6 @@ const Progress: React.FC<ProgressProps> = ({
           className={cn(
             'h-full rounded-full transition-all duration-500 ease-out',
             colorMap[color],
-            striped && 'bg-stripes',
             animated && 'animate-pulse'
           )}
           style={{ width: `${pct}%` }}

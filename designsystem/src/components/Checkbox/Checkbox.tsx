@@ -42,7 +42,7 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
     const s = sizeMap[size];
 
     return (
-      <div className={cn('flex items-start gap-2', className)}>
+      <div className={cn('flex items-start gap-3', className)}>
         <div className="relative flex items-center justify-center shrink-0 mt-0.5">
           <input
             ref={ref}
@@ -56,20 +56,20 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
           />
           <div
             className={cn(
-              'flex items-center justify-center rounded transition-all duration-150 border-2 cursor-pointer',
+              'flex cursor-pointer items-center justify-center rounded-md border transition-all duration-150 ease-out',
               s.box,
               checked || indeterminate
-                ? 'bg-primary border-primary'
-                : 'bg-background border-input hover:border-primary',
+                ? 'border-primary bg-primary text-primary-foreground shadow-sm'
+                : 'bg-background border-input hover:border-primary/50',
               disabled && 'opacity-50 cursor-not-allowed',
-              error && !checked && 'border-red-400'
+              error && !checked && 'border-destructive/40 bg-destructive-soft'
             )}
             aria-hidden="true"
           >
             {indeterminate ? (
-              <Minus className={cn(s.icon, 'text-white')} strokeWidth={3} />
+              <Minus className={cn(s.icon, 'text-current')} strokeWidth={3} />
             ) : checked ? (
-              <Check className={cn(s.icon, 'text-white')} strokeWidth={3} />
+              <Check className={cn(s.icon, 'text-current')} strokeWidth={3} />
             ) : null}
           </div>
         </div>
@@ -81,13 +81,11 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
             {label && (
               <span className={cn('font-medium text-foreground block', s.label)}>{label}</span>
             )}
-            {description && (
-              <span className="text-xs text-muted-foreground block mt-0.5">{description}</span>
-            )}
+            {description && <span className="mt-0.5 block text-xs text-muted-foreground">{description}</span>}
           </label>
         )}
         {error && (
-          <p className="text-xs text-red-500 mt-1" role="alert">
+          <p className="mt-1 text-xs text-destructive" role="alert">
             {error}
           </p>
         )}

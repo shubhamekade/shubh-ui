@@ -34,7 +34,7 @@ const Topbar = forwardRef<HTMLElement, TopbarProps>(
   ) => (
     <header
       ref={ref}
-      className={cn('w-full border-b border-slate-200 bg-white px-4 py-3 sm:px-6', className)}
+      className={cn('w-full border-b border-white/20 bg-white/70 px-4 py-3 backdrop-blur-xl dark:border-border/70 dark:bg-card/70 sm:px-6', className)}
       {...props}
     >
       <div className="flex items-center justify-between gap-4">
@@ -42,28 +42,28 @@ const Topbar = forwardRef<HTMLElement, TopbarProps>(
         <div className="flex items-center gap-3">
           <button
             onClick={onMenuToggle}
-            className="p-1.5 hover:bg-slate-100 rounded-lg transition-colors lg:hidden"
+            className="rounded-xl p-2 transition-colors hover:bg-muted lg:hidden"
             aria-label={menuOpen ? 'Close menu' : 'Open menu'}
           >
             {menuOpen ? (
-              <X className="h-5 w-5 text-slate-600" />
+              <X className="h-5 w-5 text-muted-foreground" />
             ) : (
-              <Menu className="h-5 w-5 text-slate-600" />
+              <Menu className="h-5 w-5 text-muted-foreground" />
             )}
           </button>
-          <h1 className="text-lg font-semibold text-slate-900">{title}</h1>
+          <h1 className="text-lg font-semibold text-foreground">{title}</h1>
         </div>
 
         {/* Center: Search */}
         {onSearchChange && (
           <div className="hidden md:flex flex-1 max-w-sm">
             <div className="relative w-full">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <input
                 type="text"
                 placeholder="Search..."
                 onChange={(e) => onSearchChange(e.target.value)}
-                className="w-full pl-10 pr-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+                className="w-full rounded-xl border border-border bg-background pl-10 pr-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring/25"
               />
             </div>
           </div>
@@ -74,19 +74,19 @@ const Topbar = forwardRef<HTMLElement, TopbarProps>(
           {/* Notifications */}
           <button
             onClick={onNotifications}
-            className="relative p-2 hover:bg-slate-100 rounded-lg transition-colors"
+            className="relative rounded-xl p-2 transition-colors hover:bg-muted"
             aria-label="Notifications"
           >
-            <Bell className="h-5 w-5 text-slate-600" />
+            <Bell className="h-5 w-5 text-muted-foreground" />
             {notifications > 0 && (
-              <span className="absolute top-1 right-1 h-2 w-2 bg-red-500 rounded-full" />
+              <span className="absolute top-1 right-1 h-2 w-2 rounded-full bg-destructive" />
             )}
           </button>
 
           {/* Profile */}
           <button
             onClick={onProfile}
-            className="flex items-center gap-2 p-1.5 hover:bg-slate-100 rounded-lg transition-colors"
+            className="flex items-center gap-2 rounded-xl p-1.5 transition-colors hover:bg-muted"
             aria-label="Profile menu"
           >
             {profileImage ? (
@@ -97,10 +97,10 @@ const Topbar = forwardRef<HTMLElement, TopbarProps>(
                 className="h-6 w-6 rounded-full object-cover"
               />
             ) : (
-              <User className="h-5 w-5 text-slate-600" />
+              <User className="h-5 w-5 text-muted-foreground" />
             )}
             {userName && (
-              <span className="hidden sm:inline text-sm text-slate-700 font-medium">
+              <span className="hidden text-sm font-medium text-foreground sm:inline">
                 {userName}
               </span>
             )}

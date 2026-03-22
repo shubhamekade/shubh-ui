@@ -181,9 +181,9 @@ const Select = forwardRef<HTMLDivElement, SelectProps>(
     return (
       <div ref={containerRef} className={cn('w-full', className)}>
         {label && (
-          <label htmlFor={selectId} className="block text-sm font-medium text-foreground mb-1.5">
+          <label htmlFor={selectId} className="mb-1.5 block text-sm font-medium text-foreground">
             {label}
-            {required && <span className="text-red-500 ml-1">*</span>}
+            {required && <span className="ml-1 text-destructive">*</span>}
           </label>
         )}
         <div className="relative" ref={ref}>
@@ -201,15 +201,15 @@ const Select = forwardRef<HTMLDivElement, SelectProps>(
             }
             aria-label={label || placeholder}
             className={cn(
-              'w-full flex items-center justify-between gap-2 rounded-md border bg-background transition-all duration-150',
-              'focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-0',
+              'flex w-full items-center justify-between gap-2 rounded-xl border bg-surface transition-all duration-150 ease-out',
+              'focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/20 focus-visible:border-primary/50',
               sizeMap[size],
               error
-                ? 'border-red-400'
+                ? 'border-destructive/40 bg-destructive-soft'
                 : open
-                  ? 'border-primary'
-                  : 'border-border hover:border-muted-foreground',
-              disabled && 'opacity-50 cursor-not-allowed bg-gray-50'
+                  ? 'border-primary/50 ring-2 ring-primary/20'
+                  : 'border-input hover:border-muted-foreground/30',
+              disabled && 'cursor-not-allowed bg-muted/50 opacity-50'
             )}
           >
             <span
@@ -229,7 +229,7 @@ const Select = forwardRef<HTMLDivElement, SelectProps>(
                 <button
                   type="button"
                   onClick={handleClear}
-                  className="text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+                  className="cursor-pointer rounded-md p-0.5 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
                   aria-label="Clear selection"
                 >
                   <X className="h-3.5 w-3.5" />
@@ -237,7 +237,7 @@ const Select = forwardRef<HTMLDivElement, SelectProps>(
               )}
               <ChevronDown
                 className={cn(
-                  'h-4 w-4 text-muted-foreground transition-transform duration-150',
+                  'h-4 w-4 text-muted-foreground transition-transform duration-200 ease-in-out',
                   open && 'rotate-180'
                 )}
                 aria-hidden="true"
@@ -251,7 +251,7 @@ const Select = forwardRef<HTMLDivElement, SelectProps>(
               role="listbox"
               aria-multiselectable={multiple}
               onKeyDown={handleListboxKeyDown}
-              className="absolute z-50 mt-1 w-full bg-background border border-border rounded-md shadow-dropdown overflow-auto max-h-56 animate-fade-in scrollbar-thin"
+              className="absolute z-50 mt-1.5 max-h-60 w-full overflow-auto rounded-xl border border-border/80 bg-popover p-1 shadow-dropdown animate-fade-in scrollbar-thin"
             >
               {options.map((opt, index) => (
                 <li
@@ -263,11 +263,11 @@ const Select = forwardRef<HTMLDivElement, SelectProps>(
                   onMouseEnter={() => !opt.disabled && setActiveIndex(index)}
                   onClick={() => !opt.disabled && handleSelect(opt.value)}
                   className={cn(
-                    'flex items-center gap-2 px-3 py-2 text-sm cursor-pointer transition-colors duration-100',
-                    activeIndex === index && !opt.disabled && 'bg-gray-50',
+                    'flex cursor-pointer items-center gap-2 rounded-lg px-2.5 py-2 text-sm transition-colors duration-100',
+                    activeIndex === index && !opt.disabled && !isSelected(opt.value) && 'bg-muted',
                     isSelected(opt.value)
                       ? 'bg-accent text-accent-foreground font-medium'
-                      : 'text-foreground hover:bg-gray-50',
+                      : 'text-foreground hover:bg-muted',
                     opt.disabled && 'opacity-40 cursor-not-allowed'
                   )}
                 >
@@ -292,7 +292,7 @@ const Select = forwardRef<HTMLDivElement, SelectProps>(
           )}
         </div>
         {error && (
-          <p className="mt-1 text-xs text-red-500" role="alert">
+          <p className="mt-1 text-xs text-destructive" role="alert">
             {error}
           </p>
         )}

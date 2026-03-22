@@ -42,6 +42,8 @@ import AvatarSection from './sections/AvatarSection';
 import TagSection from './sections/TagSection';
 import AccordionSection from './sections/AccordionSection';
 import DividerSection from './sections/DividerSection';
+import CalendarSection from './sections/CalendarSection';
+import DatePickerSection from './sections/DatePickerSection';
 
 interface NavCategory {
   id: string;
@@ -65,6 +67,8 @@ const NAV_CATEGORIES: NavCategory[] = [
       { id: 'checkbox', label: 'Checkbox' },
       { id: 'radio', label: 'Radio' },
       { id: 'switch', label: 'Switch' },
+      { id: 'calendar', label: 'Calendar' },
+      { id: 'datepicker', label: 'DatePicker' },
     ],
   },
   {
@@ -138,6 +142,8 @@ const SECTION_MAP: Record<string, React.ComponentType> = {
   checkbox: CheckboxSection,
   radio: RadioSection,
   switch: SwitchSection,
+  calendar: CalendarSection,
+  datepicker: DatePickerSection,
   tabs: TabsSection,
   breadcrumb: BreadcrumbSection,
   pagination: PaginationSection,

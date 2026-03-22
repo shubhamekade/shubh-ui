@@ -59,7 +59,7 @@ const Accordion: React.FC<AccordionProps> = ({
       className={cn(
         'w-full',
         variant === 'bordered' &&
-          'border border-border rounded-lg overflow-hidden divide-y divide-border',
+          'overflow-hidden rounded-xl border border-border divide-y divide-border bg-surface',
         variant === 'default' && 'divide-y divide-border',
         variant === 'flush' && 'divide-y divide-border',
         className
@@ -69,7 +69,7 @@ const Accordion: React.FC<AccordionProps> = ({
         <div
           key={item.id}
           className={cn(
-            variant === 'filled' && 'mb-2 rounded-lg overflow-hidden border border-border'
+            variant === 'filled' && 'mb-1.5 overflow-hidden rounded-xl border border-border bg-surface'
           )}
         >
           <button
@@ -78,12 +78,12 @@ const Accordion: React.FC<AccordionProps> = ({
             disabled={item.disabled}
             aria-expanded={isOpen(item.id)}
             className={cn(
-              'w-full flex items-center justify-between gap-3 py-3.5 px-0 text-left transition-colors duration-150',
-              variant === 'filled' && 'px-4 bg-muted hover:bg-muted/80',
+              'flex w-full items-center justify-between gap-3 px-0 py-3.5 text-left text-sm font-medium transition-all duration-150 ease-out',
+              variant === 'filled' && 'bg-muted/40 px-4 hover:bg-muted/70',
               variant === 'bordered' && 'px-4',
               variant === 'flush' && 'px-0',
-              item.disabled ? 'opacity-40 cursor-not-allowed' : 'cursor-pointer hover:text-primary',
-              isOpen(item.id) && 'text-primary'
+              item.disabled ? 'opacity-40 cursor-not-allowed' : 'cursor-pointer hover:text-foreground',
+              isOpen(item.id) ? 'text-foreground' : 'text-muted-foreground'
             )}
           >
             <span className="flex items-center gap-2 font-medium text-sm">
@@ -106,7 +106,7 @@ const Accordion: React.FC<AccordionProps> = ({
           >
             <div
               className={cn(
-                'pb-4 text-sm text-muted-foreground',
+                'pb-4 text-sm leading-6 text-muted-foreground',
                 variant === 'filled' && 'px-4',
                 variant === 'bordered' && 'px-4'
               )}

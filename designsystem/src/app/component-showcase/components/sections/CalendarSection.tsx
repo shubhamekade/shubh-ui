@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Calendar from '@/components/Calendar';
-import type { CalendarSize } from '@/components/Calendar';
+import type { CalendarSize, CalendarTheme } from '@/components/Calendar';
 import ShowcaseSection from '../ShowcaseSection';
 import SectionHeader from '../SectionHeader';
 import { useShowcaseTheme } from '../../context/ThemeContext';
@@ -10,6 +10,7 @@ import { useShowcaseTheme } from '../../context/ThemeContext';
 export default function CalendarSection() {
   const { theme } = useShowcaseTheme();
   const isNavy = theme === 'navy';
+  const calendarTheme: CalendarTheme = theme === 'light' ? 'light' : 'navy';
 
   // Interactive playground state
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date(2024, 9, 14)); // Oct 14 2024
@@ -44,48 +45,54 @@ export default function CalendarSection() {
       >
         <div className="flex flex-wrap gap-8 items-start justify-center w-full py-4">
           {/* Day View */}
-          <div className="flex flex-col items-center gap-2">
+          <div className="flex flex-col items-center gap-2 min-h-fit">
             <p className={`text-xs font-semibold uppercase tracking-wide ${labelClass}`}>
               Day View
             </p>
-            <Calendar
-              value={dayViewDate}
-              onChange={setDayViewDate}
-              initialView="day"
-              theme={theme}
-              size="md"
-              aria-label="Day view calendar demo"
-            />
+            <div className="inline-block">
+              <Calendar
+                value={dayViewDate}
+                onChange={setDayViewDate}
+                initialView="day"
+                theme={calendarTheme}
+                size="md"
+                aria-label="Day view calendar demo"
+              />
+            </div>
           </div>
 
           {/* Month View */}
-          <div className="flex flex-col items-center gap-2">
+          <div className="flex flex-col items-center gap-2 min-h-fit">
             <p className={`text-xs font-semibold uppercase tracking-wide ${labelClass}`}>
               Month View
             </p>
-            <Calendar
-              value={monthViewDate}
-              onChange={setMonthViewDate}
-              initialView="month"
-              theme={theme}
-              size="md"
-              aria-label="Month view calendar demo"
-            />
+            <div className="inline-block">
+              <Calendar
+                value={monthViewDate}
+                onChange={setMonthViewDate}
+                initialView="month"
+                theme={calendarTheme}
+                size="md"
+                aria-label="Month view calendar demo"
+              />
+            </div>
           </div>
 
           {/* Year View */}
-          <div className="flex flex-col items-center gap-2">
+          <div className="flex flex-col items-center gap-2 min-h-fit">
             <p className={`text-xs font-semibold uppercase tracking-wide ${labelClass}`}>
               Year View
             </p>
-            <Calendar
-              value={yearViewDate}
-              onChange={setYearViewDate}
-              initialView="year"
-              theme={theme}
-              size="md"
-              aria-label="Year view calendar demo"
-            />
+            <div className="inline-block">
+              <Calendar
+                value={yearViewDate}
+                onChange={setYearViewDate}
+                initialView="year"
+                theme={calendarTheme}
+                size="md"
+                aria-label="Year view calendar demo"
+              />
+            </div>
           </div>
         </div>
       </ShowcaseSection>
@@ -148,14 +155,16 @@ export default function CalendarSection() {
           </div>
 
           {/* Calendar */}
-          <div className="flex justify-center py-4">
-            <Calendar
-              value={selectedDate}
-              onChange={setSelectedDate}
-              size={size}
-              theme={theme}
-              aria-label="Interactive calendar playground"
-            />
+          <div className="flex justify-center py-4 w-full">
+            <div className="inline-block">
+              <Calendar
+                value={selectedDate}
+                onChange={setSelectedDate}
+                size={size}
+                theme={calendarTheme}
+                aria-label="Interactive calendar playground"
+              />
+            </div>
           </div>
 
           {/* Selected date display */}
@@ -174,14 +183,16 @@ export default function CalendarSection() {
       >
         <div className="flex flex-wrap gap-8 items-start justify-center w-full py-4">
           {sizes.map((s) => (
-            <div key={s} className="flex flex-col items-center gap-2">
+            <div key={s} className="flex flex-col items-center gap-2 min-h-fit">
               <p className={`text-xs font-semibold uppercase tracking-wide ${labelClass}`}>{s}</p>
-              <Calendar
-                defaultValue={new Date(2024, 9, 14)}
-                size={s}
-                theme={theme}
-                aria-label={`${s} size calendar`}
-              />
+              <div className="inline-block">
+                <Calendar
+                  defaultValue={new Date(2024, 9, 14)}
+                  size={s}
+                  theme={calendarTheme}
+                  aria-label={`${s} size calendar`}
+                />
+              </div>
             </div>
           ))}
         </div>
@@ -193,23 +204,27 @@ export default function CalendarSection() {
         description="Navy dark theme and light theme side by side."
       >
         <div className="flex flex-wrap gap-8 items-start justify-center w-full py-4">
-          <div className="flex flex-col items-center gap-2">
+          <div className="flex flex-col items-center gap-2 min-h-fit">
             <p className={`text-xs font-semibold uppercase tracking-wide ${labelClass}`}>Light</p>
-            <Calendar
-              defaultValue={new Date(2024, 9, 14)}
-              theme="light"
-              size="md"
-              aria-label="Light theme calendar"
-            />
+            <div className="inline-block">
+              <Calendar
+                defaultValue={new Date(2024, 9, 14)}
+                theme="light"
+                size="md"
+                aria-label="Light theme calendar"
+              />
+            </div>
           </div>
-          <div className="flex flex-col items-center gap-2">
+          <div className="flex flex-col items-center gap-2 min-h-fit">
             <p className={`text-xs font-semibold uppercase tracking-wide ${labelClass}`}>Navy</p>
-            <Calendar
-              defaultValue={new Date(2024, 9, 14)}
-              theme="navy"
-              size="md"
-              aria-label="Navy theme calendar"
-            />
+            <div className="inline-block">
+              <Calendar
+                defaultValue={new Date(2024, 9, 14)}
+                theme="navy"
+                size="md"
+                aria-label="Navy theme calendar"
+              />
+            </div>
           </div>
         </div>
       </ShowcaseSection>

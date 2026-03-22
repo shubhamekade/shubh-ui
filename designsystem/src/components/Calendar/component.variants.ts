@@ -15,8 +15,8 @@ export const calendarVariants = cva(['inline-block select-none font-sans'], {
 
 export const calendarCellVariants = cva(
   [
-    'flex items-center justify-center rounded cursor-pointer transition-colors duration-100',
-    'focus:outline-none focus-visible:ring-2 focus-visible:ring-[#000080] focus-visible:ring-offset-1',
+    'flex cursor-pointer items-center justify-center rounded-lg border transition-colors duration-100',
+    'focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/25 focus-visible:ring-offset-1',
   ],
   {
     variants: {
@@ -26,15 +26,15 @@ export const calendarCellVariants = cva(
         lg: 'h-9 w-9 text-base',
       },
       selected: {
-        true: 'bg-[#000080] text-white font-semibold hover:bg-[#0000a0]',
+        true: 'border-primary bg-primary text-primary-foreground font-semibold',
         false: '',
       },
       outside: {
-        true: 'text-gray-300',
+        true: 'text-muted-foreground/40',
         false: '',
       },
       disabled: {
-        true: 'opacity-40 cursor-not-allowed pointer-events-none',
+        true: 'pointer-events-none cursor-not-allowed opacity-30',
         false: '',
       },
     },
@@ -43,7 +43,7 @@ export const calendarCellVariants = cva(
         selected: false,
         outside: false,
         disabled: false,
-        className: 'hover:bg-[#dae8ff] text-gray-700',
+        className: 'border-transparent text-foreground hover:bg-muted',
       },
     ],
     defaultVariants: {

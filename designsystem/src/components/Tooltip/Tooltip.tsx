@@ -64,7 +64,7 @@ const Tooltip: React.FC<TooltipProps> = ({
         <div
           role="tooltip"
           className={cn(
-            'absolute z-50 px-2.5 py-1.5 text-xs font-medium text-background bg-foreground rounded-md shadow-lg whitespace-nowrap animate-fade-in pointer-events-none',
+            'pointer-events-none absolute z-50 whitespace-nowrap rounded-lg border-0 bg-foreground px-2.5 py-1.5 text-xs font-medium text-background shadow-lg animate-fade-in',
             placementStyles[placement],
             className
           )}

@@ -3,6 +3,8 @@ import React__default, { ButtonHTMLAttributes, ReactNode, InputHTMLAttributes, H
 import { VariantProps } from 'class-variance-authority';
 import * as class_variance_authority_types from 'class-variance-authority/types';
 import * as react_jsx_runtime from 'react/jsx-runtime';
+import { HTMLMotionProps } from 'framer-motion';
+export { AnimatePresence, motion } from 'framer-motion';
 import { ClassValue } from 'clsx';
 
 declare const buttonVariants: (props?: ({
@@ -280,6 +282,45 @@ declare const calendarCellVariants: (props?: ({
     disabled?: boolean | null | undefined;
 } & class_variance_authority_types.ClassProp) | undefined) => string;
 
+type DatePickerSize = 'sm' | 'md' | 'lg';
+interface DatePickerProps {
+    /** Controlled selected date */
+    value?: Date | null;
+    /** Default selected date (uncontrolled) */
+    defaultValue?: Date | null;
+    /** Called when a date is selected or cleared */
+    onChange?: (date: Date | null) => void;
+    /** Placeholder text */
+    placeholder?: string;
+    /** Size variant */
+    size?: DatePickerSize;
+    /** Color theme for the calendar popover */
+    theme?: CalendarTheme;
+    /** Label shown above the input */
+    label?: string;
+    /** Whether the field is required */
+    required?: boolean;
+    /** Error message or flag */
+    error?: string | boolean;
+    /** Helper text shown below the input */
+    hint?: string;
+    /** Disable the picker */
+    disabled?: boolean;
+    /** Minimum selectable date */
+    minDate?: Date;
+    /** Maximum selectable date */
+    maxDate?: Date;
+    /** Format the display string — defaults to locale 'en-US' medium date */
+    formatDate?: (date: Date) => string;
+    /** Additional class on the root wrapper */
+    className?: string;
+    /** id for the input element */
+    id?: string;
+    /** ARIA label for the input */
+    'aria-label'?: string;
+}
+declare function DatePicker({ value, defaultValue, onChange, placeholder, size, theme, label, required, error, hint, disabled, minDate, maxDate, formatDate, className, id, 'aria-label': ariaLabel, }: DatePickerProps): react_jsx_runtime.JSX.Element;
+
 interface CheckboxProps extends Omit<React__default.InputHTMLAttributes<HTMLInputElement>, 'type' | 'size'> {
     label?: string;
     description?: string;
@@ -507,6 +548,199 @@ interface SidebarProps extends HTMLAttributes<HTMLElement> {
 }
 declare const Sidebar: React$1.ForwardRefExoticComponent<SidebarProps & React$1.RefAttributes<HTMLElement>>;
 
+interface DashboardShellProps extends HTMLAttributes<HTMLDivElement> {
+    sidebar?: ReactNode;
+    header?: ReactNode;
+    aside?: ReactNode;
+    contentClassName?: string;
+}
+declare const DashboardShell: React$1.ForwardRefExoticComponent<DashboardShellProps & React$1.RefAttributes<HTMLDivElement>>;
+
+interface FadeInProps extends HTMLMotionProps<'div'> {
+    delay?: number;
+}
+declare function FadeIn({ delay, ...props }: FadeInProps): react_jsx_runtime.JSX.Element;
+
+declare function ScaleIn(props: HTMLMotionProps<'div'>): react_jsx_runtime.JSX.Element;
+
+declare const motionTokens: {
+    duration: {
+        fast: number;
+        base: number;
+        slow: number;
+    };
+    easing: {
+        standard: readonly [0.16, 1, 0.3, 1];
+        productive: readonly [0.2, 0.8, 0.2, 1];
+        exit: readonly [0.4, 0, 1, 1];
+    };
+};
+
+interface BoxProps extends HTMLAttributes<HTMLDivElement> {
+}
+declare const Box: React$1.ForwardRefExoticComponent<BoxProps & React$1.RefAttributes<HTMLDivElement>>;
+
+declare const headingVariants: (props?: ({
+    size?: "sm" | "md" | "lg" | "xl" | null | undefined;
+} & class_variance_authority_types.ClassProp) | undefined) => string;
+interface HeadingProps extends HTMLAttributes<HTMLHeadingElement>, VariantProps<typeof headingVariants> {
+}
+declare const Heading: React$1.ForwardRefExoticComponent<HeadingProps & React$1.RefAttributes<HTMLHeadingElement>>;
+
+declare const inlineVariants: (props?: ({
+    gap?: "xs" | "sm" | "md" | "lg" | "xl" | null | undefined;
+    justify?: "end" | "center" | "start" | "between" | null | undefined;
+} & class_variance_authority_types.ClassProp) | undefined) => string;
+interface InlineProps extends HTMLAttributes<HTMLDivElement>, VariantProps<typeof inlineVariants> {
+}
+declare const Inline: React$1.ForwardRefExoticComponent<InlineProps & React$1.RefAttributes<HTMLDivElement>>;
+
+declare const stackVariants: (props?: ({
+    gap?: "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | null | undefined;
+    align?: "end" | "center" | "stretch" | "start" | null | undefined;
+} & class_variance_authority_types.ClassProp) | undefined) => string;
+interface StackProps extends HTMLAttributes<HTMLDivElement>, VariantProps<typeof stackVariants> {
+}
+declare const Stack: React$1.ForwardRefExoticComponent<StackProps & React$1.RefAttributes<HTMLDivElement>>;
+
+declare const surfaceVariants: (props?: ({
+    variant?: "ghost" | "default" | "elevated" | "muted" | "sidebar" | null | undefined;
+    radius?: "md" | "lg" | "xl" | null | undefined;
+    padding?: "sm" | "md" | "lg" | "none" | null | undefined;
+} & class_variance_authority_types.ClassProp) | undefined) => string;
+interface SurfaceProps extends HTMLAttributes<HTMLDivElement>, VariantProps<typeof surfaceVariants> {
+}
+declare const Surface: React$1.ForwardRefExoticComponent<SurfaceProps & React$1.RefAttributes<HTMLDivElement>>;
+
+declare const textVariants: (props?: ({
+    size?: "xs" | "sm" | "lg" | "base" | null | undefined;
+    tone?: "default" | "accent" | "muted" | "subtle" | null | undefined;
+    weight?: "bold" | "medium" | "regular" | "semibold" | null | undefined;
+} & class_variance_authority_types.ClassProp) | undefined) => string;
+interface TextProps extends HTMLAttributes<HTMLParagraphElement>, VariantProps<typeof textVariants> {
+}
+declare const Text: React$1.ForwardRefExoticComponent<TextProps & React$1.RefAttributes<HTMLParagraphElement>>;
+
+interface ColorTokens {
+    background: string;
+    foreground: string;
+    surface: string;
+    surfaceElevated: string;
+    surfaceMuted: string;
+    border: string;
+    input: string;
+    ring: string;
+    primary: string;
+    primaryForeground: string;
+    secondary: string;
+    secondaryForeground: string;
+    accent: string;
+    accentForeground: string;
+    muted: string;
+    mutedForeground: string;
+    destructive: string;
+    destructiveForeground: string;
+    destructiveSoft: string;
+    destructiveBorder: string;
+    success: string;
+    successForeground: string;
+    successSoft: string;
+    successBorder: string;
+    warning: string;
+    warningForeground: string;
+    warningSoft: string;
+    warningBorder: string;
+    info: string;
+    infoForeground: string;
+    infoSoft: string;
+    infoBorder: string;
+    overlay: string;
+    shadow: string;
+    sidebar: string;
+    sidebarForeground: string;
+    sidebarAccent: string;
+    sidebarBorder: string;
+}
+interface SpacingTokens {
+    xs: string;
+    sm: string;
+    md: string;
+    lg: string;
+    xl: string;
+    '2xl': string;
+    '3xl': string;
+    '4xl': string;
+    '5xl': string;
+}
+interface RadiusTokens {
+    sm: string;
+    md: string;
+    lg: string;
+    xl: string;
+    pill: string;
+}
+interface TypographyTokens {
+    fontSans: string;
+    fontDisplay: string;
+    fontMono: string;
+    textXs: string;
+    leadingXs: string;
+    textSm: string;
+    leadingSm: string;
+    textBase: string;
+    leadingBase: string;
+    textLg: string;
+    leadingLg: string;
+    textXl: string;
+    leadingXl: string;
+    text2xl: string;
+    leading2xl: string;
+    text3xl: string;
+    leading3xl: string;
+}
+interface DesignTokens {
+    colors: ColorTokens;
+    spacing: SpacingTokens;
+    radius: RadiusTokens;
+    typography: TypographyTokens;
+}
+interface DesignTheme {
+    id: string;
+    name: string;
+    description?: string;
+    tokens: DesignTokens;
+}
+interface RuntimeThemeOverrides {
+    colors?: Partial<ColorTokens>;
+    radius?: Partial<RadiusTokens>;
+}
+
+interface ThemeContextValue {
+    themeId: string;
+    theme: DesignTheme;
+    themes: DesignTheme[];
+    overrides: RuntimeThemeOverrides;
+    setTheme: (themeId: string) => void;
+    updateColor: (token: keyof ColorTokens, value: string) => void;
+    updateRadius: (token: keyof RadiusTokens, value: string) => void;
+    resetOverrides: () => void;
+}
+interface ThemeProviderProps {
+    children: React__default.ReactNode;
+    defaultTheme?: string;
+    themes?: DesignTheme[];
+    storageKey?: string;
+}
+declare function ThemeProvider({ children, defaultTheme, themes, storageKey, }: ThemeProviderProps): react_jsx_runtime.JSX.Element | null;
+declare function useTheme(): ThemeContextValue;
+
+declare const designThemes: DesignTheme[];
+declare const designThemeMap: {
+    [k: string]: DesignTheme;
+};
+
+declare function ThemeEditor(): react_jsx_runtime.JSX.Element;
+
 /**
  * useClickOutside — fires callback when user clicks outside the referenced element.
  */
@@ -526,4 +760,4 @@ declare function useToggle(initialValue?: boolean): [boolean, () => void, () => 
 
 declare function cn(...inputs: ClassValue[]): string;
 
-export { Accordion, type AccordionProps, Button as AdminButton, Card as AdminCard, CardContent as AdminCardContent, CardDescription as AdminCardDescription, CardFooter as AdminCardFooter, CardHeader as AdminCardHeader, CardTitle as AdminCardTitle, Input as AdminInput, Pagination as AdminPagination, Select as AdminSelect, AdminSidebar, type AdminSidebarProps, Table as AdminTable, Alert, type AlertProps, Avatar, type AvatarProps, Badge, type BadgeProps, Breadcrumb, type BreadcrumbItem, type BreadcrumbProps, Button, type ButtonProps, Calendar, type CalendarProps, type CalendarSize, type CalendarTheme, type CalendarView, Card, CardContent, CardDescription, CardFooter, CardHeader, type CardProps, CardTitle, Checkbox, type CheckboxProps, type ColumnDef, Divider, type DividerProps, Drawer, type DrawerProps, Dropdown, type DropdownProps, type FetchParams, type FetchResult, Input, type InputProps, Label, type LabelProps, Modal, type ModalProps, type NavItem, Navbar, type NavbarProps, Pagination, type PaginationProps, Progress, type ProgressProps, Radio, type RadioProps, Select, type SelectProps, ServerDataTable, type ServerDataTableProps, type ServerDataTableTheme, Sidebar, type SidebarProps, Skeleton, SkeletonCard, type SkeletonProps, type SortDirection, Spinner, type SpinnerProps, StatsCard, type StatsCardProps, Switch, type SwitchProps, Table, type TableProps, Tabs, type TabsProps, Tag, type TagProps, Textarea, type TextareaProps, Tooltip, type TooltipProps, Topbar, type TopbarProps, alertVariants, badgeVariants, buttonVariants, calendarCellVariants, calendarVariants, cardVariants, cn, inputVariants, useClickOutside, useDebounce, useToggle };
+export { Accordion, type AccordionProps, Button as AdminButton, Card as AdminCard, CardContent as AdminCardContent, CardDescription as AdminCardDescription, CardFooter as AdminCardFooter, CardHeader as AdminCardHeader, CardTitle as AdminCardTitle, Input as AdminInput, Pagination as AdminPagination, Select as AdminSelect, AdminSidebar, type AdminSidebarProps, Table as AdminTable, Alert, type AlertProps, Avatar, type AvatarProps, Badge, type BadgeProps, Box, Breadcrumb, type BreadcrumbItem, type BreadcrumbProps, Button, type ButtonProps, Calendar, type CalendarProps, type CalendarSize, type CalendarTheme, type CalendarView, Card, CardContent, CardDescription, CardFooter, CardHeader, type CardProps, CardTitle, Checkbox, type CheckboxProps, type ColorTokens, type ColumnDef, DashboardShell, type DashboardShellProps, DatePicker, type DatePickerProps, type DatePickerSize, type DesignTheme, type DesignTokens, Divider, type DividerProps, Drawer, type DrawerProps, Dropdown, type DropdownProps, FadeIn, type FetchParams, type FetchResult, Heading, Inline, Input, type InputProps, Label, type LabelProps, Modal, type ModalProps, type NavItem, Navbar, type NavbarProps, Pagination, type PaginationProps, Progress, type ProgressProps, Radio, type RadioProps, type RadiusTokens, type RuntimeThemeOverrides, ScaleIn, Select, type SelectProps, ServerDataTable, type ServerDataTableProps, type ServerDataTableTheme, Sidebar, type SidebarProps, Skeleton, SkeletonCard, type SkeletonProps, type SortDirection, type SpacingTokens, Spinner, type SpinnerProps, Stack, StatsCard, type StatsCardProps, Surface, Switch, type SwitchProps, Table, type TableProps, Tabs, type TabsProps, Tag, type TagProps, Text, Textarea, type TextareaProps, ThemeEditor, ThemeProvider, Tooltip, type TooltipProps, Topbar, type TopbarProps, type TypographyTokens, alertVariants, badgeVariants, buttonVariants, calendarCellVariants, calendarVariants, cardVariants, cn, designThemeMap, designThemes, inputVariants, motionTokens, useClickOutside, useDebounce, useTheme, useToggle };

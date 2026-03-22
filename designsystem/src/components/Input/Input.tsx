@@ -52,10 +52,10 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
     return (
       <div className="w-full">
         {label ? (
-          <label htmlFor={inputId} className="mb-1.5 block text-sm font-medium text-slate-900">
+          <label htmlFor={inputId} className="mb-1.5 block text-sm font-medium text-foreground">
             {label}
             {required ? (
-              <span className="ml-1 text-red-500" aria-label="required">
+              <span className="ml-1 text-destructive" aria-label="required">
                 *
               </span>
             ) : null}
@@ -63,7 +63,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         ) : null}
         <div className="relative flex items-center">
           {hasLeftElement ? (
-            <div className="pointer-events-none absolute left-3 flex items-center text-slate-400">
+            <div className="pointer-events-none absolute left-3.5 flex items-center text-muted-foreground">
               {leftElement}
             </div>
           ) : null}
@@ -74,8 +74,8 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
             value={value}
             className={cn(
               inputVariants({ variant: effectiveVariant, size }),
-              hasLeftElement && 'pl-9',
-              hasRightElement && 'pr-10',
+              hasLeftElement && 'pl-10',
+              hasRightElement && 'pr-11',
               className
             )}
             aria-invalid={Boolean(error)}
@@ -91,12 +91,12 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
             {...props}
           />
           {hasRightElement ? (
-            <div className="absolute right-3 flex items-center gap-1">
+            <div className="absolute right-3.5 flex items-center gap-1.5">
               {clearable && value ? (
                 <button
                   type="button"
                   onClick={onClear}
-                  className="text-slate-400 transition-colors hover:text-slate-600"
+                  className="rounded-md p-0.5 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
                   aria-label="Clear input"
                 >
                   <X className="h-3.5 w-3.5" />
@@ -106,28 +106,28 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
                 <button
                   type="button"
                   onClick={() => setShowPassword((current) => !current)}
-                  className="text-slate-400 transition-colors hover:text-slate-600"
+                  className="rounded-md p-0.5 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
                   aria-label={showPassword ? 'Hide password' : 'Show password'}
                 >
                   {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                 </button>
               ) : null}
-              {rightElement ? <span className="text-slate-400">{rightElement}</span> : null}
+              {rightElement ? <span className="text-muted-foreground">{rightElement}</span> : null}
             </div>
           ) : null}
         </div>
         {error ? (
-          <p id={`${inputId}-error`} className="mt-1 text-xs text-red-500" role="alert">
+          <p id={`${inputId}-error`} className="mt-1 text-xs text-destructive" role="alert">
             {typeof error === 'string' ? error : 'This field is invalid.'}
           </p>
         ) : null}
         {success && !error ? (
-          <p id={`${inputId}-success`} className="mt-1 text-xs text-green-600">
+          <p id={`${inputId}-success`} className="mt-1 text-xs text-success">
             {success}
           </p>
         ) : null}
         {hint && !error && !success ? (
-          <p id={`${inputId}-hint`} className="mt-1 text-xs text-slate-500">
+          <p id={`${inputId}-hint`} className="mt-1 text-xs text-muted-foreground">
             {hint}
           </p>
         ) : null}

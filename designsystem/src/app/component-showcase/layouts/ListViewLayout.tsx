@@ -372,8 +372,8 @@ export default function ListViewLayout() {
             <div className="w-40">
               <Select
                 value={categoryFilter}
-                onChange={(e) => {
-                  setCategoryFilter(e.target.value);
+                onChange={(value) => {
+                  setCategoryFilter(Array.isArray(value) ? (value[0] ?? 'all') : value);
                   setCurrentPage(1);
                 }}
                 options={[
@@ -388,8 +388,8 @@ export default function ListViewLayout() {
             <div className="w-36">
               <Select
                 value={statusFilter}
-                onChange={(e) => {
-                  setStatusFilter(e.target.value);
+                onChange={(value) => {
+                  setStatusFilter(Array.isArray(value) ? (value[0] ?? 'all') : value);
                   setCurrentPage(1);
                 }}
                 options={[
@@ -488,25 +488,25 @@ export default function ListViewLayout() {
               <div className={cn('divide-y', listRowDivide)}>
                 {Array.from({ length: 5 }).map((_, i) => (
                   <div key={i} className="flex items-center gap-3 px-5 py-4">
-                    <Skeleton variant="rectangular" className="w-4 h-4 rounded" />
+                    <Skeleton variant="rect" className="w-4 h-4 rounded" />
                     <div className="flex-1 space-y-2">
                       <Skeleton variant="text" className="h-4 w-48" />
                       <Skeleton variant="text" className="h-3 w-72" />
                     </div>
                     <Skeleton
-                      variant="rectangular"
+                      variant="rect"
                       className="w-20 h-5 rounded-full hidden md:block"
                     />
                     <Skeleton
-                      variant="rectangular"
+                      variant="rect"
                       className="w-16 h-5 rounded-full hidden lg:block"
                     />
                     <Skeleton
-                      variant="rectangular"
+                      variant="rect"
                       className="w-16 h-5 rounded-full hidden xl:block"
                     />
-                    <Skeleton variant="circular" className="w-7 h-7 hidden lg:block" />
-                    <Skeleton variant="rectangular" className="w-6 h-6 rounded" />
+                    <Skeleton variant="circle" className="w-7 h-7 hidden lg:block" />
+                    <Skeleton variant="rect" className="w-6 h-6 rounded" />
                   </div>
                 ))}
               </div>
@@ -554,7 +554,7 @@ export default function ListViewLayout() {
                             </Tag>
                           ))}
                           <span className={cn('text-xs ml-1', itemMeta)}>
-                            {item.views.toLocaleString()} views · {item.date}
+                            {item.views.toLocaleString('en-US')} views · {item.date}
                           </span>
                         </div>
                       </div>
@@ -647,10 +647,12 @@ export default function ListViewLayout() {
                   {Math.min(currentPage * PAGE_SIZE, filtered.length)} of {filtered.length}
                 </p>
                 <Pagination
-                  currentPage={currentPage}
-                  totalPages={totalPages}
+                  page={currentPage}
+                  total={filtered.length}
+                  pageSize={PAGE_SIZE}
                   onPageChange={setCurrentPage}
                   size="sm"
+                  showTotal={false}
                 />
               </div>
             )}

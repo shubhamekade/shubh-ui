@@ -26,7 +26,7 @@ const Divider: React.FC<DividerProps> = ({
       <div
         role="separator"
         aria-orientation="vertical"
-        className={cn('inline-block self-stretch w-px bg-[#d7d7d7] mx-2', className)}
+        className={cn('mx-2 inline-block w-px self-stretch bg-border', className)}
         {...props}
       />
     );
@@ -37,15 +37,15 @@ const Divider: React.FC<DividerProps> = ({
       <div role="separator" className={cn('flex items-center gap-3 w-full', className)} {...props}>
         {labelAlign !== 'left' && (
           <div
-            className={cn('flex-1 border-[#d7d7d7]', variantMap[variant], thicknessMap[thickness])}
+            className={cn('flex-1 border-border', variantMap[variant], thicknessMap[thickness])}
           />
         )}
-        <span className="text-xs text-[#808080] font-medium whitespace-nowrap shrink-0">
+        <span className="shrink-0 whitespace-nowrap text-xs font-medium text-muted-foreground">
           {label}
         </span>
         {labelAlign !== 'right' && (
           <div
-            className={cn('flex-1 border-[#d7d7d7]', variantMap[variant], thicknessMap[thickness])}
+            className={cn('flex-1 border-border', variantMap[variant], thicknessMap[thickness])}
           />
         )}
       </div>
@@ -56,7 +56,7 @@ const Divider: React.FC<DividerProps> = ({
     <hr
       role="separator"
       className={cn(
-        'border-[#d7d7d7] w-full my-0',
+        'my-0 w-full border-border',
         variantMap[variant],
         thicknessMap[thickness],
         className

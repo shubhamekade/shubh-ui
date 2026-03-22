@@ -12,13 +12,13 @@ const Sidebar = forwardRef<HTMLElement, SidebarProps>(
       ref={ref}
       role="complementary"
       className={cn(
-        'h-full border-r border-slate-200 bg-white px-3 py-4',
-        collapsed ? 'w-16' : 'w-64',
+        'h-full border-r border-sidebar-border bg-sidebar px-2 py-3 text-sidebar-foreground transition-all duration-200',
+        collapsed ? 'w-[60px]' : 'w-60',
         className
       )}
       {...props}
     >
-      <nav aria-label="Sidebar navigation" className="flex h-full flex-col gap-1">
+      <nav aria-label="Sidebar navigation" className="flex h-full flex-col gap-0.5">
         {children}
       </nav>
     </aside>

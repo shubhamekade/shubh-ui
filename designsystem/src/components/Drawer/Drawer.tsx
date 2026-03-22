@@ -2,6 +2,8 @@
 
 import React, { useEffect } from 'react';
 import { X } from 'lucide-react';
+import { AnimatePresence, motion } from '@/motion';
+
 import { cn } from '@/utils/cn';
 
 export interface DrawerProps {
@@ -63,49 +65,75 @@ const Drawer: React.FC<DrawerProps> = ({
     };
   }, [open]);
 
-  if (!open) return null;
-
   return (
-    <div className="fixed inset-0 z-50" role="dialog" aria-modal="true">
-      <div
-        className="absolute inset-0 bg-black/40 backdrop-blur-sm animate-fade-in"
-        onClick={closeOnOverlay ? onClose : undefined}
-        aria-hidden="true"
-      />
-      <div
-        className={cn(
-          'absolute bg-white shadow-modal flex flex-col',
-          placementStyles[placement],
-          sizeStyles[placement][size],
-          className
-        )}
-      >
-        {(title || showCloseButton) && (
-          <div className="flex items-center justify-between p-5 border-b border-[#d7d7d7] shrink-0">
-            <div>
-              {title && <h2 className="text-base font-semibold text-[#1e1e1e]">{title}</h2>}
-              {description && <p className="text-sm text-[#808080] mt-0.5">{description}</p>}
-            </div>
-            {showCloseButton && (
-              <button
-                type="button"
-                onClick={onClose}
-                aria-label="Close drawer"
-                className="p-1 rounded-md text-[#808080] hover:text-[#1e1e1e] hover:bg-gray-100 transition-colors"
-              >
-                <X className="h-4 w-4" />
-              </button>
+    <AnimatePresence>
+      {open ? (
+        <div className="fixed inset-0 z-50" role="dialog" aria-modal="true">
+          <motion.div
+            className="absolute inset-0 bg-overlay/50 backdrop-blur-md"
+            onClick={closeOnOverlay ? onClose : undefined}
+            aria-hidden="true"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.18 }}
+          />
+          <motion.div
+            className={cn(
+              'absolute flex flex-col border border-border/60 bg-surface/95 backdrop-blur-xl shadow-modal',
+              placementStyles[placement],
+              sizeStyles[placement][size],
+              className
             )}
-          </div>
-        )}
-        <div className="flex-1 overflow-y-auto p-5 scrollbar-thin">{children}</div>
-        {footer && (
-          <div className="shrink-0 flex items-center justify-end gap-2 p-5 border-t border-[#d7d7d7]">
-            {footer}
-          </div>
-        )}
-      </div>
-    </div>
+            initial={
+              placement === 'right'
+                ? { opacity: 0, x: 48 }
+                : placement === 'left'
+                  ? { opacity: 0, x: -48 }
+                  : placement === 'top'
+                    ? { opacity: 0, y: -36 }
+                    : { opacity: 0, y: 36 }
+            }
+            animate={{ opacity: 1, x: 0, y: 0 }}
+            exit={
+              placement === 'right'
+                ? { opacity: 0, x: 48 }
+                : placement === 'left'
+                  ? { opacity: 0, x: -48 }
+                  : placement === 'top'
+                    ? { opacity: 0, y: -36 }
+                    : { opacity: 0, y: 36 }
+            }
+            transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+          >
+            {(title || showCloseButton) && (
+              <div className="flex shrink-0 items-center justify-between border-b border-border/80 p-6">
+                <div>
+                  {title && <h2 className="text-base font-semibold text-foreground">{title}</h2>}
+                  {description && <p className="mt-0.5 text-sm text-muted-foreground">{description}</p>}
+                </div>
+                {showCloseButton && (
+                  <button
+                    type="button"
+                    onClick={onClose}
+                    aria-label="Close drawer"
+                    className="rounded-xl p-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                  >
+                    <X className="h-4 w-4" />
+                  </button>
+                )}
+              </div>
+            )}
+            <div className="flex-1 overflow-y-auto p-6 scrollbar-thin">{children}</div>
+            {footer && (
+              <div className="flex shrink-0 items-center justify-end gap-2 border-t border-border/80 p-6">
+                {footer}
+              </div>
+            )}
+          </motion.div>
+        </div>
+      ) : null}
+    </AnimatePresence>
   );
 };
 
