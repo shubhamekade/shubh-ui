@@ -56,7 +56,7 @@ var buttonVariants = cva(
       variant: {
         primary: [
           "border border-primary bg-primary text-primary-foreground shadow-sm",
-          "hover:bg-primary/90 hover:border-primary/90 hover:-translate-y-px hover:shadow-md",
+          "hover:bg-transparent hover:border-primary hover:text-primary hover:-translate-y-px hover:shadow-md",
           "active:scale-[0.97] active:translate-y-0"
         ],
         secondary: [
